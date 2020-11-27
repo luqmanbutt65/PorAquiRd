@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item  android:id="@+id/home"
+        android:title="Home"
+        android:enabled="true"
+        android:icon="@drawable/home"
+
+        />
+    <item  android:id="@+id/location"
+        android:title="Location"
+        android:icon="@drawable/location"
+        android:enabled="true"
+        />
+    <item  android:id="@+id/likes"
+        android:title="Likes"
+        android:enabled="true"
+        android:icon="@drawable/heartt"
+        />
+    <item  android:id="@+id/booking"
+        android:title="booking"
+        android:enabled="true"
+        android:icon="@drawable/booking"
+       />
+    <item  android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/user"
+        android:enabled="true"
+        />
+</menu>

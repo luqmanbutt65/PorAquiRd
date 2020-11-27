@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/income_bottom_sheet"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/add"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:gravity="center"
+        android:textColor="@color/textblackcolor"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:textSize="@dimen/_15sdp"
+        android:text="Appointment" />
+
+
+        <RelativeLayout
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="#F0F3FF">
+            <TextView
+                android:id="@+id/autoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Dec,2020 12:30 PM"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textSize="@dimen/_15sdp"
+                 />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_baseline_calendar_today"
+                android:layout_marginRight="@dimen/_20sdp"
+                />
+        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/getapointment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:paddingLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:paddingRight="@dimen/_10sdp"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_round"
+            android:layout_centerVertical="true"
+            android:text="Apply Filters"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">PorAquiRd</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="clinton_vella_brown">Clinton Vella Brown</string>
+    <string name="_4_3_reviews">4.3 Reviews</string>
+    <string name="muslim_town_lahore">Muslim Town Lahore</string>
+    <string name="description">Description</string>
+    <string name="lorem_ipsum_is_simply_dummy_text_of_the_printing_and_typesetting_industry_lorem_ipsum_has_been_the_industry_s_standard_dummy_text_ever_since_the_1500s_when_an_unknown_printer_took_a_galley_of_type_and_scrambled_it_to_make_a_type_specimen_booklorem_ipsum_is_simply_dummy_text_of_the_printing_and_typesetting_industry_lorem_ipsum_has_been_the_industry_s_standard_dummy_text_ever_since_the_1500s_when_an_unknown_printer_took_a_galley_of_type_and_scrambled_it_to_make_a_type_specimen_booklorem_ipsum_is_simply_dummy_text_of_the_printing_and_typesetting_industry_lorem_ipsum_has_been_the_industry_s_standard_dummy_text_ever_since_the_1500s_when_an_unknown_printer_took_a_galley_of_type_and_scrambled_it_to_make_a_type_specimen_book">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen bookLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen bookLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_your_password">Forgot Your Password</string>
+    <string name="enter_the_regestration_email_and_we_will_send_you_a_confirmation_coden_to_reset_your_password">Enter The Regestration Email And We Will Send You A Confirmation Coden To Reset Your Password</string>
+    <string name="email">Email</string>
+    <string name="welcome_here">Welcome Here!</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="enter_your_username">Enter Your UserName</string>
+    <string name="enter_your_password">Enter Your Password</string>
+    <string name="login_status_shared_preference">com.example.realestate</string>
+    <string name="UserEmail">Abc@gmail.com</string>
+    <string name="UserPassword">abc</string>
+    <string name="login_shared_preference">com.example.realestate</string>
+</resources>
