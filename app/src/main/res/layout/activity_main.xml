@@ -35,6 +35,7 @@
         android:layout_height="match_parent"
         android:background="@null"
         android:layout_gravity="start"
+
         >
 
         <androidx.cardview.widget.CardView
@@ -56,6 +57,7 @@
 
                 <Button
                     android:id="@+id/menu"
+                    android:onClick="onclick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -73,6 +75,7 @@
 
                 <Button
                     android:id="@+id/feeds"
+                    android:onClick="onclick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -88,6 +91,7 @@
 
                 <Button
                     android:id="@+id/privacypolicy"
+                    android:onClick="onclick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -103,6 +107,7 @@
 
                 <Button
                     android:id="@+id/termcondition"
+                    android:onClick="onclick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -118,6 +123,7 @@
 
                 <Button
                     android:id="@+id/logout"
+                    android:onClick="onclick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"

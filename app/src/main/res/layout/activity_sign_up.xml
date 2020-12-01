@@ -73,7 +73,7 @@
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Username"
+                        android:text="Name"
                         android:textColor="#000000"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
@@ -101,7 +101,7 @@
                             android:textColor="@android:color/black"
                             android:background="@drawable/add_edittext_style"
                             android:paddingTop="@dimen/_10sdp"
-                            android:hint="Enter Username"
+                            android:hint="Enter name"
                             />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
@@ -115,7 +115,7 @@
                         android:layout_marginLeft="@dimen/_12sdp"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Name"
+                        android:text="Last Name"
                         android:textColor="#000000"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
@@ -143,7 +143,7 @@
                             android:paddingTop="@dimen/_10sdp"
                             android:textColor="@android:color/black"
                             android:paddingLeft="@dimen/_20sdp"
-                            android:hint="Enter Your Name"
+                            android:hint="Enter Last Name"
                             android:textColorHint="#737373"
                             />
                     </com.google.android.material.textfield.TextInputLayout>

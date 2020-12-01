@@ -7,6 +7,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.realestate.R;
+import com.example.realestate.Registration.LoginScreen;
 
 
 public class FirstActivity extends AppCompatActivity {
@@ -21,8 +22,8 @@ public class FirstActivity extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(3000);
-//                        Intent intent = new Intent(FirstActivity.this, LoginScreen.class);
-//                        startActivity(intent);
+                        Intent intent = new Intent(FirstActivity.this, LoginScreen.class);
+                        startActivity(intent);
                         finish();
                         return;
                 } catch (InterruptedException e) {

@@ -30,21 +30,28 @@ public class DashboardData {
     @Expose
     private int img;
 
-    public  DashboardData(String city,String location,double rating,double price,String title,int img){
-        this.city=city;
-        this.location=location;
-        this.rating=rating;
-        this.price=price;
-        this.title=title;
-        this.img=img;
-    }
+    @SerializedName("bedroom")
+    @Expose
+    private String bedroom;
 
-    public String getTitle() {
-        return title;
-    }
+    @SerializedName("bath")
+    @Expose
+    private String bath;
 
-    public void setTitle(String title) {
+    @SerializedName("area")
+    @Expose
+    private String area;
+
+    public DashboardData(String city, String location, double rating, double price, String title, int img, String bedroom, String bath, String area) {
+        this.city = city;
+        this.location = location;
+        this.rating = rating;
+        this.price = price;
         this.title = title;
+        this.img = img;
+        this.bedroom = bedroom;
+        this.bath = bath;
+        this.area = area;
     }
 
     public String getCity() {
@@ -79,11 +86,43 @@ public class DashboardData {
         this.price = price;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public int getImg() {
         return img;
     }
 
     public void setImg(int img) {
         this.img = img;
+    }
+
+    public String getBedroom() {
+        return bedroom;
+    }
+
+    public void setBedroom(String bedroom) {
+        this.bedroom = bedroom;
+    }
+
+    public String getBath() {
+        return bath;
+    }
+
+    public void setBath(String bath) {
+        this.bath = bath;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 }

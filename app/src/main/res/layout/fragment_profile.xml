@@ -295,7 +295,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Company Name*"
+                        android:text="Name &amp; Last Name/Company Name*"
                         android:textColor="#EE5181"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
@@ -306,9 +306,14 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="Enter Company Name "
+                        android:hint="Enter Name &amp; Last Name/Company Name "
                         android:inputType="textEmailAddress"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:maxLength="50"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
 
@@ -327,6 +332,10 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/add_edittext_style"
                         android:hint="102-01887-1"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:maxLength="20"
                         android:inputType="textEmailAddress"
                         android:paddingLeft="@dimen/_20sdp"
                         android:textColor="@android:color/black"
@@ -349,6 +358,10 @@
                         android:hint="102-D1887-1"
                         android:inputType="textEmailAddress"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:maxLength="20"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
 
@@ -356,7 +369,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Cell Phone*"
+                        android:text="Cell No.*"
                         android:textColor="#EE5181"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
@@ -366,11 +379,40 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="Enter your cell phone"
+                        android:hint="Enter your cell No."
                         android:inputType="textEmailAddress"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:maxLength="20"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Phone No.*"
+                        android:textColor="#EE5181"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/add_edittext_style"
+                        android:hint="Enter your phone No."
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="@dimen/_20sdp"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:maxLength="20"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="#808081" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -390,6 +432,38 @@
                         android:hint="Enter Your address, City,Area"
                         android:inputType="textEmailAddress"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:maxLength="30"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="#808081" />
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="City*"
+                        android:textColor="#EE5181"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/city"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/add_edittext_style"
+                        android:hint="Enter Your City"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="@dimen/_20sdp"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:maxLength="20"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
                 </LinearLayout>
@@ -399,8 +473,9 @@
                     android:layout_alignParentBottom="true"
                     android:id="@+id/getapointment"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
+                    android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/_10sdp"
+
                     android:paddingRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
@@ -408,10 +483,11 @@
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnApplyFilter"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="@dimen/_45sdp"
                         android:background="@drawable/button_round"
                         android:layout_centerVertical="true"
-                        android:text="Apply Filters"
+                        android:text="Submit"
+
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold"

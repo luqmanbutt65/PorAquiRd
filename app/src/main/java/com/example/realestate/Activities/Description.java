@@ -32,7 +32,7 @@ DotsIndicator dotsIndicator;
 
 
 
-        int[]  imagge={R.drawable.house,R.drawable.house,R.drawable.house,R.drawable.house,R.drawable.house,R.drawable.house,R.drawable.house};
+        int[]  imagge={R.drawable.house,R.drawable.house,R.drawable.house,R.drawable.house,R.drawable.house,R.drawable.house,R.drawable.house,R.drawable.house,R.drawable.house};
 
         viewPager = (ViewPager)findViewById(R.id.viewpager);
 

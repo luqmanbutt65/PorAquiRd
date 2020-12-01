@@ -66,7 +66,7 @@ public class DasboardAdapter extends RecyclerView.Adapter<DasboardAdapter.viewho
         }
 
         public class viewholder extends RecyclerView.ViewHolder {
-            TextView city, town,review ,price,title;
+            TextView city, town,review ,price,title,bedroom,bath,area;
             ImageView mainimg;
             RelativeLayout mainLayout;
 
@@ -78,6 +78,10 @@ public class DasboardAdapter extends RecyclerView.Adapter<DasboardAdapter.viewho
                 review = (TextView) itemView.findViewById(R.id.reviews);
                 price = (TextView) itemView.findViewById(R.id.price);
                 title = (TextView) itemView.findViewById(R.id.title);
+
+                bedroom = (TextView) itemView.findViewById(R.id.bedroomdasboard);
+                bath = (TextView) itemView.findViewById(R.id.bathsdashboard);
+                area = (TextView) itemView.findViewById(R.id.areadashboard);
                 mainLayout = itemView.findViewById(R.id.dashboardlayout);
                 mainimg = itemView.findViewById(R.id.main_image);
             }
@@ -88,6 +92,12 @@ public class DasboardAdapter extends RecyclerView.Adapter<DasboardAdapter.viewho
                 review.setText(String.valueOf(dashboardData.getRating()));
                 price.setText((String.valueOf(dashboardData.getPrice())));
                 title.setText(dashboardData.getTitle());
+
+                bedroom.setText(String.valueOf(dashboardData.getBedroom()));
+                bath.setText((String.valueOf(dashboardData.getBath())));
+                area.setText(dashboardData.getArea());
+
+
                 mainimg.setImageResource(dashboardData.getImg());
 
 

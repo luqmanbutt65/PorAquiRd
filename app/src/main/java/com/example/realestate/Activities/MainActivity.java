@@ -78,4 +78,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public  void onclick(View v){
+        if (v.getId()==R.id.menu){
+
+
+        }
+
+        if (v.getId()==R.id.feeds){
+
+
+        }
+        if (v.getId()==R.id.privacypolicy){
+
+
+        }
+        if (v.getId()==R.id.termcondition){
+
+
+        }
+        if (v.getId()==R.id.logout){
+
+
+        }
+
+    }
 }

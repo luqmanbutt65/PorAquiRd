@@ -7,7 +7,7 @@ public class Login {
 
     @SerializedName("status")
     @Expose
-    private Integer status;
+    private String status;
     @SerializedName("message")
     @Expose
     private String message;
@@ -16,11 +16,11 @@ public class Login {
     private UserInfo userInfo;
 
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

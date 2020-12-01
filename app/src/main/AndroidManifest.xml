@@ -40,11 +40,7 @@
         <activity android:name=".Registration.forgotpassword" />
         <activity android:name=".Registration.SignUpActivity" />
         <activity android:name=".Registration.LoginScreen" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Adddata" >
 
@@ -53,7 +49,11 @@
         </activity>
         <activity android:name=".Activities.Description"></activity>
         <activity android:name=".Splash.FirstActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Activities.MainActivity">
 
