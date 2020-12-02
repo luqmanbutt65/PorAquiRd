@@ -64,10 +64,10 @@ Button continu;
 
                     ResetPasswordResponse loginresp = response.body();
 //                    if(loginresp.getStatus()==(200)){}
-                    if (loginresp.getMessage().equals("new password sent to your email")) {
+                    if (loginresp.getMessage().equals("code sent to your mail address")) {
                         //login start main activity
                         Toast.makeText(forgotpassword.this, "New Password sended to Gmail", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(forgotpassword.this, LoginScreen.class);
+                        Intent intent = new Intent(forgotpassword.this, OTPScreenResetPass.class);
                         intent.putExtra("Email",getEmail);
                         startActivity(intent);
 

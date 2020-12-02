@@ -15,7 +15,7 @@ public class ResetPasswordResponse {
 
     @SerializedName("data")
     @Expose
-    private ResetPassword data;
+    private String data;
 
     public String getStatus() {
         return status;
@@ -25,20 +25,20 @@ public class ResetPasswordResponse {
         this.status = status;
     }
 
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public ResetPassword getData() {
-        return data;
-    }
-
-    public void setData(ResetPassword data) {
-        this.data = data;
     }
 
 

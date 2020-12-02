@@ -39,6 +39,7 @@
         <activity android:name=".Registration.resetpassword" />
         <activity android:name=".Registration.forgotpassword" />
         <activity android:name=".Registration.SignUpActivity" />
+        <activity android:name=".Registration.OTPScreenResetPass" />
         <activity android:name=".Registration.LoginScreen" >
 
         </activity>

@@ -6,22 +6,36 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Fragments.MyApointmentsFragment;
 import com.example.realestate.Fragments.ProfileFragment;
 import com.example.realestate.Fragments.Homefragment;
 import com.example.realestate.Fragments.MapsFragment;
 import com.example.realestate.Fragments.MyProjectsFragment;
 import com.example.realestate.Model.MyprojectData;
+import com.example.realestate.Model.REST.Properties.Properties_Data;
+import com.example.realestate.Model.REST.Properties.Properties_Response;
+import com.example.realestate.Model.REST.ResetPasswordResponse;
 import com.example.realestate.R;
+import com.example.realestate.Registration.OTPScreenResetPass;
+import com.example.realestate.Registration.resetpassword;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     ImageView cancelbtn,drawerbtn;
@@ -34,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer,new Homefragment()).commit();
         drawerbtn = findViewById(R.id.drawer);
@@ -103,4 +119,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+
+
+
+
 }

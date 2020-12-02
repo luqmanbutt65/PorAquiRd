@@ -20,17 +20,18 @@ import com.example.realestate.Model.DashboardData;
 import com.example.realestate.R;
 
 import java.util.List;
+import java.util.Properties;
 
 public class DasboardAdapter extends RecyclerView.Adapter<DasboardAdapter.viewholder> {
         Context context;
         private Activity activity;
-    private List<DashboardData> dashboardData;
+    private List<Properties> properties;
 
         public DasboardAdapter(Activity activity, Context context,
-                               List<DashboardData> dashboardData) {
+                               List<Properties> properties) {
             this.context = context;
             this.activity = activity;
-            this.dashboardData=dashboardData;
+            this.properties=properties;
 
 
         }
@@ -47,12 +48,12 @@ public class DasboardAdapter extends RecyclerView.Adapter<DasboardAdapter.viewho
         @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public int getItemCount() {
-            return dashboardData.size();
+            return properties.size();
         }
 
         @Override
         public void onBindViewHolder(@NonNull viewholder holder, int position) {
-            holder.setdata(dashboardData.get(position));
+//            holder.setdata(properties.get(position));
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,22 +87,22 @@ public class DasboardAdapter extends RecyclerView.Adapter<DasboardAdapter.viewho
                 mainimg = itemView.findViewById(R.id.main_image);
             }
 
-            void setdata(DashboardData dashboardData) {
-                city.setText(dashboardData.getCity());
-                town.setText(dashboardData.getLocation());
-                review.setText(String.valueOf(dashboardData.getRating()));
-                price.setText((String.valueOf(dashboardData.getPrice())));
-                title.setText(dashboardData.getTitle());
+            void setdata(com.example.realestate.Model.REST.Properties.Properties properties) {
+                city.setText(properties.getCity());
+                town.setText(properties.getLocation());
+                review.setText(String.valueOf(properties.getRating()));
+                price.setText((String.valueOf(properties.getPrice())));
+                title.setText(properties.getTitle());
 
-                bedroom.setText(String.valueOf(dashboardData.getBedroom()));
-                bath.setText((String.valueOf(dashboardData.getBath())));
-                area.setText(dashboardData.getArea());
+                bedroom.setText(String.valueOf(properties.getBedroom()));
+                bath.setText((String.valueOf(properties.getBath())));
+                area.setText(String.valueOf(properties.getArea()));
 
-
-                mainimg.setImageResource(dashboardData.getImg());
+                mainimg.setImageResource(properties.getMain_image());
 
 
             }
+
 
         }
     }

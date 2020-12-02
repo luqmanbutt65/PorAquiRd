@@ -28,7 +28,6 @@ import java.util.List;
 public class BottomSheet extends Fragment {
     AutoCompleteTextView autoCompleteTextView;
     RelativeLayout forRent, forSale,maximumButton,minimumButton;
-    ImageView dropDown;
     AppCompatButton BedroomAny, BathroomAny,oneBedroom,oneBathroom,twoBedroom,twoBathroom,threeBedroom,threeBathroom,
             fourBedroom,fourBathroom,enterBedroom,enterBathroom,applyFilters;
     ArrayAdapter<String> adapter;
@@ -54,7 +53,6 @@ public class BottomSheet extends Fragment {
         forSale = view.findViewById(R.id.forsale);
 //        maximumButton = view.findViewById(R.id.maximum);
 //        minimumButton = view.findViewById(R.id.minimum);
-        dropDown = view.findViewById(R.id.dropDown1);
 
         BedroomAny=view.findViewById(R.id.anyButton);
         BathroomAny=view.findViewById(R.id.bathroomAny);
@@ -71,7 +69,7 @@ public class BottomSheet extends Fragment {
         applyFilters=view.findViewById(R.id.anyButton);
 
         list = new ArrayList<String>();
-        list.add("");
+        list.add("Select one");
         list.add("Apartamentos");
         list.add("Edificios");
         list.add("Solares");
@@ -118,12 +116,7 @@ public class BottomSheet extends Fragment {
             }
         });
 
-        dropDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                autoCompleteTextView.showDropDown();
-            }
-        });
+
         BedroomAny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
