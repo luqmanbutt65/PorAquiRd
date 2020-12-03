@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.realestate.Activities.BaseActivity;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.REST.ResetPasswordResponse;
 import com.example.realestate.R;
@@ -19,35 +20,46 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class forgotpassword extends AppCompatActivity {
-EditText email;
-Button continu;
+public class forgotpassword extends BaseActivity {
+    EditText email;
+    Button continu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgotpassword);
 
-        email=findViewById(R.id.et_emailedittext);
-        continu=findViewById(R.id.continuebtn);
+        email = findViewById(R.id.et_emailedittext);
+        continu = findViewById(R.id.continuebtn);
 
 
-        String Email=email.getText().toString();
+        String Email = email.getText().toString();
 
         continu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String Email = email.getText().toString();
 
 
-                String Email=email.getText().toString();
+                if (Email.isEmpty()){
+                    showToast("Enter Email First");
 
-                ResetPass(Email);
+                } else {
+                    if (isEmailValid(Email)){
+
+                        ResetPass(Email);
+                    }else {
+                        showToast("Invalid Email");
+                    }
+
+                }
+
+
             }
         });
     }
 
     public void ResetPass(String getEmail) {
-
-
 
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
@@ -68,12 +80,12 @@ Button continu;
                         //login start main activity
                         Toast.makeText(forgotpassword.this, "New Password sended to Gmail", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(forgotpassword.this, OTPScreenResetPass.class);
-                        intent.putExtra("Email",getEmail);
+                        intent.putExtra("Email", getEmail);
                         startActivity(intent);
 
 
                     } else {
-                        Toast.makeText(forgotpassword.this, "Email is incorrect", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(forgotpassword.this, "Email Not registered", Toast.LENGTH_SHORT).show();
                     }
 //                    }
 

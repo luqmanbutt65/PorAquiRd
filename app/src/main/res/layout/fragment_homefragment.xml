@@ -35,23 +35,12 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_15sdp"
                     android:layout_toRightOf="@+id/drawer"
-                    android:text="Welcome,"
+                    android:text="Welcome"
                     android:fontFamily="@font/poppins"
                     android:textColor="#141A25"
                     android:textSize="@dimen/_20sdp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tv_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/tv_welcom"
-                    android:text="Shan"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="#141A25"
-                    android:textSize="@dimen/_20sdp"
-                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/notification"
@@ -131,7 +120,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins"
                 android:gravity="left"
-                android:text="110"
+                android:text="0"
                 android:textColor="#141A25"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
@@ -150,7 +139,7 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerdata"
+                android:id="@+id/homeRecylerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/tv_result"

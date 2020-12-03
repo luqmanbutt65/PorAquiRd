@@ -1,7 +1,6 @@
 package com.example.realestate.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,9 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.realestate.Adapters.DasboardAdapter;
 import com.example.realestate.Adapters.Notificationsadapter;
-import com.example.realestate.Model.DashboardData;
 import com.example.realestate.Model.Notification;
 import com.example.realestate.R;
 

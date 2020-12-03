@@ -37,12 +37,21 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     ImageView cancelbtn,drawerbtn;
     Button menu,feed, privcypolicy, termcondition, logout;
     DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
     NavigationView navigationView;
+
+
+
+    @Override
+    public void onBackPressed() {
+       // super.onBackPressed();
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

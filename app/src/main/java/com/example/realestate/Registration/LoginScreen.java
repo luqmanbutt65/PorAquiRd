@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.realestate.Activities.BaseActivity;
 import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Login;
@@ -30,15 +31,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LoginScreen extends AppCompatActivity {
+public class LoginScreen extends BaseActivity {
     EditText emailLogin, passwordLogin;
     Button relativeLayout;
     ProgressDialog loginProgressDialog;
     ProgressBar progressbar;
-    //    String userEmail="Abc@gmail.com";
-//    String PasswordUser="abcd";
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+            String pattren="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +46,7 @@ public class LoginScreen extends AppCompatActivity {
         emailLogin = findViewById(R.id.emailLogin);
         passwordLogin = findViewById(R.id.passwordLogin);
         relativeLayout = findViewById(R.id.letTheUserLogIn);
+
         loginProgressDialog = new ProgressDialog(LoginScreen.this);
         loginProgressDialog.setMessage("Logining..."); // Setting Message
         loginProgressDialog.setCancelable(false);
@@ -59,14 +59,24 @@ public class LoginScreen extends AppCompatActivity {
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String getEmail = emailLogin.getText().toString().trim();
+
+
                 String getPassword = passwordLogin.getText().toString().trim();
+
+
+
                 if (getEmail.isEmpty() && getPassword.isEmpty()) {
 
                     Toast.makeText(getApplicationContext(), "Please Input Field", Toast.LENGTH_SHORT).show();
                 } else {
+                    if(isEmailValid(getEmail)){
+                        showToast("Invalid Email");
+                    }else {
+                        loginuser(getEmail, getPassword);
+                    }
 
-                    loginuser(getEmail, getPassword);
                 }
 
 

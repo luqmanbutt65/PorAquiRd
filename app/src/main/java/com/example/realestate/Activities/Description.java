@@ -16,11 +16,17 @@ import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
 
-public class Description extends AppCompatActivity {
+public class Description extends BaseActivity {
 Context context;
 Features features;
 ViewPager viewPager;
 DotsIndicator dotsIndicator;
+
+    @Override
+    public void onBackPressed() {
+     super.onBackPressed();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

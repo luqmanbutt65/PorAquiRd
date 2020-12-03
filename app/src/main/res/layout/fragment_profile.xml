@@ -337,7 +337,7 @@
                         android:lines="1"
                         android:singleLine="true"
                         android:maxLength="20"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:paddingLeft="@dimen/_20sdp"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
@@ -459,6 +459,31 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/add_edittext_style"
                         android:hint="Enter Your City"
+                        android:inputType="text"
+                        android:paddingLeft="@dimen/_20sdp"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:maxLength="20"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="#808081" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Sector*"
+                        android:textColor="#EE5181"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/sector"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/add_edittext_style"
+                        android:hint="Enter Your Sector"
                         android:inputType="text"
                         android:paddingLeft="@dimen/_20sdp"
                         android:maxLines="1"

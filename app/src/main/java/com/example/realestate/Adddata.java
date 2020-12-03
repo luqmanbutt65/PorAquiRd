@@ -321,10 +321,10 @@ public class Adddata extends AppCompatActivity {
 
                 if (data != null) {
                     if (data.getClipData() != null) {
-                        if (data.getClipData().getItemCount() > 8) {
+                        if (data.getClipData().getItemCount() > 10) {
                             imagesAdapter.notifyDataSetChanged();
                             Snackbar snackbar = Snackbar
-                                    .make(findViewById(R.id.addimage), "You can not select more than 8 images", Snackbar.LENGTH_LONG)
+                                    .make(findViewById(R.id.addimage), "You can not select more than 10 images", Snackbar.LENGTH_LONG)
                                     .setAction("RETRY", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {

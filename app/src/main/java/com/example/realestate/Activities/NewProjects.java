@@ -11,7 +11,7 @@ import com.example.realestate.R;
 
 import java.util.ArrayList;
 
-public class NewProjects extends AppCompatActivity {
+public class NewProjects extends BaseActivity {
 Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -12,9 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.realestate.Adapters.AppointmentsAdapter;
-import com.example.realestate.Adapters.DasboardAdapter;
 import com.example.realestate.Model.AppointmentsData;
-import com.example.realestate.Model.DashboardData;
 import com.example.realestate.R;
 
 import java.util.ArrayList;
@@ -27,6 +25,8 @@ Context context;
     public MyApointmentsFragment() {
         // Required empty public constructor
     }
+
+
 
 
 
@@ -47,10 +47,10 @@ Context context;
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
 
-        String[] city = {"a", "s", "qqqqqq", "kkkkk", "kkkkkllll", "ppppppp", "uuuuuuu"};
-        String[] location = {"aa", "ss", "qqqq", "kkkkk", "kkkkkllll", "ppppppp", "uuuuuuu"};
-        String[] rating = {"aa", "ss", "qqqq", "kkkkk", "kkkkkllll", "ppppppp", "uuuuuuu"};
-        String[] price = {"aa", "ss", "qqqq", "kkkkk", "kkkkkllll", "ppppppp", "uuuuuuu"};
+        String[] city = {"Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data"};
+        String[] location = {"Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data"};
+        String[] rating = {"Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data"};
+        String[] price = {"Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data", "Dummy data"};
         int[] image = {R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house};
         ArrayList<AppointmentsData> apointmentsoins = new ArrayList<>();
         apointmentsoins.add(new AppointmentsData(city[0], location[0], rating[0], price[0],image[0]));

@@ -18,7 +18,7 @@ public class Properties {
     private String sale_type;
     @SerializedName("area")
     @Expose
-    private double area;
+    private String area;
     @SerializedName("location")
     @Expose
     private String location;
@@ -31,7 +31,7 @@ public class Properties {
     private double price;
     @SerializedName("main_image")
     @Expose
-    private int main_image;
+    private String main_image;
     @SerializedName("top_offer")
     @Expose
     private String top_offer;
@@ -52,14 +52,16 @@ public class Properties {
 
     @SerializedName("rating")
     @Expose
-    private double rating;
+    private String rating;
 
-    public void setArea(double area) {
-        this.area = area;
-    }
+
 
     public String getBedroom() {
-        return bedroom;
+
+
+      //  return bedroom;
+        return  "2";
+
     }
 
     public void setBedroom(String bedroom) {
@@ -67,20 +69,16 @@ public class Properties {
     }
 
     public String getBath() {
-        return bath;
+
+        //return bath;
+        return  "4";   //TODO: For Testing before
     }
 
     public void setBath(String bath) {
         this.bath = bath;
     }
 
-    public double getRating() {
-        return rating;
-    }
 
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
 
     public String getId() {
         return id;
@@ -114,13 +112,21 @@ public class Properties {
         this.sale_type = sale_type;
     }
 
-    public double getArea() {
+
+    public String getArea() {
         return area;
     }
 
     public void setArea(String area) {
+        this.area = area;
+    }
 
-        this.area = Double.parseDouble(area);
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public String getLocation() {
@@ -147,11 +153,11 @@ public class Properties {
         this.price = price;
     }
 
-    public int getMain_image() {
+    public String getMain_image() {
         return main_image;
     }
 
-    public void setMain_image(int main_image) {
+    public void setMain_image(String main_image) {
         this.main_image = main_image;
     }
 

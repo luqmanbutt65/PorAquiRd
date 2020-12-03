@@ -7,6 +7,7 @@
          location permissions for the "MyLocation" functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -41,7 +42,11 @@
         <activity android:name=".Registration.SignUpActivity" />
         <activity android:name=".Registration.OTPScreenResetPass" />
         <activity android:name=".Registration.LoginScreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Adddata" >
 
@@ -50,11 +55,7 @@
         </activity>
         <activity android:name=".Activities.Description"></activity>
         <activity android:name=".Splash.FirstActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activities.MainActivity">
 

@@ -3,7 +3,9 @@ package com.example.realestate.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserInfo {
+import io.realm.RealmObject;
+
+public class UserInfo extends RealmObject {
 
     @SerializedName("username")
     @Expose
