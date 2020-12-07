@@ -114,6 +114,7 @@
 
         <TextView
             android:id="@+id/price"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/city_id"
@@ -143,7 +144,7 @@
                 android:drawablePadding="@dimen/_5sdp"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/_2sdp"
-                android:text="04 Bedrooms" />
+                android:text="04" />
 
             <View
                 android:layout_width="1dp"
@@ -159,7 +160,7 @@
                 android:drawableLeft="@drawable/bath"
                 android:drawablePadding="@dimen/_5sdp"
                 android:gravity="center_vertical"
-                android:text="04 Bath" />
+                android:text="04 " />
 
             <View
                 android:layout_width="1dp"
@@ -175,7 +176,7 @@
                 android:drawableLeft="@drawable/measureunit"
                 android:drawablePadding="@dimen/_5sdp"
                 android:gravity="center_vertical"
-                android:text="Area" />
+                android:text="100M\u00B2" />
         </LinearLayout>
 
     </RelativeLayout>

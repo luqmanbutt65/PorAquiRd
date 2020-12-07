@@ -25,10 +25,10 @@ import java.util.ArrayList;
 public class MyProjectsFragment extends Fragment {
 
     Context context;
+
     public MyProjectsFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -41,11 +41,11 @@ public class MyProjectsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_my_projects, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_projects, container, false);
 
         context = this.getContext();
         RecyclerView recyclerView = view.findViewById(R.id.myproject_recycler);
-        ImageView imageView=view.findViewById(R.id.addProject);
+        ImageView imageView = view.findViewById(R.id.addProject);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -56,11 +56,11 @@ public class MyProjectsFragment extends Fragment {
             }
         });
 
-        String[] city = {"a", "s", "qqqqqq", "kkkkk", "kkkkkllll", "ppppppp", "uuuuuuu"};
-        String[] location = {"aa", "ss", "qqqq", "kkkkk", "kkkkkllll", "ppppppp", "uuuuuuu"};
+        String[] city = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};
+        String[] location = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};
         double[] rating = {121, 121, 12121, 1212, 12121, 21212, 1212};
         double[] price = {2323, 32323, 32232, 23232, 2323223, 2323, 2332};
-        String[] title = {"aaaaaa", "sssss", "qqqqqq", "kkk", "kkkkkllll", "ppppppp", "uuuuuuu"};
+        String[] title = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};
         int[] image = {R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house};
 
         ArrayList<MyprojectData> myprojectData = new ArrayList<>();

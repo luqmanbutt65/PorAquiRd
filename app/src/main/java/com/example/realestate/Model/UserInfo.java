@@ -23,6 +23,40 @@ public class UserInfo extends RealmObject {
     @Expose
     private String password;
 
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("number")
+    @Expose
+    private String number;
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @SerializedName("address ")
+    @Expose
+    private String address ;
+
+
+
+
+
+
+
+
     public String getUsername() {
         return username;
     }
@@ -53,5 +87,13 @@ public class UserInfo extends RealmObject {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

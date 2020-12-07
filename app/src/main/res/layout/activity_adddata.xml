@@ -223,6 +223,8 @@
                         android:id="@+id/title"
                         android:layout_width="@dimen/_270sdp"
                         android:layout_height="@dimen/_35sdp"
+                        android:paddingRight="@dimen/_20sdp"
+                        android:paddingLeft="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/add_edittext_style_gray"
                         android:ellipsize="end"
@@ -231,7 +233,7 @@
                         android:lines="1"
                         android:singleLine="true"
                         android:maxLength="100"
-                        android:paddingLeft="@dimen/_10sdp" />
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -249,14 +251,19 @@
                         android:background="@drawable/add_edittext_style_gray"
                         android:ellipsize="end"
                         android:gravity="left"
-                        android:lines="6"
                         android:singleLine="true"
-                        android:maxLength="200"
+                        android:maxLength="400"
+                        android:scrollbars = "vertical"
                         android:hint="Enter description"
-                        android:maxLines="6"
                         android:padding="@dimen/_10sdp"
                         android:paddingLeft="@dimen/_10sdp"
                         android:paddingRight="@dimen/_10sdp" />
+<!--                    <com.fiberlink.maas360.android.richtexteditor.RichTextActions-->
+<!--                        android:id="@+id/text_actions"-->
+<!--                        android:layout_marginRight="@dimen/_25sdp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentBottom="true" />-->
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -265,13 +272,17 @@
                         android:text="Price"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp" />
+                    <RelativeLayout
+                        android:layout_width="@dimen/_270sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:background="@drawable/add_edittext_style_gray">
 
                     <EditText
                         android:id="@+id/price"
-                        android:layout_width="@dimen/_270sdp"
-                        android:layout_height="@dimen/_35sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:background="@drawable/add_edittext_style_gray"
+                        android:layout_toRightOf="@+id/pricespiner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
                         android:ellipsize="end"
                         android:digits="0123456789"
                         android:inputType="numberDecimal"
@@ -282,6 +293,15 @@
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_10sdp" />
 
+
+                        <Spinner
+                            android:id="@+id/pricespiner"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="@dimen/_70sdp"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:layout_alignParentLeft="true"/>
+                    </RelativeLayout>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -299,10 +319,12 @@
                         android:drawableLeft="@drawable/locationn"
                         android:drawablePadding="@dimen/_5sdp"
                         android:editable="false"
+                        android:paddingRight="@dimen/_20sdp"
+                        android:paddingLeft="@dimen/_10sdp"
                         android:ellipsize="end"
                         android:hint="Enter Location"
                         android:maxLines="1"
-                        android:paddingLeft="@dimen/_10sdp" />
+                        />
 
 
                     <TextView
@@ -321,11 +343,13 @@
                         android:background="@drawable/add_edittext_style_gray"
                         android:ellipsize="end"
                         android:hint="Enter City"
+                        android:paddingRight="@dimen/_20sdp"
+                        android:paddingLeft="@dimen/_20sdp"
                         android:lines="1"
                         android:singleLine="true"
                         android:maxLength="100"
                         android:maxLines="1"
-                        android:paddingLeft="@dimen/_10sdp" />
+                      />
 
 
 
@@ -345,11 +369,12 @@
                         android:background="@drawable/add_edittext_style_gray"
                         android:ellipsize="end"
                         android:hint="Enter Sector"
+                        android:paddingRight="@dimen/_20sdp"
+                        android:paddingLeft="@dimen/_20sdp"
                         android:lines="1"
                         android:singleLine="true"
                         android:maxLength="100"
-                        android:maxLines="1"
-                        android:paddingLeft="@dimen/_10sdp" />
+                        android:maxLines="1" />
 
 
 

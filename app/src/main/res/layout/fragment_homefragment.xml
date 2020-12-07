@@ -28,19 +28,6 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:src="@drawable/drawer" />
 
-                <TextView
-                    android:id="@+id/tv_welcom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/_15sdp"
-                    android:layout_toRightOf="@+id/drawer"
-                    android:text="Welcome"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="#141A25"
-                    android:textSize="@dimen/_20sdp"
-                    android:textStyle="bold" />
-
 
                 <ImageView
                     android:id="@+id/notification"
@@ -77,9 +64,14 @@
                             android:layout_height="match_parent"
                             android:background="@null"
                             android:drawableRight="@drawable/search"
+                            android:paddingRight="@dimen/_20sdp"
+                            android:paddingLeft="@dimen/_20sdp"
                             android:drawablePadding="@dimen/_10sdp"
                             android:hint="Enter Name"
-                            android:paddingLeft="@dimen/_5sdp"
+                           android:singleLine="true"
+                            android:maxLines="1"
+                            android:maxLength="30"
+                            android:lines="1"
                             android:textColor="#272D4E"
                             android:textColorHint="#272D4E"
                             android:textSize="@dimen/_12sdp"

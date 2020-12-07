@@ -22,6 +22,7 @@ import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Login;
 import com.example.realestate.R;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 
 import java.util.regex.Pattern;
 
@@ -36,8 +37,6 @@ public class LoginScreen extends BaseActivity {
     Button relativeLayout;
     ProgressDialog loginProgressDialog;
     ProgressBar progressbar;
-
-            String pattren="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +86,7 @@ public class LoginScreen extends BaseActivity {
 
     public void GoSignup(View view) {
         startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
-        LoginScreen.this.finish();
+        //LoginScreen.this.finish();
     }
 
 
@@ -112,6 +111,9 @@ public class LoginScreen extends BaseActivity {
 //                    if(loginresp.getStatus().equals("200")){}
                     if (loginresp.getMessage().equals("user is logged in")) {
                         //login start main activity
+                        new  SharedPreferenceConfig().saveBooleanInSP("isLogin",true,LoginScreen.this);
+                        new SharedPreferenceConfig().saveEmailOfUSerInSP("Email",getEmail,LoginScreen.this);
+                        new SharedPreferenceConfig().saveEmailOfUSerInSP("Password",getPassword,LoginScreen.this);
                         Intent intent = new Intent(LoginScreen.this, MainActivity.class);
                         intent.putExtra("Email", getEmail);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -186,7 +188,8 @@ public class LoginScreen extends BaseActivity {
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        LoginScreen.this.finish();
+                        Intent intent=new Intent(LoginScreen.this,MainActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

@@ -60,4 +60,9 @@ dependencies {
 
     // Realm
     implementation 'io.realm:realm-android:0.82.1'
+
+
+    //Text Library
+
+//    implementation 'com.fiberlink.maas360.android:richtexteditor:0.1.1'
 }

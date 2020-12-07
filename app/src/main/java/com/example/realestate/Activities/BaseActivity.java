@@ -80,6 +80,10 @@ public class BaseActivity extends AppCompatActivity {
         return !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+    public boolean is2EmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
     public static boolean toBooleanDefaultIfNull(Boolean bool) {
         if (bool == null) return false;
         return bool.booleanValue();

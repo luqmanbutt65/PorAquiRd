@@ -3,10 +3,12 @@ package com.example.realestate.Model.REST.Properties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class Properties {
     @SerializedName("id")
     @Expose
-    private String id;
+    private int id;
     @SerializedName("user_id")
     @Expose
     private String use_id;
@@ -53,6 +55,29 @@ public class Properties {
     @SerializedName("rating")
     @Expose
     private String rating;
+    @SerializedName("extra")
+    @Expose
+    private PropertiesExtra propertiesExtra;
+
+    public PropertiesExtra getPropertiesExtra() {
+        return propertiesExtra;
+    }
+
+    public void setPropertiesExtra(PropertiesExtra propertiesExtra) {
+        this.propertiesExtra = propertiesExtra;
+    }
+
+    public ArrayList<PropertiesGallery> getPropertiesGalleryArrayList() {
+        return propertiesGalleryArrayList;
+    }
+
+    public void setPropertiesGalleryArrayList(ArrayList<PropertiesGallery> propertiesGalleryArrayList) {
+        this.propertiesGalleryArrayList = propertiesGalleryArrayList;
+    }
+
+    @SerializedName("gallery")
+    @Expose
+    private ArrayList<PropertiesGallery> propertiesGalleryArrayList;
 
 
 
@@ -80,11 +105,11 @@ public class Properties {
 
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

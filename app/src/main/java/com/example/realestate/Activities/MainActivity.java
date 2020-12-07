@@ -6,7 +6,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -17,17 +19,21 @@ import android.widget.Toast;
 
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Fragments.MyApointmentsFragment;
+import com.example.realestate.Fragments.PrivecyPolicy;
 import com.example.realestate.Fragments.ProfileFragment;
 import com.example.realestate.Fragments.Homefragment;
 import com.example.realestate.Fragments.MapsFragment;
 import com.example.realestate.Fragments.MyProjectsFragment;
+import com.example.realestate.Fragments.TermConditions;
 import com.example.realestate.Model.MyprojectData;
 import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.Model.REST.ResetPasswordResponse;
 import com.example.realestate.R;
+import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.Registration.OTPScreenResetPass;
 import com.example.realestate.Registration.resetpassword;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -70,6 +76,18 @@ public class MainActivity extends BaseActivity {
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomappbar);
         logout = findViewById(R.id.logout);
 
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                new SharedPreferenceConfig().clearSharedPrefrence(MainActivity.this);
+
+                Intent intent=new Intent(MainActivity.this, LoginScreen.class);
+                startActivity(intent);
+            }
+        });
         cancelbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,11 +134,15 @@ public class MainActivity extends BaseActivity {
         }
         if (v.getId()==R.id.privacypolicy){
 
-
+            Fragment fragment = new PrivecyPolicy();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.frame1, fragment).commit();
         }
         if (v.getId()==R.id.termcondition){
 
-
+            Fragment fragment = new TermConditions();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.frame1, fragment).commit();
         }
         if (v.getId()==R.id.logout){
 

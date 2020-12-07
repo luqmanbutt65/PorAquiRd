@@ -86,7 +86,7 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
                 city.setText(myprojectData.getCity());
                 town.setText(myprojectData.getLocation());
                 review.setText(String.valueOf(myprojectData.getRating()));
-                price.setText((String.valueOf(myprojectData.getPrice())));
+                price.setText("$ "+(String.valueOf(myprojectData.getPrice())));
                 title.setText(myprojectData.getTitle());
                 mainimg.setImageResource(myprojectData.getImg());
 

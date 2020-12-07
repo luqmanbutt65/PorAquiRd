@@ -1,5 +1,6 @@
 package com.example.realestate.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -27,6 +28,7 @@ import com.example.realestate.Model.REST.Properties.Properties;
 import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.R;
+import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.Utills.GlobalState;
 
 import java.util.ArrayList;
@@ -43,12 +45,12 @@ public class Homefragment extends Fragment {
     Context context;
     EditText search;
     DrawerLayout drawerLayout;
-    private FrameLayout frameLayout;
-    private ArrayList<Properties> propertiesArrayList;
     DashBoardAdapter dashBoardAdapter;
     RecyclerView homeRecylerView;
     TextView tv_result_number;
-
+    private FrameLayout frameLayout;
+    private ArrayList<Properties> propertiesArrayList;
+    ProgressDialog homeProgressDialog;
 
     public Homefragment() {
         // Required empty public constructor
@@ -66,8 +68,12 @@ public class Homefragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_homefragment, container, false);
-        tv_result_number=view.findViewById(R.id.tv_result_number);
-        propertiesArrayList=new ArrayList<>();
+        tv_result_number = view.findViewById(R.id.tv_result_number);
+        propertiesArrayList = new ArrayList<>();
+
+        homeProgressDialog = new ProgressDialog(getContext());
+        homeProgressDialog.setMessage("Logining..."); // Setting Message
+        homeProgressDialog.setCancelable(false);
 
         context = this.getContext();
         homeRecylerView = view.findViewById(R.id.homeRecylerView);
@@ -113,10 +119,6 @@ public class Homefragment extends Fragment {
         });
 
 
-
-
-
-
         //TODO: CAll the Api for Get the List of All Avaiable Properties Hiuses
         getData();
         return view;
@@ -124,7 +126,7 @@ public class Homefragment extends Fragment {
 
 
     public void getData() {
-//        otpProgressDialog.show();
+        homeProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
         Call<Properties_Response> call = retrofit.create(ApiInterface.class).DASHBOARDDATA_CALL();
@@ -139,10 +141,14 @@ public class Homefragment extends Fragment {
 
 
                         if (properties_data != null) {
-                            if(properties_data.getPropertiesArrayList()!=null){
-                                propertiesArrayList=properties_data.getPropertiesArrayList();
+                            if (properties_data.getPropertiesArrayList() != null) {
+                                propertiesArrayList = properties_data.getPropertiesArrayList();
                                 GlobalState.getInstance().setPropertiesArrayList(propertiesArrayList);
-                                if(propertiesArrayList.size()>0){
+
+
+                                ArrayList<Properties> tempTestList=GlobalState.getInstance().getPropertiesArrayList();
+
+                                if (propertiesArrayList.size() > 0) {
                                     tv_result_number.setText(String.valueOf(propertiesArrayList.size()));
                                     homeRecylerView.setAdapter(new DashBoardAdapter(getActivity(), context, propertiesArrayList));
 
@@ -165,13 +171,13 @@ public class Homefragment extends Fragment {
 
                     Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }
-//                otpProgressDialog.dismiss();
+                homeProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<Properties_Response> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                otpProgressDialog.dismiss();
+                homeProgressDialog.dismiss();
             }
         });
 

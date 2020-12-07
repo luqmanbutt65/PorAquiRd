@@ -61,14 +61,15 @@ public class SignUpActivity extends BaseActivity {
                     Toast.makeText(SignUpActivity.this, "Please Input Field", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    signupnuser(getname, getemail, getPassword);
 
-                    if (!isEmailValid(getemail)) {
-                        showToast("Invalid Email");
-
-                    }
-                    else {
-                        signupnuser(getname, getemail, getPassword);
-                    }
+//                    if (isEmailValid(getemail)) {
+//
+//
+//                    }
+//                    else {
+//                        showToast("Invalid Email");
+//                    }
                 }
 
 

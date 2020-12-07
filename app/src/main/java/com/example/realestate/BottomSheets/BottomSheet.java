@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import com.example.realestate.CustomeClasses.NumberTextWatcher;
 import com.example.realestate.R;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class BottomSheet extends Fragment {
     ArrayAdapter<String> adapter;
     List<String> list;
     Spinner typespiner;
-
+EditText miniprice,maxprice;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
     public static final String[] category = new String[]{"House", "Office", "Shop"};
@@ -74,6 +75,12 @@ public class BottomSheet extends Fragment {
         enterBedroom = view.findViewById(R.id.enterBedroom);
         enterBathroom = view.findViewById(R.id.enterBathroom);
         applyFilters = view.findViewById(R.id.anyButton);
+
+        miniprice = view.findViewById(R.id.minimumprice);
+        maxprice = view.findViewById(R.id.maximumprice);
+        miniprice.addTextChangedListener(new NumberTextWatcher(miniprice));
+        maxprice.addTextChangedListener(new NumberTextWatcher(maxprice));
+
 
         list = new ArrayList<String>();
         list.add("Select one");

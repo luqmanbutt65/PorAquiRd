@@ -92,17 +92,43 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
 
         void setdata(com.example.realestate.Model.REST.Properties.Properties properties) {
 
-            city.setText(properties.getCity());
-            town.setText(properties.getLocation());
-            review.setText(String.valueOf(properties.getRating()));
-            price.setText((String.valueOf(properties.getPrice())));
-            title.setText(properties.getTitle());
-            bedroom.setText(String.valueOf(properties.getBedroom()));
-            bath.setText((String.valueOf(properties.getBath())));
-            area.setText(String.valueOf(properties.getArea()));
+          //  String status= ((status = invoice.getStatus()) != null) ? status : "paid";
+            if(properties!=null){
+               String city_val= ((city_val=properties.getCity())!=null) ? city_val :"N/A";
+               city.setText(city_val);
+
+               String town_val=((town_val=properties.getLocation())!=null) ? town_val :"N/A";
+                town.setText(town_val);
+
+                String review_val=((review_val=properties.getRating())!=null) ? review_val :"N/A";
+                review.setText(review_val);
+
+                String price_val=((price_val=String.valueOf(properties.getPrice())) !=null) ? price_val :"N/A";
+                price.setText("$ "+price_val);
+
+                String title_val=((title_val=properties.getSale_type())!=null) ? title_val :"N/A";
+                title.setText(title_val);
+
+                if(properties.getPropertiesExtra()!=null){
+                    String bedroom_val=((bedroom_val=properties.getPropertiesExtra().getBedrooms())!=null) ? bedroom_val :"N/A";
+                    bedroom.setText(bedroom_val);
+
+                    String bath_val=((bath_val=properties.getPropertiesExtra().getBathrooms())!=null) ? bath_val :"N/A";
+                    bath.setText(bath_val);
+                }else {
+                     bedroom.setText("N/A");
+
+                     bath.setText("N/A");
+                }
+
+
+                String area_val=((area_val=properties.getArea())) !=null ? area_val :"N/A";
+                area.setText(area_val+"M\u00B2");
 //            mainimg.setImageResource(properties.getMain_image());
-            Glide.with(context).load("http://poraquird.stepinnsolution.com/public/property_main_images/"+properties.getMain_image()).into(mainimg);
-            //http://poraquird.stepinnsolution.com/public/property_main_images/Property-Rental.jpg.1606997175jpeg
+                Glide.with(context).load("http://poraquird.stepinnsolution.com/public/property_main_images/"+properties.getMain_image()).into(mainimg);
+                //http://poraquird.stepinnsolution.com/public/property_main_images/Property-Rental.jpg.1606997175jpeg
+            }
+
 
         }
 

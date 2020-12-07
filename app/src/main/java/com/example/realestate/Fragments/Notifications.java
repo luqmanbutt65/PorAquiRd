@@ -21,8 +21,9 @@ import java.util.ArrayList;
 
 public class Notifications extends Fragment {
 
-ImageView backbtn;
-Context context;
+    ImageView backbtn;
+    Context context;
+
     public Notifications(View.OnClickListener mainActivity) {
         // Required empty public constructor
     }
@@ -38,7 +39,7 @@ Context context;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view=inflater.inflate(R.layout.fragment_notifications, container, false);
+        View view = inflater.inflate(R.layout.fragment_notifications, container, false);
 
 
         context = this.getContext();
@@ -67,11 +68,10 @@ Context context;
         recyclerView.setAdapter(new Notificationsadapter(this.getActivity(), context, notifications));
 
 
-        backbtn=view.findViewById(R.id.backbtn);
+        backbtn = view.findViewById(R.id.backbtn);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
 
             }

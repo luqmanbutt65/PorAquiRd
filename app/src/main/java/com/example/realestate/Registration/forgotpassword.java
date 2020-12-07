@@ -33,23 +33,24 @@ public class forgotpassword extends BaseActivity {
         continu = findViewById(R.id.continuebtn);
 
 
-        String Email = email.getText().toString();
-
         continu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String Email = email.getText().toString();
 
 
-                if (Email.isEmpty()){
+                if (Email.isEmpty()) {
                     showToast("Enter Email First");
 
                 } else {
-                    if (isEmailValid(Email)){
+                    if (!is2EmailValid(Email)) {
+
+                        showToast("Invalid Email");
+
+                    } else {
 
                         ResetPass(Email);
-                    }else {
-                        showToast("Invalid Email");
+
                     }
 
                 }

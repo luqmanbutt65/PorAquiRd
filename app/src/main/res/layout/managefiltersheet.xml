@@ -192,6 +192,7 @@
                         android:weightSum="2">
 
                         <EditText
+                            android:id="@+id/minimumprice"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/_35sdp"
                             android:layout_marginLeft="@dimen/_10sdp"
@@ -209,11 +210,11 @@
                             android:paddingRight="@dimen/_5sdp"
                             android:singleLine="true"
                             android:textColor="@android:color/black"
-                            android:textColorHint="@color/black"
                             android:textSize="16sp" />
 
 
                         <EditText
+                            android:id="@+id/maximumprice"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/_35sdp"
                             android:layout_centerInParent="true"

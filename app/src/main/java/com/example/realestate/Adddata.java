@@ -3,12 +3,15 @@ package com.example.realestate;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,12 +26,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.realestate.Adapters.ImagesAdapter;
+import com.example.realestate.CustomeClasses.NumberTextWatcher;
 import com.example.realestate.Model.ImagesData;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -44,7 +49,7 @@ public class Adddata extends AppCompatActivity {
     Context context;
     Button addImage;
     ImageView featureImage, backbtn;
-    Spinner bedroomSpiner, bathsSpiner;
+    Spinner bedroomSpiner, bathsSpiner, pricespiner;
 
     RecyclerView recyclerView;
     ArrayList<ImagesData> imagesDataArrayList = new ArrayList<>();
@@ -52,12 +57,11 @@ public class Adddata extends AppCompatActivity {
     ImagesAdapter imagesAdapter;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
-    EditText chekBoxpet, chekBoxroom;
-    EditText title, description, price, location, unit_of_measure, date_of_construction;
+    EditText description,title, price,chekBoxpet, chekBoxroom, location, unit_of_measure, date_of_construction;
 
     Spinner prpertytype;
     List<String> list;
-
+    List<String> listprice;
     final Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog constructionDatePicker;
 
@@ -67,12 +71,49 @@ public class Adddata extends AppCompatActivity {
         setContentView(R.layout.activity_adddata);
 
 
+        pricespiner = findViewById(R.id.pricespiner);
         statusbutton = (RadioGroup) findViewById(R.id.togglegroup2);
         backbtn = findViewById(R.id.backbtn);
         bedroomSpiner = findViewById(R.id.bedroom);
         bathsSpiner = findViewById(R.id.baths);
         forrentt = (RadioButton) findViewById(R.id.forrent);
         forsale = (RadioButton) findViewById(R.id.forsale);
+
+        unit_of_measure = findViewById(R.id.unitOfmeasure);
+        date_of_construction = findViewById(R.id.dateofconstruction);
+
+        title = findViewById(R.id.title);
+        description = findViewById(R.id.description);
+        price = findViewById(R.id.price);
+        location = findViewById(R.id.location);
+        chekBoxpet = findViewById(R.id.petcheks);
+        chekBoxroom = findViewById(R.id.parkingcheks);
+        prpertytype = findViewById(R.id.proprtyType);
+        price.addTextChangedListener(new NumberTextWatcher(price));
+
+
+
+
+//        RichTextActions richTextActions = (RichTextActions) findViewById(R.id.text_actions);
+//        description.setRichTextActionsView(richTextActions);
+//        description.setPreviewText("view");
+//        description.setHint("Description");
+
+//        if (savedInstanceState != null) {
+//            description.restoreState(savedInstanceState);
+//        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (0 != (getApplication().getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE)) {
+                WebView.setWebContentsDebuggingEnabled(true);
+            }
+        }
+
+
+
+
+
+
 
         statusbutton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -82,13 +123,12 @@ public class Adddata extends AppCompatActivity {
                     forrentt.setTextColor(Color.WHITE);
                     forsale.setTextColor(Color.BLACK);
                 }
-                if (forsale.isChecked()){
+                if (forsale.isChecked()) {
                     forsale.setTextColor(Color.WHITE);
                     forrentt.setTextColor(Color.BLACK);
                 }
             }
         });
-
 
 
 //        backbtn.setOnClickListener(new View.OnClickListener() {
@@ -97,17 +137,7 @@ public class Adddata extends AppCompatActivity {
 //
 //            }
 //        });
-        unit_of_measure = findViewById(R.id.unitOfmeasure);
-        date_of_construction = findViewById(R.id.dateofconstruction);
 
-        title = findViewById(R.id.title);
-        description = findViewById(R.id.description);
-        price = findViewById(R.id.price);
-        location = findViewById(R.id.location);
-
-        chekBoxpet = findViewById(R.id.petcheks);
-        chekBoxroom = findViewById(R.id.parkingcheks);
-        prpertytype = findViewById(R.id.proprtyType);
 
 //        String Title = title.getText().toString();
 //        String Decription = description.getText().toString();
@@ -115,6 +145,8 @@ public class Adddata extends AppCompatActivity {
 //        String Location = location.getText().toString();
 //        String BedroomSpiner = bedroomSpiner.getSelectedItem().toString();
 //        String BathroomSpiner = bathsSpiner.getSelectedItem().toString();
+
+
         date_of_construction.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -157,15 +189,38 @@ public class Adddata extends AppCompatActivity {
         list.add("Local Comercial");
 
 
+        listprice = new ArrayList<String>();
+        listprice.add("Select A type");
+        listprice.add("USD");
+        listprice.add("DOP");
+
+
         ArrayAdapter<String> arrrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, list);
         arrrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         prpertytype.setAdapter(arrrayAdapter);
         prpertytype.setAdapter(arrrayAdapter);
 
+        ArrayAdapter<String> arrrayAdapterr = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, listprice);
+        arrrayAdapterr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pricespiner.setAdapter(arrrayAdapterr);
+
         prpertytype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), prpertytype.getSelectedItem().toString(),
+                        Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        pricespiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), pricespiner.getSelectedItem().toString(),
                         Toast.LENGTH_SHORT).show();
 
             }
@@ -197,7 +252,6 @@ public class Adddata extends AppCompatActivity {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bedroomSpiner.setAdapter(arrayAdapter);
         bathsSpiner.setAdapter(arrayAdapter);
-
 
 
         bedroomSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -433,9 +487,19 @@ public class Adddata extends AppCompatActivity {
         super.onBackPressed();
     }
 
+
+
+
+//    @Override
+//    protected void
+//    onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+////        if (description != null) {
+////            description.saveState(outState);
+////        }
+//    }
+
 }
-
-
 
 
 
