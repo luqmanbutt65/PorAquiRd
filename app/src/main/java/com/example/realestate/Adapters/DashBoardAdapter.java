@@ -7,6 +7,7 @@ package com.example.realestate.Adapters;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.EditText;
         import android.widget.ImageView;
         import android.widget.RelativeLayout;
         import android.widget.TextView;
@@ -17,10 +18,12 @@ package com.example.realestate.Adapters;
 
         import com.bumptech.glide.Glide;
         import com.example.realestate.Activities.Description;
+        import com.example.realestate.CustomeClasses.NumberTextWatcher;
         import com.example.realestate.Model.DashboardData;
         import com.example.realestate.Model.REST.Properties.Properties;
         import com.example.realestate.R;
 
+        import java.text.DecimalFormat;
         import java.util.ArrayList;
 
 
@@ -57,22 +60,44 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
+
           holder.setdata(properties.get(position));
+
+          holder.likeimage_filled.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+
+                  holder.likeimage_filled.setVisibility(View.INVISIBLE);
+                  holder.like_image.setVisibility(View.VISIBLE);
+
+              }
+          });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int propertieId=properties.get(position).getId();
+
                 Intent intent = new Intent(context, Description.class);
+                intent.putExtra("propertieIDKey",propertieId);
                 context.startActivity(intent);
             }
         });
 
 
+        holder.like_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.likeimage_filled.setVisibility(View.VISIBLE);
+                holder.like_image.setVisibility(View.INVISIBLE);
+            }
+        });
+
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
         TextView city, town,review ,price,title,bedroom,bath,area;
-        ImageView mainimg;
+        ImageView mainimg,like_image,likeimage_filled;
         RelativeLayout mainLayout;
 
 
@@ -87,7 +112,10 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
             bath = (TextView) itemView.findViewById(R.id.bathsdashboard);
             area = (TextView) itemView.findViewById(R.id.areadashboard);
             mainLayout = itemView.findViewById(R.id.dashboardlayout);
+            like_image = itemView.findViewById(R.id.like_image);
+            likeimage_filled = itemView.findViewById(R.id.like_image_filled);
             mainimg = itemView.findViewById(R.id.main_image);
+
         }
 
         void setdata(com.example.realestate.Model.REST.Properties.Properties properties) {

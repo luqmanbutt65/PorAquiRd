@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -35,7 +36,6 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".Activities.NewProjects" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -52,6 +52,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".Registration.OTPScreen" />
+        <activity android:name=".Activities.BottomsheetApointment" />
         <activity android:name=".Registration.resetpassword" />
         <activity android:name=".Registration.forgotpassword" />
         <activity android:name=".Registration.SignUpActivity" />

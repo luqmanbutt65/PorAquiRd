@@ -30,7 +30,7 @@ public class Properties {
     private String city;
     @SerializedName("price")
     @Expose
-    private double price;
+    private String price;
     @SerializedName("main_image")
     @Expose
     private String main_image;
@@ -170,11 +170,11 @@ public class Properties {
         this.city = city;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

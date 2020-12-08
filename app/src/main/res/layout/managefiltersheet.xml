@@ -60,7 +60,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="@dimen/_5sdp"
-                        android:checkedButton="@+id/forsale"
+                        android:checkedButton="@+id/forrent1"
                         android:orientation="horizontal">
 
                         <RadioButton
@@ -75,7 +75,8 @@
                             android:button="@null"
                             android:gravity="center"
                             android:text="For rent"
-                            android:textColor="@color/black" />
+                            android:textStyle="bold"
+                            android:textColor="@color/white" />
 
                         <RadioButton
                             android:id="@+id/forsale1"
@@ -90,6 +91,7 @@
                             android:button="@null"
                             android:gravity="center"
                             android:text="For Sale"
+                            android:textStyle="bold"
                             android:textColor="@color/black" />
                     </RadioGroup>
                 </LinearLayout>

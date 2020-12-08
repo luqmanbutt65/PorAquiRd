@@ -119,7 +119,7 @@ public class Homefragment extends Fragment {
         });
 
 
-        //TODO: CAll the Api for Get the List of All Avaiable Properties Hiuses
+        //TODO: CAll the Api for Get the List of All Avaiable Properties Houses
         getData();
         return view;
     }

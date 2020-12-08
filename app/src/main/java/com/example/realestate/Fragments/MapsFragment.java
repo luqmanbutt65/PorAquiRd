@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.realestate.R;
+import com.example.realestate.Utills.MyService;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -26,6 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsFragment extends Fragment {
     MapView mMapView;
     private GoogleMap googleMap;
+    MyService myService;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**

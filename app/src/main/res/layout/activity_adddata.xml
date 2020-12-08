@@ -232,7 +232,7 @@
                         android:maxLines="1"
                         android:lines="1"
                         android:singleLine="true"
-                        android:maxLength="100"
+                        android:maxLength="50"
                          />
 
                     <TextView

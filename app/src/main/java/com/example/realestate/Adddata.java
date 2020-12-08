@@ -57,7 +57,7 @@ public class Adddata extends AppCompatActivity {
     ImagesAdapter imagesAdapter;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
-    EditText description,title, price,chekBoxpet, chekBoxroom, location, unit_of_measure, date_of_construction;
+    EditText description,city,sector,petcheks,parkingcheks,title,price,chekBoxpet,chekBoxroom,location,unit_of_measure,date_of_construction;
 
     Spinner prpertytype;
     List<String> list;
@@ -84,6 +84,10 @@ public class Adddata extends AppCompatActivity {
 
         title = findViewById(R.id.title);
         description = findViewById(R.id.description);
+        city = findViewById(R.id.city);
+        sector = findViewById(R.id.Sector);
+        petcheks = findViewById(R.id.petcheks);
+        parkingcheks = findViewById(R.id.parkingcheks);
         price = findViewById(R.id.price);
         location = findViewById(R.id.location);
         chekBoxpet = findViewById(R.id.petcheks);
@@ -91,6 +95,15 @@ public class Adddata extends AppCompatActivity {
         prpertytype = findViewById(R.id.proprtyType);
         price.addTextChangedListener(new NumberTextWatcher(price));
 
+        String titl_value = title.getText().toString();
+        String description_value = description.getText().toString();
+        String price_value = price.getText().toString();
+        String city_value = city.getText().toString();
+        String sector_value = sector.getText().toString();
+        String unitofmeasure_value = unit_of_measure.getText().toString();
+        String date_of_construction_value = date_of_construction.getText().toString();
+        String petscheks_value = petcheks.getText().toString();
+        String parkingcheks_value = parkingcheks.getText().toString();
 
 
 
@@ -108,11 +121,6 @@ public class Adddata extends AppCompatActivity {
                 WebView.setWebContentsDebuggingEnabled(true);
             }
         }
-
-
-
-
-
 
 
         statusbutton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -209,6 +217,17 @@ public class Adddata extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), prpertytype.getSelectedItem().toString(),
                         Toast.LENGTH_SHORT).show();
+
+                switch (position) {
+                    case 0:
+                        if (position == 0) {
+                            Toast.makeText(context, "plz swelect other value", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        break;
+
+                }
+
 
             }
 
@@ -326,40 +345,6 @@ public class Adddata extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_ONE);
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == RESULT_OK) {
-//
-//            if (requestCode == PICK_IMAGE_ONE) {
-//
-//
-//                Log.e("++data", "" + data.getClipData().getItemCount());// Get count of image here.
-//
-//                Log.e("++count", "" + data.getClipData().getItemCount());
-//
-//                if (data.getClipData() != null) {
-//
-//                    int cout = data.getClipData().getItemCount();
-//
-//                    for (int i = 0; i < cout; i++) {
-//
-//                        Uri imageuris = data.getClipData().getItemAt(i).getUri();
-//                        imagesUri.get(i).setUri(imageuris);
-//
-//                    }
-//                    featureImage.setImageURI(imageUri);
-//                } else {
-//                    Uri ImageUri = data.getData();
-//                    featureImage.setImageURI(ImageUri);
-//
-//                }
-//
-//            }
-//        }
-//
-//    }
 
 
     @Override
@@ -487,17 +472,6 @@ public class Adddata extends AppCompatActivity {
         super.onBackPressed();
     }
 
-
-
-
-//    @Override
-//    protected void
-//    onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-////        if (description != null) {
-////            description.saveState(outState);
-////        }
-//    }
 
 }
 

@@ -10,23 +10,27 @@ import android.widget.Toast;
 
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.bumptech.glide.Glide;
+import com.example.realestate.Model.REST.Properties.PropertiesGallery;
 import com.example.realestate.R;
+
+import java.util.ArrayList;
 
 public class customViewPager extends PagerAdapter {
     Context context;
-    int images[];
+ArrayList<PropertiesGallery> propertiesGalleryArrayList;
     LayoutInflater layoutInflater;
 
 
-    public customViewPager(Context context, int images[]) {
+    public customViewPager(Context context, ArrayList<PropertiesGallery> propertiesGalleryArrayList) {
         this.context = context;
-        this.images = images;
+        this.propertiesGalleryArrayList = propertiesGalleryArrayList;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return images.length;
+        return propertiesGalleryArrayList.size();
     }
 
     @Override
@@ -37,17 +41,14 @@ public class customViewPager extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
         View itemView = layoutInflater.inflate(R.layout.viewpager_container, container, false);
-
         ImageView imageView = (ImageView) itemView.findViewById(R.id.imageview);
-        imageView.setImageResource(images[position]);
-
+        Glide.with(context).load("http://poraquird.stepinnsolution.com/public/property_main_images/"+propertiesGalleryArrayList.get(position).getProperty_images()).into(imageView);
         container.addView(itemView);
-
         //listening to image click
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "you clicked image " + (position + 1), Toast.LENGTH_LONG).show();
+              //  Toast.makeText(context, "you clicked image " + (position + 1), Toast.LENGTH_LONG).show();
             }
         });
 

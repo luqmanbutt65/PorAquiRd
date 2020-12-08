@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -37,9 +39,11 @@ public class BottomSheet extends Fragment {
     ArrayAdapter<String> adapter;
     List<String> list;
     Spinner typespiner;
-EditText miniprice,maxprice;
+    Button btnApplyFilter;
+    EditText miniprice, maxprice,petroom,parkinglot;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
+    CheckBox newproperty,usedproperty;
     public static final String[] category = new String[]{"House", "Office", "Shop"};
 
     public BottomSheet() {
@@ -62,8 +66,16 @@ EditText miniprice,maxprice;
 //        maximumButton = view.findViewById(R.id.maximum);
 //        minimumButton = view.findViewById(R.id.minimum);
 
+        btnApplyFilter = view.findViewById(R.id.btnApplyFilter);
         BedroomAny = view.findViewById(R.id.anyButton);
         BathroomAny = view.findViewById(R.id.bathroomAny);
+
+        newproperty = view.findViewById(R.id.newproperty);
+        usedproperty = view.findViewById(R.id.usedproperty);
+
+        petroom = view.findViewById(R.id.petrooms);
+        parkinglot = view.findViewById(R.id.parkings);
+
         oneBedroom = view.findViewById(R.id.oneBedroom);
         oneBathroom = view.findViewById(R.id.oneBathroom);
         twoBedroom = view.findViewById(R.id.twoBedrrom);
@@ -81,7 +93,44 @@ EditText miniprice,maxprice;
         miniprice.addTextChangedListener(new NumberTextWatcher(miniprice));
         maxprice.addTextChangedListener(new NumberTextWatcher(maxprice));
 
+        String miniprice_val = miniprice.getText().toString();
+        String maxprice_val = maxprice.getText().toString();
+        String petroom_val = petroom.getText().toString();
+        String parking_val = parkinglot.getText().toString();
 
+
+
+        btnApplyFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        newproperty.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+
+
+                }
+                else {
+
+                }
+            }
+        });
+
+        usedproperty.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+
+
+                }
+                else {
+
+                }
+            }
+        });
         list = new ArrayList<String>();
         list.add("Select one");
         list.add("Apartamentos");
@@ -147,49 +196,57 @@ EditText miniprice,maxprice;
         oneBedroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String bedroom1_val = "1";
                 Toast.makeText(getContext(), "1+", Toast.LENGTH_SHORT).show();
             }
         });
         oneBathroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String bathroom1_val = "1";
                 Toast.makeText(getContext(), "1+", Toast.LENGTH_SHORT).show();
             }
         });
         twoBedroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String bedroom2_val = "2";
                 Toast.makeText(getContext(), "2+", Toast.LENGTH_SHORT).show();
             }
         });
         twoBathroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String bathroom2_val = "2";
                 Toast.makeText(getContext(), "2+", Toast.LENGTH_SHORT).show();
             }
         });
         threeBedroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String bedroom3_val = "3";
                 Toast.makeText(getContext(), "3+", Toast.LENGTH_SHORT).show();
             }
         });
         threeBathroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String bathroom3_val = "3";
                 Toast.makeText(getContext(), "3+", Toast.LENGTH_SHORT).show();
             }
         });
         fourBedroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String bedroom4_val = "4";
                 Toast.makeText(getContext(), "4+", Toast.LENGTH_SHORT).show();
             }
         });
         fourBathroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dilougeEnterBathrom();
+                String bathroom4_val = "4";
             }
         });
         enterBedroom.setOnClickListener(new View.OnClickListener() {
@@ -225,6 +282,8 @@ EditText miniprice,maxprice;
         View dialogView = inflater.inflate(R.layout.customedilouge_filter_bedroom, null);
 
         final EditText editText = (EditText) dialogView.findViewById(R.id.edt_comment);
+
+        String etbedroom_val = editText.getText().toString();
         Button button1 = (Button) dialogView.findViewById(R.id.buttonSubmit);
         Button button2 = (Button) dialogView.findViewById(R.id.buttonCancel);
 
@@ -254,6 +313,8 @@ EditText miniprice,maxprice;
         View dialogView = inflater.inflate(R.layout.customedilouge_filter_bath, null);
 
         final EditText editText = (EditText) dialogView.findViewById(R.id.edt_comment);
+
+        String etbathroom_val = editText.getText().toString();
         Button button1 = (Button) dialogView.findViewById(R.id.buttonSubmit);
         Button button2 = (Button) dialogView.findViewById(R.id.buttonCancel);
 

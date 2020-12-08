@@ -2,14 +2,13 @@ package com.example.realestate.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.realestate.Adapters.MyprojectAdapter;
 import com.example.realestate.Model.MyprojectData;
@@ -18,11 +17,11 @@ import com.example.realestate.R;
 import java.util.ArrayList;
 
 
-public class MyProjectsFragment extends Fragment {
+public class MyFavrotFragment extends Fragment {
 
     Context context;
 
-    public MyProjectsFragment() {
+    public MyFavrotFragment() {
         // Required empty public constructor
     }
 
@@ -37,7 +36,7 @@ public class MyProjectsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_my_projects, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_favrot, container, false);
 
         context = this.getContext();
         RecyclerView recyclerView = view.findViewById(R.id.myproject_recycler);

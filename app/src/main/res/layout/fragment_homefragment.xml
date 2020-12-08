@@ -20,13 +20,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp">
 
-                <ImageView
-                    android:id="@+id/drawer"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/drawer" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/drawer"-->
+<!--                    android:layout_width="@dimen/_30sdp"-->
+<!--                    android:layout_height="@dimen/_20sdp"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginLeft="@dimen/_10sdp"-->
+<!--                    android:src="@drawable/drawer" />-->
 
 
                 <ImageView

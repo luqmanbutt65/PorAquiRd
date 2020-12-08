@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Fragments.MyApointmentsFragment;
+import com.example.realestate.Fragments.MyFavrotFragment;
 import com.example.realestate.Fragments.PrivecyPolicy;
 import com.example.realestate.Fragments.ProfileFragment;
 import com.example.realestate.Fragments.Homefragment;
@@ -45,7 +46,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends BaseActivity {
     ImageView cancelbtn,drawerbtn;
-    Button menu,feed, privcypolicy, termcondition, logout;
+    Button menu, privcypolicy, termcondition, logout;
     DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
     NavigationView navigationView;
@@ -69,7 +70,6 @@ public class MainActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer,new Homefragment()).commit();
         drawerbtn = findViewById(R.id.drawer);
         menu = findViewById(R.id.menu);
-        feed = findViewById(R.id.feeds);
         privcypolicy = findViewById(R.id.privacypolicy);
         termcondition = findViewById(R.id.termcondition);
         cancelbtn = findViewById(R.id.cancel_button);
@@ -108,7 +108,7 @@ public class MainActivity extends BaseActivity {
                     case R.id.location: temp=new MapsFragment();
 
                         break;
-                    case R.id.likes:temp=new MyProjectsFragment();
+                    case R.id.likes:temp=new MyFavrotFragment();
 
                         break;
                     case R.id.booking:temp=new MyApointmentsFragment();
@@ -128,10 +128,6 @@ public class MainActivity extends BaseActivity {
 
         }
 
-        if (v.getId()==R.id.feeds){
-
-
-        }
         if (v.getId()==R.id.privacypolicy){
 
             Fragment fragment = new PrivecyPolicy();

@@ -2,6 +2,7 @@ package com.example.realestate.ApiClass;
 
 import com.example.realestate.Model.Login;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
+import com.example.realestate.Model.REST.PropertiesSingle.PropertiesSingleResp;
 import com.example.realestate.Model.REST.ResetPasswordResponse;
 import com.example.realestate.Model.Register;
 import com.example.realestate.Model.UserInfo;
@@ -9,6 +10,7 @@ import com.example.realestate.Model.UserInfo;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
@@ -48,26 +50,31 @@ public interface ApiInterface {
     Call<ResetPasswordResponse> RESETPROFILEPASS_CALL(
 
 
-                            @Query("id") int id,
-                            @Query("old") String old,
-                            @Query("new_pass") String new_pass,
-                            @Query("confirm_pass") String confirm_pass,
-                            @Query("email") String email
+            @Query("id") int id,
+            @Query("old") String old,
+            @Query("new_pass") String new_pass,
+            @Query("confirm_pass") String confirm_pass,
+            @Query("email") String email
 
 
-
-
-        );
+    );
 
 
     @POST("/api/profile")
     Call<Login> UPDATEPROFIL_CALL(
-                                  @Query("id") int Id,
-                                  @Query("name") String name,
-                                  @Query("email") String number,
-                                  @Query("address ") String address);
+            @Query("id") int Id,
+            @Query("name") String name,
+            @Query("email") String number,
+            @Query("address ") String address);
 
     @POST("/api/login")
     Call<Login> GETPROFILE_CALL(@Query("email") String email,
                                 @Query("password") String password);
+
+
+    // 8/12/2020
+
+    @GET("/api/get_property/{id}")
+    Call<PropertiesSingleResp> PROPERTY_CALL(@Path(value = "id", encoded = true) String id);
+
 }

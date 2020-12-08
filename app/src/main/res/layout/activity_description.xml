@@ -72,7 +72,7 @@
 
         <TextView
             android:layout_below="@+id/city_id"
-            android:id="@+id/town_id"
+            android:id="@+id/location_id"
             android:layout_width="@dimen/_210sdp"
             android:maxLines="1"
             android:ellipsize="end"
@@ -87,11 +87,11 @@
             />
         <TextView
             android:layout_below="@+id/city_id"
-            android:id="@+id/price"
+            android:id="@+id/prices"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$ 1444.00"
+            android:text="$ 14,44.00"
             android:textColor="@color/black"
             android:textStyle="normal"
             android:textSize="@dimen/_12sdp"
@@ -130,8 +130,9 @@
             android:id="@+id/tv_description_text"
             android:layout_below="@+id/tv_description"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_100sdp"
             android:maxLines="9"
+            android:scrollbars="vertical"
             android:ellipsize="end"
             android:fontFamily="@font/poppins"
             android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen bookLorem Ipsum is simply dummy"
@@ -147,7 +148,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/getapointment"
+            android:id="@+id/getapointmentbtn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
             android:text="Get Apointment"
@@ -158,7 +159,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/info"
-            android:layout_below="@+id/getapointment"
+            android:layout_below="@+id/getapointmentbtn"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
