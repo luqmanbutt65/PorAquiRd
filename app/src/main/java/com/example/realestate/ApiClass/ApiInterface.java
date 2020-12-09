@@ -77,4 +77,11 @@ public interface ApiInterface {
     @GET("/api/get_property/{id}")
     Call<PropertiesSingleResp> PROPERTY_CALL(@Path(value = "id", encoded = true) String id);
 
+
+
+    // Like button
+
+    @POST("/api/get_property/{id}")
+    Call<PropertiesSingleResp> LIKEPROPERTY_CALL(@Path(value = "id", encoded = true) String id);
+
 }

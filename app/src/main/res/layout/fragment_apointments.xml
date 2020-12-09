@@ -12,12 +12,12 @@
         android:layout_height="@dimen/_70sdp">
 
         <ImageView
-            android:id="@+id/drawer"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:src="@drawable/drawer" />
+            android:id="@+id/back_btn_apointment"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back" />
 
         <TextView
             android:id="@+id/tv_welcom"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_toRightOf="@+id/drawer"
+            android:layout_toRightOf="@+id/back_btn_apointment"
             android:text="My Appointments"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"

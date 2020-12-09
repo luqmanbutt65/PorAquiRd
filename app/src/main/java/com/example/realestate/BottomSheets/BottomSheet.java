@@ -40,7 +40,7 @@ public class BottomSheet extends Fragment {
     List<String> list;
     Spinner typespiner;
     Button btnApplyFilter;
-    EditText miniprice, maxprice,petroom,parkinglot;
+    EditText miniprice, maxprice,petroom,parkinglot,miniarea, maxarea;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
     CheckBox newproperty,usedproperty;
@@ -90,8 +90,13 @@ public class BottomSheet extends Fragment {
 
         miniprice = view.findViewById(R.id.minimumprice);
         maxprice = view.findViewById(R.id.maximumprice);
+
+        miniarea = view.findViewById(R.id.minimumarea);
+        maxarea= view.findViewById(R.id.maximumarea);
         miniprice.addTextChangedListener(new NumberTextWatcher(miniprice));
         maxprice.addTextChangedListener(new NumberTextWatcher(maxprice));
+        miniarea.addTextChangedListener(new NumberTextWatcher(miniarea));
+        maxarea.addTextChangedListener(new NumberTextWatcher(maxarea));
 
         String miniprice_val = miniprice.getText().toString();
         String maxprice_val = maxprice.getText().toString();

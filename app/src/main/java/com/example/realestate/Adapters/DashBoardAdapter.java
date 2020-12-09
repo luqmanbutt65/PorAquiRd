@@ -61,6 +61,8 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
 
+        int propertieId=properties.get(position).getId();
+
           holder.setdata(properties.get(position));
 
           holder.likeimage_filled.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +78,6 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int propertieId=properties.get(position).getId();
 
                 Intent intent = new Intent(context, Description.class);
                 intent.putExtra("propertieIDKey",propertieId);
@@ -88,6 +89,8 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
         holder.like_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 holder.likeimage_filled.setVisibility(View.VISIBLE);
                 holder.like_image.setVisibility(View.INVISIBLE);
             }
@@ -139,10 +142,10 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
 
                 if(properties.getPropertiesExtra()!=null){
                     String bedroom_val=((bedroom_val=properties.getPropertiesExtra().getBedrooms())!=null) ? bedroom_val :"N/A";
-                    bedroom.setText(bedroom_val);
+                    bedroom.setText(bedroom_val+" Bedroom");
 
                     String bath_val=((bath_val=properties.getPropertiesExtra().getBathrooms())!=null) ? bath_val :"N/A";
-                    bath.setText(bath_val);
+                    bath.setText(bath_val+" Bath");
                 }else {
                      bedroom.setText("N/A");
 

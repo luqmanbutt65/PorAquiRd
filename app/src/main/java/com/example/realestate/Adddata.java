@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.ImagesAdapter;
 import com.example.realestate.CustomeClasses.NumberTextWatcher;
 import com.example.realestate.Model.ImagesData;
@@ -70,10 +71,9 @@ public class Adddata extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddata);
 
-
         pricespiner = findViewById(R.id.pricespiner);
         statusbutton = (RadioGroup) findViewById(R.id.togglegroup2);
-        backbtn = findViewById(R.id.backbtn);
+        backbtn = findViewById(R.id.back_btnAddData);
         bedroomSpiner = findViewById(R.id.bedroom);
         bathsSpiner = findViewById(R.id.baths);
         forrentt = (RadioButton) findViewById(R.id.forrent);
@@ -116,6 +116,15 @@ public class Adddata extends AppCompatActivity {
 //            description.restoreState(savedInstanceState);
 //        }
 
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Adddata.this, MainActivity.class);
+
+                startActivity(intent);
+            }
+        });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (0 != (getApplication().getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE)) {
                 WebView.setWebContentsDebuggingEnabled(true);
@@ -215,13 +224,13 @@ public class Adddata extends AppCompatActivity {
         prpertytype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), prpertytype.getSelectedItem().toString(),
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), prpertytype.getSelectedItem().toString(),
+//                        Toast.LENGTH_SHORT).show();
 
                 switch (position) {
                     case 0:
                         if (position == 0) {
-                            Toast.makeText(context, "plz swelect other value", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(context, "plz swelect other value", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         break;
@@ -239,8 +248,8 @@ public class Adddata extends AppCompatActivity {
         pricespiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), pricespiner.getSelectedItem().toString(),
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), pricespiner.getSelectedItem().toString(),
+//                        Toast.LENGTH_SHORT).show();
 
             }
 
@@ -276,8 +285,8 @@ public class Adddata extends AppCompatActivity {
         bedroomSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(), bedroomSpiner.getSelectedItem().toString(),
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getBaseContext(), bedroomSpiner.getSelectedItem().toString(),
+//                        Toast.LENGTH_SHORT).show();
 
             }
 
@@ -290,8 +299,8 @@ public class Adddata extends AppCompatActivity {
         bathsSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(), bathsSpiner.getSelectedItem().toString(),
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getBaseContext(), bathsSpiner.getSelectedItem().toString(),
+//                        Toast.LENGTH_SHORT).show();
             }
 
             @Override

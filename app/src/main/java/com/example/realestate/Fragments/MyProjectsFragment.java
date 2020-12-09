@@ -1,17 +1,22 @@
 package com.example.realestate.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.realestate.Adapters.MyprojectAdapter;
+import com.example.realestate.Adddata;
 import com.example.realestate.Model.MyprojectData;
 import com.example.realestate.R;
 
@@ -21,7 +26,7 @@ import java.util.ArrayList;
 public class MyProjectsFragment extends Fragment {
 
     Context context;
-
+    ImageView imageView,backbtn;
     public MyProjectsFragment() {
         // Required empty public constructor
     }
@@ -41,16 +46,31 @@ public class MyProjectsFragment extends Fragment {
 
         context = this.getContext();
         RecyclerView recyclerView = view.findViewById(R.id.myproject_recycler);
-//        ImageView imageView = view.findViewById(R.id.addProject);
+       imageView = view.findViewById(R.id.addProject);
+
+        backbtn= view.findViewById(R.id.back_btn_myproject);
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Fragment fragment = new ProfileFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameprofile, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), Adddata.class));
-//
-//            }
-//        });
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Adddata.class));
+
+            }
+        });
 
         String[] city = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};
         String[] location = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};

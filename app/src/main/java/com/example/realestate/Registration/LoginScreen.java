@@ -65,14 +65,13 @@ public class LoginScreen extends BaseActivity {
                 String getPassword = passwordLogin.getText().toString().trim();
 
 
-
                 if (getEmail.isEmpty() && getPassword.isEmpty()) {
 
                     Toast.makeText(getApplicationContext(), "Please Input Field", Toast.LENGTH_SHORT).show();
                 } else {
-                    if(isEmailValid(getEmail)){
+                    if (isEmailValid(getEmail)) {
                         showToast("Invalid Email");
-                    }else {
+                    } else {
                         loginuser(getEmail, getPassword);
                     }
 
@@ -111,9 +110,12 @@ public class LoginScreen extends BaseActivity {
 //                    if(loginresp.getStatus().equals("200")){}
                     if (loginresp.getMessage().equals("user is logged in")) {
                         //login start main activity
-                        new  SharedPreferenceConfig().saveBooleanInSP("isLogin",true,LoginScreen.this);
-                        new SharedPreferenceConfig().saveEmailOfUSerInSP("Email",getEmail,LoginScreen.this);
-                        new SharedPreferenceConfig().saveEmailOfUSerInSP("Password",getPassword,LoginScreen.this);
+                        new SharedPreferenceConfig().saveBooleanInSP("isLogin", true, LoginScreen.this);
+                        new SharedPreferenceConfig().saveEmailOfUSerInSP("Email", getEmail, LoginScreen.this);
+                        new SharedPreferenceConfig().saveEmailOfUSerInSP("Password", getPassword, LoginScreen.this);
+                        String temp_name = loginresp.getUserInfo().getName();
+                        new SharedPreferenceConfig().saveNameOfUSerInSP("name", temp_name, LoginScreen.this);
+
                         Intent intent = new Intent(LoginScreen.this, MainActivity.class);
                         intent.putExtra("Email", getEmail);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -180,7 +182,6 @@ public class LoginScreen extends BaseActivity {
 //    }
 
 
-
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -188,7 +189,7 @@ public class LoginScreen extends BaseActivity {
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent intent=new Intent(LoginScreen.this,MainActivity.class);
+                        Intent intent = new Intent(LoginScreen.this, MainActivity.class);
                         startActivity(intent);
                     }
                 })

@@ -2,19 +2,23 @@ package com.example.realestate.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.realestate.ApiClass.ApiInterface;
@@ -45,17 +49,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends BaseActivity {
-    ImageView cancelbtn,drawerbtn;
-    Button menu, privcypolicy, termcondition, logout;
-    DrawerLayout drawerLayout;
+
     BottomNavigationView bottomNavigationView;
-    NavigationView navigationView;
-
-
+    Fragment temp;
 
     @Override
     public void onBackPressed() {
-       // super.onBackPressed();
+        // super.onBackPressed();
 
     }
 
@@ -66,89 +66,94 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, new Homefragment()).commit();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer,new Homefragment()).commit();
-        drawerbtn = findViewById(R.id.drawer);
-        menu = findViewById(R.id.menu);
-        privcypolicy = findViewById(R.id.privacypolicy);
-        termcondition = findViewById(R.id.termcondition);
-        cancelbtn = findViewById(R.id.cancel_button);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomappbar);
-        logout = findViewById(R.id.logout);
 
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                new SharedPreferenceConfig().clearSharedPrefrence(MainActivity.this);
-
-                Intent intent=new Intent(MainActivity.this, LoginScreen.class);
-                startActivity(intent);
-            }
-        });
-        cancelbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout=findViewById(R.id.drawerlayout);
-                drawerLayout.closeDrawer(Gravity.LEFT,false);
-            }
-        });
 
         //BottomNavigation
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment temp=null;
+
                 switch (item.getItemId()) {
-                    case R.id.home: temp=new Homefragment();
+                    case R.id.home:
+                        temp = new Homefragment();
+                        callFreg(temp);
+
 
                         break;
-                    case R.id.location: temp=new MapsFragment();
+                    case R.id.location:
+                        temp = new MapsFragment();
+                        callFreg(temp);
+
 
                         break;
-                    case R.id.likes:temp=new MyFavrotFragment();
+                    case R.id.likes:
+                        temp = new MyFavrotFragment();
+                        callFreg(temp);
 
                         break;
-                    case R.id.booking:temp=new MyApointmentsFragment();
+                    case R.id.booking:
+                        temp = new MyApointmentsFragment();
+                        callFreg(temp);
+
                         break;
-                    case R.id.profile:temp=new ProfileFragment();
+
+
+                    case R.id.profile:
+                        if (new SharedPreferenceConfig().getBooleanFromSP(Common.ISLOGIN, MainActivity.this)) {
+                            temp = new ProfileFragment();
+                            callFreg(temp);
+
+                        } else {
+
+                            dilougeEnterBedroom();
+                        }
+
+
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer,temp).commit();
                 return true;
             }
         });
-    }
-
-    public  void onclick(View v){
-        if (v.getId()==R.id.menu){
-
-
-        }
-
-        if (v.getId()==R.id.privacypolicy){
-
-            Fragment fragment = new PrivecyPolicy();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.frame1, fragment).commit();
-        }
-        if (v.getId()==R.id.termcondition){
-
-            Fragment fragment = new TermConditions();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.frame1, fragment).commit();
-        }
-        if (v.getId()==R.id.logout){
-
-
-        }
 
     }
 
+    private void callFreg(Fragment temp1) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, temp1).commit();
+
+    }
+
+    public void dilougeEnterBedroom() {
 
 
+        final AlertDialog dialogBuilder = new AlertDialog.Builder(MainActivity.this).create();
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.loginpopup, null);
 
+
+        RelativeLayout cancel = dialogView.findViewById(R.id.cancel);
+        RelativeLayout login = dialogView.findViewById(R.id.login);
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LoginScreen.class);
+                startActivity(intent);
+
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // DO SOMETHINGS
+                dialogBuilder.dismiss();
+            }
+        });
+
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.show();
+    }
 
 }

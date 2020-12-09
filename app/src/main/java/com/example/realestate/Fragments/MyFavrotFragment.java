@@ -1,15 +1,18 @@
 package com.example.realestate.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.MyprojectAdapter;
 import com.example.realestate.Model.MyprojectData;
 import com.example.realestate.R;
@@ -18,7 +21,7 @@ import java.util.ArrayList;
 
 
 public class MyFavrotFragment extends Fragment {
-
+ImageView back_btn;
     Context context;
 
     public MyFavrotFragment() {
@@ -50,6 +53,16 @@ public class MyFavrotFragment extends Fragment {
 //
 //            }
 //        });
+
+
+        back_btn=view.findViewById(R.id.back_btn1);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         String[] city = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};
         String[] location = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};

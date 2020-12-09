@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.realestate.Adapters.DashBoardAdapter;
 import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.BottomSheets.BottomSheet;
 import com.example.realestate.Model.Login;
 import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
@@ -32,9 +34,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileFragment_update extends Fragment {
     EditText name_company, Id, rnc, cell_no, phone_no, address, city, sector;
-    Button submit;
+    Button submit,uploadImage,uploadFile,tv_uploadFile;
     TextView tv_userName, tv_email;
-
+ImageView back_btn,iv_uploadImage;
     public ProfileFragment_update() {
         // Required empty public constructor
     }
@@ -65,10 +67,30 @@ public class ProfileFragment_update extends Fragment {
 //        sector=view.findViewById(R.id.sector);
 
         submit = view.findViewById(R.id.SubmitBtn);
-
+        uploadImage = view.findViewById(R.id.uploadimage);
+        uploadFile = view.findViewById(R.id.uploadfile);
+        iv_uploadImage = view.findViewById(R.id.iv_uploadimage);
+        tv_uploadFile = view.findViewById(R.id.et_uploadfile);
 
         tv_userName.setText(GlobalState.getInstance().getUserInfo().getName());
         tv_email.setText(GlobalState.getInstance().getUserInfo().getEmail());
+
+
+
+        back_btn=view.findViewById(R.id.back_btn_updateprofile);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Fragment fragment = new ProfileFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameprofile, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

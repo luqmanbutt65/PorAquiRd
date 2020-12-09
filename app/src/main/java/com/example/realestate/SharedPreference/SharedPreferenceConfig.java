@@ -75,4 +75,21 @@ public class SharedPreferenceConfig {
         editor.apply();
 
     }
+
+
+
+    public  String getNameOfUSerFromSP(String key,Context context){
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        return preferences.getString(key, "name");
+    }
+
+
+    public  void saveNameOfUSerInSP(String key, String value,Context context){
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =      preferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }//savePWDIn
+
+
 }

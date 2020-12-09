@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.realestate.Activities.BaseActivity;
@@ -23,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class forgotpassword extends BaseActivity {
     EditText email;
     Button continu;
-
+    ImageView back_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,16 @@ public class forgotpassword extends BaseActivity {
 
         email = findViewById(R.id.et_emailedittext);
         continu = findViewById(R.id.continuebtn);
+        back_btn=findViewById(R.id.back_btn);
+
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(forgotpassword.this,LoginScreen.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
         continu.setOnClickListener(new View.OnClickListener() {

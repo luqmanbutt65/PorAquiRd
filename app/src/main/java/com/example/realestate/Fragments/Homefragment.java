@@ -2,6 +2,7 @@ package com.example.realestate.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,6 +16,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -29,6 +31,7 @@ import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.R;
 import com.example.realestate.Registration.LoginScreen;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Utills.GlobalState;
 
 import java.util.ArrayList;
@@ -41,17 +44,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Homefragment extends Fragment {
-    ImageView drawerbtn, filter, notification;
+    ImageView drawerbtn,drawerbtnCancle, filter, notification;
+    Button menu,termConditions,privecyPolicy,logout;
     Context context;
     EditText search;
-    DrawerLayout drawerLayout;
     DashBoardAdapter dashBoardAdapter;
     RecyclerView homeRecylerView;
     TextView tv_result_number;
     private FrameLayout frameLayout;
     private ArrayList<Properties> propertiesArrayList;
     ProgressDialog homeProgressDialog;
-
+    TextView tv_username;
+    private DrawerLayout mDrawerLayout;
     public Homefragment() {
         // Required empty public constructor
     }
@@ -70,11 +74,10 @@ public class Homefragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_homefragment, container, false);
         tv_result_number = view.findViewById(R.id.tv_result_number);
         propertiesArrayList = new ArrayList<>();
-
         homeProgressDialog = new ProgressDialog(getContext());
         homeProgressDialog.setMessage("Logining..."); // Setting Message
         homeProgressDialog.setCancelable(false);
-
+        tv_username = view.findViewById(R.id.tv_username);
         context = this.getContext();
         homeRecylerView = view.findViewById(R.id.homeRecylerView);
         homeRecylerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -84,7 +87,74 @@ public class Homefragment extends Fragment {
         search = view.findViewById(R.id.search);
         drawerbtn = view.findViewById(R.id.drawer);
 
-        drawerLayout = view.findViewById(R.id.drawerlayout);
+
+        menu = view.findViewById(R.id.menu);
+        privecyPolicy = view.findViewById(R.id.privacypolicy);
+        termConditions = view.findViewById(R.id.termcondition);
+        logout = view.findViewById(R.id.logout);
+
+
+        drawerbtnCancle = view.findViewById(R.id.cancel_button);
+
+
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SharedPreferenceConfig().clearSharedPrefrence(getContext());
+                Intent intent = new Intent(getActivity(), LoginScreen.class);
+                startActivity(intent);
+            }
+        });
+
+        privecyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new PrivecyPolicy();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameContainer, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+        termConditions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Fragment fragment = new TermConditions();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameContainer, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+        drawerbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout = view.findViewById(R.id.frame1);
+                mDrawerLayout.openDrawer(Gravity.LEFT, true);
+            }
+        });
+
+        drawerbtnCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout = view.findViewById(R.id.frame1);
+                mDrawerLayout.closeDrawer(Gravity.LEFT, false);            }
+        });
+
+        if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
+            if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext())
+                    != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()) != null) {
+                String name = new SharedPreferenceConfig().getNameOfUSerFromSP("name", getContext());
+                tv_username.setText("Welcome," + name);
+            }
+        }
+//        mDrawerLayout = view.findViewById(R.id.drawerlayout);
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +216,7 @@ public class Homefragment extends Fragment {
                                 GlobalState.getInstance().setPropertiesArrayList(propertiesArrayList);
 
 
-                                ArrayList<Properties> tempTestList=GlobalState.getInstance().getPropertiesArrayList();
+                                ArrayList<Properties> tempTestList = GlobalState.getInstance().getPropertiesArrayList();
 
                                 if (propertiesArrayList.size() > 0) {
                                     tv_result_number.setText(String.valueOf(propertiesArrayList.size()));
@@ -182,4 +252,5 @@ public class Homefragment extends Fragment {
         });
 
     }
+
 }

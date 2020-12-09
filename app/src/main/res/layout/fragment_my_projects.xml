@@ -15,7 +15,7 @@
         android:paddingLeft="@dimen/_10sdp">
 
         <ImageView
-            android:id="@+id/back_btn"
+            android:id="@+id/back_btn_myproject"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_centerVertical="true"
@@ -27,8 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_toRightOf="@+id/back_btn"
-            android:text="Favorites"
+            android:layout_toRightOf="@+id/back_btn_myproject"
+            android:text="My Projects"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold" />
@@ -45,15 +45,15 @@
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/addProject"-->
-<!--            android:layout_width="@dimen/_30sdp"-->
-<!--            android:layout_height="@dimen/_30sdp"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:layout_marginTop="@dimen/_5sdp"-->
-<!--            android:layout_marginRight="@dimen/_10sdp"-->
-<!--            android:src="@drawable/plus" />-->
+        <ImageView
+            android:id="@+id/addProject"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:src="@drawable/plus" />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView

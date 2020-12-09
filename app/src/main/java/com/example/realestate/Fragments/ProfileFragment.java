@@ -1,5 +1,7 @@
 package com.example.realestate.Fragments;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -44,9 +49,9 @@ public class ProfileFragment extends Fragment {
     List<String> listCruncy;
     List<String> listLanguage;
     LinearLayout linearLayout1, linearLayout;
-
+ImageView back_btn;
     TextView username, useremail;
-
+    ProgressDialog profileProgressDialog;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -63,6 +68,12 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+
+        profileProgressDialog = new ProgressDialog(getContext());
+        profileProgressDialog.setMessage("Logining..."); // Setting Message
+        profileProgressDialog.setCancelable(false);
+
+
         username = view.findViewById(R.id.username);
         useremail = view.findViewById(R.id.useremail);
         language = view.findViewById(R.id.language);
@@ -72,6 +83,17 @@ public class ProfileFragment extends Fragment {
         myprojects = view.findViewById(R.id.myprojects);
         linearLayout1 = view.findViewById(R.id.linearLayout1);
         linearLayout = view.findViewById(R.id.linearLayout);
+
+        back_btn=view.findViewById(R.id.back_btn_profile);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(getActivity(),MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
         listCruncy = new ArrayList<String>();
@@ -87,9 +109,13 @@ public class ProfileFragment extends Fragment {
         listLanguage.add("English");
         listLanguage.add("French");
         listLanguage.add("Japnese");
+
         if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
             if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()) != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()) != null) {
                 ShowUser(new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()), new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()));
+
+
+
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),
                         android.R.layout.simple_spinner_item, listLanguage);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -104,8 +130,8 @@ public class ProfileFragment extends Fragment {
                 language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(getContext(), language.getSelectedItem().toString(),
-                                Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), language.getSelectedItem().toString(),
+//                                Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -118,8 +144,8 @@ public class ProfileFragment extends Fragment {
                 cruncy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(getContext(), cruncy.getSelectedItem().toString(),
-                                Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), cruncy.getSelectedItem().toString(),
+//                                Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -195,7 +221,7 @@ public class ProfileFragment extends Fragment {
 
 
     public void ShowUser(String email, String pass) {
-//        loginProgressDialog.show();
+        profileProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
         Call<Login> call = retrofit.create(ApiInterface.class).GETPROFILE_CALL(email, pass);
@@ -223,17 +249,21 @@ public class ProfileFragment extends Fragment {
 
                 } else {
                     Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+
                 }
-//                loginProgressDialog.dismiss();
+
+                profileProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<Login> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                loginProgressDialog.dismiss();
+                profileProgressDialog.dismiss();
             }
         });
 
 
     }
+
+
 }

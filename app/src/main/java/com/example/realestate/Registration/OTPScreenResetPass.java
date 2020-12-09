@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,14 +28,30 @@ public class OTPScreenResetPass extends AppCompatActivity {
     Button verify_otp;
     ProgressDialog otpProgressDialog;
     TextView resend_otp;
-
+    ImageView back_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_o_t_p_resetpw);
 
+        back_btn=findViewById(R.id.back_btnn);
+
         resend_otp = findViewById(R.id.resend_otp);
+
+
+
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(OTPScreenResetPass.this,forgotpassword.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
         resend_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,14 +150,16 @@ public class OTPScreenResetPass extends AppCompatActivity {
         });
 
     }
+
     public void minimizeApp() {
         Intent startMain = new Intent(Intent.ACTION_MAIN);
         startMain.addCategory(Intent.CATEGORY_HOME);
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startMain);
     }
+
     @Override
     public void onBackPressed() {
-       minimizeApp();
+        minimizeApp();
     }
 }

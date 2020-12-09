@@ -4,16 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.Fragments.ProfileFragment;
 import com.example.realestate.Model.REST.ResetPasswordResponse;
 import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.Registration.resetpassword;
@@ -28,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ChangePaswsword extends Fragment {
-
+ImageView back_btn;
 Button submit;
 EditText oldpass,newpass,confirmpass;
 TextView name,email;
@@ -63,6 +67,20 @@ TextView name,email;
         String Oldpass=oldpass.getText().toString();
         String Newpass=newpass.getText().toString();
         String Confirmpass=confirmpass.getText().toString();
+
+
+        back_btn=view.findViewById(R.id.back_btn_changepass);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new ProfileFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameprofile, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

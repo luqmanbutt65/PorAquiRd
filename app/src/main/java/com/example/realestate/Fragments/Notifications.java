@@ -1,6 +1,7 @@
 package com.example.realestate.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.Notificationsadapter;
 import com.example.realestate.Model.Notification;
 import com.example.realestate.R;
@@ -68,12 +70,13 @@ public class Notifications extends Fragment {
         recyclerView.setAdapter(new Notificationsadapter(this.getActivity(), context, notifications));
 
 
-        backbtn = view.findViewById(R.id.backbtn);
+        backbtn = view.findViewById(R.id.backbtnNotification);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
+                Intent intent=new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
             }
         });
 

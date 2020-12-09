@@ -15,7 +15,7 @@
         android:paddingLeft="@dimen/_10sdp">
 
         <ImageView
-            android:id="@+id/back_btn"
+            android:id="@+id/back_btn1"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_centerVertical="true"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_toRightOf="@+id/back_btn"
+            android:layout_toRightOf="@+id/back_btn1"
             android:text="Favorites"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
