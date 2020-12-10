@@ -7,13 +7,17 @@ import io.realm.RealmObject;
 
 public class UserInfo extends RealmObject {
 
-    @SerializedName("username")
+    @SerializedName("id")
     @Expose
-    private String username;
+    private Integer id;
 
     @SerializedName("name")
     @Expose
     private String name;
+
+    @SerializedName("number")
+    @Expose
+    private String number;
 
     @SerializedName("email")
     @Expose
@@ -23,46 +27,40 @@ public class UserInfo extends RealmObject {
     @Expose
     private String password;
 
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("number")
-    @Expose
-    private String number;
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @SerializedName("address ")
+    @SerializedName("address")
     @Expose
     private String address ;
 
+    @SerializedName("city")
+    @Expose
+    private String city;
 
+    @SerializedName("sector")
+    @Expose
+    private String sector;
 
+    @SerializedName("your_id")
+    @Expose
+    private String your_id;
 
+    @SerializedName("rnc")
+    @Expose
+    private String rnc;
 
+    @SerializedName("pone_number")
+    @Expose
+    private String cell_number;
 
+    @SerializedName("company_name")
+    @Expose
+    private String company_name;
 
-
-    public String getUsername() {
-        return username;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -71,6 +69,14 @@ public class UserInfo extends RealmObject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getEmail() {
@@ -89,11 +95,59 @@ public class UserInfo extends RealmObject {
         this.password = password;
     }
 
-    public Integer getId() {
-        return id;
+    public String getAddress() {
+        return address;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getSector() {
+        return sector;
+    }
+
+    public void setSector(String sector) {
+        this.sector = sector;
+    }
+
+    public String getYour_id() {
+        return your_id;
+    }
+
+    public void setYour_id(String your_id) {
+        this.your_id = your_id;
+    }
+
+    public String getRnc() {
+        return rnc;
+    }
+
+    public void setRnc(String rnc) {
+        this.rnc = rnc;
+    }
+
+    public String getCell_number() {
+        return cell_number;
+    }
+
+    public void setCell_number(String cell_number) {
+        this.cell_number = cell_number;
+    }
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
 }

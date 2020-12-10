@@ -6,16 +6,23 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.realestate.R;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Utills.MyService;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,7 +34,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsFragment extends Fragment {
     MapView mMapView;
     private GoogleMap googleMap;
-    MyService myService;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -85,19 +91,30 @@ public class MapsFragment extends Fragment {
                 }
                 googleMap.setMyLocationEnabled(true);
 
+
+                LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                Double latitude = location.getLongitude();
+                Double longitude = location.getLatitude();
+                String mainlocation = (latitude + "," + longitude);
+
+                SharedPreferences settings = getContext().getSharedPreferences("SHARED_PREFERENCES_LOCATION", Context.MODE_PRIVATE);
+                settings.edit().remove("location").commit();
+
+                new SharedPreferenceConfig().saveLocationOfUSerInSP("location", mainlocation, getContext());
+
                 // For dropping a marker at a point on the Map
-                LatLng punjabsocity = new LatLng(31.461484, 74.36242);
-                googleMap.addMarker(new MarkerOptions().position(punjabsocity).title("StepinSolutions").snippet("Software houser"));
+                LatLng sydney = new LatLng(longitude, latitude);
+                googleMap.addMarker(new MarkerOptions().position(sydney).title("Your Location").snippet(" current Location"));
 
                 // For zooming automatically to the location of the marker
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(punjabsocity).zoom(12).build();
+                CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             }
         });
 
 
-
-        return  view;
+        return view;
     }
 
 
@@ -124,8 +141,13 @@ public class MapsFragment extends Fragment {
         super.onLowMemory();
         mMapView.onLowMemory();
     }
-
-
+//    public boolean onTouchEvent(MotionEvent event)
+//    {
+//        int X = (int)event.getX();
+//        int Y = (int)event.getY();
+//
+//        GeoPoint geoPoint = mMapView.getProjection().fromPixels(X, Y);
+//    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -136,4 +158,6 @@ public class MapsFragment extends Fragment {
             mapFragment.getMapAsync(callback);
         }
     }
+
+
 }

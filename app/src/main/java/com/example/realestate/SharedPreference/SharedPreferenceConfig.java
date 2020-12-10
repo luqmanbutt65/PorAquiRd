@@ -92,4 +92,19 @@ public class SharedPreferenceConfig {
     }//savePWDIn
 
 
+
+
+
+    public  String getLocationOfUSerFromSP(String key,Context context){
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_LOCATION ", android.content.Context.MODE_PRIVATE);
+        return preferences.getString(key, "location");
+    }
+
+
+    public  void saveLocationOfUSerInSP(String key, String value,Context context){
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_LOCATION ", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =      preferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }//savePWDIn
 }

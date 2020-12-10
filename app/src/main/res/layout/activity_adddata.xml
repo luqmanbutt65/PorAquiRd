@@ -39,6 +39,10 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/headerlayut"
         android:scrollbars="none">
+        <FrameLayout
+            android:id="@+id/addDataframe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -282,6 +286,8 @@
                         android:layout_toRightOf="@+id/pricespiner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:background="@null"
                         android:layout_centerHorizontal="true"
                         android:ellipsize="end"
                         android:digits="0123456789"
@@ -586,6 +592,6 @@
             </RelativeLayout>
 
         </RelativeLayout>
-
+        </FrameLayout>
     </ScrollView>
 </RelativeLayout>

@@ -64,8 +64,15 @@ public interface ApiInterface {
     Call<Login> UPDATEPROFIL_CALL(
             @Query("id") int Id,
             @Query("name") String name,
-            @Query("email") String number,
-            @Query("address ") String address);
+            @Query("number") String number,
+            @Query("city") String city,
+            @Query("sector") String sector,
+            @Query("your_id") String your_id,
+            @Query("rnc") String rnc,
+            @Query("company_name") String company_name,
+            @Query("address") String address);
+
+
 
     @POST("/api/login")
     Call<Login> GETPROFILE_CALL(@Query("email") String email,

@@ -28,6 +28,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +38,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.ImagesAdapter;
 import com.example.realestate.CustomeClasses.NumberTextWatcher;
+import com.example.realestate.Fragments.MapsFragment;
+import com.example.realestate.Fragments.PrivecyPolicy;
 import com.example.realestate.Model.ImagesData;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
@@ -58,7 +64,7 @@ public class Adddata extends AppCompatActivity {
     ImagesAdapter imagesAdapter;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
-    EditText description,city,sector,petcheks,parkingcheks,title,price,chekBoxpet,chekBoxroom,location,unit_of_measure,date_of_construction;
+    EditText description, city, sector, petcheks, parkingcheks, title, price, chekBoxpet, chekBoxroom, location, unit_of_measure, date_of_construction;
 
     Spinner prpertytype;
     List<String> list;
@@ -105,7 +111,24 @@ public class Adddata extends AppCompatActivity {
         String petscheks_value = petcheks.getText().toString();
         String parkingcheks_value = parkingcheks.getText().toString();
 
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if (new SharedPreferenceConfig().getLocationOfUSerFromSP("location", Adddata.this) != null) {
+
+                    location.setText(new SharedPreferenceConfig().getLocationOfUSerFromSP("location", Adddata.this));
+                } else {
+//                    Fragment fragment = new MapsFragment();
+//                    FragmentManager fragmentManager = Adddata.this.getSupportFragmentManager();
+//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                    fragmentTransaction.replace(R.id.addDataframe, fragment);
+//                    fragmentTransaction.addToBackStack(null);
+//                    fragmentTransaction.commit();
+
+                }
+            }
+        });
 
 //        RichTextActions richTextActions = (RichTextActions) findViewById(R.id.text_actions);
 //        description.setRichTextActionsView(richTextActions);
@@ -120,7 +143,7 @@ public class Adddata extends AppCompatActivity {
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Adddata.this, MainActivity.class);
+                Intent intent = new Intent(Adddata.this, MainActivity.class);
 
                 startActivity(intent);
             }
@@ -146,14 +169,6 @@ public class Adddata extends AppCompatActivity {
                 }
             }
         });
-
-
-//        backbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
 
 
 //        String Title = title.getText().toString();

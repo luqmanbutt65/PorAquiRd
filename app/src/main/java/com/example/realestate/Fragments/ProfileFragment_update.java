@@ -33,10 +33,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ProfileFragment_update extends Fragment {
-    EditText name_company, Id, rnc, cell_no, phone_no, address, city, sector;
-    Button submit,uploadImage,uploadFile,tv_uploadFile;
+    EditText username, name_company, phone_no, address, city, sector, Id, rnc, cell_no;
+    Button submit, uploadImage, uploadFile;
+    EditText tv_uploadFile;
     TextView tv_userName, tv_email;
-ImageView back_btn,iv_uploadImage;
+    ImageView back_btn, iv_uploadImage;
+
     public ProfileFragment_update() {
         // Required empty public constructor
     }
@@ -57,14 +59,17 @@ ImageView back_btn,iv_uploadImage;
         tv_userName = view.findViewById(R.id.tv_userName);
         tv_email = view.findViewById(R.id.tv_email);
 
-        name_company = view.findViewById(R.id.name_compantname);
-//        Id=view.findViewById(R.id.id);
-//        rnc=view.findViewById(R.id.rnc);
-        cell_no = view.findViewById(R.id.cellno);
-//        phone_no=view.findViewById(R.id.phoneno);
+
+        username = view.findViewById(R.id.username);
+        phone_no = view.findViewById(R.id.phoneno);
         address = view.findViewById(R.id.address);
         city = view.findViewById(R.id.city);
-//        sector=view.findViewById(R.id.sector);
+        sector = view.findViewById(R.id.sector);
+        Id = view.findViewById(R.id.id);
+        rnc = view.findViewById(R.id.rnc);
+//        cell_no = view.findViewById(R.id.cell_no);
+        name_company = view.findViewById(R.id.name_compantname);
+
 
         submit = view.findViewById(R.id.SubmitBtn);
         uploadImage = view.findViewById(R.id.uploadimage);
@@ -76,8 +81,7 @@ ImageView back_btn,iv_uploadImage;
         tv_email.setText(GlobalState.getInstance().getUserInfo().getEmail());
 
 
-
-        back_btn=view.findViewById(R.id.back_btn_updateprofile);
+        back_btn = view.findViewById(R.id.back_btn_updateprofile);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,23 +98,25 @@ ImageView back_btn,iv_uploadImage;
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Name_Compantname = name_company.getText().toString();
                 int id = GlobalState.getInstance().getUserInfo().getId();
-                //                String RNC=rnc.getText().toString();
-                String CellNo = cell_no.getText().toString();
-//                String PhoneNo=phone_no.getText().toString();
+                String RNC = rnc.getText().toString();
+//                String cellno1 = cell_no.getText().toString();
+                String ID = Id.getText().toString();
+                String UserName = username.getText().toString();
+                String PhoneNo = phone_no.getText().toString();
                 String address2 = address.getText().toString();
-//                String City=city.getText().toString();
-//                String Sector=sector.getText().toString();
+                String City = city.getText().toString();
+                String Sector = sector.getText().toString();
+                String Name_Compantname = name_company.getText().toString();
 
-//                if (Name_Compantname.isEmpty() && ID.isEmpty() && RNC.isEmpty() && CellNo.isEmpty() && PhoneNo.isEmpty() && Address.isEmpty() && City.isEmpty() && Sector.isEmpty())
-//                {
-                if (Name_Compantname.isEmpty() && CellNo.isEmpty() && address2.isEmpty()) {
+
+                if (Name_Compantname.isEmpty() && ID.isEmpty() && RNC.isEmpty() && UserName.isEmpty() && PhoneNo.isEmpty() && address2.isEmpty() && City.isEmpty() && Sector.isEmpty()) {
+
                     Toast.makeText(getContext(), "Please Fill All Fields", Toast.LENGTH_SHORT).show();
 
                 } else {
 
-                    updateProfile(Name_Compantname, CellNo, address2, id);
+                    updateProfile(id, UserName, PhoneNo, address2, City, Sector, ID, RNC, Name_Compantname);
                 }
 
             }
@@ -120,12 +126,12 @@ ImageView back_btn,iv_uploadImage;
         return view;
     }
 
-    private void updateProfile(String name, String cellNo, String address, int id) {
+    private void updateProfile(int id, String userName, String phone_no, String address, String city, String sector, String iD, String rnc, String name) {
 
 //        otpProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<Login> call = retrofit.create(ApiInterface.class).UPDATEPROFIL_CALL(id, name, cellNo, address);
+        Call<Login> call = retrofit.create(ApiInterface.class).UPDATEPROFIL_CALL( id, name, phone_no, city, sector, iD, rnc, name, address);
         call.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
@@ -136,11 +142,17 @@ ImageView back_btn,iv_uploadImage;
                         Toast.makeText(getContext(), "Profile changed successfully", Toast.LENGTH_SHORT).show();
                         UserInfo userInfo = new UserInfo();
                         userInfo = GlobalState.getInstance().getUserInfo();
-                        userInfo.setName(name);
-                        userInfo.setNumber(cellNo);
+//                        userInfo.setYour_id(id);
+                        userInfo.setName(userName);
+                        userInfo.setNumber(phone_no);
+                        userInfo.setCity(city);
+                        userInfo.setSector(sector);
+                        userInfo.setYour_id(iD);
+                        userInfo.setRnc(rnc);
+                        userInfo.setCompany_name(name);
                         userInfo.setAddress(address);
                         GlobalState.getInstance().setUserInfo(userInfo);
-                        tv_userName.setText(name);
+                        tv_userName.setText(userName);
 
                         Fragment fragment = new ProfileFragment();
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
