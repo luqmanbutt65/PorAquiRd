@@ -83,12 +83,12 @@ public class MainActivity extends BaseActivity {
 
 
                         break;
-                    case R.id.location:
-                        temp = new MapsFragment();
-                        callFreg(temp);
-
-
-                        break;
+//                    case R.id.location:
+//                        temp = new MapsFragment();
+//                        callFreg(temp);
+//
+//
+//                        break;
                     case R.id.likes:
                         temp = new MyFavrotFragment();
                         callFreg(temp);

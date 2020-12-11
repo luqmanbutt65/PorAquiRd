@@ -1,11 +1,9 @@
-package com.example.realestate.Model;
+package com.example.realestate.Model.Like;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import io.realm.RealmObject;
-
-public class Login extends RealmObject {
+public class LikeResponse {
 
     @SerializedName("status")
     @Expose
@@ -13,10 +11,6 @@ public class Login extends RealmObject {
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("data")
-    @Expose
-    private UserInfo userInfo;
-
 
     public String getStatus() {
         return status;
@@ -33,15 +27,4 @@ public class Login extends RealmObject {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
-    }
-
-
-
 }

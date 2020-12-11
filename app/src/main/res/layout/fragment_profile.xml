@@ -83,7 +83,7 @@
                             android:ellipsize="end"
                             android:gravity="center_vertical"
                             android:padding="8dp"
-                            android:text="Kerim jone"
+                            android:text=""
                             android:textColor="#171D28"
                             android:textSize="@dimen/_15sdp"
                             android:textStyle="bold" />
@@ -100,7 +100,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="5dp"
                                 android:layout_toRightOf="@+id/imageview1"
-                                android:text="karam_635@gmail.com"
+                                android:text=""
                                 android:textColor="#171D28"
                                 android:textSize="15sp"
                                 android:textStyle="italic" />

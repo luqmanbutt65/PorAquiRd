@@ -37,11 +37,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.ImagesAdapter;
+import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.CustomeClasses.NumberTextWatcher;
 import com.example.realestate.Fragments.MapsFragment;
 import com.example.realestate.Fragments.PrivecyPolicy;
+import com.example.realestate.Fragments.ProfileFragment;
 import com.example.realestate.Model.ImagesData;
+import com.example.realestate.Model.Login;
+import com.example.realestate.Model.REST.Properties.Properties;
+import com.example.realestate.Model.REST.PropertiesSingle.PropertiesSingleResp;
+import com.example.realestate.Model.UserInfo;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Utills.GlobalState;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
@@ -49,6 +56,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Adddata extends AppCompatActivity {
     private static final int PICK_IMAGE_ONE = 0;
@@ -71,6 +84,12 @@ public class Adddata extends AppCompatActivity {
     List<String> listprice;
     final Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog constructionDatePicker;
+
+    String statusVal = "";
+    String bathVal="";
+    String bedroomVal="";
+    String propertytypeval="";
+    boolean statusValCheck = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,15 +120,7 @@ public class Adddata extends AppCompatActivity {
         prpertytype = findViewById(R.id.proprtyType);
         price.addTextChangedListener(new NumberTextWatcher(price));
 
-        String titl_value = title.getText().toString();
-        String description_value = description.getText().toString();
-        String price_value = price.getText().toString();
-        String city_value = city.getText().toString();
-        String sector_value = sector.getText().toString();
-        String unitofmeasure_value = unit_of_measure.getText().toString();
-        String date_of_construction_value = date_of_construction.getText().toString();
-        String petscheks_value = petcheks.getText().toString();
-        String parkingcheks_value = parkingcheks.getText().toString();
+
 
         location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,23 +171,19 @@ public class Adddata extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
                 if (forrentt.isChecked()) {
+                    statusVal = "ForRent";
+                    statusValCheck = true;
                     forrentt.setTextColor(Color.WHITE);
                     forsale.setTextColor(Color.BLACK);
                 }
                 if (forsale.isChecked()) {
+                    statusVal = "ForSale";
+                    statusValCheck = false;
                     forsale.setTextColor(Color.WHITE);
                     forrentt.setTextColor(Color.BLACK);
                 }
             }
         });
-
-
-//        String Title = title.getText().toString();
-//        String Decription = description.getText().toString();
-//        String Price = price.getText().toString();
-//        String Location = location.getText().toString();
-//        String BedroomSpiner = bedroomSpiner.getSelectedItem().toString();
-//        String BathroomSpiner = bathsSpiner.getSelectedItem().toString();
 
 
         date_of_construction.setOnClickListener(new View.OnClickListener() {
@@ -241,15 +248,12 @@ public class Adddata extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                Toast.makeText(getApplicationContext(), prpertytype.getSelectedItem().toString(),
 //                        Toast.LENGTH_SHORT).show();
+                if (position==0){
+                    propertytypeval="";
 
-                switch (position) {
-                    case 0:
-                        if (position == 0) {
-//                            Toast.makeText(context, "plz swelect other value", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        break;
+                }else {
 
+                    propertytypeval=bedroomSpiner.getSelectedItem().toString();
                 }
 
 
@@ -303,6 +307,14 @@ public class Adddata extends AppCompatActivity {
 //                Toast.makeText(getBaseContext(), bedroomSpiner.getSelectedItem().toString(),
 //                        Toast.LENGTH_SHORT).show();
 
+                if (position==0){
+                    bedroomVal="";
+
+                }else {
+
+                    bedroomVal=bedroomSpiner.getSelectedItem().toString();
+                }
+
             }
 
             @Override
@@ -316,6 +328,14 @@ public class Adddata extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                Toast.makeText(getBaseContext(), bathsSpiner.getSelectedItem().toString(),
 //                        Toast.LENGTH_SHORT).show();
+
+                if (position==0){
+                    bathVal="";
+
+                }else {
+
+                    bathVal=bedroomSpiner.getSelectedItem().toString();
+                }
             }
 
             @Override
@@ -358,6 +378,19 @@ public class Adddata extends AppCompatActivity {
 
             }
         });
+        String titl_value = title.getText().toString();
+        String description_value = description.getText().toString();
+        String price_value = price.getText().toString();
+        String city_value = city.getText().toString();
+        String sector_value = sector.getText().toString();
+        String unitofmeasure_value = unit_of_measure.getText().toString();
+        String date_of_construction_value = date_of_construction.getText().toString();
+        String petscheks_value = petcheks.getText().toString();
+        String parkingcheks_value = parkingcheks.getText().toString();
+        String BedroomSpiner = bedroomVal;
+        String BathroomSpiner =bathVal;
+        String propertytypeSpiner = propertytypeval;
+        String propertystatus = statusVal;
 
 
     }
@@ -494,6 +527,55 @@ public class Adddata extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+
+    private void updateProfile(String status, String property_type,String title, String description, String price, String location, String sector, String bedroom, String bath, String unitOfMeasure,String dateOfConstruction,String petroom,String parkingLot) {
+
+//        otpProgressDialog.show();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Call<PropertiesSingleResp> call = retrofit.create(ApiInterface.class).ADD_PROPERTY_DATA(status,property_type,title,description,price,location,sector,bedroom,bath,unitOfMeasure,dateOfConstruction,petroom,parkingLot);
+        call.enqueue(new Callback<PropertiesSingleResp>() {
+            @Override
+            public void onResponse(Call<PropertiesSingleResp> call, Response<PropertiesSingleResp> response) {
+                if (response.isSuccessful()) {
+                    PropertiesSingleResp propertiesSingleResp = response.body();
+                    if (propertiesSingleResp.getMessage().equals("Profile changed successfully")) {
+
+//                        Toast.makeText(getApplicationContext(), "Profile changed successfully", Toast.LENGTH_SHORT).show();
+//                        Properties properties = new Properties();
+//                        properties = GlobalState.getInstance().getProperties();
+//                        properties.setSale_type();
+//                        properties.setTitle();
+//                        properties.setArea();
+//                        properties.setBath();
+//                        properties.setBedroom();
+//                        properties.setCity();
+//                        properties.setLocation();
+//                        properties.setPrice();
+//                        properties.
+
+
+                    } else {
+
+                        Toast.makeText(getApplicationContext(), "Dta Uploading error", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } else {
+
+                    Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                }
+//                otpProgressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<PropertiesSingleResp> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//                otpProgressDialog.dismiss();
+            }
+        });
     }
 
 

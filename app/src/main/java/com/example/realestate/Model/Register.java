@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class Register extends RealmObject {
+public class Register {
 
     @SerializedName("status")
     @Expose

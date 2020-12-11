@@ -107,4 +107,18 @@ public class SharedPreferenceConfig {
         editor.putString(key, value);
         editor.commit();
     }//savePWDIn
+
+
+    public  String getidOfUSerFromSP(String key,Context context){
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_id ", android.content.Context.MODE_PRIVATE);
+        return preferences.getString(key, "id");
+    }
+
+
+    public  void saveidOfUSerInSP(String key, String value,Context context){
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_id ", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =      preferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }//savePWDIn
 }

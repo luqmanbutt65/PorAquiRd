@@ -33,9 +33,16 @@
             android:textColor="@color/textblackcolor"
             android:textStyle="bold"/>
     </RelativeLayout>
+    <ScrollView
+        android:layout_below="@+id/headerlayut"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ImageView
         android:id="@+id/iv_forgotpassword"
-        android:layout_below="@+id/headerlayut"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_150sdp"
         android:src="@drawable/otp"
@@ -202,5 +209,6 @@
             />
     </RelativeLayout>
 
-
+    </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

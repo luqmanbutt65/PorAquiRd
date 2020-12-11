@@ -66,8 +66,8 @@ ImageView back_btn;
 
         String[] city = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};
         String[] location = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};
-        double[] rating = {121, 121, 12121, 1212, 12121, 21212, 1212};
-        double[] price = {2323, 32323, 32232, 23232, 2323223, 2323, 2332};
+        double[] rating = {121.00, 121.00, 12121.00, 1,212.00, 1,121.00, 2,1212.00, 1212.00};
+        double[] price = {2,323.00, 3,2323.00, 3,2232.00, 2,3232.00, 23,23.00,223.00, 2,323.00, 2,332.00};
         String[] title = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};
         int[] image = {R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house};
 

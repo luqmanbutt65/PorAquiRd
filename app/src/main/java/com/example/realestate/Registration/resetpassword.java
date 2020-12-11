@@ -20,39 +20,44 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class resetpassword extends AppCompatActivity {
-EditText password,confirmpassword;
-Button submit;
+    EditText password, confirmpassword;
+    Button submit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetpassword);
 
 
-        password=findViewById(R.id.password1);
-        confirmpassword=findViewById(R.id.confirmpassword1);
-        submit=findViewById(R.id.submitbtn);
+        password = findViewById(R.id.password1);
+        confirmpassword = findViewById(R.id.confirmpassword1);
+        submit = findViewById(R.id.submitbtn);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                String Password = password.getText().toString();
+                String ConfirmPassword = confirmpassword.getText().toString();
+                if (Password.isEmpty() || ConfirmPassword.isEmpty()) {
 
-                String Password=password.getText().toString();
-                String ConfirmPassword=confirmpassword.getText().toString();
-                if (Password.isEmpty() && ConfirmPassword.isEmpty()){
-
-                    Toast.makeText(getApplicationContext(),"Please fill the all fields",Toast.LENGTH_SHORT).show();
-                }else if (Password!= ConfirmPassword){
-
-                    Toast.makeText(getApplicationContext(),"password did not match",Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getApplicationContext(), "Please fill the all fields", Toast.LENGTH_SHORT).show();
                 }
-                resetpass(Password);
+                else {
+                    if (!Password.equalsIgnoreCase(ConfirmPassword) ) {
+
+                        Toast.makeText(getApplicationContext(), "password did not match", Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        resetpass(Password);
+
+                    }
+                }
             }
         });
 
     }
-
 
 
     public void resetpass(String password) {

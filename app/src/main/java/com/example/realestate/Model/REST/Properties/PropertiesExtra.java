@@ -44,7 +44,6 @@ public class PropertiesExtra {
     @Expose
     private String pets;
 
-
     public PropertiesExtra(String property_id, String bathrooms, String bedrooms, String ratio, String parking, String pets) {
         this.property_id = property_id;
         this.bathrooms = bathrooms;

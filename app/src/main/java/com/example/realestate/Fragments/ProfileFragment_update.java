@@ -67,7 +67,7 @@ public class ProfileFragment_update extends Fragment {
         sector = view.findViewById(R.id.sector);
         Id = view.findViewById(R.id.id);
         rnc = view.findViewById(R.id.rnc);
-//        cell_no = view.findViewById(R.id.cell_no);
+        cell_no = view.findViewById(R.id.cell_no);
         name_company = view.findViewById(R.id.name_compantname);
 
 
@@ -100,7 +100,7 @@ public class ProfileFragment_update extends Fragment {
             public void onClick(View v) {
                 int id = GlobalState.getInstance().getUserInfo().getId();
                 String RNC = rnc.getText().toString();
-//                String cellno1 = cell_no.getText().toString();
+                String cellno1 = cell_no.getText().toString();
                 String ID = Id.getText().toString();
                 String UserName = username.getText().toString();
                 String PhoneNo = phone_no.getText().toString();
@@ -110,13 +110,13 @@ public class ProfileFragment_update extends Fragment {
                 String Name_Compantname = name_company.getText().toString();
 
 
-                if (Name_Compantname.isEmpty() && ID.isEmpty() && RNC.isEmpty() && UserName.isEmpty() && PhoneNo.isEmpty() && address2.isEmpty() && City.isEmpty() && Sector.isEmpty()) {
+                if (Name_Compantname.isEmpty() || ID.isEmpty() || RNC.isEmpty() || UserName.isEmpty() || PhoneNo.isEmpty() || address2.isEmpty() || City.isEmpty() || Sector.isEmpty() || cellno1.isEmpty()) {
 
                     Toast.makeText(getContext(), "Please Fill All Fields", Toast.LENGTH_SHORT).show();
 
                 } else {
 
-                    updateProfile(id, UserName, PhoneNo, address2, City, Sector, ID, RNC, Name_Compantname);
+                    updateProfile(id, UserName, PhoneNo, address2, City, Sector, ID, RNC, Name_Compantname, cellno1);
                 }
 
             }
@@ -126,12 +126,12 @@ public class ProfileFragment_update extends Fragment {
         return view;
     }
 
-    private void updateProfile(int id, String userName, String phone_no, String address, String city, String sector, String iD, String rnc, String name) {
+    private void updateProfile(int id, String userName, String phone_no, String address, String city, String sector, String iD, String rnc, String compny_name, String cellNo) {
 
 //        otpProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<Login> call = retrofit.create(ApiInterface.class).UPDATEPROFIL_CALL( id, name, phone_no, city, sector, iD, rnc, name, address);
+        Call<Login> call = retrofit.create(ApiInterface.class).UPDATEPROFIL_CALL(id, userName, phone_no, city, sector, iD, rnc, compny_name, address, cellNo);
         call.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
@@ -149,8 +149,9 @@ public class ProfileFragment_update extends Fragment {
                         userInfo.setSector(sector);
                         userInfo.setYour_id(iD);
                         userInfo.setRnc(rnc);
-                        userInfo.setCompany_name(name);
+                        userInfo.setCompany_name(compny_name);
                         userInfo.setAddress(address);
+                        userInfo.setCell_number(cellNo);
                         GlobalState.getInstance().setUserInfo(userInfo);
                         tv_userName.setText(userName);
 

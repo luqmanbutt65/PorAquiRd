@@ -56,12 +56,19 @@ public class SignUpActivity extends BaseActivity {
                 String getemail = email.getText().toString().trim();
                 String getPassword = password.getText().toString().trim();
 
-                if (getname.isEmpty() && getemail.isEmpty() && getPassword.isEmpty()) {
+                if (getname.isEmpty() || getemail.isEmpty() || getPassword.isEmpty()) {
 
                     Toast.makeText(SignUpActivity.this, "Please Input Field", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    signupnuser(getname, getemail, getPassword);
+                    if (getPassword.length()<8){
+
+                        Toast.makeText(SignUpActivity.this, "password is less than 8 characters", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        signupnuser(getname, getemail, getPassword);
+                    }
+
 
 //                    if (isEmailValid(getemail)) {
 //

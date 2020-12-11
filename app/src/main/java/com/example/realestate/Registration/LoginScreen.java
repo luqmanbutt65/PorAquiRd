@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
@@ -21,11 +22,12 @@ import com.example.realestate.Activities.BaseActivity;
 import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Login;
+import com.example.realestate.Model.UserInfo;
 import com.example.realestate.R;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 
-import java.util.regex.Pattern;
-
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,6 +39,7 @@ public class LoginScreen extends BaseActivity {
     Button relativeLayout;
     ProgressDialog loginProgressDialog;
     ProgressBar progressbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,7 @@ public class LoginScreen extends BaseActivity {
                 String getPassword = passwordLogin.getText().toString().trim();
 
 
-                if (getEmail.isEmpty() && getPassword.isEmpty()) {
+                if (getEmail.isEmpty() || getPassword.isEmpty()) {
 
                     Toast.makeText(getApplicationContext(), "Please Input Field", Toast.LENGTH_SHORT).show();
                 } else {
@@ -109,12 +112,38 @@ public class LoginScreen extends BaseActivity {
                     Login loginresp = response.body();
 //                    if(loginresp.getStatus().equals("200")){}
                     if (loginresp.getMessage().equals("user is logged in")) {
+
+
+//                        Realm.init(LoginScreen.this);
+//                        RealmConfiguration config = new RealmConfiguration.Builder()
+//                                .name("poraquird.realm")
+//                                .schemaVersion(1)
+//                                .deleteRealmIfMigrationNeeded()
+//                                .build();
+//                        Realm.setDefaultConfiguration(config);
+//
+//                        // add response to realm database
+//
+//                        Realm realm = Realm.getInstance(config);
+//                        realm.beginTransaction();
+//                        realm.copyToRealm(loginresp);
+//                        realm.commitTransaction();
+//
+//                        int notesCount = realm.where(UserInfo.class).findAll().size();
+//                        Log.d("my first", String.valueOf(notesCount));
+//                        realm.close();
+////
+
                         //login start main activity
                         new SharedPreferenceConfig().saveBooleanInSP("isLogin", true, LoginScreen.this);
                         new SharedPreferenceConfig().saveEmailOfUSerInSP("Email", getEmail, LoginScreen.this);
                         new SharedPreferenceConfig().saveEmailOfUSerInSP("Password", getPassword, LoginScreen.this);
                         String temp_name = loginresp.getUserInfo().getName();
+
+                        String id = String.valueOf(loginresp.getUserInfo().getId());
+
                         new SharedPreferenceConfig().saveNameOfUSerInSP("name", temp_name, LoginScreen.this);
+                        new SharedPreferenceConfig().saveidOfUSerInSP("id",id, LoginScreen.this);
 
                         Intent intent = new Intent(LoginScreen.this, MainActivity.class);
                         intent.putExtra("Email", getEmail);
@@ -202,4 +231,5 @@ public class LoginScreen extends BaseActivity {
         alert.show();
 
     }
+
 }

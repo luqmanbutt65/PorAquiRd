@@ -1,5 +1,6 @@
 package com.example.realestate.ApiClass;
 
+import com.example.realestate.Model.Like.LikeResponse;
 import com.example.realestate.Model.Login;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.Model.REST.PropertiesSingle.PropertiesSingleResp;
@@ -70,7 +71,8 @@ public interface ApiInterface {
             @Query("your_id") String your_id,
             @Query("rnc") String rnc,
             @Query("company_name") String company_name,
-            @Query("address") String address);
+            @Query("address") String address,
+            @Query("phone_number") String phone_number);
 
 
 
@@ -86,9 +88,27 @@ public interface ApiInterface {
 
 
 
-    // Like button
+    // description button
 
+    @POST("/api/property_favourite")
+    Call<LikeResponse> LIKEPROPERTY_CALL(@Query("user_id") String user_id,
+                                         @Query("property_id") String property_id);
+
+
+//    // Add Property
     @POST("/api/get_property/{id}")
-    Call<PropertiesSingleResp> LIKEPROPERTY_CALL(@Path(value = "id", encoded = true) String id);
-
+    Call<PropertiesSingleResp> ADD_PROPERTY_DATA(
+                                                  @Query("status") String status,
+                                                  @Query("property_type") String property_type,
+                                                  @Query("title") String title,
+                                                  @Query("description") String description,
+                                                  @Query("price") String price,
+                                                  @Query("location") String location,
+                                                  @Query("sector") String sector,
+                                                  @Query("bedroom") String bedroom,
+                                                  @Query("bathroom") String bathroom,
+                                                  @Query("unit_of_measure") String unit_of_measure,
+                                                  @Query("date_of_construction") String date_of_construction,
+                                                  @Query("petroom") String petroom,
+                                                  @Query("parkinglot") String parkinglot);
 }

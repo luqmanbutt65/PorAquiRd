@@ -51,6 +51,22 @@ public class Properties {
     @SerializedName("bath")
     @Expose
     private String bath;
+    @SerializedName("property_type")
+    @Expose
+    private String property_type;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("sector")
+    @Expose
+    private String sector;
+    @SerializedName("unit_of_measure")
+    @Expose
+    private String unit_of_measure;
+
+    @SerializedName("date_of_construction")
+    @Expose
+    private String date_of_construction;
 
     @SerializedName("rating")
     @Expose
@@ -58,6 +74,13 @@ public class Properties {
     @SerializedName("extra")
     @Expose
     private PropertiesExtra propertiesExtra;
+
+    @SerializedName("gallery")
+    @Expose
+
+
+    private ArrayList<PropertiesGallery> propertiesGalleryArrayList;
+
 
     public PropertiesExtra getPropertiesExtra() {
         return propertiesExtra;
@@ -75,11 +98,45 @@ public class Properties {
         this.propertiesGalleryArrayList = propertiesGalleryArrayList;
     }
 
-    @SerializedName("gallery")
-    @Expose
-    private ArrayList<PropertiesGallery> propertiesGalleryArrayList;
+    public String getProperty_type() {
+        return property_type;
+    }
 
+    public void setProperty_type(String property_type) {
+        this.property_type = property_type;
+    }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSector() {
+        return sector;
+    }
+
+    public void setSector(String sector) {
+        this.sector = sector;
+    }
+
+    public String getUnit_of_measure() {
+        return unit_of_measure;
+    }
+
+    public void setUnit_of_measure(String unit_of_measure) {
+        this.unit_of_measure = unit_of_measure;
+    }
+
+    public String getDate_of_construction() {
+        return date_of_construction;
+    }
+
+    public void setDate_of_construction(String date_of_construction) {
+        this.date_of_construction = date_of_construction;
+    }
 
     public String getBedroom() {
 

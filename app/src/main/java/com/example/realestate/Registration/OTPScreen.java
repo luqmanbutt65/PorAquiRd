@@ -36,24 +36,24 @@ public class OTPScreen extends AppCompatActivity {
         setContentView(R.layout.activity_o_t_p_screen);
 
         resend_otp = findViewById(R.id.resend_otp);
-        resend_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String Otp_textbox_one = otp_textbox_one.getText().toString();
-                String Otp_textbox_two = otp_textbox_two.getText().toString();
-                String Otp_textbox_three = otp_textbox_three.getText().toString();
-                String Otp_textbox_four = otp_textbox_four.getText().toString();
-
-                String OTPCode = Otp_textbox_one + Otp_textbox_two + Otp_textbox_three + Otp_textbox_four;
-                if (Otp_textbox_one.isEmpty() && Otp_textbox_two.isEmpty() && Otp_textbox_three.isEmpty() && Otp_textbox_four.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "please fill all fields", Toast.LENGTH_SHORT).show();
-
-                } else {
-                }
-//                {Toast.makeText(getApplicationContext(), "Entered successfully", Toast.LENGTH_SHORT).show();}
-                getOtp(OTPCode);
-            }
-        });
+//        resend_otp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String Otp_textbox_one = otp_textbox_one.getText().toString();
+//                String Otp_textbox_two = otp_textbox_two.getText().toString();
+//                String Otp_textbox_three = otp_textbox_three.getText().toString();
+//                String Otp_textbox_four = otp_textbox_four.getText().toString();
+//
+//                String OTPCode = Otp_textbox_one + Otp_textbox_two + Otp_textbox_three + Otp_textbox_four;
+//                if (Otp_textbox_one.isEmpty() && Otp_textbox_two.isEmpty() && Otp_textbox_three.isEmpty() && Otp_textbox_four.isEmpty()) {
+//                    Toast.makeText(getApplicationContext(), "please fill all fields", Toast.LENGTH_SHORT).show();
+//
+//                } else {
+//                }
+////                {Toast.makeText(getApplicationContext(), "Entered successfully", Toast.LENGTH_SHORT).show();}
+//                getOtp(OTPCode);
+//            }
+//        });
 
         otp_textbox_one = findViewById(R.id.otp_edit_box1);
         otp_textbox_two = findViewById(R.id.otp_edit_box2);
@@ -81,7 +81,7 @@ public class OTPScreen extends AppCompatActivity {
                 String Otp_textbox_four = otp_textbox_four.getText().toString();
 
                 String OTPCode = Otp_textbox_one + Otp_textbox_two + Otp_textbox_three + Otp_textbox_four;
-                if (Otp_textbox_one.isEmpty() && Otp_textbox_two.isEmpty() && Otp_textbox_three.isEmpty() && Otp_textbox_four.isEmpty()) {
+                if (Otp_textbox_one.isEmpty() || Otp_textbox_two.isEmpty() || Otp_textbox_three.isEmpty() || Otp_textbox_four.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "please fill all fields", Toast.LENGTH_SHORT).show();
 
                 } else {
