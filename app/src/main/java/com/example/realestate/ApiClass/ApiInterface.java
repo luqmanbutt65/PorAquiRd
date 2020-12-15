@@ -1,16 +1,22 @@
 package com.example.realestate.ApiClass;
 
 import com.example.realestate.Model.Like.LikeResponse;
+import com.example.realestate.Model.Like.PropertiesLike_Data;
+import com.example.realestate.Model.Like.PropertiesLike_Response;
 import com.example.realestate.Model.Login;
+import com.example.realestate.Model.MyProject.MyProperties_Response;
+import com.example.realestate.Model.REST.Properties.Properties_Add_Response;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.Model.REST.PropertiesSingle.PropertiesSingleResp;
 import com.example.realestate.Model.REST.ResetPasswordResponse;
 import com.example.realestate.Model.Register;
 import com.example.realestate.Model.UserInfo;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -42,7 +48,7 @@ public interface ApiInterface {
 
 
     @GET("/api/get_properties")
-    Call<Properties_Response> DASHBOARDDATA_CALL();
+    Call<Properties_Response> DASHBOARDDATA_CALL(@Query("id") String id);
 
 
 //TODO:today work 4/12/2020
@@ -56,8 +62,6 @@ public interface ApiInterface {
             @Query("new_pass") String new_pass,
             @Query("confirm_pass") String confirm_pass,
             @Query("email") String email
-
-
     );
 
 
@@ -75,7 +79,6 @@ public interface ApiInterface {
             @Query("phone_number") String phone_number);
 
 
-
     @POST("/api/login")
     Call<Login> GETPROFILE_CALL(@Query("email") String email,
                                 @Query("password") String password);
@@ -87,7 +90,6 @@ public interface ApiInterface {
     Call<PropertiesSingleResp> PROPERTY_CALL(@Path(value = "id", encoded = true) String id);
 
 
-
     // description button
 
     @POST("/api/property_favourite")
@@ -95,20 +97,33 @@ public interface ApiInterface {
                                          @Query("property_id") String property_id);
 
 
-//    // Add Property
-    @POST("/api/get_property/{id}")
-    Call<PropertiesSingleResp> ADD_PROPERTY_DATA(
-                                                  @Query("status") String status,
-                                                  @Query("property_type") String property_type,
-                                                  @Query("title") String title,
-                                                  @Query("description") String description,
-                                                  @Query("price") String price,
-                                                  @Query("location") String location,
-                                                  @Query("sector") String sector,
-                                                  @Query("bedroom") String bedroom,
-                                                  @Query("bathroom") String bathroom,
-                                                  @Query("unit_of_measure") String unit_of_measure,
-                                                  @Query("date_of_construction") String date_of_construction,
-                                                  @Query("petroom") String petroom,
-                                                  @Query("parkinglot") String parkinglot);
+    //    // Add Property
+    @POST("/api/add_property")
+    Call<Properties_Add_Response> ADD_PROPERTY_DATA(
+            @Query("user_id") String user_id,
+            @Part MultipartBody.Part[] propertyImages,
+            @Part MultipartBody.Part featureImage,
+            @Query("sale_type") String status,
+            @Query("property_type") String property_type,
+            @Query("title") String title,
+            @Query("description") String description,
+            @Query("price") String price,
+            @Query("location") String location,
+            @Query("city") String city,
+            @Query("sector") String sector,
+            @Query("bedrooms") String bedroom,
+            @Query("bathrooms") String bathroom,
+            @Query("area") String unit_of_measure,
+            @Query("date_of_construction") String date_of_construction,
+            @Query("pets") String petroom,
+            @Query("parking") String parkinglot,
+            @Query("property_condition") String property_condition);
+
+
+    @POST("/api/favourite_properties")
+    Call<PropertiesLike_Response> FAV_CALL(@Query("id") String id);
+
+
+    @POST("/api/my_properties")
+    Call<MyProperties_Response> MYPROJECT_CALL(@Query("id") String id);
 }

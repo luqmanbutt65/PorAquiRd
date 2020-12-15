@@ -3,6 +3,7 @@ package com.example.realestate.Utills;
 
 import android.app.Application;
 
+import com.example.realestate.Model.REST.Properties.AddPropertiesData;
 import com.example.realestate.Model.REST.Properties.Properties;
 import com.example.realestate.Model.UserInfo;
 
@@ -16,13 +17,13 @@ public class GlobalState extends Application {
 
     private UserInfo userInfo;
 
-    private Properties properties;
+    private AddPropertiesData properties;
 
-    public Properties getProperties() {
+    public AddPropertiesData getProperties() {
         return properties;
     }
 
-    public void setProperties(Properties properties) {
+    public void setProperties(AddPropertiesData properties) {
         this.properties = properties;
     }
 

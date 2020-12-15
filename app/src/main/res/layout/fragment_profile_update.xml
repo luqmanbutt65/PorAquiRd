@@ -87,7 +87,7 @@
                             android:ellipsize="end"
                             android:gravity="center_vertical"
                             android:padding="8dp"
-                            android:text="Kerim jone"
+                            android:text=""
                             android:textColor="#171D28"
                             android:textSize="@dimen/_15sdp"
                             android:textStyle="bold" />
@@ -104,7 +104,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="5dp"
                                 android:layout_toRightOf="@+id/imageview1"
-                                android:text="karam_635@gmail.com"
+                                android:text=""
                                 android:textColor="#171D28"
                                 android:textSize="15sp"
                                 android:textStyle="italic" />
@@ -200,13 +200,12 @@
                         android:hint="102-01887-1"
                         android:inputType="numberSigned"
                         android:lines="1"
-                        android:maxLength="30"
+                        android:maxLength="9"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -223,9 +222,9 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/add_edittext_style"
                         android:hint="1021887-1"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:lines="1"
-                        android:maxLength="30"
+                        android:maxLength="9"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
                         android:singleLine="true"
@@ -299,7 +298,7 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="Enter Your address, City,Area"
+                        android:hint="Enter Your address"
                         android:inputType="textEmailAddress"
                         android:lines="1"
                         android:maxLength="60"

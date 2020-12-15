@@ -2,6 +2,7 @@ package com.example.realestate.Activities;
 
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TimePicker;
 
 import com.example.realestate.Adddata;
 import com.example.realestate.R;
@@ -17,7 +19,7 @@ import com.example.realestate.R;
 import java.util.Calendar;
 
 public class BottomsheetApointment extends BaseActivity {
-    EditText et_apointment;
+    EditText et_apointment,et_time;
     RadioGroup statusbutton;
     RadioButton formeeting, forvideomeeting;
     DatePickerDialog apointmentdatepicker;
@@ -32,11 +34,33 @@ public class BottomsheetApointment extends BaseActivity {
         apointmentSubmit = findViewById(R.id.apointmentSubmit);
         statusbutton = findViewById(R.id.togglegroupp);
         et_apointment = findViewById(R.id.et_apointment);
-
+        et_time= findViewById(R.id.et_time);
         formeeting = (RadioButton) findViewById(R.id.tour_meeting);
         forvideomeeting = (RadioButton) findViewById(R.id.tour_video);
 
         String apointment_val=et_apointment.getText().toString();
+
+
+        et_time.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(BottomsheetApointment.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        et_time.setText( selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+
+            }
+        });
 
 
         apointmentSubmit.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +91,7 @@ public class BottomsheetApointment extends BaseActivity {
 
                             }
                         }, year, month, day);
-                apointmentdatepicker.getDatePicker().setMaxDate(System.currentTimeMillis());// TODO: used to hide future date,month and year
+                apointmentdatepicker.getDatePicker().setMinDate(System.currentTimeMillis());// TODO: used to hide future date,month and year
 
                 apointmentdatepicker.show();
 

@@ -87,7 +87,6 @@ public class MainActivity extends BaseActivity {
 //                        temp = new MapsFragment();
 //                        callFreg(temp);
 //
-//
 //                        break;
                     case R.id.likes:
                         temp = new MyFavrotFragment();

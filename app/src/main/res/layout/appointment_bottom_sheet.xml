@@ -81,11 +81,23 @@
          android:layout_height="@dimen/_40sdp"
          android:drawableRight="@drawable/ic_baseline_calendar_today"
          android:paddingLeft="@dimen/_10sdp"
-         android:hint="10-10-2020 12:10 PM"
+         android:hint="10-10-2020"
          android:editable="false"
          android:clickable="true"
          android:background="@drawable/add_edittext_style_gray"
          android:paddingRight="@dimen/_10sdp"/>
+    <EditText
+        android:id="@+id/et_time"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:drawableRight="@drawable/time"
+        android:paddingLeft="@dimen/_10sdp"
+        android:hint="12:10 PM"
+        android:editable="false"
+        android:clickable="true"
+        android:background="@drawable/add_edittext_style_gray"
+        android:paddingRight="@dimen/_10sdp"/>
 
         <Button
             android:id="@+id/apointmentSubmit"

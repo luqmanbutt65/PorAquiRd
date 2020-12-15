@@ -7,23 +7,43 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.realestate.Activities.MainActivity;
+import com.example.realestate.Adapters.DashBoardAdapter;
+import com.example.realestate.Adapters.MyFavAdapter;
 import com.example.realestate.Adapters.MyprojectAdapter;
+import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.Model.Like.PropertiesLike_Data;
+import com.example.realestate.Model.Like.PropertiesLike_Response;
 import com.example.realestate.Model.MyprojectData;
+import com.example.realestate.Model.REST.Properties.Properties;
+import com.example.realestate.Model.REST.Properties.Properties_Data;
+import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.R;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Utills.GlobalState;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MyFavrotFragment extends Fragment {
 ImageView back_btn;
     Context context;
-
+    TextView tv_result_number;
+    RecyclerView favRecyclerview;
+    private ArrayList<Properties> propertiesArrayList;
     public MyFavrotFragment() {
         // Required empty public constructor
     }
@@ -40,19 +60,13 @@ ImageView back_btn;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_favrot, container, false);
-
+        String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
+        getData(user_Id);
+        propertiesArrayList = new ArrayList<>();
         context = this.getContext();
-        RecyclerView recyclerView = view.findViewById(R.id.myproject_recycler);
-//        ImageView imageView = view.findViewById(R.id.addProject);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), Adddata.class));
-//
-//            }
-//        });
+        tv_result_number=view.findViewById(R.id.tv_result_number);
+        favRecyclerview= view.findViewById(R.id.myfav_recycler);
+        favRecyclerview.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
 
         back_btn=view.findViewById(R.id.back_btn1);
@@ -64,29 +78,63 @@ ImageView back_btn;
             }
         });
 
-        String[] city = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};
-        String[] location = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};
-        double[] rating = {121.00, 121.00, 12121.00, 1,212.00, 1,121.00, 2,1212.00, 1212.00};
-        double[] price = {2,323.00, 3,2323.00, 3,2232.00, 2,3232.00, 23,23.00,223.00, 2,323.00, 2,332.00};
-        String[] title = {"this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data", "this is dummy data"};
-        int[] image = {R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house};
-
-        ArrayList<MyprojectData> myprojectData = new ArrayList<>();
-        myprojectData.add(new MyprojectData(city[0], location[0], rating[0], price[0], title[0], image[0]));
-        myprojectData.add(new MyprojectData(city[1], location[1], rating[1], price[1], title[1], image[1]));
-        myprojectData.add(new MyprojectData(city[2], location[2], rating[2], price[2], title[2], image[2]));
-
-        myprojectData.add(new MyprojectData(city[3], location[3], rating[3], price[3], title[3], image[3]));
-
-        myprojectData.add(new MyprojectData(city[4], location[4], rating[4], price[4], title[4], image[4]));
-
-        myprojectData.add(new MyprojectData(city[5], location[5], rating[5], price[5], title[5], image[5]));
-
-        myprojectData.add(new MyprojectData(city[6], location[6], rating[6], price[6], title[6], image[6]));
-
-
-        recyclerView.setAdapter(new MyprojectAdapter(getActivity(), context, myprojectData));
 
         return view;
+    }
+    public void getData(String id) {
+//        homeProgressDialog.show();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Call<PropertiesLike_Response> call = retrofit.create(ApiInterface.class).FAV_CALL(id);
+        call.enqueue(new Callback<PropertiesLike_Response>() {
+            @Override
+            public void onResponse(Call<PropertiesLike_Response> call, Response<PropertiesLike_Response> response) {
+                if (response.isSuccessful()) {
+                    PropertiesLike_Response propertiesLike_response = response.body();
+                    if (propertiesLike_response.getMessage().equals("user fav properties")) {
+
+                       PropertiesLike_Data propertiesLike_data = response.body().getData();
+
+
+                        if (propertiesLike_data != null) {
+                            if (propertiesLike_data.getPropertiesArrayList() != null) {
+                                propertiesArrayList = propertiesLike_data.getPropertiesArrayList();
+                                GlobalState.getInstance().setPropertiesArrayList(propertiesArrayList);
+
+
+                                if (propertiesArrayList.size() > 0) {
+                                    tv_result_number.setText(String.valueOf(propertiesArrayList.size()));
+                                    favRecyclerview.setAdapter(new MyFavAdapter(getActivity(), context, propertiesArrayList));
+
+
+                                }
+
+                            }
+
+                        } else {
+                            Toast.makeText(getContext(), "Data is null", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    } else {
+
+                        Toast.makeText(getContext(), "Data fetching error", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } else {
+
+                    Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                }
+//                homeProgressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<PropertiesLike_Response> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//                homeProgressDialog.dismiss();
+            }
+        });
+
     }
 }

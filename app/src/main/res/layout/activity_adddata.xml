@@ -396,9 +396,10 @@
                 android:paddingLeft="@dimen/_10sdp">
 
                 <Button
+                    android:id="@+id/Add_Data"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:layout_below="@+id/linear"
+                    android:layout_below="@+id/linear2"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_20sdp"
@@ -586,7 +587,46 @@
 
                     </LinearLayout>
 
+
                 </LinearLayout>
+                <LinearLayout
+
+                    android:layout_below="@id/linear"
+                    android:id="@+id/linear2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="3"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/used"
+                        android:onClick="onchecked"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:layout_height="@dimen/_20sdp"
+                        android:text="Used" />
+
+                    <CheckBox
+                        android:id="@+id/neww"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:onClick="onchecked"
+                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:text="New" />
+                    <CheckBox
+                        android:id="@+id/newproject"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:onClick="onchecked"
+                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:text="New Project" />
+                </LinearLayout>
+
 
 
             </RelativeLayout>

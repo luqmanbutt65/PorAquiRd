@@ -112,26 +112,26 @@ public class LoginScreen extends BaseActivity {
                     Login loginresp = response.body();
 //                    if(loginresp.getStatus().equals("200")){}
                     if (loginresp.getMessage().equals("user is logged in")) {
+                        Login login = new Login();
+                        login = response.body();
+                        Realm.init(LoginScreen.this);
+                        RealmConfiguration config = new RealmConfiguration.Builder()
+                                .name("poraquird.realm")
+                                .schemaVersion(1)
+                                .deleteRealmIfMigrationNeeded()
+                                .build();
+                        Realm.setDefaultConfiguration(config);
 
+                        // add response to realm database
 
-//                        Realm.init(LoginScreen.this);
-//                        RealmConfiguration config = new RealmConfiguration.Builder()
-//                                .name("poraquird.realm")
-//                                .schemaVersion(1)
-//                                .deleteRealmIfMigrationNeeded()
-//                                .build();
-//                        Realm.setDefaultConfiguration(config);
-//
-//                        // add response to realm database
-//
-//                        Realm realm = Realm.getInstance(config);
-//                        realm.beginTransaction();
-//                        realm.copyToRealm(loginresp);
-//                        realm.commitTransaction();
-//
-//                        int notesCount = realm.where(UserInfo.class).findAll().size();
-//                        Log.d("my first", String.valueOf(notesCount));
-//                        realm.close();
+                        Realm realm = Realm.getInstance(config);
+                        realm.beginTransaction();
+                        realm.copyToRealm(login);
+                        realm.commitTransaction();
+
+                        int notesCount = realm.where(UserInfo.class).findAll().size();
+                        Log.d("my first", String.valueOf(notesCount));
+                        realm.close();
 ////
 
                         //login start main activity
@@ -143,7 +143,7 @@ public class LoginScreen extends BaseActivity {
                         String id = String.valueOf(loginresp.getUserInfo().getId());
 
                         new SharedPreferenceConfig().saveNameOfUSerInSP("name", temp_name, LoginScreen.this);
-                        new SharedPreferenceConfig().saveidOfUSerInSP("id",id, LoginScreen.this);
+                        new SharedPreferenceConfig().saveidOfUSerInSP("id", id, LoginScreen.this);
 
                         Intent intent = new Intent(LoginScreen.this, MainActivity.class);
                         intent.putExtra("Email", getEmail);

@@ -60,21 +60,12 @@ public class Permisions extends AppCompatActivity {
         final List<String> permissionsList = new ArrayList<String>();
         if (!checkPermission(permissionsList, Manifest.permission.WRITE_EXTERNAL_STORAGE))
             permissionsRequired.add("Write External Storage");
-        if (!checkPermission(permissionsList, Manifest.permission.CALL_PHONE))
-            permissionsRequired.add("Call phone");
-        if (!checkPermission(permissionsList, Manifest.permission.READ_PHONE_STATE))
-            permissionsRequired.add("Read phone state");
-        if (!checkPermission(permissionsList, Manifest.permission.READ_CONTACTS))
-            permissionsRequired.add("Read Contacts");
-        if (!checkPermission(permissionsList, Manifest.permission.RECEIVE_SMS))
-            permissionsRequired.add("Receive SMS");
-        if (!checkPermission(permissionsList, Manifest.permission.GET_ACCOUNTS))
-            permissionsRequired.add("Get Accounts");
+        if (!checkPermission(permissionsList, Manifest.permission.READ_EXTERNAL_STORAGE))
+            permissionsRequired.add("Write External Storage");
         if (!checkPermission(permissionsList, Manifest.permission.ACCESS_COARSE_LOCATION))
             permissionsRequired.add("Location");
         if (!checkPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION))
             permissionsRequired.add("Location");
-
         if (permissionsList.size() > 0 && !isRationale) {
             if (permissionsRequired.size() > 0) {
 
@@ -134,10 +125,6 @@ public class Permisions extends AppCompatActivity {
                 // Initial
                 perms.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
                 perms.put(Manifest.permission.READ_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
-                perms.put(Manifest.permission.CALL_PHONE, PackageManager.PERMISSION_GRANTED);
-                perms.put(Manifest.permission.READ_PHONE_STATE, PackageManager.PERMISSION_GRANTED);
-                perms.put(Manifest.permission.READ_CONTACTS, PackageManager.PERMISSION_GRANTED);
-                perms.put(Manifest.permission.RECEIVE_SMS, PackageManager.PERMISSION_GRANTED);
                 perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
                 perms.put(Manifest.permission.ACCESS_COARSE_LOCATION, PackageManager.PERMISSION_GRANTED);
 
@@ -147,10 +134,6 @@ public class Permisions extends AppCompatActivity {
                 }
                 // Check for ACCESS_FINE_LOCATION
                 if (perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-                        perms.get(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED &&
-                        perms.get(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED &&
-                        perms.get(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED &&
-                        perms.get(Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED &&
                         perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                         perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                         perms.get(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){

@@ -110,7 +110,7 @@ public class ProfileFragment_update extends Fragment {
                 String Name_Compantname = name_company.getText().toString();
 
 
-                if (Name_Compantname.isEmpty() || ID.isEmpty() || RNC.isEmpty() || UserName.isEmpty() || PhoneNo.isEmpty() || address2.isEmpty() || City.isEmpty() || Sector.isEmpty() || cellno1.isEmpty()) {
+                if (Name_Compantname.isEmpty() || ID.isEmpty() || UserName.isEmpty() || address2.isEmpty() || City.isEmpty() || Sector.isEmpty() || cellno1.isEmpty()) {
 
                     Toast.makeText(getContext(), "Please Fill All Fields", Toast.LENGTH_SHORT).show();
 

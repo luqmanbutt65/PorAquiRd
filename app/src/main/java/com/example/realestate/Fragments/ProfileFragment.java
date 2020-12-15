@@ -106,9 +106,8 @@ ImageView back_btn;
         listLanguage = new ArrayList<String>();
         listLanguage.add("Select A Language Type");
         listLanguage.add("US English");
-        listLanguage.add("English");
         listLanguage.add("French");
-        listLanguage.add("Japnese");
+        listLanguage.add("Spanish");
 
         if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
             if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()) != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()) != null) {

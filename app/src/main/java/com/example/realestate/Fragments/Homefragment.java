@@ -190,16 +190,17 @@ public class Homefragment extends Fragment {
 
 
         //TODO: CAll the Api for Get the List of All Avaiable Properties Houses
-        getData();
+        String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", context);
+        getData(user_Id);
         return view;
     }
 
 
-    public void getData() {
+    public void getData(String id) {
         homeProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<Properties_Response> call = retrofit.create(ApiInterface.class).DASHBOARDDATA_CALL();
+        Call<Properties_Response> call = retrofit.create(ApiInterface.class).DASHBOARDDATA_CALL(id);
         call.enqueue(new Callback<Properties_Response>() {
             @Override
             public void onResponse(Call<Properties_Response> call, Response<Properties_Response> response) {

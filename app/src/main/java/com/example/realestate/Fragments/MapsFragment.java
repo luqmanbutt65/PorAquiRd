@@ -34,6 +34,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsFragment extends Fragment {
     MapView mMapView;
     private GoogleMap googleMap;
+    Double latitude,longitude;
+    LocationManager lm;
+    Location location;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -89,13 +92,12 @@ public class MapsFragment extends Fragment {
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
+
                 googleMap.setMyLocationEnabled(true);
-
-
-                LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                Double latitude = location.getLongitude();
-                Double longitude = location.getLatitude();
+               lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+               location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                latitude = location.getLongitude();
+                 longitude = location.getLatitude();
                 String mainlocation = (latitude + "," + longitude);
 
                 SharedPreferences settings = getContext().getSharedPreferences("SHARED_PREFERENCES_LOCATION", Context.MODE_PRIVATE);

@@ -34,12 +34,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_result_number"
             android:layout_below="@+id/project"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/back_btn"
-            android:text="08 Project"
+            android:text="0 Project"
             android:layout_marginTop="@dimen/_5sdp"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
@@ -59,7 +60,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:paddingLeft="@dimen/_10sdp"
         android:paddingRight="@dimen/_10sdp"
-        android:id="@+id/myproject_recycler"
+        android:id="@+id/myfav_recycler"
         android:layout_below="@+id/headerlayut"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_width="match_parent"

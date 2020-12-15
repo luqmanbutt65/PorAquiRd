@@ -43,7 +43,7 @@ Boolean isRationale;
                 try {
                     sleep(3000);
 
-                    Intent intent = new Intent(FirstActivity.this, MainActivity.class);
+                    Intent intent = new Intent(FirstActivity.this, Permisions.class);
                     startActivity(intent);
 
 //                    if (new SharedPreferenceConfig().getBooleanFromSP("isLogin",FirstActivity.this)){
