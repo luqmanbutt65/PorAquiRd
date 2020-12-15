@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.REST.ResetPasswordResponse;
 import com.example.realestate.R;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,7 +51,9 @@ public class resetpassword extends AppCompatActivity {
 
                     } else {
 
-                        resetpass(Password);
+                            // and get whatever type user account id is
+                       String email1= new SharedPreferenceConfig().getemailOfUSerFromSP("email",resetpassword.this);
+                            resetpass(email1,Password);
 
                     }
                 }
@@ -60,11 +63,11 @@ public class resetpassword extends AppCompatActivity {
     }
 
 
-    public void resetpass(String password) {
+    public void resetpass(String email,String password) {
 //        otpProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<ResetPasswordResponse> call = retrofit.create(ApiInterface.class).RESETPASS_CALL(password);
+        Call<ResetPasswordResponse> call = retrofit.create(ApiInterface.class).RESETPASS_CALL(email,password);
         call.enqueue(new Callback<ResetPasswordResponse>() {
             @Override
             public void onResponse(Call<ResetPasswordResponse> call, Response<ResetPasswordResponse> response) {

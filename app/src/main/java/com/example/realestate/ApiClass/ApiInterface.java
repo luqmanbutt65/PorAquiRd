@@ -44,7 +44,8 @@ public interface ApiInterface {
 
 
     @POST("/api/new-password")
-    Call<ResetPasswordResponse> RESETPASS_CALL(@Query("password") String password);
+    Call<ResetPasswordResponse> RESETPASS_CALL(@Query("email") String email,
+                                               @Query("password") String password);
 
 
     @GET("/api/get_properties")

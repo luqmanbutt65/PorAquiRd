@@ -2,6 +2,7 @@ package com.example.realestate.Registration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.realestate.Activities.BaseActivity;
+import com.example.realestate.Activities.Description;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.REST.ResetPasswordResponse;
 import com.example.realestate.R;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,19 +28,21 @@ public class forgotpassword extends BaseActivity {
     EditText email;
     Button continu;
     ImageView back_btn;
+    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgotpassword);
-
+        context = forgotpassword.this;
         email = findViewById(R.id.et_emailedittext);
         continu = findViewById(R.id.continuebtn);
-        back_btn=findViewById(R.id.back_btn);
+        back_btn = findViewById(R.id.back_btn);
 
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(forgotpassword.this,LoginScreen.class);
+                Intent intent = new Intent(forgotpassword.this, LoginScreen.class);
                 startActivity(intent);
                 finish();
             }
@@ -92,9 +97,9 @@ public class forgotpassword extends BaseActivity {
                         //login start main activity
                         Toast.makeText(forgotpassword.this, "New Password sended to Gmail", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(forgotpassword.this, OTPScreenResetPass.class);
-                        intent.putExtra("Email", getEmail);
-                        startActivity(intent);
-
+                        intent.putExtra("email", getEmail);
+                        context.startActivity(intent);
+                        new SharedPreferenceConfig().saveemailOfUSerInSP("email", getEmail, forgotpassword.this);;
 
                     } else {
                         Toast.makeText(forgotpassword.this, "Email Not registered", Toast.LENGTH_SHORT).show();

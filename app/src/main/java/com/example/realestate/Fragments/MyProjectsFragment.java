@@ -73,7 +73,7 @@ public class MyProjectsFragment extends Fragment {
         myproRecyclerview.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
 
-        imageView = view.findViewById(R.id.addProject);
+//        imageView = view.findViewById(R.id.addProject);
 
         backbtn = view.findViewById(R.id.back_btn_myproject);
 
@@ -90,13 +90,13 @@ public class MyProjectsFragment extends Fragment {
             }
         });
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), Adddata.class));
-
-            }
-        });
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getActivity(), Adddata.class));
+//
+//            }
+//        });
 
         return view;
     }

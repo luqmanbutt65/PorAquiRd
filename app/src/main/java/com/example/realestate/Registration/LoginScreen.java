@@ -126,18 +126,19 @@ public class LoginScreen extends BaseActivity {
 
                         Realm realm = Realm.getInstance(config);
                         realm.beginTransaction();
+                        realm.delete(UserInfo.class);
+//                        realm.deleteAll();
                         realm.copyToRealm(login);
                         realm.commitTransaction();
 
                         int notesCount = realm.where(UserInfo.class).findAll().size();
                         Log.d("my first", String.valueOf(notesCount));
                         realm.close();
-////
 
                         //login start main activity
                         new SharedPreferenceConfig().saveBooleanInSP("isLogin", true, LoginScreen.this);
                         new SharedPreferenceConfig().saveEmailOfUSerInSP("Email", getEmail, LoginScreen.this);
-                        new SharedPreferenceConfig().saveEmailOfUSerInSP("Password", getPassword, LoginScreen.this);
+                        new SharedPreferenceConfig().savePawordOfUserInSP("Password", getPassword, LoginScreen.this);
                         String temp_name = loginresp.getUserInfo().getName();
 
                         String id = String.valueOf(loginresp.getUserInfo().getId());
