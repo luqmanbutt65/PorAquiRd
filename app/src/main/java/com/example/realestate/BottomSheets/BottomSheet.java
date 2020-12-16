@@ -1,6 +1,7 @@
 package com.example.realestate.BottomSheets;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,11 +25,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.CustomeClasses.NumberTextWatcher;
+import com.example.realestate.Model.GetList.GetCitiesListResponse;
+import com.example.realestate.Model.Register;
 import com.example.realestate.R;
+import com.example.realestate.Registration.OTPScreen;
+import com.example.realestate.Registration.SignUpActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class BottomSheet extends Fragment {
@@ -340,5 +352,37 @@ public class BottomSheet extends Fragment {
         dialogBuilder.setView(dialogView);
         dialogBuilder.show();
     }
+
+//    public void GetCitiesList() {
+//
+//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+//                .addConverterFactory(GsonConverterFactory.create()).build();
+//        Call<GetCitiesListResponse> call = retrofit.create(ApiInterface.class).CITYLIST_CALL();
+//        call.enqueue(new Callback<GetCitiesListResponse>() {
+//            @Override
+//            public void onResponse(Call<GetCitiesListResponse> call, Response<GetCitiesListResponse> response) {
+//                if (response.isSuccessful()) {
+//                    GetCitiesListResponse getCitiesListResponse = response.body();
+//                    if (getCitiesListResponse.getMessage().equals("all cities")) {
+//
+//                    } else {
+//                        Toast.makeText(getContext(), "Server Error! Please try again!", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//                } else {
+//                    Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<GetCitiesListResponse> call, Throwable t) {
+//                Toast.makeText(getContext(), "Network Error", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+//    }
+
 
 }

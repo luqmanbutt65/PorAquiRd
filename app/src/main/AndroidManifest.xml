@@ -20,7 +20,10 @@
 
 
     <application
+        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         tools:replace="android:allowBackup"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

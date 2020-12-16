@@ -1,5 +1,6 @@
 package com.example.realestate.ApiClass;
 
+import com.example.realestate.Model.GetList.GetCitiesListResponse;
 import com.example.realestate.Model.Like.LikeResponse;
 import com.example.realestate.Model.Like.PropertiesLike_Data;
 import com.example.realestate.Model.Like.PropertiesLike_Response;
@@ -13,8 +14,10 @@ import com.example.realestate.Model.Register;
 import com.example.realestate.Model.UserInfo;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
@@ -99,32 +102,44 @@ public interface ApiInterface {
 
 
     //    // Add Property
+    @Multipart
     @POST("/api/add_property")
     Call<Properties_Add_Response> ADD_PROPERTY_DATA(
-            @Query("user_id") String user_id,
-            @Part MultipartBody.Part[] propertyImages,
-            @Part MultipartBody.Part featureImage,
-            @Query("sale_type") String status,
-            @Query("property_type") String property_type,
-            @Query("title") String title,
-            @Query("description") String description,
-            @Query("price") String price,
-            @Query("location") String location,
-            @Query("city") String city,
-            @Query("sector") String sector,
-            @Query("bedrooms") String bedroom,
-            @Query("bathrooms") String bathroom,
-            @Query("area") String unit_of_measure,
-            @Query("date_of_construction") String date_of_construction,
-            @Query("pets") String petroom,
-            @Query("parking") String parkinglot,
-            @Query("property_condition") String property_condition);
+            @Part("user_id") RequestBody user_id,
+            @Part("sale_type") RequestBody status,
+            @Part("property_type") RequestBody property_type,
+            @Part("title") RequestBody title,
+            @Part("description") RequestBody description,
+            @Part("price") RequestBody price,
+            @Part("location") RequestBody location,
+            @Part("city") RequestBody city,
+            @Part("sector") RequestBody sector,
+            @Part("bedrooms") RequestBody bedroom,
+            @Part("bathrooms") RequestBody bathroom,
+            @Part("area") RequestBody unit_of_measure,
+            @Part("date_of_construction") RequestBody date_of_construction,
+            @Part("pets") RequestBody petroom,
+            @Part("parking") RequestBody parkinglot,
+            @Part("property_condition") RequestBody property_condition,
 
+            @Part MultipartBody.Part featureImage);
 
+   // @Part MultipartBody.Part[] propertyImages,
     @POST("/api/favourite_properties")
     Call<PropertiesLike_Response> FAV_CALL(@Query("id") String id);
 
 
     @POST("/api/my_properties")
     Call<MyProperties_Response> MYPROJECT_CALL(@Query("id") String id);
+
+
+//get cities
+    @POST("/api/get_cities")
+    Call<GetCitiesListResponse> CITYLIST_CALL();
+
+
+//get propert type
+
+    @POST("/")
+    Call<GetCitiesListResponse> PROPERTY_TYPE_LIST_CALL();
 }

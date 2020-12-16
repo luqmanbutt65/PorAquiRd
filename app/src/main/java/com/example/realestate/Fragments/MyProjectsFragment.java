@@ -73,7 +73,7 @@ public class MyProjectsFragment extends Fragment {
         myproRecyclerview.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
 
-//        imageView = view.findViewById(R.id.addProject);
+        imageView = view.findViewById(R.id.addProject);
 
         backbtn = view.findViewById(R.id.back_btn_myproject);
 
@@ -90,13 +90,13 @@ public class MyProjectsFragment extends Fragment {
             }
         });
 
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), Adddata.class));
-//
-//            }
-//        });
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Adddata.class));
+
+            }
+        });
 
         return view;
     }
@@ -106,6 +106,7 @@ public class MyProjectsFragment extends Fragment {
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
         Call<MyProperties_Response> call = retrofit.create(ApiInterface.class).MYPROJECT_CALL(id);
+
         call.enqueue(new Callback<MyProperties_Response>() {
             @Override
             public void onResponse(Call<MyProperties_Response> call, Response<MyProperties_Response> response) {

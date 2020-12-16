@@ -465,9 +465,10 @@
                             android:drawablePadding="@dimen/_10sdp"
                             android:hint="Unit Of Measure"
                             android:maxLines="1"
+                            android:inputType="number"
                             android:lines="1"
                             android:singleLine="true"
-                            android:maxLength="30"
+                            android:maxLength="9"
                             android:paddingLeft="@dimen/_10sdp"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
@@ -491,8 +492,9 @@
                             android:hint="Pet rooms"
                             android:maxLines="1"
                             android:lines="1"
+                            android:inputType="number"
                             android:singleLine="true"
-                            android:maxLength="30"
+                            android:maxLength="3"
                             android:paddingLeft="@dimen/_10sdp"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
@@ -573,14 +575,14 @@
                             android:layout_height="@dimen/_35sdp"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:background="@drawable/roundedit"
-
+                            android:inputType="number"
                             android:drawablePadding="@dimen/_10sdp"
                             android:hint="Parking Lot"
                             android:maxLines="1"
                             android:paddingLeft="@dimen/_10sdp"
                             android:lines="1"
                             android:singleLine="true"
-                            android:maxLength="30"
+                            android:maxLength="4"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
 

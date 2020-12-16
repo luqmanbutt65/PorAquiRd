@@ -58,10 +58,10 @@ public class Permisions extends AppCompatActivity {
         List permissionsRequired = new ArrayList();
 
         final List<String> permissionsList = new ArrayList<String>();
-        if (!checkPermission(permissionsList, Manifest.permission.WRITE_EXTERNAL_STORAGE))
-            permissionsRequired.add("Write External Storage");
-        if (!checkPermission(permissionsList, Manifest.permission.READ_EXTERNAL_STORAGE))
-            permissionsRequired.add("Write External Storage");
+//        if (!checkPermission(permissionsList, Manifest.permission.WRITE_EXTERNAL_STORAGE))
+//            permissionsRequired.add("Write External Storage");
+//        if (!checkPermission(permissionsList, Manifest.permission.READ_EXTERNAL_STORAGE))
+//            permissionsRequired.add("Write External Storage");
         if (!checkPermission(permissionsList, Manifest.permission.ACCESS_COARSE_LOCATION))
             permissionsRequired.add("Location");
         if (!checkPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION))
@@ -123,8 +123,8 @@ public class Permisions extends AppCompatActivity {
             case 11:
                 Map<String, Integer> perms = new HashMap<String, Integer>();
                 // Initial
-                perms.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
-                perms.put(Manifest.permission.READ_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+//                perms.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+//                perms.put(Manifest.permission.READ_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
                 perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
                 perms.put(Manifest.permission.ACCESS_COARSE_LOCATION, PackageManager.PERMISSION_GRANTED);
 
@@ -133,10 +133,12 @@ public class Permisions extends AppCompatActivity {
                     perms.put(permissions[i], grantResults[i]);
                 }
                 // Check for ACCESS_FINE_LOCATION
-                if (perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                if (
+//                        perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
                         perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                        perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                        perms.get(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                        perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+//                        perms.get(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                ){
                     // All Permissions Granted
                     startActivity(new Intent(Permisions.this, MainActivity.class));
                     finish();

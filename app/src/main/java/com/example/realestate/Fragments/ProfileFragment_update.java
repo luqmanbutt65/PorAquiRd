@@ -116,9 +116,16 @@ public class ProfileFragment_update extends Fragment {
 
                 } else {
 
+                    if (RNC.trim().length()!=0 && !RNC.trim().equalsIgnoreCase("")){
+
+                        if (RNC.length() < 10 || ID.length() < 10) {
+
+                            Toast.makeText(getContext(), "ID / RNC less than 9 character", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
                     updateProfile(id, UserName, PhoneNo, address2, City, Sector, ID, RNC, Name_Compantname, cellno1);
                 }
-
             }
         });
 
