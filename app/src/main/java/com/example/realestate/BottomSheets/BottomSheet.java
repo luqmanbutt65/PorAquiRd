@@ -25,9 +25,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import com.example.realestate.Adddata;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.CustomeClasses.NumberTextWatcher;
+import com.example.realestate.Model.GetList.Cities_Data;
+import com.example.realestate.Model.GetList.City;
 import com.example.realestate.Model.GetList.GetCitiesListResponse;
+import com.example.realestate.Model.GetList.GetListPropertyType.GetpropertyListResponse;
+import com.example.realestate.Model.GetList.GetListPropertyType.PropertyType;
+import com.example.realestate.Model.GetList.GetListPropertyType.PropertyType_Data;
 import com.example.realestate.Model.Register;
 import com.example.realestate.R;
 import com.example.realestate.Registration.OTPScreen;
@@ -52,10 +58,13 @@ public class BottomSheet extends Fragment {
     List<String> list;
     Spinner typespiner;
     Button btnApplyFilter;
-    EditText miniprice, maxprice,petroom,parkinglot,miniarea, maxarea;
+    EditText miniprice, maxprice, petroom, parkinglot, miniarea, maxarea;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
-    CheckBox newproperty,usedproperty;
+    CheckBox newproperty, usedproperty;
+    Spinner filter_city_spiner;
+    ArrayList<City> cityArrayList;
+    ArrayList<PropertyType> propertyTypeArrayList;
     public static final String[] category = new String[]{"House", "Office", "Shop"};
 
     public BottomSheet() {
@@ -69,8 +78,13 @@ public class BottomSheet extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.managefiltersheet, container, false);
+        GetCitiesList();
+        GetPropertyList();
+
         typespiner = view.findViewById(R.id.spinertype);
 //        forRent = view.findViewById(R.id.forRent);
         forSale = view.findViewById(R.id.forsale);
@@ -82,12 +96,15 @@ public class BottomSheet extends Fragment {
         BedroomAny = view.findViewById(R.id.anyButton);
         BathroomAny = view.findViewById(R.id.bathroomAny);
 
+        cityArrayList = new ArrayList<>();
+        propertyTypeArrayList=new ArrayList<>();
+        filter_city_spiner = view.findViewById(R.id.filter_city_spiner);
+
         newproperty = view.findViewById(R.id.newproperty);
         usedproperty = view.findViewById(R.id.usedproperty);
 
         petroom = view.findViewById(R.id.petrooms);
         parkinglot = view.findViewById(R.id.parkings);
-
         oneBedroom = view.findViewById(R.id.oneBedroom);
         oneBathroom = view.findViewById(R.id.oneBathroom);
         twoBedroom = view.findViewById(R.id.twoBedrrom);
@@ -104,17 +121,17 @@ public class BottomSheet extends Fragment {
         maxprice = view.findViewById(R.id.maximumprice);
 
         miniarea = view.findViewById(R.id.minimumarea);
-        maxarea= view.findViewById(R.id.maximumarea);
+        maxarea = view.findViewById(R.id.maximumarea);
         miniprice.addTextChangedListener(new NumberTextWatcher(miniprice));
         maxprice.addTextChangedListener(new NumberTextWatcher(maxprice));
         miniarea.addTextChangedListener(new NumberTextWatcher(miniarea));
         maxarea.addTextChangedListener(new NumberTextWatcher(maxarea));
 
+
         String miniprice_val = miniprice.getText().toString();
         String maxprice_val = maxprice.getText().toString();
         String petroom_val = petroom.getText().toString();
         String parking_val = parkinglot.getText().toString();
-
 
 
         btnApplyFilter.setOnClickListener(new View.OnClickListener() {
@@ -123,14 +140,26 @@ public class BottomSheet extends Fragment {
 
             }
         });
+
+
+        filter_city_spiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         newproperty.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
 
 
-                }
-                else {
+                } else {
 
                 }
             }
@@ -139,31 +168,30 @@ public class BottomSheet extends Fragment {
         usedproperty.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
 
 
-                }
-                else {
+                } else {
 
                 }
             }
         });
-        list = new ArrayList<String>();
-        list.add("Select one");
-        list.add("Apartamentos");
-        list.add("Edificios");
-        list.add("Solares");
-        list.add("Casas");
-        list.add("Villas");
-        list.add("Naves Industriales");
-        list.add("Fincas");
-        list.add("Local Comercial");
+//        list = new ArrayList<String>();
+//        list.add("Select one");
+//        list.add("Apartamentos");
+//        list.add("Edificios");
+//        list.add("Solares");
+//        list.add("Casas");
+//        list.add("Villas");
+//        list.add("Naves Industriales");
+//        list.add("Fincas");
+//        list.add("Local Comercial");
+//
+//
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list);
+//        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        typespiner.setAdapter(arrayAdapter);
 
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        typespiner.setAdapter(arrayAdapter);
-        typespiner.setAdapter(arrayAdapter);
         forrentt = (RadioButton) view.findViewById(R.id.forrent1);
         forsale = (RadioButton) view.findViewById(R.id.forsale1);
         statusbutton = (RadioGroup) view.findViewById(R.id.togglegroup);
@@ -353,36 +381,113 @@ public class BottomSheet extends Fragment {
         dialogBuilder.show();
     }
 
-//    public void GetCitiesList() {
-//
-//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-//                .addConverterFactory(GsonConverterFactory.create()).build();
-//        Call<GetCitiesListResponse> call = retrofit.create(ApiInterface.class).CITYLIST_CALL();
-//        call.enqueue(new Callback<GetCitiesListResponse>() {
-//            @Override
-//            public void onResponse(Call<GetCitiesListResponse> call, Response<GetCitiesListResponse> response) {
-//                if (response.isSuccessful()) {
-//                    GetCitiesListResponse getCitiesListResponse = response.body();
-//                    if (getCitiesListResponse.getMessage().equals("all cities")) {
-//
-//                    } else {
-//                        Toast.makeText(getContext(), "Server Error! Please try again!", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//                } else {
-//                    Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<GetCitiesListResponse> call, Throwable t) {
-//                Toast.makeText(getContext(), "Network Error", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//    }
+    public void GetCitiesList() {
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Call<GetCitiesListResponse> call = retrofit.create(ApiInterface.class).CITYLIST_CALL();
+        call.enqueue(new Callback<GetCitiesListResponse>() {
+            @Override
+            public void onResponse(Call<GetCitiesListResponse> call, Response<GetCitiesListResponse> response) {
+                if (response.isSuccessful()) {
+                    GetCitiesListResponse getCitiesListResponse = response.body();
+                    if (getCitiesListResponse.getMessage()!=null){
+
+                        if (getCitiesListResponse.getMessage().equals("all cities")) {
+
+                            Cities_Data cities_data=response.body().getData();
+                            if (cities_data!=null){
+                                cityArrayList=cities_data.getCityArrayList();
+                                if (cityArrayList!=null){
+                                    ArrayList<String> cityList=new ArrayList<>();
+                                    if(cityArrayList.size()>0){
+
+                                        for (City city:cityArrayList){
+                                            cityList.add(city.getCity());
+                                        }
+                                    }
+
+                                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,cityList);
+                                    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    filter_city_spiner.setAdapter(arrayAdapter);
+
+                                }
+                            }
+
+
+                        } else {
+                            Toast.makeText(getContext(), "Server Error! Please try again!", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+
+                } else {
+                    Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<GetCitiesListResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Network Error", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+
+
+    public void GetPropertyList() {
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Call<GetpropertyListResponse> call = retrofit.create(ApiInterface.class).PROPERTY_TYPE_LIST_CALL();
+        call.enqueue(new Callback<GetpropertyListResponse>() {
+            @Override
+            public void onResponse(Call<GetpropertyListResponse> call, Response<GetpropertyListResponse> response) {
+                if (response.isSuccessful()) {
+                    GetpropertyListResponse getpropertyListResponse = response.body();
+                    if (getpropertyListResponse.getMessage().equals("all property types")) {
+
+                        PropertyType_Data propertyType_data = response.body().getData();
+                        if (propertyType_data != null) {
+                            propertyTypeArrayList = propertyType_data.getCityArrayList();
+                            if (propertyTypeArrayList != null) {
+                                ArrayList<String> propertyType = new ArrayList<>();
+                                if (propertyTypeArrayList.size() > 0) {
+
+                                    for (PropertyType propertyType1 : propertyTypeArrayList) {
+                                        propertyType.add(propertyType1.getType());
+                                    }
+                                }
+
+
+                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, propertyType);
+                                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                typespiner.setAdapter(arrayAdapter);
+
+                            }
+                        }
+
+                    } else {
+                        Toast.makeText(getContext(), "Server Error! Please try again!", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } else {
+                    Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<GetpropertyListResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Network Error", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 
 
 }

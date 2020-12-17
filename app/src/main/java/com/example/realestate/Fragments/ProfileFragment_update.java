@@ -18,11 +18,16 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.realestate.Adapters.DashBoardAdapter;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.BottomSheets.BottomSheet;
+import com.example.realestate.Model.GetUpdateData.UpdateData_data;
+import com.example.realestate.Model.GetUpdateData.UpdateData_response;
+import com.example.realestate.Model.GetUpdateData.User;
+import com.example.realestate.Model.GetUpdateData.User_Data;
 import com.example.realestate.Model.Login;
 import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.Model.UserInfo;
 import com.example.realestate.R;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Utills.GlobalState;
 
 import retrofit2.Call;
@@ -54,6 +59,11 @@ public class ProfileFragment_update extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile_update, container, false);
+
+
+        String id = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
+
+        ProfileData(id);
 
 
         tv_userName = view.findViewById(R.id.tv_userName);
@@ -116,7 +126,7 @@ public class ProfileFragment_update extends Fragment {
 
                 } else {
 
-                    if (RNC.trim().length()!=0 && !RNC.trim().equalsIgnoreCase("")){
+                    if (RNC.trim().length() != 0 && !RNC.trim().equalsIgnoreCase("")) {
 
                         if (RNC.length() < 10 || ID.length() < 10) {
 
@@ -191,5 +201,66 @@ public class ProfileFragment_update extends Fragment {
         });
     }
 
+    private void ProfileData(String id) {
+
+//        otpProgressDialog.show();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Call<UpdateData_response> call = retrofit.create(ApiInterface.class).GET_UPDATE_DATA(id);
+        call.enqueue(new Callback<UpdateData_response>() {
+            @Override
+            public void onResponse(Call<UpdateData_response> call, Response<UpdateData_response> response) {
+                if (response.isSuccessful()) {
+                    UpdateData_response updateData_response = response.body();
+                    if (updateData_response.getMessage().equals("user whole detail")) {
+                        UpdateData_data updateData_data = response.body().getData();
+
+                        if (updateData_data != null) {
+
+                            User userInfo = response.body().getData().getUser();
+                            if (userInfo != null) {
+
+                                User_Data user_data = response.body().getData().getUser_data();
+                                if (user_data != null) {
+
+
+                                    username.setText(userInfo.getName());
+                                    phone_no.setText(user_data.getPhone_number());
+                                    address.setText(userInfo.getAddress());
+                                    city.setText(userInfo.getCity());
+                                    sector.setText(userInfo.getSector());
+                                    Id.setText(user_data.getYour_id());
+                                    rnc.setText(user_data.getRnc());
+                                    cell_no.setText(user_data.getPhone_number());
+                                    name_company.setText(user_data.getCompany_name());
+
+                                }
+
+                            }
+
+
+                        }
+
+
+                    } else {
+
+                        Toast.makeText(getContext(), "Profile not Matches", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } else {
+
+                    Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                }
+//                otpProgressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<UpdateData_response> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//                otpProgressDialog.dismiss();
+            }
+        });
+    }
 
 }

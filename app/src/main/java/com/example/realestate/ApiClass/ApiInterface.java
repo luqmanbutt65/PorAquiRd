@@ -1,17 +1,17 @@
 package com.example.realestate.ApiClass;
 
 import com.example.realestate.Model.GetList.GetCitiesListResponse;
+import com.example.realestate.Model.GetList.GetListPropertyType.GetpropertyListResponse;
+import com.example.realestate.Model.GetUpdateData.UpdateData_response;
 import com.example.realestate.Model.Like.LikeResponse;
-import com.example.realestate.Model.Like.PropertiesLike_Data;
 import com.example.realestate.Model.Like.PropertiesLike_Response;
 import com.example.realestate.Model.Login;
+import com.example.realestate.Model.MyProject.AddProperties_Response;
 import com.example.realestate.Model.MyProject.MyProperties_Response;
-import com.example.realestate.Model.REST.Properties.Properties_Add_Response;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.Model.REST.PropertiesSingle.PropertiesSingleResp;
 import com.example.realestate.Model.REST.ResetPasswordResponse;
 import com.example.realestate.Model.Register;
-import com.example.realestate.Model.UserInfo;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -104,7 +104,7 @@ public interface ApiInterface {
     //    // Add Property
     @Multipart
     @POST("/api/add_property")
-    Call<Properties_Add_Response> ADD_PROPERTY_DATA(
+    Call<AddProperties_Response> ADD_PROPERTY_DATA(
             @Part("user_id") RequestBody user_id,
             @Part("sale_type") RequestBody status,
             @Part("property_type") RequestBody property_type,
@@ -121,10 +121,10 @@ public interface ApiInterface {
             @Part("pets") RequestBody petroom,
             @Part("parking") RequestBody parkinglot,
             @Part("property_condition") RequestBody property_condition,
-
+            @Part MultipartBody.Part[] propertyImages,
             @Part MultipartBody.Part featureImage);
 
-   // @Part MultipartBody.Part[] propertyImages,
+   //
     @POST("/api/favourite_properties")
     Call<PropertiesLike_Response> FAV_CALL(@Query("id") String id);
 
@@ -134,12 +134,19 @@ public interface ApiInterface {
 
 
 //get cities
-    @POST("/api/get_cities")
+    @GET("/api/get_cities")
     Call<GetCitiesListResponse> CITYLIST_CALL();
 
 
 //get propert type
+    @GET("api/get_property_type")
+    Call<GetpropertyListResponse> PROPERTY_TYPE_LIST_CALL();
 
-    @POST("/")
-    Call<GetCitiesListResponse> PROPERTY_TYPE_LIST_CALL();
+
+//get user for update profile
+    @POST("/api/get_user")
+    Call<UpdateData_response> GET_UPDATE_DATA(@Query("id") String id);
+
+
+
 }

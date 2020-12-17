@@ -1,9 +1,10 @@
-package com.example.realestate.Model.REST.Properties;
+package com.example.realestate.Model.MyProject;
 
+import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Properties_Add_Response {
+public class AddProperties_Response {
     @SerializedName("status")
     @Expose
     private String status;
@@ -11,10 +12,6 @@ public class Properties_Add_Response {
     @SerializedName("message")
     @Expose
     private String message;
-
-    @SerializedName("data")
-    @Expose
-    private AddPropertiesData data;
 
     public String getStatus() {
         return status;
@@ -30,14 +27,6 @@ public class Properties_Add_Response {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public AddPropertiesData getData() {
-        return data;
-    }
-
-    public void setData(AddPropertiesData data) {
-        this.data = data;
     }
 }
 

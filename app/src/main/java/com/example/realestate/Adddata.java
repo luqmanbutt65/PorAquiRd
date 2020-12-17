@@ -1,7 +1,6 @@
 package com.example.realestate;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.ContentUris;
 import android.content.Context;
@@ -43,15 +42,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.realestate.Activities.BaseActivity;
 import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.ImagesAdapter;
-import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.CustomeClasses.NumberTextWatcher;
+import com.example.realestate.Model.GetList.Cities_Data;
+import com.example.realestate.Model.GetList.City;
 import com.example.realestate.Model.GetList.GetCitiesListResponse;
+import com.example.realestate.Model.GetList.GetListPropertyType.GetpropertyListResponse;
+import com.example.realestate.Model.GetList.GetListPropertyType.PropertyType;
+import com.example.realestate.Model.GetList.GetListPropertyType.PropertyType_Data;
 import com.example.realestate.Model.ImagesData;
-import com.example.realestate.Model.REST.Properties.AddPropertiesData;
-import com.example.realestate.Model.REST.Properties.Properties_Add_Response;
+import com.example.realestate.Model.MyProject.AddProperties_Response;
+import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
-import com.example.realestate.Utills.GlobalState;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayOutputStream;
@@ -81,7 +83,7 @@ public class Adddata extends BaseActivity {
     Context context;
     Button addImage;
     ImageView featureImage, backbtn;
-    Spinner bedroomSpiner, bathsSpiner, pricespiner;
+    Spinner bedroomSpiner, bathsSpiner, pricespiner, city;
     Button add_data;
     RecyclerView recyclerView;
     ArrayList<ImagesData> imagesDataArrayList = new ArrayList<>();
@@ -89,7 +91,7 @@ public class Adddata extends BaseActivity {
     ImagesAdapter imagesAdapter;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
-    EditText description, city, sector, petcheks, parkingcheks, title, price, chekBoxpet, chekBoxroom, location, unit_of_measure, date_of_construction;
+    EditText description, sector, petcheks, parkingcheks, title, price, chekBoxpet, chekBoxroom, location, unit_of_measure, date_of_construction;
 
     Spinner prpertytype;
     List<String> list;
@@ -98,13 +100,16 @@ public class Adddata extends BaseActivity {
     DatePickerDialog constructionDatePicker;
 
     CheckBox chUsed, chnew, chnewProject;
-    String statusVal;
+    String statusVal = "For Sale";
     String bathVal;
     String bedroomVal;
     String propertytypeval;
     String propertyCondition;
-    boolean statusValCheck = false;
+    String citystring;
     Bitmap bitmapmainimage;
+
+    ArrayList<City> cityArrayList;
+    ArrayList<PropertyType> propertyTypeArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,26 +144,21 @@ public class Adddata extends BaseActivity {
         chekBoxroom = findViewById(R.id.parkingcheks);
         prpertytype = findViewById(R.id.proprtyType);
         price.addTextChangedListener(new NumberTextWatcher(price));
-
+        GetCitiesList();
+        GetPropertyTypeList();
+        cityArrayList = new ArrayList<>();
+        propertyTypeArrayList=new ArrayList<>();
 
         add_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-
-
-
-
-
-
-
-
                 String id = (new SharedPreferenceConfig().getidOfUSerFromSP("id", Adddata.this));
                 String titl_value = title.getText().toString();
                 String description_value = description.getText().toString();
                 String price_value = price.getText().toString();
-                String city_value = city.getText().toString();
+                String city_value = citystring;
                 String location_value = location.getText().toString();
                 String sector_value = sector.getText().toString();
                 String unitofmeasure_value = unit_of_measure.getText().toString();
@@ -184,8 +184,7 @@ public class Adddata extends BaseActivity {
                         // Permission is granted
                         AddPropertyData(id, propertystatus, propertytypeSpiner, titl_value, description_value, price_value, location_value, city_value, sector_value, BedroomSpiner, BathroomSpiner, unitofmeasure_value, date_of_construction_value, petscheks_value, parkingcheks_value, propertycondition_Val);
 
-                    }
-                    else {
+                    } else {
                         //Permission is not granted so you have to request it
                         ActivityCompat.requestPermissions(Adddata.this,
                                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
@@ -193,9 +192,27 @@ public class Adddata extends BaseActivity {
                     }
 
 
-
-
                 }
+
+            }
+        });
+
+        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+//                if (position == 0) {
+//                    citystring = "";
+//
+//                } else {
+
+                citystring = city.getSelectedItem().toString();
+//                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
@@ -249,13 +266,11 @@ public class Adddata extends BaseActivity {
 
                 if (forrentt.isChecked()) {
                     statusVal = "For Rent";
-                    statusValCheck = true;
                     forrentt.setTextColor(Color.WHITE);
                     forsale.setTextColor(Color.BLACK);
                 }
                 if (forsale.isChecked()) {
                     statusVal = "For Sale";
-                    statusValCheck = false;
                     forsale.setTextColor(Color.WHITE);
                     forrentt.setTextColor(Color.BLACK);
                 }
@@ -293,16 +308,16 @@ public class Adddata extends BaseActivity {
         });
 
 
-        list = new ArrayList<String>();
-        list.add("Select A type");
-        list.add("Apartamentos");
-        list.add("Edificios");
-        list.add("Solares");
-        list.add("Casas");
-        list.add("Villas");
-        list.add("Naves Industriales");
-        list.add("Fincas");
-        list.add("Local Comercial");
+//        list = new ArrayList<String>();
+//        list.add("Select A type");
+//        list.add("Apartamentos");
+//        list.add("Edificios");
+//        list.add("Solares");
+//        list.add("Casas");
+//        list.add("Villas");
+//        list.add("Naves Industriales");
+//        list.add("Fincas");
+//        list.add("Local Comercial");
 
 
         listprice = new ArrayList<String>();
@@ -311,10 +326,9 @@ public class Adddata extends BaseActivity {
         listprice.add("DOP");
 
 
-        ArrayAdapter<String> arrrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, list);
-        arrrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        prpertytype.setAdapter(arrrayAdapter);
-        prpertytype.setAdapter(arrrayAdapter);
+//        ArrayAdapter<String> arrrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, list);
+//        arrrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        prpertytype.setAdapter(arrrayAdapter);
 
         ArrayAdapter<String> arrrayAdapterr = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, listprice);
         arrrayAdapterr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -531,7 +545,7 @@ public class Adddata extends BaseActivity {
             } else {
                 Toast.makeText(this, "Please Select Multiple Images", Toast.LENGTH_SHORT).show();
             }
-            if(requestCode==MY_PERMISSIONS_REQUEST){
+            if (requestCode == MY_PERMISSIONS_REQUEST) {
 
             }
 
@@ -543,31 +557,6 @@ public class Adddata extends BaseActivity {
 
             imageuri = data.getData();
             featureImage.setImageURI(imageuri);
-            try {
-                bitmapmainimage = MediaStore.Images.Media.getBitmap(getContentResolver(), imageuri);
-            }catch (Exception e){
-
-            }
-
-
-
-
-//            try {
-//                bitmapmainimage = MediaStore.Images.Media.getBitmap(getContentResolver(), imageuri);
-//                featureImage.setImageBitmap(bitmapmainimage);
-//                File file = null;
-//                try {
-//                    file = savebitmap(bitmapmainimage, getUnixTimeStamp());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                Bitmap myBitmap2 = BitmapFactory.decodeFile(file.getAbsolutePath());
-//                RequestBody feature_Image = RequestBody.create(MediaType.parse("image/*"), file);
-//                MultipartBody.Part featureImag1 = MultipartBody.Part.createFormData("main_image", file.getPath(), feature_Image);
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
 
 
         }
@@ -610,124 +599,125 @@ public class Adddata extends BaseActivity {
     private void AddPropertyData(String id, String status, String property_type, String title, String description, String price, String location, String city, String sector, String bedroom, String bath, String unitOfMeasure, String dateOfConstruction, String petroom, String parkingLot, String propertycondition) {
 
 
+        // Permission is granted
 
-            // Permission is granted
-
-            if (parkingLot == null) {
-                parkingLot = "";
-            }
+        if (parkingLot == null) {
+            parkingLot = "";
+        }
 //        otpProgressDialog.show();
-            Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                    .addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
 
-            RequestBody id1 = RequestBody.create(MediaType.parse("text/plain"), id);
+        RequestBody id1 = RequestBody.create(MediaType.parse("text/plain"), id);
 
-            MultipartBody.Part[] multipartTypedOutput = new MultipartBody.Part[imagesDataArrayList.size()];
+        MultipartBody.Part[] multipartTypedOutput = new MultipartBody.Part[imagesDataArrayList.size()];
 
-            for (int index = 0; index < imagesDataArrayList.size(); index++) {
-                Log.d("Upload request", "requestUploadpropertImages: property image " + index + "  " + imagesDataArrayList.get(index).getUri().toString());
-                File multiImageFile= null;
-                String pathOfFile=null;
-                try {
-                    pathOfFile =getFilePath(this,imagesDataArrayList.get(index).getUri());
-                    multiImageFile=new File(pathOfFile);
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                }
- //            Bitmap myBitmap = BitmapFactory.decodeFile(file2.getAbsolutePath());
-                if(multiImageFile!=null){
-                    RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), multiImageFile);
-                    multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images", multiImageFile.getPath(), surveyBody);
-                }else {
-                    showToast("Please ReSelect Images");
-                }
-
+        for (int index = 0; index < imagesDataArrayList.size(); index++) {
+            Log.d("Upload request", "requestUploadpropertImages: property image " + index + "  " + imagesDataArrayList.get(index).getUri().toString());
+            File multiImageFile = null;
+            String pathOfFile = null;
+            try {
+                pathOfFile = getFilePath(this, imagesDataArrayList.get(index).getUri());
+                multiImageFile = new File(pathOfFile);
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            //            Bitmap myBitmap = BitmapFactory.decodeFile(file2.getAbsolutePath());
+            if (multiImageFile != null) {
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), multiImageFile);
+                multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images", multiImageFile.getPath(), surveyBody);
+            } else {
+                showToast("Please ReSelect Images");
             }
 
-        File mainImageFile= null;
-        String pathOfFile=null;
+        }
+
+
+//        try {
+//            bitmapmainimage = MediaStore.Images.Media.getBitmap(getContentResolver(), imageuri);
+//            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//            bitmapmainimage.compress(Bitmap.CompressFormat.PNG, 30, stream);
+//            featureImage.setImageBitmap(bitmapmainimage);
+//
+//            File file = null;
+//            try {
+//                file = savebitmap(bitmapmainimage, getUnixTimeStamp());
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            Bitmap myBitmap2 = BitmapFactory.decodeFile(file.getAbsolutePath());
+//            RequestBody feature_Image = RequestBody.create(MediaType.parse("image/*"), file);
+//            MultipartBody.Part featureImag1 = MultipartBody.Part.createFormData("main_image", file.getPath(), feature_Image);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+
+
+
+
+
+        File mainImageFile = null;
+        String pathOfFile = null;
         try {
-            pathOfFile =getFilePath(this,imageuri);
-            mainImageFile=new File(pathOfFile);
+            pathOfFile = getFilePath(this, imageuri);
+            mainImageFile = new File(pathOfFile);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
 
 
+        RequestBody feature_Image = RequestBody.create(MediaType.parse("image/*"), mainImageFile);
+        MultipartBody.Part featureImag1 = MultipartBody.Part.createFormData("main_image", mainImageFile.getPath(), feature_Image);
 
 
-            RequestBody feature_Image = RequestBody.create(MediaType.parse("image/*"), mainImageFile);
-            MultipartBody.Part featureImag1 = MultipartBody.Part.createFormData("main_image", mainImageFile.getPath(), feature_Image);
-            RequestBody status1 = RequestBody.create(MediaType.parse("text/plain"), status);
-            RequestBody property_type1 = RequestBody.create(MediaType.parse("text/plain"), property_type);
-            RequestBody title1 = RequestBody.create(MediaType.parse("text/plain"), title);
-            RequestBody description1 = RequestBody.create(MediaType.parse("text/plain"), description);
-            RequestBody price1 = RequestBody.create(MediaType.parse("text/plain"), price);
-            RequestBody location1 = RequestBody.create(MediaType.parse("text/plain"), location);
-            RequestBody city1 = RequestBody.create(MediaType.parse("text/plain"), city);
-            RequestBody sector1 = RequestBody.create(MediaType.parse("text/plain"), sector);
-            RequestBody bedroom1 = RequestBody.create(MediaType.parse("text/plain"), bedroom);
-            RequestBody bath1 = RequestBody.create(MediaType.parse("text/plain"), bath);
-            RequestBody unitOfMeasure1 = RequestBody.create(MediaType.parse("text/plain"), unitOfMeasure);
-            RequestBody dateOfConstruction1 = RequestBody.create(MediaType.parse("text/plain"), dateOfConstruction);
-            RequestBody petroom1 = RequestBody.create(MediaType.parse("text/plain"), petroom);
-            RequestBody parkingLot1 = RequestBody.create(MediaType.parse("text/plain"), parkingLot);
-            RequestBody propertycondition1 = RequestBody.create(MediaType.parse("text/plain"), propertycondition);
+        RequestBody status1 = RequestBody.create(MediaType.parse("text/plain"), status);
+        RequestBody property_type1 = RequestBody.create(MediaType.parse("text/plain"), property_type);
+        RequestBody title1 = RequestBody.create(MediaType.parse("text/plain"), title);
+        RequestBody description1 = RequestBody.create(MediaType.parse("text/plain"), description);
+        RequestBody price1 = RequestBody.create(MediaType.parse("text/plain"), price);
+        RequestBody location1 = RequestBody.create(MediaType.parse("text/plain"), location);
+        RequestBody city1 = RequestBody.create(MediaType.parse("text/plain"), city);
+        RequestBody sector1 = RequestBody.create(MediaType.parse("text/plain"), sector);
+        RequestBody bedroom1 = RequestBody.create(MediaType.parse("text/plain"), bedroom);
+        RequestBody bath1 = RequestBody.create(MediaType.parse("text/plain"), bath);
+        RequestBody unitOfMeasure1 = RequestBody.create(MediaType.parse("text/plain"), unitOfMeasure);
+        RequestBody dateOfConstruction1 = RequestBody.create(MediaType.parse("text/plain"), dateOfConstruction);
+        RequestBody petroom1 = RequestBody.create(MediaType.parse("text/plain"), petroom);
+        RequestBody parkingLot1 = RequestBody.create(MediaType.parse("text/plain"), parkingLot);
+        RequestBody propertycondition1 = RequestBody.create(MediaType.parse("text/plain"), propertycondition);
 
-       // multipartTypedOutput,
-            Call<Properties_Add_Response> call = retrofit.create(ApiInterface.class).ADD_PROPERTY_DATA(id1, status1, property_type1, title1, description1, price1, location1, city1, sector1, bedroom1, bath1, unitOfMeasure1, dateOfConstruction1, petroom1, parkingLot1, propertycondition1,  featureImag1);
-            call.enqueue(new Callback<Properties_Add_Response>() {
-                @Override
-                public void onResponse(Call<Properties_Add_Response> call, Response<Properties_Add_Response> response) {
-                    if (response.isSuccessful()) {
-                        Properties_Add_Response properties_add_response = response.body();
-                        if (properties_add_response.getMessage().equals("Property Added Succesfully")) {
+        //
+        Call<AddProperties_Response> call = retrofit.create(ApiInterface.class).ADD_PROPERTY_DATA(id1, status1, property_type1, title1, description1, price1, location1, city1, sector1, bedroom1, bath1, unitOfMeasure1, dateOfConstruction1, petroom1, parkingLot1, propertycondition1, multipartTypedOutput, featureImag1);
+        call.enqueue(new Callback<AddProperties_Response>() {
+            @Override
+            public void onResponse(Call<AddProperties_Response> call, Response<AddProperties_Response> response) {
+                if (response.isSuccessful()) {
+                    AddProperties_Response properties_response = response.body();
+                    if (properties_response.getMessage().equals("Property Added Succesfully")) {
 
-//                            AddPropertiesData addPropertiesData = new AddPropertiesData();
-//                            addPropertiesData = GlobalState.getInstance().getProperties();
-//                            addPropertiesData.setSale_type(status);
-//                            addPropertiesData.setTitle(title);
-//                            addPropertiesData.setArea(unitOfMeasure);
-//                            addPropertiesData.setBath(bath);
-//                            addPropertiesData.setBedroom(bedroom);
-//                            addPropertiesData.setCity(city);
-//                            addPropertiesData.setLocation(location);
-//                            addPropertiesData.setPrice(price);
-//                            addPropertiesData.setDescription(description);
-//                            addPropertiesData.setSector(sector);
-//                            addPropertiesData.setDate_of_construction(dateOfConstruction);
-//                            addPropertiesData.setParking(parkingLot);
-//                            addPropertiesData.setPets(petroom);
-//                            addPropertiesData.setProperty_type(property_type);
-//                            addPropertiesData.setProperty_condition(propertycondition);
-//                            addPropertiesData.setMain_image(featureImag1);
-//                            addPropertiesData.setPropertiesGalleryArrayList(multipartTypedOutput);
-
-                        } else {
-
-                            Toast.makeText(getApplicationContext(), "Dta Uploading error", Toast.LENGTH_SHORT).show();
-                        }
-
+                        showToast("Data Added Succesfully");
 
                     } else {
 
-                        Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Dta Uploading error", Toast.LENGTH_SHORT).show();
                     }
-//                otpProgressDialog.dismiss();
+
+
+                } else {
+
+                    Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }
-
-                @Override
-                public void onFailure(Call<Properties_Add_Response> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 //                otpProgressDialog.dismiss();
-                }
-            });
+            }
 
-
-
-
-
-
+            @Override
+            public void onFailure(Call<AddProperties_Response> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//                otpProgressDialog.dismiss();
+            }
+        });
 
 
     }
@@ -764,19 +754,21 @@ public class Adddata extends BaseActivity {
         }
 
     }
-    public static File savebitmap(Bitmap bmp,String fileName) throws IOException {
+
+    public static File savebitmap(Bitmap bmp, String fileName) throws IOException {
 
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 60, bytes);
         File f = new File(Environment.getExternalStorageDirectory()
-                + File.separator + fileName+".jpg");
+                + File.separator + fileName + ".jpg");
         f.createNewFile();
         FileOutputStream fo = new FileOutputStream(f);
         fo.write(bytes.toByteArray());
         fo.close();
         return f;
     }
-    public static File bitmapToFile(Context context,Bitmap bitmap, String fileNameToSave) { // File name like "image.png"
+
+    public static File bitmapToFile(Context context, Bitmap bitmap, String fileNameToSave) { // File name like "image.png"
         //create a file to write bitmap data
         File file = null;
         try {
@@ -785,7 +777,7 @@ public class Adddata extends BaseActivity {
 
 //Convert bitmap to byte array
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 60 , bos); // YOU can also save it in JPEG
+            bitmap.compress(Bitmap.CompressFormat.PNG, 60, bos); // YOU can also save it in JPEG
             byte[] bitmapdata = bos.toByteArray();
 
 //write the bytes in file
@@ -794,20 +786,18 @@ public class Adddata extends BaseActivity {
             fos.flush();
             fos.close();
             return file;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return file; // it will return null
         }
     }
 
 
-
-
     public static String getFilePath(Context context, Uri uri) throws URISyntaxException {
         String selection = null;
         String[] selectionArgs = null;
         // Uri is different in versions after KITKAT (Android 4.4), we need to
-        if (Build.VERSION.SDK_INT >= 19 && DocumentsContract.isDocumentUri(context,uri)) {//DocumentsContract.isDocumentUri(context.getApplicationContext(), uri))
+        if (Build.VERSION.SDK_INT >= 19 && DocumentsContract.isDocumentUri(context, uri)) {//DocumentsContract.isDocumentUri(context.getApplicationContext(), uri))
             if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
@@ -852,6 +842,7 @@ public class Adddata extends BaseActivity {
         }
         return null;
     }
+
     public static boolean isExternalStorageDocument(Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
@@ -873,36 +864,108 @@ public class Adddata extends BaseActivity {
     }
 
 
-//    public void GetCitiesList() {
-//
-//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-//                .addConverterFactory(GsonConverterFactory.create()).build();
-//        Call<GetCitiesListResponse> call = retrofit.create(ApiInterface.class).CITYLIST_CALL();
-//        call.enqueue(new Callback<GetCitiesListResponse>() {
-//            @Override
-//            public void onResponse(Call<GetCitiesListResponse> call, Response<GetCitiesListResponse> response) {
-//                if (response.isSuccessful()) {
-//                    GetCitiesListResponse getCitiesListResponse = response.body();
-//                    if (getCitiesListResponse.getMessage().equals("all cities")) {
-//
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "Server Error! Please try again!", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<GetCitiesListResponse> call, Throwable t) {
-//                Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//    }
+    public void GetCitiesList() {
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Call<GetCitiesListResponse> call = retrofit.create(ApiInterface.class).CITYLIST_CALL();
+        call.enqueue(new Callback<GetCitiesListResponse>() {
+            @Override
+            public void onResponse(Call<GetCitiesListResponse> call, Response<GetCitiesListResponse> response) {
+                if (response.isSuccessful()) {
+                    GetCitiesListResponse getCitiesListResponse = response.body();
+                    if (getCitiesListResponse.getMessage().equals("all cities")) {
+
+                        Cities_Data cities_data = response.body().getData();
+                        if (cities_data != null) {
+                            cityArrayList = cities_data.getCityArrayList();
+                            if (cityArrayList != null) {
+                                ArrayList<String> cityList = new ArrayList<>();
+                                if (cityArrayList.size() > 0) {
+
+                                    for (City city : cityArrayList) {
+                                        cityList.add(city.getCity());
+                                    }
+                                }
+
+
+                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Adddata.this, android.R.layout.simple_spinner_item, cityList);
+                                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                city.setAdapter(arrayAdapter);
+
+                            }
+                        }
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Server Error! Please try again!", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<GetCitiesListResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+
+    public void GetPropertyTypeList() {
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Call<GetpropertyListResponse> call = retrofit.create(ApiInterface.class).PROPERTY_TYPE_LIST_CALL();
+        call.enqueue(new Callback<GetpropertyListResponse>() {
+            @Override
+            public void onResponse(Call<GetpropertyListResponse> call, Response<GetpropertyListResponse> response) {
+                if (response.isSuccessful()) {
+                    GetpropertyListResponse getCitiesListResponse = response.body();
+                    if (getCitiesListResponse.getMessage().equals("all property types")) {
+
+                        PropertyType_Data propertyType_data = response.body().getData();
+                        if (propertyType_data != null) {
+                            propertyTypeArrayList = propertyType_data.getCityArrayList();
+                            if (propertyTypeArrayList != null) {
+                                ArrayList<String> propertyType = new ArrayList<>();
+                                if (propertyTypeArrayList.size() > 0) {
+
+                                    for (PropertyType propertyType1 : propertyTypeArrayList) {
+                                        propertyType.add(propertyType1.getType());
+                                    }
+                                }
+
+
+                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Adddata.this, android.R.layout.simple_spinner_item, propertyType);
+                                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                prpertytype.setAdapter(arrayAdapter);
+
+                            }
+                        }
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Server Error! Please try again!", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<GetpropertyListResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 }
 
 

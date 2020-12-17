@@ -3,8 +3,8 @@ package com.example.realestate.Utills;
 
 import android.app.Application;
 
-import com.example.realestate.Model.REST.Properties.AddPropertiesData;
 import com.example.realestate.Model.REST.Properties.Properties;
+import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.example.realestate.Model.UserInfo;
 
 import java.util.ArrayList;
@@ -17,14 +17,14 @@ public class GlobalState extends Application {
 
     private UserInfo userInfo;
 
-    private AddPropertiesData properties;
+    Properties_Data properties_data;
 
-    public AddPropertiesData getProperties() {
-        return properties;
+    public Properties_Data getProperties_data() {
+        return properties_data;
     }
 
-    public void setProperties(AddPropertiesData properties) {
-        this.properties = properties;
+    public void setProperties_data(Properties_Data properties_data) {
+        this.properties_data = properties_data;
     }
 
     public static GlobalState getmInstance() {

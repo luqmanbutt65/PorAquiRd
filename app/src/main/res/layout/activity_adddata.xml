@@ -341,21 +341,15 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp" />
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/city"
                         android:layout_width="@dimen/_270sdp"
                         android:layout_height="@dimen/_35sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_20sdp"
                         android:background="@drawable/add_edittext_style_gray"
-                        android:ellipsize="end"
-                        android:hint="Enter City"
-                        android:paddingRight="@dimen/_20sdp"
-                        android:paddingLeft="@dimen/_20sdp"
-                        android:lines="1"
-                        android:singleLine="true"
-                        android:maxLength="100"
-                        android:maxLines="1"
-                      />
+                        android:layout_below="@+id/text_spiner"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:autofillHints="Select type" />
 
 
 

@@ -1,10 +1,10 @@
-package com.example.realestate.Model.GetList;
+package com.example.realestate.Model.GetList.GetListPropertyType;
 
-import com.example.realestate.Model.Like.PropertiesLike_Data;
+import com.example.realestate.Model.GetList.Cities_Data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GetCitiesListResponse {
+public class GetpropertyListResponse {
 
 
     @SerializedName("status")
@@ -17,7 +17,15 @@ public class GetCitiesListResponse {
 
     @SerializedName("data")
     @Expose
-    private Cities_Data data;
+    private PropertyType_Data data;
+
+    public PropertyType_Data getData() {
+        return data;
+    }
+
+    public void setData(PropertyType_Data data) {
+        this.data = data;
+    }
 
     public String getStatus() {
         return status;
@@ -35,11 +43,5 @@ public class GetCitiesListResponse {
         this.message = message;
     }
 
-    public Cities_Data getData() {
-        return data;
-    }
 
-    public void setData(Cities_Data data) {
-        this.data = data;
-    }
 }
