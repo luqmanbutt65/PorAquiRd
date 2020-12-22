@@ -35,21 +35,19 @@ public class OTPScreenResetPass extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_o_t_p_resetpw);
 
-        back_btn=findViewById(R.id.back_btnn);
+        back_btn = findViewById(R.id.back_btnn);
 
         resend_otp = findViewById(R.id.resend_otp);
-
 
 
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(OTPScreenResetPass.this,forgotpassword.class);
+                Intent intent = new Intent(OTPScreenResetPass.this, forgotpassword.class);
                 startActivity(intent);
                 finish();
             }
         });
-
 
 
 //        resend_otp.setOnClickListener(new View.OnClickListener() {

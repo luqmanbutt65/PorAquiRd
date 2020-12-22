@@ -75,7 +75,7 @@ public class Notifications extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             }
         });

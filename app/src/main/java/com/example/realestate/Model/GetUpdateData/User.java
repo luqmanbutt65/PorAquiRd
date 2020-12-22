@@ -5,28 +5,28 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class User extends RealmObject  {
-/*
- "user": {
-            "id": 72,
-            "name": "luqman",
-            "user_name": null,
-            "email": "Luqmanbutt65@gmail.com",
-            "password": "$2y$10$T0eKB12YvsfOgbbliEWgpeU/mXNgyjvOeuV8lATKmFjTgU4zVFSXu",
-            "number": null,
-            "address": "address",
-            "city": "sity",
-            "sector": "sector",
-            "user_role": "user",
-            "user_image": "pic.jpg-1607513609.jpeg",
-            "verified": "1",
-            "remember_token": "UGBwtrcHVIJ8vFZTmDbO4H0DtGW8XqRTdIbET7EafRpuDReKAV0AmNHM8yMp",
-            "secret_key": null,
-            "verification_code": null,
-            "created_at": "2020-12-02 10:40:25",
-            "updated_at": "2020-12-02 10:40:25"
-        }
-*/
+public class User extends RealmObject {
+    /*
+     "user": {
+                "id": 72,
+                "name": "luqman",
+                "user_name": null,
+                "email": "Luqmanbutt65@gmail.com",
+                "password": "$2y$10$T0eKB12YvsfOgbbliEWgpeU/mXNgyjvOeuV8lATKmFjTgU4zVFSXu",
+                "number": null,
+                "address": "address",
+                "city": "sity",
+                "sector": "sector",
+                "user_role": "user",
+                "user_image": "pic.jpg-1607513609.jpeg",
+                "verified": "1",
+                "remember_token": "UGBwtrcHVIJ8vFZTmDbO4H0DtGW8XqRTdIbET7EafRpuDReKAV0AmNHM8yMp",
+                "secret_key": null,
+                "verification_code": null,
+                "created_at": "2020-12-02 10:40:25",
+                "updated_at": "2020-12-02 10:40:25"
+            }
+    */
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -49,7 +49,7 @@ public class User extends RealmObject  {
 
     @SerializedName("address")
     @Expose
-    private String address ;
+    private String address;
 
     @SerializedName("city")
     @Expose
@@ -58,7 +58,6 @@ public class User extends RealmObject  {
     @SerializedName("sector")
     @Expose
     private String sector;
-
 
 
     public Integer getId() {

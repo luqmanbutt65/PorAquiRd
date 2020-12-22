@@ -26,10 +26,10 @@
                 <TextView
                     android:id="@+id/tv_username"
                     android:layout_width="@dimen/_200sdp"
-                    android:layout_toRightOf="@+id/drawer"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_toRightOf="@+id/drawer"
                     android:ellipsize="end"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp" />
@@ -161,8 +161,8 @@
         android:id="@+id/navigationdrawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@null"
         android:layout_gravity="start"
+        android:background="@null"
 
         >
 
@@ -225,6 +225,21 @@
                     android:background="@drawable/selecter"
                     android:gravity="center"
                     android:text="term &amp; Conditions"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_20sdp"
+                    android:textStyle="normal" />
+
+                <Button
+                    android:id="@+id/cockies_policy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/selecter"
+                    android:gravity="center"
+                    android:text="Cookies Policy"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_20sdp"

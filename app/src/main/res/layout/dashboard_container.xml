@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:drawableLeft="@drawable/rating"
+            android:drawableLeft="@drawable/static_rating"
             android:gravity="center_vertical"
             android:text="4.3 Reviews"
             android:textColor="@color/black"
@@ -114,14 +114,14 @@
 
         <TextView
             android:id="@+id/price"
-            android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/city_id"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_5sdp"
             android:gravity="center_vertical"
-            android:text="$ 1444.00"
             android:inputType="numberDecimal"
+            android:text="$ 1444.00"
             android:textColor="#13D7B1"
             android:textSize="@dimen/_12sdp"
             android:textStyle="normal" />

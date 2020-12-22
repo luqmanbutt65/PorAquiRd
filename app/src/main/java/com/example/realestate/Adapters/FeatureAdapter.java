@@ -25,12 +25,13 @@ public class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.viewhold
     Context context;
     private Activity activity;
     private List<Features> featuresList;
+
     public FeatureAdapter(Activity activity,
-                           Context context,
-                           List<Features> featuresList) {
+                          Context context,
+                          List<Features> featuresList) {
         this.context = context;
         this.activity = activity;
-        this.featuresList=featuresList;
+        this.featuresList = featuresList;
 
     }
 
@@ -64,9 +65,9 @@ public class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.viewhold
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
-                description = itemView.findViewById(R.id.feature_description);
-                imageView = itemView.findViewById(R.id.feature_image);
-                mainLayout = itemView.findViewById(R.id.featurelayout);
+            description = itemView.findViewById(R.id.feature_description);
+            imageView = itemView.findViewById(R.id.feature_image);
+            mainLayout = itemView.findViewById(R.id.featurelayout);
         }
 
         void setdata(Features features) {

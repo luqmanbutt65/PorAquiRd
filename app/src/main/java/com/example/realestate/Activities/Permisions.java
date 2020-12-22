@@ -29,7 +29,8 @@ import java.util.Map;
 public class Permisions extends AppCompatActivity {
     Button restart;
     Boolean isRationale;
-    Boolean isFirst=true;
+    Boolean isFirst = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,9 +137,9 @@ public class Permisions extends AppCompatActivity {
                 if (
 //                        perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
                         perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                        perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                                perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
 //                        perms.get(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                ){
+                ) {
                     // All Permissions Granted
                     startActivity(new Intent(Permisions.this, MainActivity.class));
                     finish();

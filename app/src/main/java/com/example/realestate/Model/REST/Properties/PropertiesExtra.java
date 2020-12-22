@@ -19,7 +19,6 @@ public class PropertiesExtra {
           "updated_at": "2020-12-04 12:03:02"*/
 
 
-
     @SerializedName("property_id")
     @Expose
     private String property_id;

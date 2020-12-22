@@ -14,7 +14,7 @@ import com.example.realestate.R;
 
 import java.util.ArrayList;
 
-public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder>{
+public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder> {
 
     Context context;
     ArrayList<ImagesData> ImagesArray;
@@ -25,12 +25,13 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
     }
 
     @Override
-    public  ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.image_container, viewGroup, false);
         return new ViewHolder(view);
     }
+
     @Override
-    public  void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.image(ImagesArray.get(position));
 
     }
@@ -43,10 +44,11 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         LinearLayout linearLayout;
+
         public ViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.imgview1);
-            linearLayout=itemView.findViewById(R.id.imagelayout);
+            linearLayout = itemView.findViewById(R.id.imagelayout);
         }
 
         public void image(ImagesData imagesData) {

@@ -32,10 +32,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ChangePaswsword extends Fragment {
-ImageView back_btn;
-Button submit;
-EditText oldpass,newpass,confirmpass;
-TextView name,email;
+    ImageView back_btn;
+    Button submit;
+    EditText oldpass, newpass, confirmpass;
+    TextView name, email;
+
     public ChangePaswsword() {
         // Required empty public constructor
     }
@@ -51,25 +52,25 @@ TextView name,email;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_change_paswsword, container, false);
+        View view = inflater.inflate(R.layout.fragment_change_paswsword, container, false);
 
-        oldpass=view.findViewById(R.id.oldPass);
-        newpass=view.findViewById(R.id.newPass);
-        confirmpass=view.findViewById(R.id.confirmPass);
+        oldpass = view.findViewById(R.id.oldPass);
+        newpass = view.findViewById(R.id.newPass);
+        confirmpass = view.findViewById(R.id.confirmPass);
 
-        name=view.findViewById(R.id.name);
-        email=view.findViewById(R.id.email);
+        name = view.findViewById(R.id.name);
+        email = view.findViewById(R.id.email);
 
-        submit=view.findViewById(R.id.submit);
+        submit = view.findViewById(R.id.submit);
 
         name.setText(GlobalState.getInstance().getUserInfo().getName());
         email.setText(GlobalState.getInstance().getUserInfo().getEmail());
-        String Oldpass=oldpass.getText().toString();
-        String Newpass=newpass.getText().toString();
-        String Confirmpass=confirmpass.getText().toString();
+        String Oldpass = oldpass.getText().toString();
+        String Newpass = newpass.getText().toString();
+        String Confirmpass = confirmpass.getText().toString();
 
 
-        back_btn=view.findViewById(R.id.back_btn_changepass);
+        back_btn = view.findViewById(R.id.back_btn_changepass);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,21 +87,20 @@ TextView name,email;
             @Override
             public void onClick(View v) {
 
-                String Oldpass=oldpass.getText().toString();
-                String Newpass=newpass.getText().toString();
-                String Confirmpass=confirmpass.getText().toString();
+                String Oldpass = oldpass.getText().toString();
+                String Newpass = newpass.getText().toString();
+                String Confirmpass = confirmpass.getText().toString();
 
 
-                if (Oldpass.isEmpty() && Newpass.isEmpty() && Confirmpass.isEmpty()){
+                if (Oldpass.isEmpty() && Newpass.isEmpty() && Confirmpass.isEmpty()) {
 
                     Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
                 } else {
 
-                    if (Confirmpass==Newpass){
+                    if (Confirmpass == Newpass) {
                         Toast.makeText(getContext(), "password did not Match", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        resetPass(GlobalState.getInstance().getUserInfo().getId(),Oldpass,Newpass,Confirmpass,GlobalState.getInstance().getUserInfo().getEmail());
+                    } else {
+                        resetPass(GlobalState.getInstance().getUserInfo().getId(), Oldpass, Newpass, Confirmpass, GlobalState.getInstance().getUserInfo().getEmail());
                     }
 
                 }
@@ -113,12 +113,12 @@ TextView name,email;
     }
 
 
-    public void resetPass(int id,String oldPass,String newPass,String confirmPass,String email) {
+    public void resetPass(int id, String oldPass, String newPass, String confirmPass, String email) {
 //        otpProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
         //Call<ResetPasswordResponse> call = retrofit.create(ApiInterface.class).RESETPROFILEPASS_CALL(String.valueOf(id),oldPass,newPass,confirmPass,email);
-        Call<ResetPasswordResponse> call = retrofit.create(ApiInterface.class).RESETPROFILEPASS_CALL(id,oldPass,newPass,confirmPass,email);
+        Call<ResetPasswordResponse> call = retrofit.create(ApiInterface.class).RESETPROFILEPASS_CALL(id, oldPass, newPass, confirmPass, email);
 
         call.enqueue(new Callback<ResetPasswordResponse>() {
             @Override
@@ -128,10 +128,10 @@ TextView name,email;
                     if (resetPasswordResponse.getMessage().equals("Password changed successfully")) {
 
                         Toast.makeText(getContext(), "password changed successfully", Toast.LENGTH_SHORT).show();
-                        new SharedPreferenceConfig().savePawordOfUserInSP("Password",newPass,getContext());
-                       // Intent intent=new Intent()
+                        new SharedPreferenceConfig().savePawordOfUserInSP("Password", newPass, getContext());
+                        // Intent intent=new Intent()
 
-                        Intent intent=new Intent(getActivity(),LoginScreen.class);
+                        Intent intent = new Intent(getActivity(), LoginScreen.class);
                         startActivity(intent);
                     } else {
 

@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/featurelayout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="@dimen/_130sdp"
     android:layout_height="@dimen/_40sdp"
-    android:paddingLeft="@dimen/_10sdp"
-    android:paddingRight="@dimen/_5sdp"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="@dimen/_10sdp"
     android:background="@drawable/feature_background"
     android:gravity="left"
-    android:layout_marginLeft="@dimen/_10sdp"
-    android:layout_centerVertical="true"
-    >
-<ImageView
-    android:id="@+id/feature_image"
-    android:layout_width="@dimen/_20sdp"
-    android:layout_height="@dimen/_20sdp"
-    android:layout_gravity="center"
-    android:src="@drawable/bed"/>
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/_10sdp"
+    android:paddingRight="@dimen/_5sdp">
+
+    <ImageView
+        android:id="@+id/feature_image"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_gravity="center"
+        android:src="@drawable/bed" />
+
     <TextView
         android:id="@+id/feature_description"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="wrap_content"
-        android:text="Furniture"
         android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/_10sdp"
         android:maxLines="1"
-        android:textSize="@dimen/_10sdp"
+        android:text="Furniture"
         android:textColor="@color/black"
-        android:textStyle="normal"
-        android:layout_marginLeft="@dimen/_10sdp"/>
+        android:textSize="@dimen/_10sdp"
+        android:textStyle="normal" />
 </LinearLayout>

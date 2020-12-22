@@ -27,6 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 //3-12-2020
 public class SignUpActivity extends BaseActivity {
     EditText userName, name, email, password;
@@ -59,13 +60,11 @@ public class SignUpActivity extends BaseActivity {
                 if (getname.isEmpty() || getemail.isEmpty() || getPassword.isEmpty()) {
 
                     Toast.makeText(SignUpActivity.this, "Please Input Field", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    if (getPassword.length()<8){
+                } else {
+                    if (getPassword.length() < 8) {
 
                         Toast.makeText(SignUpActivity.this, "password is less than 8 characters", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         signupnuser(getname, getemail, getPassword);
                     }
 

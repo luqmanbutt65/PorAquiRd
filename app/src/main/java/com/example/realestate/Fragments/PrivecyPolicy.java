@@ -17,6 +17,7 @@ import com.example.realestate.R;
 public class PrivecyPolicy extends Fragment {
 
     ImageView back_btn;
+
     public PrivecyPolicy() {
         // Required empty public constructor
     }
@@ -32,12 +33,12 @@ public class PrivecyPolicy extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_privecy_policy, container, false);
-        back_btn=view.findViewById(R.id.back_btn_privecypolicy);
+        View view = inflater.inflate(R.layout.fragment_privecy_policy, container, false);
+        back_btn = view.findViewById(R.id.back_btn_privecypolicy);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             }
         });

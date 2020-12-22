@@ -10,12 +10,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
+                                                //http://poraquird.stepinnsolution.com
 
-
-
-    public static final String NEW_BASE_URL = "https://poraquird.stepinnsolution.com";
-    public static final String BASE_URL = "http:////";
-    public static final String LOCAL_BASE_URL = "http:////";
+    public static final String NEW_BASE_URL = "http://poraquird.stepinnsolution.com";
 
     public static Retrofit retrofit = null;
 
@@ -24,9 +21,9 @@ public class ApiClient {
         if (retrofit == null) {
 
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .connectTimeout(2, TimeUnit.MINUTES)
-                    .readTimeout(2, TimeUnit.MINUTES)
-                    .writeTimeout(2, TimeUnit.MINUTES)
+                    .connectTimeout(10, TimeUnit.MINUTES)
+                    .readTimeout(10, TimeUnit.MINUTES)
+                    .writeTimeout(10, TimeUnit.MINUTES)
                     .build();
 
             retrofit = new Retrofit.Builder().baseUrl(NEW_BASE_URL).client(okHttpClient)

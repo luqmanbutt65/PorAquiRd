@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 public class Features {
 
 
-
     @SerializedName("description")
     @Expose
     private String description;
@@ -15,9 +14,9 @@ public class Features {
     @Expose
     private int img;
 
-    public  Features(String description,int img){
-        this.description=description;
-        this.img=img;
+    public Features(String description, int img) {
+        this.description = description;
+        this.img = img;
 
     }
 

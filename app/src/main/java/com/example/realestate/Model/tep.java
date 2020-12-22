@@ -10,9 +10,16 @@ public class tep {
     @SerializedName("Status")
     @Expose
     private String city;
+    @SerializedName("data")
+    @Expose
+    private ArrayList<DashboardData> mdatasource;
 
     public ArrayList<DashboardData> getMdatasource() {
         return mdatasource;
+    }
+
+    public void setMdatasource(ArrayList<DashboardData> mdatasource) {
+        this.mdatasource = mdatasource;
     }
 
     public String getCity() {
@@ -22,12 +29,4 @@ public class tep {
     public void setCity(String city) {
         this.city = city;
     }
-
-    public void setMdatasource(ArrayList<DashboardData> mdatasource) {
-        this.mdatasource = mdatasource;
-    }
-
-    @SerializedName("data")
-    @Expose
-    private ArrayList<DashboardData> mdatasource;
 }

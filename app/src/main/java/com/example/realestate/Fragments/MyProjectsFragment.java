@@ -73,7 +73,7 @@ public class MyProjectsFragment extends Fragment {
         myproRecyclerview.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
 
-        imageView = view.findViewById(R.id.addProject);
+//        imageView = view.findViewById(R.id.addProject);
 
         backbtn = view.findViewById(R.id.back_btn_myproject);
 
@@ -90,13 +90,13 @@ public class MyProjectsFragment extends Fragment {
             }
         });
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), Adddata.class));
-
-            }
-        });
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getActivity(), Adddata.class));
+//
+//            }
+//        });
 
         return view;
     }
@@ -125,7 +125,7 @@ public class MyProjectsFragment extends Fragment {
 
                                 if (propertiesArrayList.size() > 0) {
                                     String s = String.valueOf(propertiesArrayList.size());
-                                    tv_result_number.setText(s+" Projects");
+                                    tv_result_number.setText(s + " Projects");
                                     myproRecyclerview.setAdapter(new MyprojectAdapter(getActivity(), context, propertiesArrayList));
 
 
@@ -137,7 +137,7 @@ public class MyProjectsFragment extends Fragment {
                             }
 
                         } else {
-                           Toast.makeText(getContext(), "Data is null", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Data is null", Toast.LENGTH_SHORT).show();
                         }
 
 

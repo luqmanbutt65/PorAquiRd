@@ -99,7 +99,8 @@ public class forgotpassword extends BaseActivity {
                         Intent intent = new Intent(forgotpassword.this, OTPScreenResetPass.class);
                         intent.putExtra("email", getEmail);
                         context.startActivity(intent);
-                        new SharedPreferenceConfig().saveemailOfUSerInSP("email", getEmail, forgotpassword.this);;
+                        new SharedPreferenceConfig().saveemailOfUSerInSP("email", getEmail, forgotpassword.this);
+                        ;
 
                     } else {
                         Toast.makeText(forgotpassword.this, "Email Not registered", Toast.LENGTH_SHORT).show();

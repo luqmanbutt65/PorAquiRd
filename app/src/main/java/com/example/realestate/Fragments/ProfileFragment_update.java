@@ -128,9 +128,9 @@ public class ProfileFragment_update extends Fragment {
 
                     if (RNC.trim().length() != 0 && !RNC.trim().equalsIgnoreCase("")) {
 
-                        if (RNC.length() < 10 || ID.length() < 10) {
+                        if (RNC.length() < 9 || ID.length() < 11) {
 
-                            Toast.makeText(getContext(), "ID / RNC less than 9 character", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "ID less than 11/RNC less than 9 character", Toast.LENGTH_SHORT).show();
                             return;
                         }
                     }

@@ -43,17 +43,16 @@ public class resetpassword extends AppCompatActivity {
                 if (Password.isEmpty() || ConfirmPassword.isEmpty()) {
 
                     Toast.makeText(getApplicationContext(), "Please fill the all fields", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    if (!Password.equalsIgnoreCase(ConfirmPassword) ) {
+                } else {
+                    if (!Password.equalsIgnoreCase(ConfirmPassword)) {
 
                         Toast.makeText(getApplicationContext(), "password did not match", Toast.LENGTH_SHORT).show();
 
                     } else {
 
-                            // and get whatever type user account id is
-                       String email1= new SharedPreferenceConfig().getemailOfUSerFromSP("email",resetpassword.this);
-                            resetpass(email1,Password);
+                        // and get whatever type user account id is
+                        String email1 = new SharedPreferenceConfig().getemailOfUSerFromSP("email", resetpassword.this);
+                        resetpass(email1, Password);
 
                     }
                 }
@@ -63,11 +62,11 @@ public class resetpassword extends AppCompatActivity {
     }
 
 
-    public void resetpass(String email,String password) {
+    public void resetpass(String email, String password) {
 //        otpProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<ResetPasswordResponse> call = retrofit.create(ApiInterface.class).RESETPASS_CALL(email,password);
+        Call<ResetPasswordResponse> call = retrofit.create(ApiInterface.class).RESETPASS_CALL(email, password);
         call.enqueue(new Callback<ResetPasswordResponse>() {
             @Override
             public void onResponse(Call<ResetPasswordResponse> call, Response<ResetPasswordResponse> response) {

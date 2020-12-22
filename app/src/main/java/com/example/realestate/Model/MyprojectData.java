@@ -30,13 +30,13 @@ public class MyprojectData {
     @Expose
     private int img;
 
-    public MyprojectData(String city, String location, double rating, double price, String title, int img){
-        this.city=city;
-        this.location=location;
-        this.rating=rating;
-        this.price=price;
-        this.title=title;
-        this.img=img;
+    public MyprojectData(String city, String location, double rating, double price, String title, int img) {
+        this.city = city;
+        this.location = location;
+        this.rating = rating;
+        this.price = price;
+        this.title = title;
+        this.img = img;
     }
 
     public String getTitle() {

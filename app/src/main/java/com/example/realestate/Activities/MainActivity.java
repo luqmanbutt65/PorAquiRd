@@ -89,8 +89,18 @@ public class MainActivity extends BaseActivity {
 //
 //                        break;
                     case R.id.likes:
-                        temp = new MyFavrotFragment();
-                        callFreg(temp);
+
+
+                        String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", MainActivity.this);
+                        if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", MainActivity.this)) {
+                            if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", MainActivity.this)
+                                    != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", MainActivity.this) != null) {
+                                temp = new MyFavrotFragment();
+                                callFreg(temp);
+                            }
+                        } else {
+                            showToast("You are Not Logged in");
+                        }
 
                         break;
                     case R.id.booking:

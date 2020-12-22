@@ -11,8 +11,8 @@ import com.example.realestate.R;
 public class GenericTextWatcher implements TextWatcher {
     private final EditText[] editText;
     private View view;
-    public GenericTextWatcher(View view, EditText editText[])
-    {
+
+    public GenericTextWatcher(View view, EditText editText[]) {
         this.editText = editText;
         this.view = view;
     }

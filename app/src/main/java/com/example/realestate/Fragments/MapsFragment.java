@@ -33,10 +33,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsFragment extends Fragment {
     MapView mMapView;
-    private GoogleMap googleMap;
-    Double latitude,longitude;
+    Double latitude, longitude;
     LocationManager lm;
     Location location;
+    private GoogleMap googleMap;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -94,10 +94,10 @@ public class MapsFragment extends Fragment {
                 }
 
                 googleMap.setMyLocationEnabled(true);
-               lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-               location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+                location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 latitude = location.getLongitude();
-                 longitude = location.getLatitude();
+                longitude = location.getLatitude();
                 String mainlocation = (latitude + "," + longitude);
 
                 SharedPreferences settings = getContext().getSharedPreferences("SHARED_PREFERENCES_LOCATION", Context.MODE_PRIVATE);

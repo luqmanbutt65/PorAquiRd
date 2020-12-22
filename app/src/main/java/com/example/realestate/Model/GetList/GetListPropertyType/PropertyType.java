@@ -9,7 +9,7 @@ public class PropertyType {
     @Expose
     private int id;
 
-    @SerializedName("city")
+    @SerializedName("type")
     @Expose
     private String type;
 

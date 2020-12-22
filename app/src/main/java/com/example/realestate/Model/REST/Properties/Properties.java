@@ -71,6 +71,14 @@ public class Properties {
     @SerializedName("rating")
     @Expose
     private String rating;
+
+    @SerializedName("comment")
+    @Expose
+    private String comment;
+
+    @SerializedName("ratingg")
+    @Expose
+    private String user_rating;
     @SerializedName("extra")
     @Expose
     private PropertiesExtra propertiesExtra;
@@ -80,7 +88,19 @@ public class Properties {
 
 
     private ArrayList<PropertiesGallery> propertiesGalleryArrayList;
+    @SerializedName("liked")
+    @Expose
+    private boolean like;
 
+
+
+    public boolean isLike() {
+        return like;
+    }
+
+    public void setLike(boolean like) {
+        this.like = like;
+    }
 
     public PropertiesExtra getPropertiesExtra() {
         return propertiesExtra;
@@ -141,8 +161,8 @@ public class Properties {
     public String getBedroom() {
 
 
-      //  return bedroom;
-        return  "2";
+        //  return bedroom;
+        return "2";
 
     }
 
@@ -153,13 +173,12 @@ public class Properties {
     public String getBath() {
 
         //return bath;
-        return  "4";   //TODO: For Testing before
+        return "4";   //TODO: For Testing before
     }
 
     public void setBath(String bath) {
         this.bath = bath;
     }
-
 
 
     public int getId() {
@@ -266,8 +285,6 @@ public class Properties {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
-
-
 
 
 }

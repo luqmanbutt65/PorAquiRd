@@ -19,7 +19,7 @@ import com.example.realestate.R;
 import java.util.Calendar;
 
 public class BottomsheetApointment extends BaseActivity {
-    EditText et_apointment,et_time;
+    EditText et_apointment, et_time;
     RadioGroup statusbutton;
     RadioButton formeeting, forvideomeeting;
     DatePickerDialog apointmentdatepicker;
@@ -34,11 +34,11 @@ public class BottomsheetApointment extends BaseActivity {
         apointmentSubmit = findViewById(R.id.apointmentSubmit);
         statusbutton = findViewById(R.id.togglegroupp);
         et_apointment = findViewById(R.id.et_apointment);
-        et_time= findViewById(R.id.et_time);
+        et_time = findViewById(R.id.et_time);
         formeeting = (RadioButton) findViewById(R.id.tour_meeting);
         forvideomeeting = (RadioButton) findViewById(R.id.tour_video);
 
-        String apointment_val=et_apointment.getText().toString();
+        String apointment_val = et_apointment.getText().toString();
 
 
         et_time.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,7 @@ public class BottomsheetApointment extends BaseActivity {
                 mTimePicker = new TimePickerDialog(BottomsheetApointment.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        et_time.setText( selectedHour + ":" + selectedMinute);
+                        et_time.setText(selectedHour + ":" + selectedMinute);
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");

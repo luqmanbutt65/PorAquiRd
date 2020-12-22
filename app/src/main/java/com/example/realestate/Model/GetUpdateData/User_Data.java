@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class User_Data extends RealmObject  {
+public class User_Data extends RealmObject {
 
     /*"user_data": {
             "id": 11,
@@ -39,7 +39,7 @@ public class User_Data extends RealmObject  {
 
     @SerializedName("work_permit")
     @Expose
-    private String work_permit ;
+    private String work_permit;
 
     @SerializedName("company_name")
     @Expose

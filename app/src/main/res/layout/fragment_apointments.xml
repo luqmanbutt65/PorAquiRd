@@ -12,11 +12,11 @@
         android:layout_height="@dimen/_70sdp">
 
         <ImageView
-            android:layout_marginLeft="@dimen/_10sdp"
             android:id="@+id/back_btn_apointment"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_10sdp"
             android:src="@drawable/back" />
 
         <TextView
@@ -58,6 +58,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="90dp"
-        android:padding="@dimen/_10sdp"/>
+        android:padding="@dimen/_10sdp" />
 
 </FrameLayout>

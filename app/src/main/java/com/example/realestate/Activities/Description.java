@@ -13,6 +13,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.Model.REST.PropertiesSingle.PropertiesSingleResp;
 import com.example.realestate.R;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Utills.GlobalState;
 import com.example.realestate.customViewPager.customViewPager;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
@@ -47,13 +49,11 @@ public class Description extends BaseActivity {
     ProgressDialog homeProgressDialog;
     RecyclerView recyclerView;
     Button getApointment, getInformation;
-    private ArrayList<Properties> propertiesArrayList;
     int propertieID = 1;
     Bundle extras;
     ProgressDialog descriptionProgressDialog;
-
-
     ArrayList<PropertiesGallery> propertiesGalleryArrayList;
+    private ArrayList<Properties> propertiesArrayList;
 
     @Override
     public void onBackPressed() {
@@ -68,6 +68,8 @@ public class Description extends BaseActivity {
         extras = getIntent().getExtras();
         if (extras != null) {
             propertieID = extras.getInt("propertieIDKey");
+            GlobalState.getInstance().setCurrent_Property_id(String.valueOf(propertieID));
+            String userId = new SharedPreferenceConfig().getidOfUSerFromSP("id", Description.this);
             // and get whatever type user account id is
         }
 
@@ -78,7 +80,6 @@ public class Description extends BaseActivity {
 
         getApointment = findViewById(R.id.getapointmentbtn);
         getInformation = findViewById(R.id.info);
-
         tv_city = findViewById(R.id.city_id);
         tv_location = findViewById(R.id.location_id);
         tv_price = findViewById(R.id.prices);
@@ -86,44 +87,31 @@ public class Description extends BaseActivity {
         description = findViewById(R.id.tv_description_text);
         recyclerView = findViewById(R.id.featuresrecyclerview);
 
-        description.setMovementMethod(new ScrollingMovementMethod());
+        tv_reviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Rating_Activity.class);
+                intent.putExtra("propertieIDKey", propertieID);
+                context.startActivity(intent);
 
+            }
+        });
+
+
+        description.setMovementMethod(new ScrollingMovementMethod());
 
         getpropertydata(propertieID);
 
         dotsIndicator = (DotsIndicator) findViewById(R.id.dots_indicator);
 
-        int[] imagge = {R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house};
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-
 
 
         context = this;
         RecyclerView recyclerView = findViewById(R.id.featuresrecyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
 
-
-        String[] description = {"aaaaaa", "sssss", "qqqqqq", "kkk", "kkkkkllll", "ppppppp", "uuuuuuu"};
-
-        int[] image = {R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house, R.drawable.house};
-
-        ArrayList<Features> features = new ArrayList<>();
-
-        features.add(new Features(description[0], image[0]));
-        features.add(new Features(description[1], image[1]));
-        features.add(new Features(description[2], image[2]));
-
-        features.add(new Features(description[3], image[3]));
-
-        features.add(new Features(description[4], image[4]));
-
-        features.add(new Features(description[5], image[5]));
-
-        features.add(new Features(description[6], image[6]));
-
-
-        recyclerView.setAdapter(new FeatureAdapter(Description.this, context, features));
 
 
         getApointment.setOnClickListener(new View.OnClickListener() {
@@ -159,10 +147,10 @@ public class Description extends BaseActivity {
                         if (propertiesSingleResp != null) {
                             if (propertiesSingleResp.getPropertiesData() != null) {
                                 if (propertiesSingleResp.getPropertiesData().getSingleProperty() != null) {
-                                    if(propertiesSingleResp.getPropertiesData().getSingleProperty().getPropertiesGalleryArrayList()!=null){
-                                        propertiesGalleryArrayList=propertiesSingleResp.getPropertiesData().getSingleProperty().getPropertiesGalleryArrayList();
-                                    }else {
-                                        propertiesGalleryArrayList=new ArrayList<>();
+                                    if (propertiesSingleResp.getPropertiesData().getSingleProperty().getPropertiesGalleryArrayList() != null) {
+                                        propertiesGalleryArrayList = propertiesSingleResp.getPropertiesData().getSingleProperty().getPropertiesGalleryArrayList();
+                                    } else {
+                                        propertiesGalleryArrayList = new ArrayList<>();
                                     }
                                     String city_val = ((city_val = propertiesSingleResp.getPropertiesData().getSingleProperty().getCity()) != null) ? city_val : "N/A";
                                     tv_city.setText(city_val);
@@ -178,7 +166,6 @@ public class Description extends BaseActivity {
 
                                     String title_val = ((title_val = propertiesSingleResp.getPropertiesData().getSingleProperty().getTitle()) != null) ? title_val : "N/A";
                                     description.setText(title_val);
-
 
 
                                     customViewPager customViewPager = new customViewPager(Description.this, propertiesGalleryArrayList);
@@ -227,6 +214,4 @@ public class Description extends BaseActivity {
         });
 
     }
-
-
 }

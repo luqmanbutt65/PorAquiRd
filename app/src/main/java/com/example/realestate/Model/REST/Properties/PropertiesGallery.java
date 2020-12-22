@@ -16,15 +16,15 @@ public class PropertiesGallery {
         return property_images;
     }
 
+    public void setProperty_images(String property_images) {
+        this.property_images = property_images;
+    }
+
     public int getProperty_id() {
         return property_id;
     }
 
     public void setProperty_id(int property_id) {
         this.property_id = property_id;
-    }
-
-    public void setProperty_images(String property_images) {
-        this.property_images = property_images;
     }
 }

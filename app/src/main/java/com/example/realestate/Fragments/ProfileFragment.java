@@ -49,9 +49,10 @@ public class ProfileFragment extends Fragment {
     List<String> listCruncy;
     List<String> listLanguage;
     LinearLayout linearLayout1, linearLayout;
-ImageView back_btn;
+    ImageView back_btn;
     TextView username, useremail;
     ProgressDialog profileProgressDialog;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -84,12 +85,12 @@ ImageView back_btn;
         linearLayout1 = view.findViewById(R.id.linearLayout1);
         linearLayout = view.findViewById(R.id.linearLayout);
 
-        back_btn=view.findViewById(R.id.back_btn_profile);
+        back_btn = view.findViewById(R.id.back_btn_profile);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(getActivity(),MainActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
 
             }
@@ -112,7 +113,6 @@ ImageView back_btn;
         if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
             if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()) != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()) != null) {
                 ShowUser(new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()), new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()));
-
 
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),

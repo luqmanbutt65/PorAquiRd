@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class customViewPager extends PagerAdapter {
     Context context;
-ArrayList<PropertiesGallery> propertiesGalleryArrayList;
+    ArrayList<PropertiesGallery> propertiesGalleryArrayList;
     LayoutInflater layoutInflater;
 
 
@@ -42,13 +42,13 @@ ArrayList<PropertiesGallery> propertiesGalleryArrayList;
     public Object instantiateItem(ViewGroup container, final int position) {
         View itemView = layoutInflater.inflate(R.layout.viewpager_container, container, false);
         ImageView imageView = (ImageView) itemView.findViewById(R.id.imageview);
-        Glide.with(context).load("http://poraquird.stepinnsolution.com/public/property_main_images/"+propertiesGalleryArrayList.get(position).getProperty_images()).into(imageView);
+        Glide.with(context).load("http://poraquird.stepinnsolution.com/public/property_main_images/" + propertiesGalleryArrayList.get(position).getProperty_images()).into(imageView);
         container.addView(itemView);
         //listening to image click
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  Toast.makeText(context, "you clicked image " + (position + 1), Toast.LENGTH_LONG).show();
+                //  Toast.makeText(context, "you clicked image " + (position + 1), Toast.LENGTH_LONG).show();
             }
         });
 

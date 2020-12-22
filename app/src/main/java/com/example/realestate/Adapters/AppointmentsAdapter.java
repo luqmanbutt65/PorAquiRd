@@ -27,10 +27,10 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
     private List<AppointmentsData> appointmentsData;
 
     public AppointmentsAdapter(Activity activity, Context context,
-                           List<AppointmentsData> appointmentsData) {
+                               List<AppointmentsData> appointmentsData) {
         this.context = context;
         this.activity = activity;
-        this.appointmentsData=appointmentsData;
+        this.appointmentsData = appointmentsData;
 
     }
 
@@ -57,7 +57,7 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
-        TextView description, town,datetime ,status;
+        TextView description, town, datetime, status;
         ImageView mainimg;
         RelativeLayout mainLayout;
 

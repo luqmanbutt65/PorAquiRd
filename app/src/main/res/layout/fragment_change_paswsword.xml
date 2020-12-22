@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_background"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ChangePaswsword">
 
     <RelativeLayout
@@ -47,9 +47,9 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_below="@+id/headerlayut"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/headerlayut">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -108,12 +108,12 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout1"
-                android:paddingLeft="@dimen/_20sdp"
-                android:paddingRight="@dimen/_20sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/linearLayout"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_20sdp"
+                android:paddingRight="@dimen/_20sdp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -129,24 +129,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Your Old Password"
+                    android:text="Old Password"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/oldPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/add_edittext_style_gray"
-                   android:paddingLeft="@dimen/_10sdp"
-                    android:singleLine="true"
-                    android:maxLength="30"
-                    android:maxLines="1"
                     android:hint="Enter Old password"
                     android:lines="1"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"/>
+                    android:singleLine="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -159,51 +159,50 @@
 
                 <EditText
                     android:id="@+id/newPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/add_edittext_style_gray"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:singleLine="true"
-                    android:maxLength="30"
-                    android:maxLines="1"
                     android:hint="Enter new password"
                     android:lines="1"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"/>
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:singleLine="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Chonfirm Password"
+                    android:text="Confirm Password"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/confirmPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/add_edittext_style_gray"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:singleLine="true"
-                    android:maxLength="30"
-                    android:maxLines="1"
                     android:hint="Confirm password"
                     android:lines="1"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"/>
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:singleLine="true" />
 
                 <Button
                     android:id="@+id/submit"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:text="Submit"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginBottom="@dimen/_20sdp"/>
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:text="Submit" />
 
             </LinearLayout>
 
         </RelativeLayout>
-
 
 
     </RelativeLayout>

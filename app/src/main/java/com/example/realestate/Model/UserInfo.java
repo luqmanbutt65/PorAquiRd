@@ -5,11 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class UserInfo extends RealmObject  {
+public class UserInfo extends RealmObject {
 
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("user_image")
+    @Expose
+    private String user_image;
 
     @SerializedName("name")
     @Expose
@@ -29,7 +32,7 @@ public class UserInfo extends RealmObject  {
 
     @SerializedName("address")
     @Expose
-    private String address ;
+    private String address;
 
     @SerializedName("city")
     @Expose
@@ -55,6 +58,13 @@ public class UserInfo extends RealmObject  {
     @Expose
     private String company_name;
 
+    public String getUser_image() {
+        return user_image;
+    }
+
+    public void setUser_image(String user_image) {
+        this.user_image = user_image;
+    }
 
     public Integer getId() {
         return id;

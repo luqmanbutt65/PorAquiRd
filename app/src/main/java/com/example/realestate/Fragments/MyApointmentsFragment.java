@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class MyApointmentsFragment extends Fragment {
 
-ImageView backbtn;
+    ImageView backbtn;
     Context context;
 
     public MyApointmentsFragment() {
@@ -48,11 +48,11 @@ ImageView backbtn;
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
 
-        backbtn=view.findViewById(R.id.back_btn_apointment);
+        backbtn = view.findViewById(R.id.back_btn_apointment);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             }
         });

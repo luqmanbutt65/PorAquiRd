@@ -1,117 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/income_bottom_sheet"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/income_bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="@color/activity_background"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Activities.BottomsheetApointment"
-    xmlns:tools="http://schemas.android.com/tools">
-<LinearLayout
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/add"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:gravity="center"
-        android:textColor="@color/textblackcolor"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:textSize="@dimen/_15sdp"
-        android:text="How would you like to tour" />
+    android:padding="16dp"
+    tools:context=".Activities.BottomsheetApointment">
 
-    <RadioGroup
-        android:id="@+id/togglegroupp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_below="@id/detailtext"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/radiogroup_background"
-        android:layout_marginBottom="@dimen/_5sdp"
-        android:checkedButton="@+id/tour_meeting"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/tour_meeting"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:layout_weight="1"
-
-            android:background="@drawable/toggle_widget_background_apointment"
-            android:button="@null"
+        <TextView
+            android:id="@+id/add"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:gravity="center"
-            android:text="Tour Via Meeting"
-            android:textColor="@color/white" />
+            android:text="How would you like to tour"
+            android:textColor="@color/textblackcolor"
+            android:textSize="@dimen/_15sdp" />
 
-        <RadioButton
-            android:id="@+id/tour_video"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginBottom="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/toggle_widget_background_apointment"
-            android:button="@null"
-            android:gravity="center"
-            android:text="Tour Via Video Chat"
-            android:textColor="@color/black" />
-    </RadioGroup>
-</LinearLayout>
+        <RadioGroup
+            android:id="@+id/togglegroupp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@id/detailtext"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@drawable/radiogroup_background"
+            android:checkedButton="@+id/tour_meeting"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/tour_meeting"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+
+                android:background="@drawable/toggle_widget_background_apointment"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Tour Via Meeting"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/tour_video"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_widget_background_apointment"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Tour Via Video Chat"
+                android:textColor="@color/black" />
+        </RadioGroup>
+    </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pick Date &amp; Time"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:textSize="@dimen/_15sdp"
+        android:text="Pick Date &amp; Time"
         android:textColor="@color/black"
-        />
-     <EditText
-         android:id="@+id/et_apointment"
-         android:layout_width="match_parent"
-         android:layout_height="@dimen/_40sdp"
-         android:drawableRight="@drawable/ic_baseline_calendar_today"
-         android:paddingLeft="@dimen/_10sdp"
-         android:hint="10-10-2020"
-         android:editable="false"
-         android:clickable="true"
-         android:background="@drawable/add_edittext_style_gray"
-         android:paddingRight="@dimen/_10sdp"/>
+        android:textSize="@dimen/_15sdp" />
+
     <EditText
-        android:id="@+id/et_time"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/et_apointment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
-        android:drawableRight="@drawable/time"
-        android:paddingLeft="@dimen/_10sdp"
-        android:hint="12:10 PM"
-        android:editable="false"
-        android:clickable="true"
         android:background="@drawable/add_edittext_style_gray"
-        android:paddingRight="@dimen/_10sdp"/>
+        android:clickable="true"
+        android:drawableRight="@drawable/ic_baseline_calendar_today"
+        android:editable="false"
+        android:hint="10-10-2020"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp" />
 
-        <Button
-            android:id="@+id/apointmentSubmit"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/button_round"
-            android:layout_centerVertical="true"
-            android:text="Submit"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="bold"
-            />
+    <EditText
+        android:id="@+id/et_time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/add_edittext_style_gray"
+        android:clickable="true"
+        android:drawableRight="@drawable/time"
+        android:editable="false"
+        android:hint="12:10 PM"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp" />
+
+    <Button
+        android:id="@+id/apointmentSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@drawable/button_round"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

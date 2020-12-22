@@ -50,6 +50,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class BottomSheet extends Fragment {
+    public static final String[] category = new String[]{"House", "Office", "Shop"};
     AutoCompleteTextView autoCompleteTextView;
     RelativeLayout forRent, forSale, maximumButton, minimumButton;
     AppCompatButton BedroomAny, BathroomAny, oneBedroom, oneBathroom, twoBedroom, twoBathroom, threeBedroom, threeBathroom,
@@ -65,7 +66,6 @@ public class BottomSheet extends Fragment {
     Spinner filter_city_spiner;
     ArrayList<City> cityArrayList;
     ArrayList<PropertyType> propertyTypeArrayList;
-    public static final String[] category = new String[]{"House", "Office", "Shop"};
 
     public BottomSheet() {
     }
@@ -97,7 +97,7 @@ public class BottomSheet extends Fragment {
         BathroomAny = view.findViewById(R.id.bathroomAny);
 
         cityArrayList = new ArrayList<>();
-        propertyTypeArrayList=new ArrayList<>();
+        propertyTypeArrayList = new ArrayList<>();
         filter_city_spiner = view.findViewById(R.id.filter_city_spiner);
 
         newproperty = view.findViewById(R.id.newproperty);
@@ -391,23 +391,23 @@ public class BottomSheet extends Fragment {
             public void onResponse(Call<GetCitiesListResponse> call, Response<GetCitiesListResponse> response) {
                 if (response.isSuccessful()) {
                     GetCitiesListResponse getCitiesListResponse = response.body();
-                    if (getCitiesListResponse.getMessage()!=null){
+                    if (getCitiesListResponse.getMessage() != null) {
 
                         if (getCitiesListResponse.getMessage().equals("all cities")) {
 
-                            Cities_Data cities_data=response.body().getData();
-                            if (cities_data!=null){
-                                cityArrayList=cities_data.getCityArrayList();
-                                if (cityArrayList!=null){
-                                    ArrayList<String> cityList=new ArrayList<>();
-                                    if(cityArrayList.size()>0){
+                            Cities_Data cities_data = response.body().getData();
+                            if (cities_data != null) {
+                                cityArrayList = cities_data.getCityArrayList();
+                                if (cityArrayList != null) {
+                                    ArrayList<String> cityList = new ArrayList<>();
+                                    if (cityArrayList.size() > 0) {
 
-                                        for (City city:cityArrayList){
+                                        for (City city : cityArrayList) {
                                             cityList.add(city.getCity());
                                         }
                                     }
 
-                                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,cityList);
+                                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, cityList);
                                     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                     filter_city_spiner.setAdapter(arrayAdapter);
 
@@ -435,7 +435,6 @@ public class BottomSheet extends Fragment {
             }
         });
     }
-
 
 
     public void GetPropertyList() {

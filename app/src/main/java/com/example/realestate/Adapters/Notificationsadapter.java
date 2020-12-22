@@ -25,12 +25,13 @@ public class Notificationsadapter extends RecyclerView.Adapter<Notificationsadap
     Context context;
     private Activity activity;
     private List<Notification> notification;
+
     public Notificationsadapter(Activity activity,
-                          Context context,
-                          List<Notification> notification) {
+                                Context context,
+                                List<Notification> notification) {
         this.context = context;
         this.activity = activity;
-        this.notification=notification;
+        this.notification = notification;
 
     }
 
@@ -57,7 +58,7 @@ public class Notificationsadapter extends RecyclerView.Adapter<Notificationsadap
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
-        TextView title,description,notificationtime;
+        TextView title, description, notificationtime;
         LinearLayout mainLayout;
 
 

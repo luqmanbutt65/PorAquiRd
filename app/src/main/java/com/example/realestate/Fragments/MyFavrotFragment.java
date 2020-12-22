@@ -39,11 +39,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MyFavrotFragment extends Fragment {
-ImageView back_btn;
+    ImageView back_btn;
     Context context;
     TextView tv_result_number;
     RecyclerView favRecyclerview;
     private ArrayList<Properties> propertiesArrayList;
+    String user_Id="";
     public MyFavrotFragment() {
         // Required empty public constructor
     }
@@ -54,26 +55,32 @@ ImageView back_btn;
         super.onCreate(savedInstanceState);
 
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getData(user_Id);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_favrot, container, false);
-        String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
+        user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
         getData(user_Id);
         propertiesArrayList = new ArrayList<>();
         context = this.getContext();
-        tv_result_number=view.findViewById(R.id.tv_result_number);
-        favRecyclerview= view.findViewById(R.id.myfav_recycler);
+        tv_result_number = view.findViewById(R.id.tv_result_number);
+        favRecyclerview = view.findViewById(R.id.myfav_recycler);
         favRecyclerview.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
 
-        back_btn=view.findViewById(R.id.back_btn1);
+        back_btn = view.findViewById(R.id.back_btn1);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -81,6 +88,7 @@ ImageView back_btn;
 
         return view;
     }
+
     public void getData(String id) {
 //        homeProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
@@ -93,7 +101,7 @@ ImageView back_btn;
                     PropertiesLike_Response propertiesLike_response = response.body();
                     if (propertiesLike_response.getMessage().equals("user fav properties")) {
 
-                       PropertiesLike_Data propertiesLike_data = response.body().getData();
+                        PropertiesLike_Data propertiesLike_data = response.body().getData();
 
 
                         if (propertiesLike_data != null) {

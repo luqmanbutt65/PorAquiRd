@@ -74,20 +74,24 @@ public class MyFavAdapter extends RecyclerView.Adapter<MyFavAdapter.viewholder> 
 
                     holder.likeimage_filled.setVisibility(View.INVISIBLE);
                     holder.like_image.setVisibility(View.VISIBLE);
+                    properties.remove(position);
+                    notifyDataSetChanged();
                     getpropertydata(user_Id, propertieId);
+
 
                 }
             });
-            holder.like_image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    holder.likeimage_filled.setVisibility(View.VISIBLE);
-                    holder.like_image.setVisibility(View.INVISIBLE);
-                    getpropertydata(user_Id, propertieId);
-                }
-            });
+//            holder.like_image.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//
+//                    holder.likeimage_filled.setVisibility(View.VISIBLE);
+//                    holder.like_image.setVisibility(View.INVISIBLE);
+//                    getpropertydata(user_Id, propertieId);
+//
+//                }
+//            });
 
         }
 
@@ -105,6 +109,40 @@ public class MyFavAdapter extends RecyclerView.Adapter<MyFavAdapter.viewholder> 
             }
         });
 
+
+    }
+
+    public void getpropertydata(String user_id, int property_id) {
+//        descriptionProgressDialog.show();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Call<LikeResponse> call = retrofit.create(ApiInterface.class).LIKEPROPERTY_CALL(user_id, String.valueOf(property_id));
+        call.enqueue(new Callback<LikeResponse>() {
+            @Override
+            public void onResponse(Call<LikeResponse> call, Response<LikeResponse> response) {
+                if (response.isSuccessful()) {
+                    LikeResponse likeResponse = response.body();
+                    if (likeResponse.getMessage().equals("Liked")) {
+
+
+                    } else if (likeResponse.getMessage().equals("Unliked")) {
+
+
+                    } else {
+                        Toast.makeText(context, "Error Please try again", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+//                descriptionProgressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<LikeResponse> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+//                descriptionProgressDialog.dismiss();
+            }
+        });
 
     }
 
@@ -132,6 +170,11 @@ public class MyFavAdapter extends RecyclerView.Adapter<MyFavAdapter.viewholder> 
 
         void setdata(Properties properties) {
             if (properties != null) {
+
+
+                    likeimage_filled.setVisibility(View.VISIBLE);
+                    like_image.setVisibility(View.INVISIBLE);
+
                 String city_val = ((city_val = properties.getCity()) != null) ? city_val : "N/A";
                 city.setText(city_val);
 
@@ -169,39 +212,6 @@ public class MyFavAdapter extends RecyclerView.Adapter<MyFavAdapter.viewholder> 
 
 
         }
-
-    }
-    public void getpropertydata(String user_id, int property_id) {
-//        descriptionProgressDialog.show();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<LikeResponse> call = retrofit.create(ApiInterface.class).LIKEPROPERTY_CALL(user_id, String.valueOf(property_id));
-        call.enqueue(new Callback<LikeResponse>() {
-            @Override
-            public void onResponse(Call<LikeResponse> call, Response<LikeResponse> response) {
-                if (response.isSuccessful()) {
-                    LikeResponse likeResponse = response.body();
-                    if (likeResponse.getMessage().equals("Liked")) {
-
-
-                    } else if (likeResponse.getMessage().equals("Unliked")) {
-
-
-                    } else {
-                        Toast.makeText(context, "Error Please try again", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                }
-//                descriptionProgressDialog.dismiss();
-            }
-
-            @Override
-            public void onFailure(Call<LikeResponse> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-//                descriptionProgressDialog.dismiss();
-            }
-        });
 
     }
 }

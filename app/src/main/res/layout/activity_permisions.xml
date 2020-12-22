@@ -8,15 +8,14 @@
     tools:context=".Activities.Permisions">
 
 
-
-<Button
-    android:id="@+id/restartbtn"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/_50sdp"
-    android:layout_marginLeft="@dimen/_20sdp"
-    android:layout_marginRight="@dimen/_20sdp"
-    android:text="Restart App"
-    android:textStyle="bold"
-    android:layout_alignParentBottom="true"
-    android:layout_marginBottom="@dimen/_40sdp"/>
+    <Button
+        android:id="@+id/restartbtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:text="Restart App"
+        android:textStyle="bold" />
 </RelativeLayout>

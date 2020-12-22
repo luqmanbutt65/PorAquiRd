@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/grey"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/grey">
 
 
     <LinearLayout
         android:id="@+id/lay1"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Chanel 1"
-            android:textSize="@dimen/_15sdp"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(Active)"
-            android:textSize="@dimen/_15sdp"
             android:textColor="#19EB2E"
-            android:textStyle="bold"/>
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
     <LinearLayout
-        android:paddingLeft="@dimen/_10sdp"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/lay1"
         android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_10sdp">
+
         <RelativeLayout
-            android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp">
 
             <TextView
                 android:id="@+id/alias"
@@ -51,24 +51,24 @@
                 android:layout_height="wrap_content"
                 android:text="Alias : "
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_toRightOf="@id/alias"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/alias"
                 android:text="Alias "
                 android:textColor="@color/white"
-                android:textStyle="normal"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="normal" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
 
             <TextView
                 android:id="@+id/peerid"
@@ -76,24 +76,24 @@
                 android:layout_height="wrap_content"
                 android:text="Peer Id : "
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_toRightOf="@id/peerid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/peerid"
                 android:text="Alias "
                 android:textColor="@color/white"
-                android:textStyle="normal"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="normal" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
 
             <TextView
                 android:id="@+id/chanelid"
@@ -101,24 +101,24 @@
                 android:layout_height="wrap_content"
                 android:text="Chanel Id : "
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_toRightOf="@id/chanelid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/chanelid"
                 android:text="Alias "
                 android:textColor="@color/white"
-                android:textStyle="normal"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="normal" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
 
             <TextView
                 android:id="@+id/totalcapacity"
@@ -126,24 +126,24 @@
                 android:layout_height="wrap_content"
                 android:text="Total Capacity : "
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_toRightOf="@id/totalcapacity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/totalcapacity"
                 android:text="0,033 BTC "
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
 
             <TextView
                 android:id="@+id/status"
@@ -151,24 +151,24 @@
                 android:layout_height="wrap_content"
                 android:text="Status : "
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_toRightOf="@id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/status"
                 android:text="Chaneld Normal "
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
 
             <TextView
                 android:id="@+id/spendables"
@@ -176,24 +176,24 @@
                 android:layout_height="wrap_content"
                 android:text="Spendables : "
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_toRightOf="@id/spendables"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/spendables"
                 android:text="0.33 BTC "
                 android:textColor="#F9E002"
-                android:textStyle="normal"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="normal" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
 
             <TextView
                 android:id="@+id/receivables"
@@ -201,17 +201,17 @@
                 android:layout_height="wrap_content"
                 android:text="Receiveables : "
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_toRightOf="@id/receivables"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/receivables"
                 android:text="0.08 BTC "
                 android:textColor="#19EB2E"
-                android:textStyle="normal"
-                android:textSize="@dimen/_12sdp"/>
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="normal" />
 
         </RelativeLayout>
 

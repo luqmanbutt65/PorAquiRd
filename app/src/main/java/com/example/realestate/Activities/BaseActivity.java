@@ -43,10 +43,22 @@ public class BaseActivity extends AppCompatActivity {
     Context bContext;
     Activity bActivity;
 
+    public static boolean toBooleanDefaultIfNull(Boolean bool) {
+        if (bool == null) return false;
+        return bool.booleanValue();
+    }
 
-
-
-
+    public static File savebitmap(Bitmap bmp, String fileName) throws IOException {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 60, bytes);
+        File f = new File(Environment.getExternalStorageDirectory()
+                + File.separator + fileName + ".jpg");
+        f.createNewFile();
+        FileOutputStream fo = new FileOutputStream(f);
+        fo.write(bytes.toByteArray());
+        fo.close();
+        return f;
+    }
 
     @Override
     public void onStart() {
@@ -57,8 +69,9 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-       // stopService(new Intent(bContext,MyLogOutService.class));
+        // stopService(new Intent(bContext,MyLogOutService.class));
     }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,21 +79,15 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-
-
-
     private void initView() {
         bContext = this;
         bActivity = this;
 
     }
 
-
     public void showToast(String message) {
         Toast.makeText(bContext, message, Toast.LENGTH_SHORT).show();
     }
-
-
 
     public boolean isEmailValid(CharSequence email) {
         return !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
@@ -90,31 +97,14 @@ public class BaseActivity extends AppCompatActivity {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    public static boolean toBooleanDefaultIfNull(Boolean bool) {
-        if (bool == null) return false;
-        return bool.booleanValue();
-    }
-
-
-
     public String excatFigure(double value) {
         BigDecimal d = new BigDecimal(String.valueOf(value));
         return d.toPlainString();
     }
-    public static File savebitmap(Bitmap bmp, String fileName) throws IOException {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 60, bytes);
-        File f = new File(Environment.getExternalStorageDirectory()
-                + File.separator + fileName+".jpg");
-        f.createNewFile();
-        FileOutputStream fo = new FileOutputStream(f);
-        fo.write(bytes.toByteArray());
-        fo.close();
-        return f;
-    }
-    public  String getUnixTimeStamp() {
-        Long tsLong = System.currentTimeMillis()/1000;
-        String uNixtimeStamp=tsLong.toString();
-        return  uNixtimeStamp;
+
+    public String getUnixTimeStamp() {
+        Long tsLong = System.currentTimeMillis() / 1000;
+        String uNixtimeStamp = tsLong.toString();
+        return uNixtimeStamp;
     }
 }

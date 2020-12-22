@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.realestate.Activities.Description;
+import com.example.realestate.Activities.Rating_Activity;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.CustomeClasses.NumberTextWatcher;
 import com.example.realestate.Model.DashboardData;
@@ -76,6 +77,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
             int propertieId = properties.get(position).getId();
             String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", context);
 
+
             holder.likeimage_filled.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -83,6 +85,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
                     holder.likeimage_filled.setVisibility(View.INVISIBLE);
                     holder.like_image.setVisibility(View.VISIBLE);
                     getpropertydata(user_Id, propertieId);
+
 
                 }
             });
@@ -101,12 +104,17 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
         }
 
         int propertieId = properties.get(position).getId();
-//        String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", context);
-
 
         holder.setdata(properties.get(position));
 
-
+        holder.review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Rating_Activity.class);
+                intent.putExtra("propertieIDKey", propertieId);
+                context.startActivity(intent);
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,6 +125,40 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
             }
         });
 
+
+    }
+
+    public void getpropertydata(String user_id, int property_id) {
+//        descriptionProgressDialog.show();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Call<LikeResponse> call = retrofit.create(ApiInterface.class).LIKEPROPERTY_CALL(user_id, String.valueOf(property_id));
+        call.enqueue(new Callback<LikeResponse>() {
+            @Override
+            public void onResponse(Call<LikeResponse> call, Response<LikeResponse> response) {
+                if (response.isSuccessful()) {
+                    LikeResponse likeResponse = response.body();
+                    if (likeResponse.getMessage().equals("Liked")) {
+
+
+                    } else if (likeResponse.getMessage().equals("Unliked")) {
+
+
+                    } else {
+                        Toast.makeText(context, "Error Please try again", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+//                descriptionProgressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<LikeResponse> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+//                descriptionProgressDialog.dismiss();
+            }
+        });
 
     }
 
@@ -147,6 +189,13 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
 
             //  String status= ((status = invoice.getStatus()) != null) ? status : "paid";
             if (properties != null) {
+                if (properties.isLike()) {
+                    likeimage_filled.setVisibility(View.VISIBLE);
+                    like_image.setVisibility(View.INVISIBLE);
+                } else {
+                    likeimage_filled.setVisibility(View.INVISIBLE);
+                    like_image.setVisibility(View.VISIBLE);
+                }
                 String city_val = ((city_val = properties.getCity()) != null) ? city_val : "N/A";
                 city.setText(city_val);
 
@@ -185,41 +234,6 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
 
         }
 
-
-    }
-
-
-    public void getpropertydata(String user_id, int property_id) {
-//        descriptionProgressDialog.show();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<LikeResponse> call = retrofit.create(ApiInterface.class).LIKEPROPERTY_CALL(user_id, String.valueOf(property_id));
-        call.enqueue(new Callback<LikeResponse>() {
-            @Override
-            public void onResponse(Call<LikeResponse> call, Response<LikeResponse> response) {
-                if (response.isSuccessful()) {
-                    LikeResponse likeResponse = response.body();
-                    if (likeResponse.getMessage().equals("Liked")) {
-
-
-                    } else if (likeResponse.getMessage().equals("Unliked")) {
-
-
-                    } else {
-                        Toast.makeText(context, "Error Please try again", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                }
-//                descriptionProgressDialog.dismiss();
-            }
-
-            @Override
-            public void onFailure(Call<LikeResponse> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-//                descriptionProgressDialog.dismiss();
-            }
-        });
 
     }
 }

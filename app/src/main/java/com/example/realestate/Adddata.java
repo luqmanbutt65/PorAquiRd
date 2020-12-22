@@ -2,6 +2,7 @@ package com.example.realestate;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -42,6 +43,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.realestate.Activities.BaseActivity;
 import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.ImagesAdapter;
+import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.CustomeClasses.NumberTextWatcher;
 import com.example.realestate.Model.GetList.Cities_Data;
@@ -80,6 +82,7 @@ public class Adddata extends BaseActivity {
     private static final int PICK_IMAGE_ONE = 0;
     private static final int PICK_IMAGE_MULTI = 2;
     private static final int MY_PERMISSIONS_REQUEST = 1;
+    final Calendar myCalendar = Calendar.getInstance();
     Context context;
     Button addImage;
     ImageView featureImage, backbtn;
@@ -92,11 +95,9 @@ public class Adddata extends BaseActivity {
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
     EditText description, sector, petcheks, parkingcheks, title, price, chekBoxpet, chekBoxroom, location, unit_of_measure, date_of_construction;
-
     Spinner prpertytype;
     List<String> list;
     List<String> listprice;
-    final Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog constructionDatePicker;
 
     CheckBox chUsed, chnew, chnewProject;
@@ -110,6 +111,115 @@ public class Adddata extends BaseActivity {
 
     ArrayList<City> cityArrayList;
     ArrayList<PropertyType> propertyTypeArrayList;
+
+    ProgressDialog AddDataProgressDialog;
+
+    public static File savebitmap(Bitmap bmp, String fileName) throws IOException {
+
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 60, bytes);
+        File f = new File(Environment.getExternalStorageDirectory()
+                + File.separator + fileName + ".jpg");
+        f.createNewFile();
+        FileOutputStream fo = new FileOutputStream(f);
+        fo.write(bytes.toByteArray());
+        fo.close();
+        return f;
+    }
+
+    public static File bitmapToFile(Context context, Bitmap bitmap, String fileNameToSave) { // File name like "image.png"
+        //create a file to write bitmap data
+        File file = null;
+        try {
+            file = new File(Environment.getExternalStorageDirectory() + File.separator + fileNameToSave);
+            file.createNewFile();
+
+//Convert bitmap to byte array
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 60, bos); // YOU can also save it in JPEG
+            byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(bitmapdata);
+            fos.flush();
+            fos.close();
+            return file;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return file; // it will return null
+        }
+    }
+
+    public static String getFilePath(Context context, Uri uri) throws URISyntaxException {
+        String selection = null;
+        String[] selectionArgs = null;
+        // Uri is different in versions after KITKAT (Android 4.4), we need to
+        if (Build.VERSION.SDK_INT >= 19 && DocumentsContract.isDocumentUri(context, uri)) {//DocumentsContract.isDocumentUri(context.getApplicationContext(), uri))
+            if (isExternalStorageDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                return Environment.getExternalStorageDirectory() + "/" + split[1];
+            } else if (isDownloadsDocument(uri)) {
+                final String id = DocumentsContract.getDocumentId(uri);
+                uri = ContentUris.withAppendedId(
+                        Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+            } else if (isMediaDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+                if ("image".equals(type)) {
+                    uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                } else if ("video".equals(type)) {
+                    uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                } else if ("audio".equals(type)) {
+                    uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+                selection = "_id=?";
+                selectionArgs = new String[]{
+                        split[1]
+                };
+            }
+        }
+        if ("content".equalsIgnoreCase(uri.getScheme())) {
+            String[] projection = {
+                    MediaStore.Images.Media.DATA
+            };
+            Cursor cursor = null;
+            try {
+                cursor = context.getContentResolver()
+                        .query(uri, projection, selection, selectionArgs, null);
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                if (cursor.moveToFirst()) {
+                    return cursor.getString(column_index);
+                }
+            } catch (Exception e) {
+            }
+        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+        return null;
+    }
+
+    public static boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is DownloadsProvider.
+     */
+    public static boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is MediaProvider.
+     */
+    public static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +257,12 @@ public class Adddata extends BaseActivity {
         GetCitiesList();
         GetPropertyTypeList();
         cityArrayList = new ArrayList<>();
-        propertyTypeArrayList=new ArrayList<>();
+        propertyTypeArrayList = new ArrayList<>();
+
+        AddDataProgressDialog = new ProgressDialog(Adddata.this);
+        AddDataProgressDialog.setMessage("Logining..."); // Setting Message
+        AddDataProgressDialog.setCancelable(false);
+
 
         add_data.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -339,13 +454,9 @@ public class Adddata extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                Toast.makeText(getApplicationContext(), prpertytype.getSelectedItem().toString(),
 //                        Toast.LENGTH_SHORT).show();
-                if (position == 0) {
-                    propertytypeval = "";
 
-                } else {
 
-                    propertytypeval = prpertytype.getSelectedItem().toString();
-                }
+                propertytypeval = prpertytype.getSelectedItem().toString();
 
 
             }
@@ -481,7 +592,6 @@ public class Adddata extends BaseActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_ONE);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -562,7 +672,6 @@ public class Adddata extends BaseActivity {
         }
     }
 
-
     private void updateLabel() {
         String myFormat = "MM/dd/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
@@ -589,30 +698,34 @@ public class Adddata extends BaseActivity {
         return date;
     }
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
-
     private void AddPropertyData(String id, String status, String property_type, String title, String description, String price, String location, String city, String sector, String bedroom, String bath, String unitOfMeasure, String dateOfConstruction, String petroom, String parkingLot, String propertycondition) {
-
+        AddDataProgressDialog.show();
 
         // Permission is granted
 
         if (parkingLot == null) {
             parkingLot = "";
         }
+        List<MultipartBody.Part> parts = new ArrayList<>();
 //        otpProgressDialog.show();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                .addConverterFactory(GsonConverterFactory.create()).build();
+//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+//                .addConverterFactory(GsonConverterFactory.create()).build();
+//
+//        Retrofit  retrofit2 = new Retrofit.Builder().baseUrl(NEW_BASE_URL).client(okHttpClient)
+//                .addConverterFactory(GsonConverterFactory.create()).build();
 
         RequestBody id1 = RequestBody.create(MediaType.parse("text/plain"), id);
 
         MultipartBody.Part[] multipartTypedOutput = new MultipartBody.Part[imagesDataArrayList.size()];
 
+
         for (int index = 0; index < imagesDataArrayList.size(); index++) {
+            Log.d("Upload request", "requestUploadSurvey: survey image " + index + "  " + imagesDataArrayList.get(index));
             Log.d("Upload request", "requestUploadpropertImages: property image " + index + "  " + imagesDataArrayList.get(index).getUri().toString());
             File multiImageFile = null;
             String pathOfFile = null;
@@ -625,39 +738,13 @@ public class Adddata extends BaseActivity {
             //            Bitmap myBitmap = BitmapFactory.decodeFile(file2.getAbsolutePath());
             if (multiImageFile != null) {
                 RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), multiImageFile);
-                multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images", multiImageFile.getPath(), surveyBody);
+                multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images[]", "image"+index+getUnixTimeStamp(), surveyBody);
+                parts.add(MultipartBody.Part.createFormData("property_images[]", "image"+index+getUnixTimeStamp(), surveyBody));
+
             } else {
                 showToast("Please ReSelect Images");
             }
-
         }
-
-
-//        try {
-//            bitmapmainimage = MediaStore.Images.Media.getBitmap(getContentResolver(), imageuri);
-//            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//            bitmapmainimage.compress(Bitmap.CompressFormat.PNG, 30, stream);
-//            featureImage.setImageBitmap(bitmapmainimage);
-//
-//            File file = null;
-//            try {
-//                file = savebitmap(bitmapmainimage, getUnixTimeStamp());
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            Bitmap myBitmap2 = BitmapFactory.decodeFile(file.getAbsolutePath());
-//            RequestBody feature_Image = RequestBody.create(MediaType.parse("image/*"), file);
-//            MultipartBody.Part featureImag1 = MultipartBody.Part.createFormData("main_image", file.getPath(), feature_Image);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
-
-
-
-
-
         File mainImageFile = null;
         String pathOfFile = null;
         try {
@@ -689,7 +776,7 @@ public class Adddata extends BaseActivity {
         RequestBody propertycondition1 = RequestBody.create(MediaType.parse("text/plain"), propertycondition);
 
         //
-        Call<AddProperties_Response> call = retrofit.create(ApiInterface.class).ADD_PROPERTY_DATA(id1, status1, property_type1, title1, description1, price1, location1, city1, sector1, bedroom1, bath1, unitOfMeasure1, dateOfConstruction1, petroom1, parkingLot1, propertycondition1, multipartTypedOutput, featureImag1);
+        Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_PROPERTY_DATA(id1, status1, property_type1, title1, description1, price1, location1, city1, sector1, bedroom1, bath1, unitOfMeasure1, dateOfConstruction1, petroom1, parkingLot1, propertycondition1, multipartTypedOutput, featureImag1);
         call.enqueue(new Callback<AddProperties_Response>() {
             @Override
             public void onResponse(Call<AddProperties_Response> call, Response<AddProperties_Response> response) {
@@ -709,19 +796,18 @@ public class Adddata extends BaseActivity {
 
                     Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }
-//                otpProgressDialog.dismiss();
+                AddDataProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<AddProperties_Response> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                otpProgressDialog.dismiss();
+                AddDataProgressDialog.dismiss();
             }
         });
 
 
     }
-
 
     public void onchecked(View v) {
 
@@ -754,115 +840,6 @@ public class Adddata extends BaseActivity {
         }
 
     }
-
-    public static File savebitmap(Bitmap bmp, String fileName) throws IOException {
-
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 60, bytes);
-        File f = new File(Environment.getExternalStorageDirectory()
-                + File.separator + fileName + ".jpg");
-        f.createNewFile();
-        FileOutputStream fo = new FileOutputStream(f);
-        fo.write(bytes.toByteArray());
-        fo.close();
-        return f;
-    }
-
-    public static File bitmapToFile(Context context, Bitmap bitmap, String fileNameToSave) { // File name like "image.png"
-        //create a file to write bitmap data
-        File file = null;
-        try {
-            file = new File(Environment.getExternalStorageDirectory() + File.separator + fileNameToSave);
-            file.createNewFile();
-
-//Convert bitmap to byte array
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 60, bos); // YOU can also save it in JPEG
-            byte[] bitmapdata = bos.toByteArray();
-
-//write the bytes in file
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(bitmapdata);
-            fos.flush();
-            fos.close();
-            return file;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return file; // it will return null
-        }
-    }
-
-
-    public static String getFilePath(Context context, Uri uri) throws URISyntaxException {
-        String selection = null;
-        String[] selectionArgs = null;
-        // Uri is different in versions after KITKAT (Android 4.4), we need to
-        if (Build.VERSION.SDK_INT >= 19 && DocumentsContract.isDocumentUri(context, uri)) {//DocumentsContract.isDocumentUri(context.getApplicationContext(), uri))
-            if (isExternalStorageDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                return Environment.getExternalStorageDirectory() + "/" + split[1];
-            } else if (isDownloadsDocument(uri)) {
-                final String id = DocumentsContract.getDocumentId(uri);
-                uri = ContentUris.withAppendedId(
-                        Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
-            } else if (isMediaDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                final String type = split[0];
-                if ("image".equals(type)) {
-                    uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                } else if ("video".equals(type)) {
-                    uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                } else if ("audio".equals(type)) {
-                    uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-                }
-                selection = "_id=?";
-                selectionArgs = new String[]{
-                        split[1]
-                };
-            }
-        }
-        if ("content".equalsIgnoreCase(uri.getScheme())) {
-            String[] projection = {
-                    MediaStore.Images.Media.DATA
-            };
-            Cursor cursor = null;
-            try {
-                cursor = context.getContentResolver()
-                        .query(uri, projection, selection, selectionArgs, null);
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                if (cursor.moveToFirst()) {
-                    return cursor.getString(column_index);
-                }
-            } catch (Exception e) {
-            }
-        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
-            return uri.getPath();
-        }
-        return null;
-    }
-
-    public static boolean isExternalStorageDocument(Uri uri) {
-        return "com.android.externalstorage.documents".equals(uri.getAuthority());
-    }
-
-    /**
-     * @param uri The Uri to check.
-     * @return Whether the Uri authority is DownloadsProvider.
-     */
-    public static boolean isDownloadsDocument(Uri uri) {
-        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
-    }
-
-    /**
-     * @param uri The Uri to check.
-     * @return Whether the Uri authority is MediaProvider.
-     */
-    public static boolean isMediaDocument(Uri uri) {
-        return "com.android.providers.media.documents".equals(uri.getAuthority());
-    }
-
 
     public void GetCitiesList() {
 
@@ -914,7 +891,6 @@ public class Adddata extends BaseActivity {
             }
         });
     }
-
 
     public void GetPropertyTypeList() {
 

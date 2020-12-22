@@ -44,18 +44,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Homefragment extends Fragment {
-    ImageView drawerbtn,drawerbtnCancle, filter, notification;
-    Button menu,termConditions,privecyPolicy,logout;
+    ImageView drawerbtn, drawerbtnCancle, filter, notification;
+    Button menu, termConditions, privecyPolicy, logout, cookies_policy;
     Context context;
     EditText search;
     DashBoardAdapter dashBoardAdapter;
     RecyclerView homeRecylerView;
     TextView tv_result_number;
-    private FrameLayout frameLayout;
-    private ArrayList<Properties> propertiesArrayList;
     ProgressDialog homeProgressDialog;
     TextView tv_username;
+    private FrameLayout frameLayout;
+    private ArrayList<Properties> propertiesArrayList;
     private DrawerLayout mDrawerLayout;
+
     public Homefragment() {
         // Required empty public constructor
     }
@@ -86,7 +87,7 @@ public class Homefragment extends Fragment {
         filter = view.findViewById(R.id.filter);
         search = view.findViewById(R.id.search);
         drawerbtn = view.findViewById(R.id.drawer);
-
+        cookies_policy = view.findViewById(R.id.cockies_policy);
 
         menu = view.findViewById(R.id.menu);
         privecyPolicy = view.findViewById(R.id.privacypolicy);
@@ -95,7 +96,6 @@ public class Homefragment extends Fragment {
 
 
         drawerbtnCancle = view.findViewById(R.id.cancel_button);
-
 
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +144,8 @@ public class Homefragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mDrawerLayout = view.findViewById(R.id.frame1);
-                mDrawerLayout.closeDrawer(Gravity.LEFT, false);            }
+                mDrawerLayout.closeDrawer(Gravity.LEFT, false);
+            }
         });
 
         if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
@@ -191,16 +192,82 @@ public class Homefragment extends Fragment {
 
         //TODO: CAll the Api for Get the List of All Avaiable Properties Houses
         String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", context);
-        getData(user_Id);
+        if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
+            if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext())
+                    != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()) != null) {
+        getlikeData(user_Id);
+            }
+        }
+        else {
+            getlikeData("0");
+        }
+
         return view;
     }
 
 
-    public void getData(String id) {
+    //    public void getData(String id) {
+//        homeProgressDialog.show();
+//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+//                .addConverterFactory(GsonConverterFactory.create()).build();
+//        Call<Properties_Response> call = retrofit.create(ApiInterface.class).DASHBOARDDATA_CALL(id);
+//        call.enqueue(new Callback<Properties_Response>() {
+//            @Override
+//            public void onResponse(Call<Properties_Response> call, Response<Properties_Response> response) {
+//                if (response.isSuccessful()) {
+//                    Properties_Response properties_response = response.body();
+//                    if (properties_response.getMessage().equals("all properties")) {
+//
+//                        Properties_Data properties_data = response.body().getData();
+//
+//
+//                        if (properties_data != null) {
+//                            if (properties_data.getPropertiesArrayList() != null) {
+//                                propertiesArrayList = properties_data.getPropertiesArrayList();
+//                                GlobalState.getInstance().setPropertiesArrayList(propertiesArrayList);
+//
+//
+//                                ArrayList<Properties> tempTestList = GlobalState.getInstance().getPropertiesArrayList();
+//
+//                                if (propertiesArrayList.size() > 0) {
+//                                    tv_result_number.setText(String.valueOf(propertiesArrayList.size()));
+//                                    homeRecylerView.setAdapter(new DashBoardAdapter(getActivity(), context, propertiesArrayList));
+//
+//                                }
+//
+//                            }
+//
+//                        } else {
+//                            Toast.makeText(getContext(), "Data is null", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//
+//                    } else {
+//
+//                        Toast.makeText(getContext(), "Data fetching error", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//
+//                } else {
+//
+//                    Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+//                }
+//                homeProgressDialog.dismiss();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Properties_Response> call, Throwable t) {
+//                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//                homeProgressDialog.dismiss();
+//            }
+//        });
+//
+//    }
+    public void getlikeData(String id) {
         homeProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<Properties_Response> call = retrofit.create(ApiInterface.class).DASHBOARDDATA_CALL(id);
+        Call<Properties_Response> call = retrofit.create(ApiInterface.class).LIKEPROPERTY_CALL(id);
         call.enqueue(new Callback<Properties_Response>() {
             @Override
             public void onResponse(Call<Properties_Response> call, Response<Properties_Response> response) {
@@ -216,8 +283,6 @@ public class Homefragment extends Fragment {
                                 propertiesArrayList = properties_data.getPropertiesArrayList();
                                 GlobalState.getInstance().setPropertiesArrayList(propertiesArrayList);
 
-
-                                ArrayList<Properties> tempTestList = GlobalState.getInstance().getPropertiesArrayList();
 
                                 if (propertiesArrayList.size() > 0) {
                                     tv_result_number.setText(String.valueOf(propertiesArrayList.size()));
@@ -253,5 +318,7 @@ public class Homefragment extends Fragment {
         });
 
     }
+
+
 
 }

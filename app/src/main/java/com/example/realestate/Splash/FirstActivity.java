@@ -30,14 +30,15 @@ import java.util.Map;
 
 
 public class FirstActivity extends AppCompatActivity {
-Boolean isRationale;
-    Boolean isFirst=true;
+    Boolean isRationale;
+    Boolean isFirst = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Thread thread=new Thread(){
+        Thread thread = new Thread() {
             @Override
             public void run() {
                 try {
@@ -55,7 +56,7 @@ Boolean isRationale;
 //                        Intent intent = new Intent(FirstActivity.this, LoginScreen.class);
 //                        startActivity(intent);
 //                        finish();}
-                       // return;
+                    // return;
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

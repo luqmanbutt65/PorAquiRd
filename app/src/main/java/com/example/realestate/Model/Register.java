@@ -17,7 +17,7 @@ public class Register {
     @Expose
     private UserInfo userInfo;
 
-    public Register(String  status, String message, UserInfo userInfo) {
+    public Register(String status, String message, UserInfo userInfo) {
         this.status = status;
         this.message = message;
         this.userInfo = userInfo;

@@ -33,18 +33,18 @@ public class TermConditions extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View view= inflater.inflate(R.layout.fragment_term_conditions, container, false);
+        View view = inflater.inflate(R.layout.fragment_term_conditions, container, false);
 
-       back_btn=view.findViewById(R.id.back_btn_termcondition);
-       back_btn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent intent=new Intent(getActivity(), MainActivity.class);
-               startActivity(intent);
-           }
-       });
+        back_btn = view.findViewById(R.id.back_btn_termcondition);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
-       return view;
+        return view;
     }
 }
