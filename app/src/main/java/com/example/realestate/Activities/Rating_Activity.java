@@ -3,11 +3,16 @@ package com.example.realestate.Activities;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,24 +40,45 @@ public class Rating_Activity extends BaseActivity {
     EditText comment;
     RatingBar ratingBar;
     Button submit;
+    ImageView back_btnReview;
     TextView numofcomments;
     String user_id = "";
     float userrating = 1;
     String comment_data = "";
     RecyclerView commentRecycler;
     ArrayList<User_Reviews> user_reviewsArrayList;
-
+    ProgressDialog ratingProgressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating_);
 
         user_reviewsArrayList = new ArrayList<>();
+
+
+        ratingProgressDialog = new ProgressDialog(Rating_Activity.this);
+        ratingProgressDialog.setMessage("Logining..."); // Setting Message
+        ratingProgressDialog.setCancelable(false);
         comment = findViewById(R.id.et_comment);
+        comment.setScroller(new Scroller(getApplicationContext()));
+        comment.setMaxLines(7);
+        comment.setVerticalScrollBarEnabled(true);
+        comment.setMovementMethod(new ScrollingMovementMethod());
         ratingBar = findViewById(R.id.rating);
         submit = findViewById(R.id.submit_rating);
         numofcomments = findViewById(R.id.numofcomments);
         commentRecycler = findViewById(R.id.commentRecycler);
+        back_btnReview=findViewById(R.id.back_btnReview);
+        back_btnReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Rating_Activity.this,Description.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
         commentRecycler.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
 
         extras = getIntent().getExtras();
@@ -85,7 +111,7 @@ public class Rating_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                comment_data = comment.getText().toString();
+                comment_data = comment.getText().toString().trim();
                 if (!comment_data.isEmpty()) {
                     putRatingCommentData(user_id, propertieID, userrating, comment_data);
                     comment.setText("");
@@ -101,7 +127,7 @@ public class Rating_Activity extends BaseActivity {
     }
 
     public void putRatingCommentData(String user_id, int property_id, float rating, String comment) {
-//        descriptionProgressDialog.show();
+        ratingProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
         Call<PostRatigResp> call = retrofit.create(ApiInterface.class).SEND_RATING_CALL(user_id, String.valueOf(property_id), rating, comment);
@@ -113,6 +139,9 @@ public class Rating_Activity extends BaseActivity {
                     if (rating_response.getMessage().equals("Rating and Comment Updated Successfully")) {
                         getRateData(String.valueOf(propertieID));
                         showToast("Review  Successfully Added");
+                        Intent intent=new Intent(Rating_Activity.this,Description.class);
+                        startActivity(intent);
+                        finish();
 
                     } else {
                         showToast("Error Please try again");
@@ -120,13 +149,13 @@ public class Rating_Activity extends BaseActivity {
 
 
                 }
-//                descriptionProgressDialog.dismiss();
+                ratingProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<PostRatigResp> call, Throwable t) {
                 showToast(t.getMessage());
-//                descriptionProgressDialog.dismiss();
+                ratingProgressDialog.dismiss();
             }
         });
 
@@ -134,7 +163,7 @@ public class Rating_Activity extends BaseActivity {
 
 
     public void getRateData(String id) {
-//        homeProgressDialog.show();
+        ratingProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
         Call<Rating_Response> call = retrofit.create(ApiInterface.class).RATING_DATA_CALL(String.valueOf(id));
@@ -148,8 +177,6 @@ public class Rating_Activity extends BaseActivity {
                             if (rating_response.getRatingData().getUser_reviewsArrayList().size() > 0) {
                                 numofcomments.setText(rating_response.getRatingData().getUser_reviewsArrayList().size()+" Comments");
                                 commentRecycler.setAdapter(new ReviewAdapter(Rating_Activity.this, getApplicationContext(), rating_response.getRatingData().getUser_reviewsArrayList()));
-
-
                             }
                         }
                     } else {
@@ -164,13 +191,13 @@ public class Rating_Activity extends BaseActivity {
 
                     Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }
-//                homeProgressDialog.dismiss();
+                ratingProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<Rating_Response> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                homeProgressDialog.dismiss();
+                ratingProgressDialog.dismiss();
             }
         });
 

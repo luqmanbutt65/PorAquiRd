@@ -42,12 +42,13 @@
             android:src="@drawable/notification" />
 
         <TextView
+            android:id="@+id/numofApontment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/_10sdp"
             android:gravity="left"
-            android:text="04 Appointments"
+            android:text="0 Appointments"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold" />

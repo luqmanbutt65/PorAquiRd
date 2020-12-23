@@ -107,14 +107,14 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
 
         holder.setdata(properties.get(position));
 
-        holder.review.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, Rating_Activity.class);
-                intent.putExtra("propertieIDKey", propertieId);
-                context.startActivity(intent);
-            }
-        });
+//        holder.review.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, Rating_Activity.class);
+//                intent.putExtra("propertieIDKey", propertieId);
+//                context.startActivity(intent);
+//            }
+//        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

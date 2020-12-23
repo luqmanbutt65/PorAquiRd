@@ -105,11 +105,14 @@
                     android:layout_below="@+id/rating"
                     android:ellipsize="end"
                     android:lines="7"
+
+                    android:inputType="textMultiLine"
+                    android:digits="qwertyuiopasdfghjklzxcvbnm 1234567890 QWERTYUIOPASDFGHJKLZXCVBNM\n"
                     android:maxLines="7"
                     android:padding="@dimen/_5sdp"
                     android:scrollbars="vertical"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_10sdp"
+                    android:textSize="@dimen/_12sdp"
                     android:textStyle="normal" />
 
                 <Button

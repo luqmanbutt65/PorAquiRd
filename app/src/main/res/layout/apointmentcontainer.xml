@@ -59,6 +59,7 @@
                 android:layout_toRightOf="@+id/iv_property"
                 android:drawableLeft="@drawable/time"
                 android:maxLines="1"
+                android:drawablePadding="@dimen/_10sdp"
                 android:text="December 12, 2020 12:30 PM"
                 android:textColor="@color/textblackcolor"
                 android:textSize="@dimen/_12sdp"
@@ -70,40 +71,10 @@
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/approved"
                 android:gravity="center"
-                android:text="Approved"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="normal" />
-
-            <TextView
-                android:id="@+id/apointment_pending"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/pending"
-                android:gravity="center"
-                android:text="Approved"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="normal"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/apointment_cancel"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/cancel"
-                android:gravity="center"
-                android:text="Approved"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="normal"
-                android:visibility="gone" />
 
 
         </RelativeLayout>

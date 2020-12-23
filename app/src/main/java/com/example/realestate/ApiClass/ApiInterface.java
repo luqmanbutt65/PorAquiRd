@@ -1,5 +1,7 @@
 package com.example.realestate.ApiClass;
 
+import com.example.realestate.Model.Apoinment.Apointment_Response;
+import com.example.realestate.Model.Apoinment.Get_Apointment_Response;
 import com.example.realestate.Model.GetList.GetCitiesListResponse;
 import com.example.realestate.Model.GetList.GetListPropertyType.GetpropertyListResponse;
 import com.example.realestate.Model.GetUpdateData.UpdateData_response;
@@ -166,6 +168,20 @@ public interface ApiInterface {
 
     @GET("/api/get_property/{id}")
     Call<Rating_Response> RATING_DATA_CALL(@Path(value = "id", encoded = true) String id);
+
+
+
+//post apointment data
+    @POST("/api/set_appointment")
+    Call<Apointment_Response> SET_APOINTMENT_CALL(@Query("user_id") String id,
+                                                  @Query("property_id") String property_id,
+                                                  @Query("time") String time);
+
+
+
+//get apointment data
+    @GET("/api/get_appointments/{id}")
+    Call<Get_Apointment_Response> GET_APOINTMENT_CALL(@Path(value = "id", encoded = true) String id);
 
 
 }

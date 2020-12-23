@@ -94,6 +94,9 @@
             android:drawableLeft="@drawable/static_rating"
             android:gravity="center_vertical"
             android:text="4.3 Reviews"
+            android:maxLength="4"
+            android:maxLines="1"
+            android:lines="1"
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold" />

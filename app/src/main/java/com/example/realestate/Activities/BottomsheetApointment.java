@@ -2,7 +2,9 @@ package com.example.realestate.Activities;
 
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -14,9 +16,20 @@ import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
 import com.example.realestate.Adddata;
+import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.Model.Apoinment.Apointment_Response;
+import com.example.realestate.Model.Rating.PostRating.PostRatigResp;
 import com.example.realestate.R;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Utills.GlobalState;
 
 import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BottomsheetApointment extends BaseActivity {
     EditText et_apointment, et_time;
@@ -24,6 +37,10 @@ public class BottomsheetApointment extends BaseActivity {
     RadioButton formeeting, forvideomeeting;
     DatePickerDialog apointmentdatepicker;
     Button apointmentSubmit;
+    int propertieID = 1;
+    String user_id = "";
+    String datetime = "";
+    ProgressDialog apointmentProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +55,10 @@ public class BottomsheetApointment extends BaseActivity {
         formeeting = (RadioButton) findViewById(R.id.tour_meeting);
         forvideomeeting = (RadioButton) findViewById(R.id.tour_video);
 
-        String apointment_val = et_apointment.getText().toString();
 
+        apointmentProgressDialog = new ProgressDialog(BottomsheetApointment.this);
+        apointmentProgressDialog.setMessage("Logining..."); // Setting Message
+        apointmentProgressDialog.setCancelable(false);
 
         et_time.setOnClickListener(new View.OnClickListener() {
 
@@ -66,6 +85,22 @@ public class BottomsheetApointment extends BaseActivity {
         apointmentSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                user_id = new SharedPreferenceConfig().getidOfUSerFromSP("id", BottomsheetApointment.this);
+                propertieID = Integer.parseInt(GlobalState.getInstance().getCurrent_Property_id());
+
+                String apointment_val = et_apointment.getText().toString();
+                String time = et_time.getText().toString();
+                if (!apointment_val.equals(null) || !et_time.equals(null)) {
+                    datetime = apointment_val + " " + time + ":00";
+
+                }
+                if (!datetime.equals(null)) {
+                    putApointmentData(user_id, propertieID, datetime);
+
+                } else {
+
+                    showToast("Please select data and Time first");
+                }
 
             }
         });
@@ -132,7 +167,44 @@ public class BottomsheetApointment extends BaseActivity {
         } else {
             formatedDay = String.valueOf(dayOfMonth);
         }
-        date = formatedMonth + "/" + formatedDay + "/" + year;
+        date = year + "-" + formatedMonth + "-" + formatedDay;
         return date;
+    }
+
+
+    public void putApointmentData(String user_id, int property_id, String dateTime) {
+        apointmentProgressDialog.show();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Call<Apointment_Response> call = retrofit.create(ApiInterface.class).SET_APOINTMENT_CALL(user_id, String.valueOf(property_id), dateTime);
+        call.enqueue(new Callback<Apointment_Response>() {
+            @Override
+            public void onResponse(Call<Apointment_Response> call, Response<Apointment_Response> response) {
+                if (response.isSuccessful()) {
+                    Apointment_Response apointment_response = response.body();
+                    if (apointment_response.getMessage().equals("Appointment Successfully Set.")) {
+
+                        showToast("Appointment Set Successfully");
+
+
+                    } else if (apointment_response.getMessage().equals("Appointment Successfully Updated.")) {
+
+                        showToast("Appointment Update Successfully");
+
+                    } else {
+                        showToast("Error Please try again");
+                    }
+
+                }
+                apointmentProgressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<Apointment_Response> call, Throwable t) {
+                showToast(t.getMessage());
+                apointmentProgressDialog.dismiss();
+            }
+        });
+
     }
 }

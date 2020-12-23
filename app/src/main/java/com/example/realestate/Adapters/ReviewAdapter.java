@@ -27,7 +27,7 @@ import static com.example.realestate.AppConstant.IMAGE_PATH;
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.viewholder> {
     Context context;
     private Activity activity;
-    private ArrayList<User_Reviews> user_reviews;
+    private ArrayList<User_Reviews> user_reviews=new ArrayList<>();
     private String current_Pro_id;
 
     public ReviewAdapter(Activity activity, Context context,
@@ -57,13 +57,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.viewholder
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
 
         holder.setdata(user_reviews.get(position));
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//            }
-//        });
+
 
 
     }
@@ -90,19 +84,17 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.viewholder
 
 
             if (user_reviews != null) {
+if(user_reviews.getUser_detail()!=null){
+    String naameVal = ((naameVal = user_reviews.getUser_detail().getName()) != null) ? naameVal : "N/A";
+    name.setText(naameVal);
 
-                String naameVal = ((naameVal = user_reviews.getUser_detail().getName()) != null) ? naameVal : "N/A";
-                name.setText(naameVal);
+    ratingBar.setRating(user_reviews.getRating());
 
-//                float town_val = ((town_val = ) != null) ? town_val : "N/A";
-                ratingBar.setRating(user_reviews.getRating());
-
-                String comentVal = ((comentVal = user_reviews.getComments()) != null) ? comentVal : "N/A";
-                comment.setText(comentVal);
-                Glide.with(context).load(IMAGE_PATH + user_reviews.getUser_detail().getUser_image()).into(user_Image);
-
+    String comentVal = ((comentVal = user_reviews.getComments()) != null) ? comentVal : "N/A";
+    comment.setText(comentVal);
+    Glide.with(context).load(IMAGE_PATH + user_reviews.getUser_detail().getUser_image()).into(user_Image);
+}
             }
-
         }
     }
 
