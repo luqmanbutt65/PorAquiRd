@@ -61,6 +61,7 @@ public class Apointments {
     }
 
     public void setProperties(Properties properties) {
+
         this.properties = properties;
     }
 

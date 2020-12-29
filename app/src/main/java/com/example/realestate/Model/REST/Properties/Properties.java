@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
+import io.realm.RealmObject;
+
 public class Properties {
     @SerializedName("id")
     @Expose
@@ -91,7 +93,6 @@ public class Properties {
     @SerializedName("liked")
     @Expose
     private boolean like;
-
 
 
     public boolean isLike() {
@@ -255,6 +256,9 @@ public class Properties {
     }
 
     public String getMain_image() {
+        if (main_image == null) {
+            main_image = "hacerse-una-casa.jpeg-1608398939.jpeg";
+        }
         return main_image;
     }
 

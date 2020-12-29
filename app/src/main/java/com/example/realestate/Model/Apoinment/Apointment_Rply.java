@@ -1,11 +1,10 @@
-package com.example.realestate.Model.REST.Properties;
+package com.example.realestate.Model.Apoinment;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import io.realm.RealmObject;
+public class Apointment_Rply {
 
-public class Properties_Response {
     @SerializedName("status")
     @Expose
     private String status;
@@ -13,10 +12,6 @@ public class Properties_Response {
     @SerializedName("message")
     @Expose
     private String message;
-
-    @SerializedName("data")
-    @Expose
-    private Properties_Data data;
 
     public String getStatus() {
         return status;
@@ -33,13 +28,4 @@ public class Properties_Response {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public Properties_Data getData() {
-        return data;
-    }
-
-    public void setData(Properties_Data data) {
-        this.data = data;
-    }
 }
-

@@ -168,6 +168,19 @@
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/otpnumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right"
+                    android:paddingRight="@dimen/_20sdp"
+                    android:text="Register phone"
+                    android:textColor="#636771"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"

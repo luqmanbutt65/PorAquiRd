@@ -186,11 +186,13 @@ public class BottomsheetApointment extends BaseActivity {
 
                         showToast("Appointment Set Successfully");
 
-
+                        Intent intent = new Intent(BottomsheetApointment.this, MainActivity.class);
+                        startActivity(intent);
                     } else if (apointment_response.getMessage().equals("Appointment Successfully Updated.")) {
 
                         showToast("Appointment Update Successfully");
-
+                        Intent intent = new Intent(BottomsheetApointment.this, MainActivity.class);
+                        startActivity(intent);
                     } else {
                         showToast("Error Please try again");
                     }

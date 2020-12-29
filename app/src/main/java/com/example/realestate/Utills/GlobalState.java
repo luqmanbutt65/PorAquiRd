@@ -14,6 +14,21 @@ import java.util.ArrayList;
 public class GlobalState extends Application {
 
     private String current_Property_id;
+    private String current_appointment_id;
+    private static GlobalState mInstance;
+    Properties_Data properties_data;
+    private ArrayList<Properties> propertiesArrayList;
+    private UserInfo userInfo;
+    private ArrayList<User_Reviews> user_reviews;
+
+
+    public String getCurrent_appointment_id() {
+        return current_appointment_id;
+    }
+
+    public void setCurrent_appointment_id(String current_appointment_id) {
+        this.current_appointment_id = current_appointment_id;
+    }
 
     public String getCurrent_Property_id() {
         return current_Property_id;
@@ -23,11 +38,7 @@ public class GlobalState extends Application {
         this.current_Property_id = current_Property_id;
     }
 
-    private static GlobalState mInstance;
-    Properties_Data properties_data;
-    private ArrayList<Properties> propertiesArrayList;
-    private UserInfo userInfo;
-    private ArrayList<User_Reviews> user_reviews;
+
 
     public ArrayList<User_Reviews> getUser_reviews() {
         return user_reviews;

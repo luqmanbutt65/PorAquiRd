@@ -3,6 +3,7 @@ package com.example.realestate.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,16 +22,21 @@ import com.example.realestate.Adapters.MyprojectAdapter;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Like.PropertiesLike_Data;
 import com.example.realestate.Model.Like.PropertiesLike_Response;
+import com.example.realestate.Model.Login;
 import com.example.realestate.Model.MyprojectData;
 import com.example.realestate.Model.REST.Properties.Properties;
 import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
+import com.example.realestate.Model.UserInfo;
 import com.example.realestate.R;
+import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Utills.GlobalState;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -114,6 +120,29 @@ public class MyFavrotFragment extends Fragment {
                                     tv_result_number.setText(String.valueOf(propertiesArrayList.size()));
                                     favRecyclerview.setAdapter(new MyFavAdapter(getActivity(), context, propertiesArrayList));
 
+
+//                                    PropertiesLike_Response propertiesLike_response3 = new PropertiesLike_Response();
+//                                    propertiesLike_response3= response.body();
+//                                    Realm.init(getContext());
+//                                    RealmConfiguration config = new RealmConfiguration.Builder()
+//                                            .name("poraquird.realm")
+//                                            .schemaVersion(1)
+//                                            .deleteRealmIfMigrationNeeded()
+//                                            .build();
+//                                    Realm.setDefaultConfiguration(config);
+//
+//                                    // add response to realm database
+//
+//                                    Realm realm = Realm.getInstance(config);
+//                                    realm.beginTransaction();
+////                                    realm.delete(UserInfo.class);
+////                        realm.deleteAll();
+//                                    realm.copyToRealm(propertiesLike_response3);
+//                                    realm.commitTransaction();
+//
+//                                    int notesCount = realm.where(Properties.class).findAll().size();
+//                                    Log.d("my second", String.valueOf(notesCount));
+//                                    realm.close();
 
                                 }
 

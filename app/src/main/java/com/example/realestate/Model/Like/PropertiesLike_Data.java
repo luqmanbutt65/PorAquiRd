@@ -6,7 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class PropertiesLike_Data {
+import io.realm.RealmObject;
+
+public class PropertiesLike_Data  {
     @SerializedName("favourite_properties")
     @Expose
     private ArrayList<Properties> propertiesArrayList;

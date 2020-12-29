@@ -1,7 +1,9 @@
 package com.example.realestate.ApiClass;
 
 import com.example.realestate.Model.Apoinment.Apointment_Response;
+import com.example.realestate.Model.Apoinment.Apointment_Rply;
 import com.example.realestate.Model.Apoinment.Get_Apointment_Response;
+import com.example.realestate.Model.Cell_OTP.Otp_response;
 import com.example.realestate.Model.GetList.GetCitiesListResponse;
 import com.example.realestate.Model.GetList.GetListPropertyType.GetpropertyListResponse;
 import com.example.realestate.Model.GetUpdateData.UpdateData_response;
@@ -17,10 +19,14 @@ import com.example.realestate.Model.Rating.GetRating.Rating_Response;
 import com.example.realestate.Model.Rating.PostRating.PostRatigResp;
 import com.example.realestate.Model.Register;
 
+import java.util.List;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -106,7 +112,18 @@ public interface ApiInterface {
                                          @Query("property_id") String property_id);
 
 
+// Add property Request body
+//    @Multipart
+//    @POST("/api/add_property")
+//    Call<AddProperties_Response> ADD_PROPERTY_check(@Body RequestBody requestBody);
+
     // Add Property
+    @Headers({
+            "Accept: application/json",
+            "User-Agent: PorAquird",
+            "Cache-Control: max-age=640000",
+            "Accept: application/vnd.http://poraquird.stepinnsolution.com/api/add_property.v1.full+json"
+    })
     @Multipart
     @POST("/api/add_property")
     Call<AddProperties_Response> ADD_PROPERTY_DATA(
@@ -126,9 +143,9 @@ public interface ApiInterface {
             @Part("pets") RequestBody petroom,
             @Part("parking") RequestBody parkinglot,
             @Part("property_condition") RequestBody property_condition,
-            @Part MultipartBody.Part[] propertyImages,
             @Part MultipartBody.Part featureImage);
 
+    //    @Part MultipartBody.Part[] property_images
     //Favirot Properties
     @POST("/api/favourite_properties")
     Call<PropertiesLike_Response> FAV_CALL(@Query("id") String id);
@@ -153,7 +170,7 @@ public interface ApiInterface {
     Call<UpdateData_response> GET_UPDATE_DATA(@Query("id") String id);
 
 
-   // Send Rating
+    // Send Rating
 
     @POST("/api/reviews")
     Call<PostRatigResp> SEND_RATING_CALL(@Query("user_id") String id,
@@ -162,7 +179,7 @@ public interface ApiInterface {
                                          @Query("comment") String comment);
 
 
-// get like properties
+    // get like properties
     @GET("/api/get_properties/{id}")
     Call<Properties_Response> LIKEPROPERTY_CALL(@Path(value = "id", encoded = true) String id);
 
@@ -170,18 +187,51 @@ public interface ApiInterface {
     Call<Rating_Response> RATING_DATA_CALL(@Path(value = "id", encoded = true) String id);
 
 
-
-//post apointment data
+    //post apointment data
     @POST("/api/set_appointment")
     Call<Apointment_Response> SET_APOINTMENT_CALL(@Query("user_id") String id,
                                                   @Query("property_id") String property_id,
                                                   @Query("time") String time);
 
 
-
-//get apointment data
+    //get apointment data
     @GET("/api/get_appointments/{id}")
     Call<Get_Apointment_Response> GET_APOINTMENT_CALL(@Path(value = "id", encoded = true) String id);
 
+
+    //get other apointment data
+    @GET("/api/owner_appointments/{id}")
+    Call<Get_Apointment_Response> GET_OTHEER_APOINTMENT_CALL(@Path(value = "id", encoded = true) String id);
+
+
+    //accept appointment
+
+    @GET("/api/appointment_status_approve/{id}")
+    Call<Apointment_Rply> APOINTMENT_APPROVE_CALL(@Path(value = "id", encoded = true) int id);
+
+
+    //reject appointment
+
+    @GET("/api/appointment_status_reject/{id}")
+    Call<Apointment_Rply> APOINTMENT_REJECT_CALL(@Path(value = "id", encoded = true) int id);
+
+
+    //number otp
+    @POST("/api/number_for_otp")
+    Call<Otp_response> OTP_Number_CALL(@Query("user_id") String id,
+                                       @Query("phone_number") String number);
+
+//phone otp check
+
+    @POST("/api/verify_otp")
+    Call<Otp_response> OTP_CHECK_CALL(@Query("user_id") String id,
+                                      @Query("entered_otp") String otpnumber);
+
+
+    @POST("/api/verify_otp_login")
+    Call<Login> OTP_LOGIN_CALL(@Query("otp") String otp,
+                               @Query("phone_number") String phone_number,
+                               @Query("email") String email,
+                               @Query("password") String password);
 
 }

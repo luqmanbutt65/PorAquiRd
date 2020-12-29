@@ -4,7 +4,9 @@ import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PropertiesLike_Response {
+import io.realm.RealmObject;
+
+public class PropertiesLike_Response{
     @SerializedName("status")
     @Expose
     private String status;

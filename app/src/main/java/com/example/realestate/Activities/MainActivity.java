@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.Fragments.Apointments_Tab;
 import com.example.realestate.Fragments.MyApointmentsFragment;
 import com.example.realestate.Fragments.MyFavrotFragment;
 import com.example.realestate.Fragments.PrivecyPolicy;
@@ -83,11 +84,11 @@ public class MainActivity extends BaseActivity {
 
 
                         break;
-//                    case R.id.location:
-//                        temp = new MapsFragment();
-//                        callFreg(temp);
-//
-//                        break;
+                    case R.id.location:
+                        temp = new MapsFragment();
+                        callFreg(temp);
+
+                        break;
                     case R.id.likes:
 
 
@@ -104,7 +105,7 @@ public class MainActivity extends BaseActivity {
 
                         break;
                     case R.id.booking:
-                        temp = new MyApointmentsFragment();
+                        temp = new Apointments_Tab();
                         callFreg(temp);
 
                         break;

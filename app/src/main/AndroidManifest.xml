@@ -30,7 +30,9 @@
         android:theme="@style/Theme.RealEstate"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".Activities.Rating_Activity"></activity>
+        <activity android:name=".Activities.Login_otp"></activity>
+        <activity android:name=".Activities.Mobile_register_otp" />
+        <activity android:name=".Activities.Rating_Activity" />
         <activity android:name=".Activities.Permisions" />
 
         <service

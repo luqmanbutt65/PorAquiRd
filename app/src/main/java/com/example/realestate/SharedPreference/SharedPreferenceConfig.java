@@ -134,4 +134,20 @@ public class SharedPreferenceConfig {
         editor.putString(key, value);
         editor.commit();
     }//savePWDIn
+
+
+
+
+    public String getenumberOfUSerFromSP(String key, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_number", android.content.Context.MODE_PRIVATE);
+        return preferences.getString(key, "number");
+    }
+
+
+    public void saveenumberOfUSerInSP(String key, String value, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_number ", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }//savePWDIn
 }

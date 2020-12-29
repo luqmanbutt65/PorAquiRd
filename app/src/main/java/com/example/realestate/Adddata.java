@@ -71,12 +71,14 @@ import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Part;
 
 public class Adddata extends BaseActivity {
     private static final int PICK_IMAGE_ONE = 0;
@@ -104,6 +106,7 @@ public class Adddata extends BaseActivity {
     String statusVal = "For Sale";
     String bathVal;
     String bedroomVal;
+    //check this
     String propertytypeval;
     String propertyCondition;
     String citystring;
@@ -267,8 +270,6 @@ public class Adddata extends BaseActivity {
         add_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String id = (new SharedPreferenceConfig().getidOfUSerFromSP("id", Adddata.this));
                 String titl_value = title.getText().toString();
                 String description_value = description.getText().toString();
@@ -421,18 +422,6 @@ public class Adddata extends BaseActivity {
 
             }
         });
-
-
-//        list = new ArrayList<String>();
-//        list.add("Select A type");
-//        list.add("Apartamentos");
-//        list.add("Edificios");
-//        list.add("Solares");
-//        list.add("Casas");
-//        list.add("Villas");
-//        list.add("Naves Industriales");
-//        list.add("Fincas");
-//        list.add("Local Comercial");
 
 
         listprice = new ArrayList<String>();
@@ -705,46 +694,35 @@ public class Adddata extends BaseActivity {
 
     private void AddPropertyData(String id, String status, String property_type, String title, String description, String price, String location, String city, String sector, String bedroom, String bath, String unitOfMeasure, String dateOfConstruction, String petroom, String parkingLot, String propertycondition) {
         AddDataProgressDialog.show();
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.setType(MultipartBody.FORM);
 
         // Permission is granted
-
         if (parkingLot == null) {
             parkingLot = "";
         }
-        List<MultipartBody.Part> parts = new ArrayList<>();
-//        otpProgressDialog.show();
-//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-//                .addConverterFactory(GsonConverterFactory.create()).build();
+//       MultipartBody.Part[] parts = new MultipartBody.Part[imagesDataArrayList.size()];
+        //Old From Luqman
+        //        MultipartBody.Part[] multipartTypedOutput = new MultipartBody.Part[imagesDataArrayList.size()];
+//        for (int index = 0; index < imagesDataArrayList.size(); index++) {
+//            File multiImageFile = null;
+//            String pathOfFile = null;
+//            try {
+//                pathOfFile = getFilePath(this, imagesDataArrayList.get(index).getUri());
+//                multiImageFile = new File(pathOfFile);
+//            } catch (URISyntaxException e) {
+//                e.printStackTrace();
+//            }
+//            //            Bitmap myBitmap = BitmapFactory.decodeFile(file2.getAbsolutePath());
+//            if (multiImageFile != null) {
+//                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), multiImageFile);
+//                multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody);
+//                parts.add(MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody));
 //
-//        Retrofit  retrofit2 = new Retrofit.Builder().baseUrl(NEW_BASE_URL).client(okHttpClient)
-//                .addConverterFactory(GsonConverterFactory.create()).build();
-
-        RequestBody id1 = RequestBody.create(MediaType.parse("text/plain"), id);
-
-        MultipartBody.Part[] multipartTypedOutput = new MultipartBody.Part[imagesDataArrayList.size()];
-
-
-        for (int index = 0; index < imagesDataArrayList.size(); index++) {
-            Log.d("Upload request", "requestUploadSurvey: survey image " + index + "  " + imagesDataArrayList.get(index));
-            Log.d("Upload request", "requestUploadpropertImages: property image " + index + "  " + imagesDataArrayList.get(index).getUri().toString());
-            File multiImageFile = null;
-            String pathOfFile = null;
-            try {
-                pathOfFile = getFilePath(this, imagesDataArrayList.get(index).getUri());
-                multiImageFile = new File(pathOfFile);
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
-            //            Bitmap myBitmap = BitmapFactory.decodeFile(file2.getAbsolutePath());
-            if (multiImageFile != null) {
-                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), multiImageFile);
-                multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images[]", "image"+index+getUnixTimeStamp(), surveyBody);
-                parts.add(MultipartBody.Part.createFormData("property_images[]", "image"+index+getUnixTimeStamp(), surveyBody));
-
-            } else {
-                showToast("Please ReSelect Images");
-            }
-        }
+//            } else {
+//                showToast("Please ReSelect Images");
+//            }
+//        }
         File mainImageFile = null;
         String pathOfFile = null;
         try {
@@ -753,12 +731,9 @@ public class Adddata extends BaseActivity {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-
-
+        RequestBody id1 = RequestBody.create(MediaType.parse("text/plain"), id);
         RequestBody feature_Image = RequestBody.create(MediaType.parse("image/*"), mainImageFile);
         MultipartBody.Part featureImag1 = MultipartBody.Part.createFormData("main_image", mainImageFile.getPath(), feature_Image);
-
-
         RequestBody status1 = RequestBody.create(MediaType.parse("text/plain"), status);
         RequestBody property_type1 = RequestBody.create(MediaType.parse("text/plain"), property_type);
         RequestBody title1 = RequestBody.create(MediaType.parse("text/plain"), title);
@@ -775,8 +750,48 @@ public class Adddata extends BaseActivity {
         RequestBody parkingLot1 = RequestBody.create(MediaType.parse("text/plain"), parkingLot);
         RequestBody propertycondition1 = RequestBody.create(MediaType.parse("text/plain"), propertycondition);
 
-        //
-        Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_PROPERTY_DATA(id1, status1, property_type1, title1, description1, price1, location1, city1, sector1, bedroom1, bath1, unitOfMeasure1, dateOfConstruction1, petroom1, parkingLot1, propertycondition1, multipartTypedOutput, featureImag1);
+
+//        builder.addFormDataPart("user_id", id);
+//        builder.addFormDataPart("sale_type", status);
+//        builder.addFormDataPart("property_type", property_type);
+//        builder.addFormDataPart("title", title);
+//        builder.addFormDataPart("description", description);
+//        builder.addFormDataPart("price", price);
+//        builder.addFormDataPart("location", location);
+//        builder.addFormDataPart("city", city);
+//        builder.addFormDataPart("sector", sector);
+//        builder.addFormDataPart("bedrooms", bedroom);
+//        builder.addFormDataPart("bathrooms", bath);
+//        builder.addFormDataPart("area", unitOfMeasure);
+//        builder.addFormDataPart("date_of_construction", dateOfConstruction);
+//        builder.addFormDataPart("pets", petroom);
+//        builder.addFormDataPart("parking", parkingLot);
+//        builder.addFormDataPart("property_condition", propertycondition);
+
+        //from umar
+//        MultipartBody.Part[] multipartTypedOutput = new MultipartBody.Part[imagesDataArrayList.size()];
+//        if (imagesDataArrayList.size() > 0) {
+//            for (int index = 0; index < imagesDataArrayList.size(); index++) {
+//                try {
+////                    multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images[]",
+////                            "image" + index + getUnixTimeStamp(), RequestBody.create(MediaType.parse("*/*"),
+////                                    new File(getFilePath(this, imageuri))));
+//                    builder.addFormDataPart("property_images[]", "image" + index + getUnixTimeStamp(),
+//                            RequestBody.create(MediaType.parse("multipart/form-data"), new File(getFilePath(this, imageuri))));
+//
+//                } catch (URISyntaxException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        File file = new File(imageuri.toString());
+//        builder.addFormDataPart("main_image","image"+ getUnixTimeStamp(),RequestBody.create(MediaType.parse("image/*"), file));
+//
+//        MultipartBody requestBody = builder.build();
+
+        Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_PROPERTY_DATA(id1, status1, property_type1, title1, description1, price1, location1, city1, sector1, bedroom1, bath1, unitOfMeasure1, dateOfConstruction1, petroom1,
+                parkingLot1, propertycondition1, featureImag1);
+//        Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_PROPERTY_check(requestBody);
         call.enqueue(new Callback<AddProperties_Response>() {
             @Override
             public void onResponse(Call<AddProperties_Response> call, Response<AddProperties_Response> response) {
@@ -791,7 +806,6 @@ public class Adddata extends BaseActivity {
                         Toast.makeText(getApplicationContext(), "Dta Uploading error", Toast.LENGTH_SHORT).show();
                     }
 
-
                 } else {
 
                     Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
@@ -805,7 +819,6 @@ public class Adddata extends BaseActivity {
                 AddDataProgressDialog.dismiss();
             }
         });
-
 
     }
 

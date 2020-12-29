@@ -1,11 +1,10 @@
-package com.example.realestate.Model.REST.Properties;
+package com.example.realestate.Model.Cell_OTP;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import io.realm.RealmObject;
+public class Otp_response {
 
-public class Properties_Response {
     @SerializedName("status")
     @Expose
     private String status;
@@ -13,10 +12,6 @@ public class Properties_Response {
     @SerializedName("message")
     @Expose
     private String message;
-
-    @SerializedName("data")
-    @Expose
-    private Properties_Data data;
 
     public String getStatus() {
         return status;
@@ -33,13 +28,4 @@ public class Properties_Response {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public Properties_Data getData() {
-        return data;
-    }
-
-    public void setData(Properties_Data data) {
-        this.data = data;
-    }
 }
-

@@ -2,6 +2,7 @@ package com.example.realestate.Fragments;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,10 +23,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.realestate.Activities.MainActivity;
+import com.example.realestate.Activities.Mobile_register_otp;
+import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.BottomSheets.BottomSheet;
 import com.example.realestate.ChangePaswsword;
+import com.example.realestate.Model.Cell_OTP.Otp_response;
 import com.example.realestate.Model.Login;
+import com.example.realestate.Model.MyProject.AddProperties_Response;
 import com.example.realestate.Model.UserInfo;
 import com.example.realestate.R;
 import com.example.realestate.Registration.LoginScreen;
@@ -45,13 +50,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProfileFragment extends Fragment {
 
     Spinner language, cruncy;
-    TextView editprofile, changepassword, myprojects;
+    TextView editprofile, changepassword, myprojects, otpnumber;
     List<String> listCruncy;
     List<String> listLanguage;
     LinearLayout linearLayout1, linearLayout;
     ImageView back_btn;
     TextView username, useremail;
     ProgressDialog profileProgressDialog;
+    Button cancel, register;
+    EditText enternumber;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -78,14 +85,25 @@ public class ProfileFragment extends Fragment {
         username = view.findViewById(R.id.username);
         useremail = view.findViewById(R.id.useremail);
         language = view.findViewById(R.id.language);
+
         cruncy = view.findViewById(R.id.cruncy);
         editprofile = view.findViewById(R.id.editprofile);
         changepassword = view.findViewById(R.id.changepassword);
         myprojects = view.findViewById(R.id.myprojects);
+        otpnumber = view.findViewById(R.id.otpnumber);
         linearLayout1 = view.findViewById(R.id.linearLayout1);
         linearLayout = view.findViewById(R.id.linearLayout);
 
         back_btn = view.findViewById(R.id.back_btn_profile);
+
+
+        otpnumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                registernumber();
+            }
+        });
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -263,6 +281,85 @@ public class ProfileFragment extends Fragment {
 
 
     }
+
+    public void registernumber() {
+
+
+        final AlertDialog dialogBuilder = new AlertDialog.Builder(getContext()).create();
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View dialogView = inflater.inflate(R.layout.custome_mobile_register, null);
+
+        cancel = dialogView.findViewById(R.id.cancelbuton);
+        register = dialogView.findViewById(R.id.registernumber);
+        enternumber = dialogView.findViewById(R.id.number);
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String user_id = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
+                String mob_number = enternumber.getText().toString().trim();
+                if (mob_number == null) {
+                    Toast.makeText(getContext(), "Please enter number", Toast.LENGTH_SHORT).show();
+                } else {
+                    registercell(user_id, mob_number);
+                    dialogBuilder.dismiss();
+                }
+
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialogBuilder.dismiss();
+
+            }
+        });
+
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.show();
+    }
+
+
+    public void registercell(String id, String number) {
+
+        Call<Otp_response> call = ApiClient.getRetrofit().create(ApiInterface.class).OTP_Number_CALL(id, number);
+//        Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_PROPERTY_check(requestBody);
+        call.enqueue(new Callback<Otp_response>() {
+            @Override
+            public void onResponse(Call<Otp_response> call, Response<Otp_response> response) {
+                if (response.isSuccessful()) {
+                    Otp_response otp_response = response.body();
+                    if (otp_response.getMessage().equals("OTP sent to your phone number")) {
+
+                        Toast.makeText(getContext(), "User number  registered", Toast.LENGTH_SHORT).show();
+
+                        new SharedPreferenceConfig().saveenumberOfUSerInSP("number", number, getContext());
+                        Intent intent = new Intent(getActivity(), Mobile_register_otp.class);
+                        startActivity(intent);
+
+                    } else {
+
+                        Toast.makeText(getContext(), "Number not registered", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+
+                    Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                }
+//            AddDataProgressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<Otp_response> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//            AddDataProgressDialog.dismiss();
+            }
+        });
+
+    }
+
 
 
 }
