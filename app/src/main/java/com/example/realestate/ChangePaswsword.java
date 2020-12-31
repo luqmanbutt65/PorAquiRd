@@ -63,8 +63,10 @@ public class ChangePaswsword extends Fragment {
 
         submit = view.findViewById(R.id.submit);
 
-        name.setText(GlobalState.getInstance().getUserInfo().getName());
-        email.setText(GlobalState.getInstance().getUserInfo().getEmail());
+        name.setText(new SharedPreferenceConfig().getNameOfUSerFromSP("name", getContext()));
+        email.setText(new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()));
+//        name.setText(GlobalState.getInstance().getUserInfo().getName());
+//        email.setText(GlobalState.getInstance().getUserInfo().getEmail());
         String Oldpass = oldpass.getText().toString();
         String Newpass = newpass.getText().toString();
         String Confirmpass = confirmpass.getText().toString();

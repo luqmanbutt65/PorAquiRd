@@ -60,6 +60,7 @@ public class ProfileFragment extends Fragment {
     Button cancel, register;
     EditText enternumber;
 
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -130,9 +131,9 @@ public class ProfileFragment extends Fragment {
 
         if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
             if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()) != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()) != null) {
-                ShowUser(new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()), new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()));
-
-
+//                ShowUser(new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()), new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()));
+                useremail.setText(new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()));
+                username.setText(new SharedPreferenceConfig().getNameOfUSerFromSP("name", getContext()));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),
                         android.R.layout.simple_spinner_item, listLanguage);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -258,9 +259,17 @@ public class ProfileFragment extends Fragment {
                         GlobalState.getInstance().setUserInfo(loginresp.getUserInfo());
 
 //                        GlobalState.getInstance().getUserInfo();
-                    } else {
+                    } else if (loginresp.getMessage().equals("User details to check OTP")) {
 
-                        // Toast.makeText(getContext(), "The username or password is incorrect", Toast.LENGTH_SHORT).show();
+                        String temp_name = loginresp.getUserInfo().getName();
+                        String temp_email = loginresp.getUserInfo().getEmail();
+                        username.setText(temp_name);
+                        useremail.setText(temp_email);
+                        GlobalState.getInstance().setUserInfo(loginresp.getUserInfo());
+
+
+                    } else {
+                        Toast.makeText(getContext(), "error !", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -323,9 +332,8 @@ public class ProfileFragment extends Fragment {
 
 
     public void registercell(String id, String number) {
-
+        profileProgressDialog.show();
         Call<Otp_response> call = ApiClient.getRetrofit().create(ApiInterface.class).OTP_Number_CALL(id, number);
-//        Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_PROPERTY_check(requestBody);
         call.enqueue(new Callback<Otp_response>() {
             @Override
             public void onResponse(Call<Otp_response> call, Response<Otp_response> response) {
@@ -334,8 +342,6 @@ public class ProfileFragment extends Fragment {
                     if (otp_response.getMessage().equals("OTP sent to your phone number")) {
 
                         Toast.makeText(getContext(), "User number  registered", Toast.LENGTH_SHORT).show();
-
-                        new SharedPreferenceConfig().saveenumberOfUSerInSP("number", number, getContext());
                         Intent intent = new Intent(getActivity(), Mobile_register_otp.class);
                         startActivity(intent);
 
@@ -348,18 +354,17 @@ public class ProfileFragment extends Fragment {
 
                     Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }
-//            AddDataProgressDialog.dismiss();
+                profileProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<Otp_response> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//            AddDataProgressDialog.dismiss();
+                profileProgressDialog.dismiss();
             }
         });
 
     }
-
 
 
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activity_background"
+    android:background="@drawable/bgotpl"
     tools:context=".Activities.Mobile_register_otp">
 
     <androidx.cardview.widget.CardView
@@ -37,7 +37,8 @@
                 android:layout_below="@+id/tv_text"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:src="@color/black" />
+                android:src="@drawable/message"
+                />
 
             <TextView
                 android:id="@+id/tv_textdescrip"
@@ -122,20 +123,21 @@
                 android:id="@+id/submitotp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:text="Submit"
-                android:textStyle="bold"
+                android:layout_below="@+id/linearlay"
                 android:background="@drawable/round_button"
-                android:layout_below="@+id/linearlay" />
+                android:text="Submit"
+                android:textStyle="bold" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/submitotp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Resend"
+                android:textColor="#3372D3"
                 android:textSize="@dimen/_12sdp"
-                android:textColor="#3372D3"/>
+                android:visibility="gone"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

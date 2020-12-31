@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.realestate.Activities.BaseActivity;
+import com.example.realestate.Activities.Login_otp;
 import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Login;
@@ -108,7 +109,6 @@ public class LoginScreen extends BaseActivity {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
                 if (response.isSuccessful()) {
-
                     Login loginresp = response.body();
 //                    if(loginresp.getStatus().equals("200")){}
                     if (loginresp.getMessage().equals("user is logged in")) {
@@ -146,20 +146,30 @@ public class LoginScreen extends BaseActivity {
                         new SharedPreferenceConfig().saveNameOfUSerInSP("name", temp_name, LoginScreen.this);
                         new SharedPreferenceConfig().saveidOfUSerInSP("id", id, LoginScreen.this);
 
+
                         Intent intent = new Intent(LoginScreen.this, MainActivity.class);
                         intent.putExtra("Email", getEmail);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         LoginScreen.this.finish();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "The username or password is incorrect", Toast.LENGTH_SHORT).show();
+
+
+                    } else if (loginresp.getMessage().equals("User details to check OTP")) {
+                        String phonenumber=loginresp.getUserInfo().getCell_number();
+                        String temp_name = loginresp.getUserInfo().getName();
+                        new SharedPreferenceConfig().saveBooleanInSP("isLogin", true, LoginScreen.this);
+                        new SharedPreferenceConfig().saveNameOfUSerInSP("name", temp_name, LoginScreen.this);
+                        new SharedPreferenceConfig().saveEmailOfUSerInSP("Email", getEmail, LoginScreen.this);
+                        new SharedPreferenceConfig().savePawordOfUserInSP("Password", getPassword, LoginScreen.this);
+                        new SharedPreferenceConfig().saveenumberOfUSerInSP("number",phonenumber , LoginScreen.this);
+                        Intent intent = new Intent(LoginScreen.this, Login_otp.class);
+                        startActivity(intent);
                     }
-//                    }
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "The username or password is incorrect", Toast.LENGTH_SHORT).show();
+                    loginProgressDialog.dismiss();
                 }
-                loginProgressDialog.dismiss();
             }
 
             @Override
@@ -168,8 +178,6 @@ public class LoginScreen extends BaseActivity {
                 loginProgressDialog.dismiss();
             }
         });
-
-
     }
 
 //    private void confirmDialog(Context context){
@@ -232,5 +240,4 @@ public class LoginScreen extends BaseActivity {
         alert.show();
 
     }
-
 }

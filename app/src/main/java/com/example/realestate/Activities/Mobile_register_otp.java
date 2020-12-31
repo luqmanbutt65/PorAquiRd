@@ -2,6 +2,8 @@ package com.example.realestate.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.strictmode.WebViewMethodCalledOnWrongThreadViolation;
 import android.view.View;
@@ -23,6 +25,7 @@ import retrofit2.Response;
 public class Mobile_register_otp extends BaseActivity {
     Button submitotp;
     EditText otp1, otp2, otp3, otp4, otp5, otp6;
+    ProgressDialog profileProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,9 @@ public class Mobile_register_otp extends BaseActivity {
 
         submitotp = findViewById(R.id.submitotp);
 
-
+        profileProgressDialog = new ProgressDialog(Mobile_register_otp.this);
+        profileProgressDialog.setMessage("Logining..."); // Setting Message
+        profileProgressDialog.setCancelable(false);
         otp1 = findViewById(R.id.txtOTP_1);
         otp2 = findViewById(R.id.txtOTP_2);
         otp3 = findViewById(R.id.txtOTP_3);
@@ -83,7 +88,7 @@ public class Mobile_register_otp extends BaseActivity {
     }
 
     public void Otpcall(String id, String otpnumber) {
-
+        profileProgressDialog.show();
         Call<Otp_response> call = ApiClient.getRetrofit().create(ApiInterface.class).OTP_CHECK_CALL(id, otpnumber);
         call.enqueue(new Callback<Otp_response>() {
             @Override
@@ -91,6 +96,8 @@ public class Mobile_register_otp extends BaseActivity {
                 if (response.isSuccessful()) {
                     Otp_response otp_response = response.body();
                     if (otp_response.getMessage().equals("Login By OTP is activated")) {
+                        Intent intent = new Intent(Mobile_register_otp.this, MainActivity.class);
+                        startActivity(intent);
 
                         showToast("User OTP Verified");
 
@@ -105,14 +112,14 @@ public class Mobile_register_otp extends BaseActivity {
 
                     showToast("Error! Please try again!");
                 }
-//            AddDataProgressDialog.dismiss();
+                profileProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<Otp_response> call, Throwable t) {
 
                 showToast(t.getMessage());
-//            AddDataProgressDialog.dismiss();
+                profileProgressDialog.dismiss();
             }
         });
     }

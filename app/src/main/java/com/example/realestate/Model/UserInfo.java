@@ -50,7 +50,7 @@ public class UserInfo extends RealmObject {
     @Expose
     private String rnc;
 
-    @SerializedName("pone_number")
+    @SerializedName("phone_number")
     @Expose
     private String cell_number;
 

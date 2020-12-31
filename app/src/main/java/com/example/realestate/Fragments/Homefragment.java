@@ -195,10 +195,9 @@ public class Homefragment extends Fragment {
         if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
             if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext())
                     != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()) != null) {
-        getlikeData(user_Id);
+                getlikeData(user_Id);
             }
-        }
-        else {
+        } else {
             getlikeData("0");
         }
 
@@ -318,7 +317,6 @@ public class Homefragment extends Fragment {
         });
 
     }
-
 
 
 }

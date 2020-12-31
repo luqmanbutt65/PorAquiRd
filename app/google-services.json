@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "762573837771",
+    "project_id": "poraquird-e9746",
+    "storage_bucket": "poraquird-e9746.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762573837771:android:0e65908e0ee1ba8182d24e",
+        "android_client_info": {
+          "package_name": "com.example.realestate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762573837771-5tfb5hbrnao1g4cde7vts1gq1ci5pl1l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.realestate",
+            "certificate_hash": "94ef31e22a5cb38aa5eac63a749783f6f5514765"
+          }
+        },
+        {
+          "client_id": "762573837771-ps4r8p65c01dv4mqtbotdctg766n3gh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpj5zamvwYvNVH2nYkxUwHgAEfu2B0Srs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762573837771-ps4r8p65c01dv4mqtbotdctg766n3gh7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

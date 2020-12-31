@@ -46,8 +46,9 @@ public class MyApointmentsFragment extends Fragment {
     Context context;
     String user_id;
     TextView numofApontment;
-RecyclerView apointmentrecyclerView;
+    RecyclerView apointmentrecyclerView;
     ProgressDialog myapointmentProgressDialog;
+
     public MyApointmentsFragment() {
         // Required empty public constructor
     }
@@ -75,7 +76,7 @@ RecyclerView apointmentrecyclerView;
         user_id = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
         putApointmentData(user_id);
 
-        numofApontment= view.findViewById(R.id.numofApontment);
+        numofApontment = view.findViewById(R.id.numofApontment);
         backbtn = view.findViewById(R.id.back_btn_apointment);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,16 +125,17 @@ RecyclerView apointmentrecyclerView;
         });
 
     }
-    public  void updateAppointmenCount(ArrayList<Apointments> apointmentsArrayList){
-        ArrayList<Apointments> updateList=new ArrayList<>();
-        updateList=apointmentsArrayList;
-        for (Apointments apointments:apointmentsArrayList){
+
+    public void updateAppointmenCount(ArrayList<Apointments> apointmentsArrayList) {
+        ArrayList<Apointments> updateList = new ArrayList<>();
+        updateList = apointmentsArrayList;
+        for (Apointments apointments : apointmentsArrayList) {
             if (apointments != null) {
-                if (apointments.getProperties()==null) {
+                if (apointments.getProperties() == null) {
                     updateList.remove(apointments);
                 }
             }
         }
-        numofApontment.setText(updateList.size()+" Appointments");
+        numofApontment.setText(updateList.size() + " Appointments");
     }
 }

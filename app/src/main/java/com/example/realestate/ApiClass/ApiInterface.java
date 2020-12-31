@@ -19,6 +19,7 @@ import com.example.realestate.Model.Rating.GetRating.Rating_Response;
 import com.example.realestate.Model.Rating.PostRating.PostRatigResp;
 import com.example.realestate.Model.Register;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -143,7 +144,8 @@ public interface ApiInterface {
             @Part("pets") RequestBody petroom,
             @Part("parking") RequestBody parkinglot,
             @Part("property_condition") RequestBody property_condition,
-            @Part MultipartBody.Part featureImage);
+            @Part MultipartBody.Part featureImage,
+            @Part ArrayList<MultipartBody.Part> multipartTypedOutput);
 
     //    @Part MultipartBody.Part[] property_images
     //Favirot Properties

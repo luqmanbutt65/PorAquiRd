@@ -112,7 +112,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_215sdp"
+                android:layout_height="@dimen/_250sdp"
                 android:layout_below="@id/linearLayout"
                 android:orientation="vertical">
 
@@ -220,7 +220,6 @@
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
 
-
                 <Spinner
                     android:id="@+id/cruncy"
                     android:layout_width="match_parent"
@@ -231,6 +230,7 @@
                     android:textColor="#636771"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
+
 
 
             </LinearLayout>

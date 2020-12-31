@@ -20,6 +20,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -92,6 +93,7 @@ public class Adddata extends BaseActivity {
     Button add_data;
     RecyclerView recyclerView;
     ArrayList<ImagesData> imagesDataArrayList = new ArrayList<>();
+    ArrayList<Uri> imagesDataArrayList2 = new ArrayList<>();
     Uri imageuri;
     ImagesAdapter imagesAdapter;
     RadioGroup statusbutton;
@@ -110,8 +112,6 @@ public class Adddata extends BaseActivity {
     String propertytypeval;
     String propertyCondition;
     String citystring;
-    Bitmap bitmapmainimage;
-
     ArrayList<City> cityArrayList;
     ArrayList<PropertyType> propertyTypeArrayList;
 
@@ -154,7 +154,7 @@ public class Adddata extends BaseActivity {
         }
     }
 
-    public static String getFilePath(Context context, Uri uri) throws URISyntaxException {
+    public static String getFilePath(Context context, Uri uri) throws Exception {
         String selection = null;
         String[] selectionArgs = null;
         // Uri is different in versions after KITKAT (Android 4.4), we need to
@@ -196,7 +196,9 @@ public class Adddata extends BaseActivity {
                 if (cursor.moveToFirst()) {
                     return cursor.getString(column_index);
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
+                e.printStackTrace();
             }
         } else if ("file".equalsIgnoreCase(uri.getScheme())) {
             return uri.getPath();
@@ -471,7 +473,6 @@ public class Adddata extends BaseActivity {
 
 
         list = new ArrayList<String>();
-        list.add("");
         list.add("0");
         list.add("01");
         list.add("02");
@@ -498,13 +499,10 @@ public class Adddata extends BaseActivity {
 //                Toast.makeText(getBaseContext(), bedroomSpiner.getSelectedItem().toString(),
 //                        Toast.LENGTH_SHORT).show();
 
-                if (position == 0) {
-                    bedroomVal = "";
 
-                } else {
 
                     bedroomVal = bedroomSpiner.getSelectedItem().toString();
-                }
+
 
             }
 
@@ -520,13 +518,10 @@ public class Adddata extends BaseActivity {
 //                Toast.makeText(getBaseContext(), bathsSpiner.getSelectedItem().toString(),
 //                        Toast.LENGTH_SHORT).show();
 
-                if (position == 0) {
-                    bathVal = "";
 
-                } else {
 
-                    bathVal = bedroomSpiner.getSelectedItem().toString();
-                }
+                    bathVal = bathsSpiner.getSelectedItem().toString();
+
             }
 
             @Override
@@ -539,7 +534,7 @@ public class Adddata extends BaseActivity {
         context = this;
         recyclerView = findViewById(R.id.images_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        recyclerView.setAdapter(new ImagesAdapter(context, imagesDataArrayList));
+        recyclerView.setAdapter(new ImagesAdapter(context, imagesDataArrayList2,Adddata.this));
         featureImage = findViewById(R.id.featureimageprorperty);
         addImage = findViewById(R.id.addimage);
 
@@ -556,10 +551,11 @@ public class Adddata extends BaseActivity {
             public void onClick(View v) {
 
 
-                imagesDataArrayList.clear();
-                imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList);
-                recyclerView.setAdapter(imagesAdapter);
-                imagesAdapter.notifyDataSetChanged();
+//                imagesDataArrayList.clear();
+//                imagesDataArrayList2.clear();
+//                imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList2,Adddata.this);
+//                recyclerView.setAdapter(imagesAdapter);
+//                imagesAdapter.notifyDataSetChanged();
 
                 Intent intent = new Intent();
                 intent.setType("image/*");
@@ -612,26 +608,44 @@ public class Adddata extends BaseActivity {
 
                         } else {
                             imagesDataArrayList.clear();
+                            imagesDataArrayList2.clear();
                             for (int i = 0; i < data.getClipData().getItemCount(); i++) {
                                 ImagesData tem = new ImagesData(data.getClipData().getItemAt(i).getUri());
                                 imagesDataArrayList.add(tem);
+                                imagesDataArrayList2.add(data.getClipData().getItemAt(i).getUri());
                             }
                             Log.e("SIZE", imagesDataArrayList.size() + "");
-                            imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList);
+                            imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList2,Adddata.this);
                             recyclerView.setAdapter(imagesAdapter);
                             imagesAdapter.notifyDataSetChanged();
 
                         }
 
+                    }else {
+                        if (data.getData() != null) {
+
+
+                            ImagesData tem = new ImagesData(data.getData());
+                            imagesDataArrayList.add(tem);
+                            imagesDataArrayList2.add(tem.getUri());
+                            // Log.e("SIZE", imagesDataArrayList.size() + "");
+                            imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList2,Adddata.this);
+                            recyclerView.setAdapter(imagesAdapter);
+                            imagesAdapter.notifyDataSetChanged();}
                     }
-                } else {
+
+
+
+                }
+                else {
                     if (data.getData() != null) {
 
 
                         ImagesData tem = new ImagesData(data.getData());
                         imagesDataArrayList.add(tem);
+                        imagesDataArrayList2.add(tem.getUri());
                         // Log.e("SIZE", imagesDataArrayList.size() + "");
-                        imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList);
+                        imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList2,Adddata.this);
                         recyclerView.setAdapter(imagesAdapter);
                         imagesAdapter.notifyDataSetChanged();
 
@@ -647,8 +661,6 @@ public class Adddata extends BaseActivity {
             if (requestCode == MY_PERMISSIONS_REQUEST) {
 
             }
-
-
         }
 
 
@@ -694,41 +706,42 @@ public class Adddata extends BaseActivity {
 
     private void AddPropertyData(String id, String status, String property_type, String title, String description, String price, String location, String city, String sector, String bedroom, String bath, String unitOfMeasure, String dateOfConstruction, String petroom, String parkingLot, String propertycondition) {
         AddDataProgressDialog.show();
-        MultipartBody.Builder builder = new MultipartBody.Builder();
-        builder.setType(MultipartBody.FORM);
+//        MultipartBody.Builder builder = new MultipartBody.Builder();
+//        builder.setType(MultipartBody.FORM);
 
         // Permission is granted
         if (parkingLot == null) {
             parkingLot = "";
         }
 //       MultipartBody.Part[] parts = new MultipartBody.Part[imagesDataArrayList.size()];
-        //Old From Luqman
-        //        MultipartBody.Part[] multipartTypedOutput = new MultipartBody.Part[imagesDataArrayList.size()];
-//        for (int index = 0; index < imagesDataArrayList.size(); index++) {
-//            File multiImageFile = null;
-//            String pathOfFile = null;
-//            try {
-//                pathOfFile = getFilePath(this, imagesDataArrayList.get(index).getUri());
-//                multiImageFile = new File(pathOfFile);
-//            } catch (URISyntaxException e) {
-//                e.printStackTrace();
-//            }
-//            //            Bitmap myBitmap = BitmapFactory.decodeFile(file2.getAbsolutePath());
-//            if (multiImageFile != null) {
-//                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), multiImageFile);
-//                multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody);
-//                parts.add(MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody));
-//
-//            } else {
-//                showToast("Please ReSelect Images");
-//            }
-//        }
+        //  Old From Luqman
+     //   MultipartBody.Part[] multipartTypedOutput = new MultipartBody.Part[imagesDataArrayList.size()];
+        ArrayList<MultipartBody.Part> multipartTypedOutput=new ArrayList<>();
+        for (int index = 0; index < imagesDataArrayList2.size(); index++) {
+            File multiImageFile = null;
+            String pathOfFile = null;
+            try {
+                pathOfFile = getFilePath(this, imagesDataArrayList2.get(index));
+                multiImageFile = new File(pathOfFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            //            Bitmap myBitmap = BitmapFactory.decodeFile(file2.getAbsolutePath());
+            if (multiImageFile != null) {
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), multiImageFile);
+              //  multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody);
+              multipartTypedOutput.add(MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody));
+
+            } else {
+                showToast("Please ReSelect Images");
+            }
+        }
         File mainImageFile = null;
         String pathOfFile = null;
         try {
             pathOfFile = getFilePath(this, imageuri);
             mainImageFile = new File(pathOfFile);
-        } catch (URISyntaxException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         RequestBody id1 = RequestBody.create(MediaType.parse("text/plain"), id);
@@ -751,47 +764,8 @@ public class Adddata extends BaseActivity {
         RequestBody propertycondition1 = RequestBody.create(MediaType.parse("text/plain"), propertycondition);
 
 
-//        builder.addFormDataPart("user_id", id);
-//        builder.addFormDataPart("sale_type", status);
-//        builder.addFormDataPart("property_type", property_type);
-//        builder.addFormDataPart("title", title);
-//        builder.addFormDataPart("description", description);
-//        builder.addFormDataPart("price", price);
-//        builder.addFormDataPart("location", location);
-//        builder.addFormDataPart("city", city);
-//        builder.addFormDataPart("sector", sector);
-//        builder.addFormDataPart("bedrooms", bedroom);
-//        builder.addFormDataPart("bathrooms", bath);
-//        builder.addFormDataPart("area", unitOfMeasure);
-//        builder.addFormDataPart("date_of_construction", dateOfConstruction);
-//        builder.addFormDataPart("pets", petroom);
-//        builder.addFormDataPart("parking", parkingLot);
-//        builder.addFormDataPart("property_condition", propertycondition);
-
-        //from umar
-//        MultipartBody.Part[] multipartTypedOutput = new MultipartBody.Part[imagesDataArrayList.size()];
-//        if (imagesDataArrayList.size() > 0) {
-//            for (int index = 0; index < imagesDataArrayList.size(); index++) {
-//                try {
-////                    multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images[]",
-////                            "image" + index + getUnixTimeStamp(), RequestBody.create(MediaType.parse("*/*"),
-////                                    new File(getFilePath(this, imageuri))));
-//                    builder.addFormDataPart("property_images[]", "image" + index + getUnixTimeStamp(),
-//                            RequestBody.create(MediaType.parse("multipart/form-data"), new File(getFilePath(this, imageuri))));
-//
-//                } catch (URISyntaxException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//        File file = new File(imageuri.toString());
-//        builder.addFormDataPart("main_image","image"+ getUnixTimeStamp(),RequestBody.create(MediaType.parse("image/*"), file));
-//
-//        MultipartBody requestBody = builder.build();
-
         Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_PROPERTY_DATA(id1, status1, property_type1, title1, description1, price1, location1, city1, sector1, bedroom1, bath1, unitOfMeasure1, dateOfConstruction1, petroom1,
-                parkingLot1, propertycondition1, featureImag1);
-//        Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_PROPERTY_check(requestBody);
+                parkingLot1, propertycondition1, featureImag1, multipartTypedOutput);
         call.enqueue(new Callback<AddProperties_Response>() {
             @Override
             public void onResponse(Call<AddProperties_Response> call, Response<AddProperties_Response> response) {
@@ -801,6 +775,8 @@ public class Adddata extends BaseActivity {
 
                         showToast("Data Added Succesfully");
 
+                    } else if (properties_response.getMessage().equals("Image size must not be more than 2MB")) {
+                        Toast.makeText(getApplicationContext(), "Image size must not be more than 2MB", Toast.LENGTH_SHORT).show();
                     } else {
 
                         Toast.makeText(getApplicationContext(), "Dta Uploading error", Toast.LENGTH_SHORT).show();
@@ -954,6 +930,9 @@ public class Adddata extends BaseActivity {
 
             }
         });
+    }
+    public void removeFromImagearray(int position){
+//        imagesDataArrayList2.remove(position);
     }
 }
 

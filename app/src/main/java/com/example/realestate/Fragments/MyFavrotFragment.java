@@ -49,8 +49,9 @@ public class MyFavrotFragment extends Fragment {
     Context context;
     TextView tv_result_number;
     RecyclerView favRecyclerview;
+    String user_Id = "";
     private ArrayList<Properties> propertiesArrayList;
-    String user_Id="";
+
     public MyFavrotFragment() {
         // Required empty public constructor
     }
@@ -61,6 +62,7 @@ public class MyFavrotFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
     @Override
     public void onResume() {
         super.onResume();

@@ -46,20 +46,20 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
     private Activity activity;
     private List<Apointments> apointments;
     ProgressDialog myapointmentProgressDialog;
-    int appointment_Id ;
+    int appointment_Id;
     Button accept, reject, changedate, submitchangedate;
     EditText changedDatetime;
     String current_appointment_id = "";
     int propertieId;
-    RelativeLayout mainLayout;
-    OthersApointmentsFragment othersApointmentsFragment;
+     OthersApointmentsFragment othersApointmentsFragment;
+
     public OtherAppointmentAdapter(Activity activity,
                                    Context context,
                                    List<Apointments> apointments, OthersApointmentsFragment othersApointmentsFragment) {
         this.context = context;
         this.activity = activity;
         this.apointments = apointments;
-        this.othersApointmentsFragment=othersApointmentsFragment;
+        this.othersApointmentsFragment = othersApointmentsFragment;
     }
 
     @NonNull
@@ -67,6 +67,7 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View inflate = inflater.inflate(R.layout.other_apointmentcontainer, parent, false);
+
         myapointmentProgressDialog = new ProgressDialog(context);
         myapointmentProgressDialog.setMessage("Logining..."); // Setting Message
         myapointmentProgressDialog.setCancelable(false);
@@ -87,8 +88,7 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
             propertieId = apointments.get(position).getProperties().getId();
             holder.setdata(apointments.get(position));
         } else {
-
-            mainLayout.setVisibility(View.GONE);
+            holder.mainLayout.setVisibility(View.GONE);
 
         }
 
@@ -174,6 +174,7 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
         }
 
     }
+
     public void AcceptAppointment(int appointment_id) {
         myapointmentProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
@@ -248,7 +249,7 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
 
 
         final AlertDialog dialogBuilder = new AlertDialog.Builder(context).create();
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View dialogView = inflater.inflate(R.layout.customedilouge_appointment_reply, null);
 
 

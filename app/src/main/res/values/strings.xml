@@ -20,4 +20,14 @@
     <string name="UserEmail">Abc@gmail.com</string>
     <string name="UserPassword">abc</string>
     <string name="login_shared_preference">com.example.realestate</string>
+
+    <string name="exit_title">Exit confirmation</string>
+    <string name="exit_subtitle">Are You Sure To Exit?</string>
+
+
+<!--   // firebase-->
+
+    <string name="notification_channel_id">default</string>
+
+
 </resources>

@@ -254,15 +254,17 @@
                             android:layout_height="@dimen/_150sdp"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:background="@drawable/add_edittext_style_gray"
-                            android:ellipsize="end"
                             android:gravity="left"
+                            android:lines="7"
+                            android:inputType="textShortMessage|textMultiLine"
+                            android:maxLines="7"
+                            android:singleLine="false"
                             android:hint="Enter description"
-                            android:maxLength="400"
+                            android:maxLength="200"
                             android:padding="@dimen/_10sdp"
                             android:paddingLeft="@dimen/_10sdp"
                             android:paddingRight="@dimen/_10sdp"
-                            android:scrollbars="vertical"
-                            android:singleLine="true" />
+                            android:scrollbars="vertical" />
                         <!--                    <com.fiberlink.maas360.android.richtexteditor.RichTextActions-->
                         <!--                        android:id="@+id/text_actions"-->
                         <!--                        android:layout_marginRight="@dimen/_25sdp"-->
@@ -295,7 +297,7 @@
                                 android:hint="Enter Price"
                                 android:inputType="numberDecimal"
                                 android:lines="1"
-                                android:maxLength="100"
+                                android:maxLength="20"
                                 android:maxLines="1"
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:paddingRight="@dimen/_10sdp"

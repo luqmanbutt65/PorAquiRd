@@ -87,8 +87,10 @@ public class ProfileFragment_update extends Fragment {
         iv_uploadImage = view.findViewById(R.id.iv_uploadimage);
         tv_uploadFile = view.findViewById(R.id.et_uploadfile);
 
-        tv_userName.setText(GlobalState.getInstance().getUserInfo().getName());
-        tv_email.setText(GlobalState.getInstance().getUserInfo().getEmail());
+//        tv_userName.setText(GlobalState.getInstance().getUserInfo().getName());
+//        tv_email.setText(GlobalState.getInstance().getUserInfo().getEmail());
+        tv_userName.setText(new SharedPreferenceConfig().getNameOfUSerFromSP("name", getContext()));
+        tv_email.setText(new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()));
 
 
         back_btn = view.findViewById(R.id.back_btn_updateprofile);

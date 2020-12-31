@@ -68,8 +68,6 @@ public class OthersApointmentsFragment extends Fragment {
         context = this.getContext();
 
 
-
-
         myapointmentProgressDialog = new ProgressDialog(getContext());
         myapointmentProgressDialog.setMessage("Logining..."); // Setting Message
         myapointmentProgressDialog.setCancelable(false);
@@ -105,7 +103,7 @@ public class OthersApointmentsFragment extends Fragment {
                         Apointment_Data apointment_data = response.body().getApointment_data();
                         if (apointment_data.getApointmentsArrayList().size() > 0) {
                             numofApontment.setText(apointment_data.getApointmentsArrayList().size() + " Appointments");
-                            apointmentrecyclerView.setAdapter(new OtherAppointmentAdapter(getActivity(), context, apointment_data.getApointmentsArrayList(),OthersApointmentsFragment.this));
+                            apointmentrecyclerView.setAdapter(new OtherAppointmentAdapter(getActivity(), context, apointment_data.getApointmentsArrayList(), OthersApointmentsFragment.this));
                         }
 
 
