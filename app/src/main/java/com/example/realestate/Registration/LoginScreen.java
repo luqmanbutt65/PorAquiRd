@@ -21,11 +21,13 @@ import androidx.core.app.ActivityCompat;
 import com.example.realestate.Activities.BaseActivity;
 import com.example.realestate.Activities.Login_otp;
 import com.example.realestate.Activities.MainActivity;
+import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Login;
 import com.example.realestate.Model.UserInfo;
 import com.example.realestate.R;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Utills.GlobalState;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -102,9 +104,8 @@ public class LoginScreen extends BaseActivity {
 
     public void loginuser(String getEmail, String getPassword) {
         loginProgressDialog.show();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<Login> call = retrofit.create(ApiInterface.class).LOGIN_CALL(getEmail, getPassword);
+
+        Call<Login> call = ApiClient.getRetrofit().create(ApiInterface.class).LOGIN_CALL(getEmail, getPassword);
         call.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
@@ -136,13 +137,20 @@ public class LoginScreen extends BaseActivity {
                         realm.close();
 
                         //login start main activity
+                        String path = loginresp.getUserInfo().getUser_image();
+                        String expiry_date = loginresp.getUserInfo().getExpiry_date();
+                        String upload_limit = loginresp.getUserInfo().getUpload_limit();
+
+                        new SharedPreferenceConfig().saveimageOfUSerInSP("image", path, LoginScreen.this);
                         new SharedPreferenceConfig().saveBooleanInSP("isLogin", true, LoginScreen.this);
                         new SharedPreferenceConfig().saveEmailOfUSerInSP("Email", getEmail, LoginScreen.this);
                         new SharedPreferenceConfig().savePawordOfUserInSP("Password", getPassword, LoginScreen.this);
+
+                        new SharedPreferenceConfig().saveExpiryDateInSP("expiry", expiry_date, LoginScreen.this);
+                        new SharedPreferenceConfig().saveUploadlimitInSP("uploadlimit", upload_limit, LoginScreen.this);
+
                         String temp_name = loginresp.getUserInfo().getName();
-
                         String id = String.valueOf(loginresp.getUserInfo().getId());
-
                         new SharedPreferenceConfig().saveNameOfUSerInSP("name", temp_name, LoginScreen.this);
                         new SharedPreferenceConfig().saveidOfUSerInSP("id", id, LoginScreen.this);
 
@@ -155,13 +163,18 @@ public class LoginScreen extends BaseActivity {
 
 
                     } else if (loginresp.getMessage().equals("User details to check OTP")) {
-                        String phonenumber=loginresp.getUserInfo().getCell_number();
-                        String temp_name = loginresp.getUserInfo().getName();
+                        String phonenumber = loginresp.getUserInfo().getCell_number();
+//                        String temp_name = loginresp.getUserInfo().getName();
+                        String id = String.valueOf(loginresp.getUserInfo().getId());
+                        String path = loginresp.getUserInfo().getUser_image();
+                        new SharedPreferenceConfig().saveimageOfUSerInSP("image", path, LoginScreen.this);
+                        new SharedPreferenceConfig().saveidOfUSerInSP("id", id, LoginScreen.this);
                         new SharedPreferenceConfig().saveBooleanInSP("isLogin", true, LoginScreen.this);
-                        new SharedPreferenceConfig().saveNameOfUSerInSP("name", temp_name, LoginScreen.this);
                         new SharedPreferenceConfig().saveEmailOfUSerInSP("Email", getEmail, LoginScreen.this);
                         new SharedPreferenceConfig().savePawordOfUserInSP("Password", getPassword, LoginScreen.this);
-                        new SharedPreferenceConfig().saveenumberOfUSerInSP("number",phonenumber , LoginScreen.this);
+                        new SharedPreferenceConfig().saveenumberOfUSerInSP("number", phonenumber, LoginScreen.this);
+                        String expiry_date = loginresp.getUserInfo().getExpiry_date();
+                        new SharedPreferenceConfig().saveExpiryDateInSP("expiry", expiry_date, LoginScreen.this);
                         Intent intent = new Intent(LoginScreen.this, Login_otp.class);
                         startActivity(intent);
                     }

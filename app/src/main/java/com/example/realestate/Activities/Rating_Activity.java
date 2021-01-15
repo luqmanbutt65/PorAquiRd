@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.realestate.Adapters.ReviewAdapter;
+import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Rating.GetRating.RatingData;
 import com.example.realestate.Model.Rating.GetRating.Rating_Response;
@@ -48,6 +49,7 @@ public class Rating_Activity extends BaseActivity {
     RecyclerView commentRecycler;
     ArrayList<User_Reviews> user_reviewsArrayList;
     ProgressDialog ratingProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,11 +70,11 @@ public class Rating_Activity extends BaseActivity {
         submit = findViewById(R.id.submit_rating);
         numofcomments = findViewById(R.id.numofcomments);
         commentRecycler = findViewById(R.id.commentRecycler);
-        back_btnReview=findViewById(R.id.back_btnReview);
+        back_btnReview = findViewById(R.id.back_btnReview);
         back_btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Rating_Activity.this,Description.class);
+                Intent intent = new Intent(Rating_Activity.this, Description.class);
                 startActivity(intent);
                 finish();
             }
@@ -128,9 +130,8 @@ public class Rating_Activity extends BaseActivity {
 
     public void putRatingCommentData(String user_id, int property_id, float rating, String comment) {
         ratingProgressDialog.show();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<PostRatigResp> call = retrofit.create(ApiInterface.class).SEND_RATING_CALL(user_id, String.valueOf(property_id), rating, comment);
+
+        Call<PostRatigResp> call = ApiClient.getRetrofit().create(ApiInterface.class).SEND_RATING_CALL(user_id, String.valueOf(property_id), rating, comment);
         call.enqueue(new Callback<PostRatigResp>() {
             @Override
             public void onResponse(Call<PostRatigResp> call, Response<PostRatigResp> response) {
@@ -139,12 +140,22 @@ public class Rating_Activity extends BaseActivity {
                     if (rating_response.getMessage().equals("Rating and Comment Updated Successfully")) {
                         getRateData(String.valueOf(propertieID));
                         showToast("Review  Successfully Added");
-                        Intent intent=new Intent(Rating_Activity.this,Description.class);
+                        Intent intent = new Intent(Rating_Activity.this, Description.class);
+                        startActivity(intent);
+                        finish();
+
+                    } else if (rating_response.getMessage().equals("Rating and Comment Added Successfully")) {
+
+                        getRateData(String.valueOf(propertieID));
+                        showToast("Review  Successfully Added");
+                        Intent intent = new Intent(Rating_Activity.this, Description.class);
                         startActivity(intent);
                         finish();
 
                     } else {
+
                         showToast("Error Please try again");
+
                     }
 
 
@@ -164,9 +175,8 @@ public class Rating_Activity extends BaseActivity {
 
     public void getRateData(String id) {
         ratingProgressDialog.show();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<Rating_Response> call = retrofit.create(ApiInterface.class).RATING_DATA_CALL(String.valueOf(id));
+
+        Call<Rating_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).RATING_DATA_CALL(String.valueOf(id));
         call.enqueue(new Callback<Rating_Response>() {
             @Override
             public void onResponse(Call<Rating_Response> call, Response<Rating_Response> response) {
@@ -175,7 +185,7 @@ public class Rating_Activity extends BaseActivity {
                     if (rating_response.getMessage().equals("single property")) {
                         if (rating_response.getRatingData().getUser_reviewsArrayList() != null) {
                             if (rating_response.getRatingData().getUser_reviewsArrayList().size() > 0) {
-                                numofcomments.setText(rating_response.getRatingData().getUser_reviewsArrayList().size()+" Comments");
+                                numofcomments.setText(rating_response.getRatingData().getUser_reviewsArrayList().size() + " Comments");
                                 commentRecycler.setAdapter(new ReviewAdapter(Rating_Activity.this, getApplicationContext(), rating_response.getRatingData().getUser_reviewsArrayList()));
                             }
                         }

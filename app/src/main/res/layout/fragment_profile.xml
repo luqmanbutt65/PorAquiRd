@@ -61,11 +61,11 @@
                 android:padding="16dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-
-                    android:id="@+id/userImage"
+                    android:id="@+id/userImage1"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_centerVertical="true"
+                    android:scaleType="centerCrop"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="1dp" />
 
@@ -88,6 +88,7 @@
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -104,16 +105,37 @@
                             android:textColor="#171D28"
                             android:textSize="15sp"
                             android:textStyle="italic" />
+
+
                     </LinearLayout>
                 </LinearLayout>
 
+
             </LinearLayout>
 
+            <RelativeLayout
+                android:id="@+id/rl_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearLayout"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/uploadlimit"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="Upload Limit" />
+            </RelativeLayout>
+
             <LinearLayout
+
                 android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_250sdp"
-                android:layout_below="@id/linearLayout"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_two"
                 android:orientation="vertical">
 
                 <TextView
@@ -181,6 +203,32 @@
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/purchasedplans"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right"
+                    android:paddingRight="@dimen/_20sdp"
+                    android:text="Purchased Plans"
+                    android:textColor="#636771"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/mymessages"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right"
+                    android:paddingRight="@dimen/_20sdp"
+                    android:text="Rejected Appointments"
+                    android:textColor="#636771"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -230,7 +278,6 @@
                     android:textColor="#636771"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
-
 
 
             </LinearLayout>

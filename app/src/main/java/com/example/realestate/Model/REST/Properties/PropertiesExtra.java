@@ -3,101 +3,51 @@ package com.example.realestate.Model.REST.Properties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PropertiesExtra {
+import io.realm.RealmObject;
+
+public class PropertiesExtra   {
 
 
 
     /*
-         "id": 8,
-          "property_id": "3",
-          "bathrooms": "4",
-          "bedrooms": "4",
-          "patio": "0",
-          "parking": "1",
-          "pets": "0",
-          "created_at": "2020-12-04 12:03:02",
-          "updated_at": "2020-12-04 12:03:02"*/
+         "type": "parking",
+                        "image": "public/assets/img/parking.png",
+                        "quantity": "2"*/
 
 
-    @SerializedName("property_id")
+    @SerializedName("type")
     @Expose
-    private String property_id;
+    private String type;
 
-    @SerializedName("bathrooms")
+    @SerializedName("image")
     @Expose
-    private String bathrooms;
+    private String image;
 
-    @SerializedName("bedrooms")
+    @SerializedName("quantity")
     @Expose
-    private String bedrooms;
+    private String quantity;
 
-    @SerializedName("patio")
-    @Expose
-    private String Ratio;
-
-    @SerializedName("parking")
-    @Expose
-    private String parking;
-
-    @SerializedName("pets")
-    @Expose
-    private String pets;
-
-    public PropertiesExtra(String property_id, String bathrooms, String bedrooms, String ratio, String parking, String pets) {
-        this.property_id = property_id;
-        this.bathrooms = bathrooms;
-        this.bedrooms = bedrooms;
-        Ratio = ratio;
-        this.parking = parking;
-        this.pets = pets;
+    public String getType() {
+        return type;
     }
 
-
-    public String getProperty_id() {
-        return property_id;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setProperty_id(String property_id) {
-        this.property_id = property_id;
+    public String getImage() {
+        return image;
     }
 
-    public String getBathrooms() {
-        return bathrooms;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public void setBathrooms(String bathrooms) {
-        this.bathrooms = bathrooms;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public String getBedrooms() {
-        return bedrooms;
-    }
-
-    public void setBedrooms(String bedrooms) {
-        this.bedrooms = bedrooms;
-    }
-
-    public String getRatio() {
-        return Ratio;
-    }
-
-    public void setRatio(String ratio) {
-        Ratio = ratio;
-    }
-
-    public String getParking() {
-        return parking;
-    }
-
-    public void setParking(String parking) {
-        this.parking = parking;
-    }
-
-    public String getPets() {
-        return pets;
-    }
-
-    public void setPets(String pets) {
-        this.pets = pets;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }

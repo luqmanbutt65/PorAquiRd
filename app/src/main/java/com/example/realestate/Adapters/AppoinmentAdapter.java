@@ -27,11 +27,10 @@ import java.util.List;
 
 public class AppoinmentAdapter extends RecyclerView.Adapter<AppoinmentAdapter.viewholder> {
     Context context;
-    private Activity activity;
-    private List<Apointments> apointments;
-
     int propertieId;
     RelativeLayout mainLayout;
+    private Activity activity;
+    private List<Apointments> apointments;
 
 
     public AppoinmentAdapter(Activity activity,

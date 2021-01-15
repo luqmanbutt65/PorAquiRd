@@ -76,20 +76,22 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_14sdp"
-                    android:textColor="@color/black"
                     android:gravity="center"
-                    android:text="Add your valuable review comment for this property"/>
+                    android:text="Add your valuable review comment for this property"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+
                 <RatingBar
                     android:id="@+id/rating"
-                    android:layout_below="@+id/textview"
                     style="?android:attr/ratingBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
@@ -101,15 +103,17 @@
                 <EditText
                     android:id="@+id/et_comment"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/rating"
-                    android:ellipsize="end"
-                    android:lines="7"
-
-                    android:inputType="textMultiLine"
+                    android:background="@drawable/roundimage"
                     android:digits="qwertyuiopasdfghjklzxcvbnm 1234567890 QWERTYUIOPASDFGHJKLZXCVBNM\n"
+                    android:ellipsize="end"
+                    android:hint="comment Here !"
+                    android:gravity="start"
+                    android:inputType="textMultiLine"
+                    android:lines="7"
                     android:maxLines="7"
-                    android:padding="@dimen/_5sdp"
+                    android:padding="@dimen/_10sdp"
                     android:scrollbars="vertical"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"

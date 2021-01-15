@@ -8,6 +8,18 @@ import java.util.ArrayList;
 import io.realm.RealmObject;
 
 public class Properties {
+
+
+    private  int tttype=0;
+
+    public int getTttype() {
+        return tttype;
+    }
+
+    public void setTttype(int tttype) {
+        this.tttype = tttype;
+    }
+
     @SerializedName("id")
     @Expose
     private int id;
@@ -66,7 +78,7 @@ public class Properties {
     @Expose
     private String unit_of_measure;
 
-    @SerializedName("date_of_construction")
+    @SerializedName("construction_year")
     @Expose
     private String date_of_construction;
 
@@ -83,7 +95,7 @@ public class Properties {
     private String user_rating;
     @SerializedName("extra")
     @Expose
-    private PropertiesExtra propertiesExtra;
+    private ArrayList<PropertiesExtra> propertiesExtraArrayList;
 
     @SerializedName("gallery")
     @Expose
@@ -95,17 +107,37 @@ public class Properties {
     //    private String title;
     @SerializedName("latitude")
     @Expose
-    private  double latitude;
+    private double latitude;
     @SerializedName("longitude")
     @Expose
-    private  double  longitude;
+    private double longitude;
 
-    public Properties(int id, String title, double latitude, double longitude) {
-        this.id = id;
-        this.title = title;
-        this.latitude = latitude;
-        this.longitude = longitude;
+
+    public String getComment() {
+        return comment;
     }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getUser_rating() {
+        return user_rating;
+    }
+
+    public void setUser_rating(String user_rating) {
+        this.user_rating = user_rating;
+    }
+
+    public ArrayList<PropertiesExtra> getPropertiesExtraArrayList() {
+        return propertiesExtraArrayList;
+    }
+
+    public void setPropertiesExtraArrayList(ArrayList<PropertiesExtra> propertiesExtraArrayList) {
+        this.propertiesExtraArrayList = propertiesExtraArrayList;
+    }
+
+
 
     public double getLatitude() {
         return latitude;
@@ -131,13 +163,6 @@ public class Properties {
         this.like = like;
     }
 
-    public PropertiesExtra getPropertiesExtra() {
-        return propertiesExtra;
-    }
-
-    public void setPropertiesExtra(PropertiesExtra propertiesExtra) {
-        this.propertiesExtra = propertiesExtra;
-    }
 
     public ArrayList<PropertiesGallery> getPropertiesGalleryArrayList() {
         return propertiesGalleryArrayList;
@@ -248,10 +273,16 @@ public class Properties {
     }
 
     public void setArea(String area) {
+        if (area == null) {
+            area = "";
+        }
         this.area = area;
     }
 
     public String getRating() {
+        if (rating == null) {
+            rating = "";
+        }
         return rating;
     }
 
@@ -264,10 +295,16 @@ public class Properties {
     }
 
     public void setLocation(String location) {
+        if (location == null) {
+            location = "";
+        }
         this.location = location;
     }
 
     public String getCity() {
+        if (city == null) {
+            city = "";
+        }
         return city;
     }
 
@@ -276,6 +313,9 @@ public class Properties {
     }
 
     public String getPrice() {
+        if (price == null) {
+            price = "";
+        }
         return price;
     }
 

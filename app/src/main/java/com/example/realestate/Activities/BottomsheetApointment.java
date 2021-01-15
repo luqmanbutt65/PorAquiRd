@@ -15,10 +15,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
-import com.example.realestate.Adddata;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Apoinment.Apointment_Response;
-import com.example.realestate.Model.Rating.PostRating.PostRatigResp;
 import com.example.realestate.R;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Utills.GlobalState;

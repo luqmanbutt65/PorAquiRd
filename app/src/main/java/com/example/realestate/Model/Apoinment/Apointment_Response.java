@@ -16,7 +16,6 @@ public class Apointment_Response {
     private String message;
 
 
-
     public String getStatus() {
         return status;
     }

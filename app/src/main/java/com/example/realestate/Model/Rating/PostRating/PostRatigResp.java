@@ -13,7 +13,6 @@ public class PostRatigResp {
     private String message;
 
 
-
     public String getStatus() {
         return status;
     }

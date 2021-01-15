@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.example.realestate.Model.Login;
 import com.example.realestate.R;
 import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Utills.GlobalState;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -111,11 +113,22 @@ public class Login_otp extends BaseActivity {
                     Login login = response.body();
                     if (login.getMessage().equals("user is logged in")) {
 
+
+                        String temp_name = login.getUserInfo().getName();
+                        String id = String.valueOf(login.getUserInfo().getId());
+                        new SharedPreferenceConfig().saveidOfUSerInSP("id", id, Login_otp.this);
+                        new SharedPreferenceConfig().saveNameOfUSerInSP("name", temp_name, Login_otp.this);
+
+                        String path = login.getUserInfo().getUser_image();
+                        new SharedPreferenceConfig().saveimageOfUSerInSP("image", path, Login_otp.this);
+                        String expiry_date = login.getUserInfo().getExpiry_date();
+                        new SharedPreferenceConfig().saveExpiryDateInSP("expiry", expiry_date, Login_otp.this);
                         Intent intent = new Intent(Login_otp.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         Login_otp.this.finish();
                         showToast("User number Verified");
+
 
                     } else {
 

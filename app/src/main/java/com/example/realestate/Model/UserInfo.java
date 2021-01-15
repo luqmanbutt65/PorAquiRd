@@ -58,7 +58,42 @@ public class UserInfo extends RealmObject {
     @Expose
     private String company_name;
 
+
+
+
+    @SerializedName("upload_limit")
+    @Expose
+    private String upload_limit;
+
+    @SerializedName("expiry_date")
+    @Expose
+    private String expiry_date;
+
+
+    public String getUpload_limit() {
+        return upload_limit;
+    }
+
+    public void setUpload_limit(String upload_limit) {
+        this.upload_limit = upload_limit;
+    }
+
+    public String getExpiry_date() {
+        return expiry_date;
+    }
+
+    public void setExpiry_date(String expiry_date) {
+        this.expiry_date = expiry_date;
+    }
+
     public String getUser_image() {
+
+        if (user_image == null) {
+
+            user_image = "";
+
+        }
+
         return user_image;
     }
 

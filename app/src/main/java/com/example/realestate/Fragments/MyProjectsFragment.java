@@ -1,5 +1,6 @@
 package com.example.realestate.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,13 +20,11 @@ import android.widget.Toast;
 
 import com.example.realestate.Adapters.MyFavAdapter;
 import com.example.realestate.Adapters.MyprojectAdapter;
-import com.example.realestate.Adddata;
+import com.example.realestate.Activities.Adddata;
+import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
-import com.example.realestate.Model.Like.PropertiesLike_Data;
-import com.example.realestate.Model.Like.PropertiesLike_Response;
 import com.example.realestate.Model.MyProject.MyProperties_Data;
 import com.example.realestate.Model.MyProject.MyProperties_Response;
-import com.example.realestate.Model.MyprojectData;
 import com.example.realestate.Model.REST.Properties.Properties;
 import com.example.realestate.R;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
@@ -40,12 +39,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class MyProjectsFragment extends Fragment {
+public class MyProjectsFragment extends Fragment implements MyFavAdapter.ClickEventHandler {
 
     Context context;
     ImageView imageView, backbtn;
     TextView tv_result_number;
     RecyclerView myproRecyclerview;
+    ProgressDialog myprogressdilouge;
     private ArrayList<Properties> propertiesArrayList;
 
     public MyProjectsFragment() {
@@ -63,11 +63,14 @@ public class MyProjectsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_projects, container, false);
-
+        myprogressdilouge = new ProgressDialog(getContext());
+        myprogressdilouge.setMessage("Loading ...");
+        myprogressdilouge.setCancelable(false);
         String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
         getData(user_Id);
         propertiesArrayList = new ArrayList<>();
         context = this.getContext();
+
         tv_result_number = view.findViewById(R.id.myprojectrecycler);
         myproRecyclerview = view.findViewById(R.id.myproject_recycler);
         myproRecyclerview.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -95,6 +98,7 @@ public class MyProjectsFragment extends Fragment {
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), Adddata.class));
 
+
             }
         });
 
@@ -102,10 +106,9 @@ public class MyProjectsFragment extends Fragment {
     }
 
     public void getData(String id) {
-//        homeProgressDialog.show();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<MyProperties_Response> call = retrofit.create(ApiInterface.class).MYPROJECT_CALL(id);
+        myprogressdilouge.show();
+
+        Call<MyProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).MYPROJECT_CALL(id);
 
         call.enqueue(new Callback<MyProperties_Response>() {
             @Override
@@ -126,8 +129,7 @@ public class MyProjectsFragment extends Fragment {
                                 if (propertiesArrayList.size() > 0) {
                                     String s = String.valueOf(propertiesArrayList.size());
                                     tv_result_number.setText(s + " Projects");
-                                    myproRecyclerview.setAdapter(new MyprojectAdapter(getActivity(), context, propertiesArrayList));
-
+                                    setRecyclerView(propertiesArrayList);
 
                                 } else {
                                     tv_result_number.setText("N/A");
@@ -151,15 +153,25 @@ public class MyProjectsFragment extends Fragment {
 
                     Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }
-//                homeProgressDialog.dismiss();
+                myprogressdilouge.dismiss();
             }
 
             @Override
             public void onFailure(Call<MyProperties_Response> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                homeProgressDialog.dismiss();
+                myprogressdilouge.dismiss();
             }
         });
 
+    }
+
+    public void setRecyclerView(ArrayList<Properties> propertiesArrayListNew) {
+        myproRecyclerview.setAdapter(new MyprojectAdapter(getActivity(), context, propertiesArrayListNew, this::handleClick));
+
+    }
+
+    @Override
+    public void handleClick(int count) {
+        tv_result_number.setText(String.valueOf(count));
     }
 }

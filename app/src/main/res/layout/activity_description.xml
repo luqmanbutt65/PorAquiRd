@@ -106,7 +106,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/featuresrecyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_70sdp"
+                app:spanCount="3"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:layout_height="@dimen/_120sdp"
                 android:layout_below="@+id/locationlayout"
                 android:padding="@dimen/_10sdp">
 

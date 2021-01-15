@@ -4,6 +4,11 @@ import com.example.realestate.Model.Apoinment.Apointment_Response;
 import com.example.realestate.Model.Apoinment.Apointment_Rply;
 import com.example.realestate.Model.Apoinment.Get_Apointment_Response;
 import com.example.realestate.Model.Cell_OTP.Otp_response;
+import com.example.realestate.Model.Connectors.Connector_response;
+import com.example.realestate.Model.Connectors.connectorData.ConnectorData_response;
+import com.example.realestate.Model.Delete_Property.DeletePropertyResponse;
+import com.example.realestate.Model.Delete_Property.UpdatePropertyResponse;
+import com.example.realestate.Model.Filter.FilterResponse;
 import com.example.realestate.Model.GetList.GetCitiesListResponse;
 import com.example.realestate.Model.GetList.GetListPropertyType.GetpropertyListResponse;
 import com.example.realestate.Model.GetUpdateData.UpdateData_response;
@@ -12,12 +17,18 @@ import com.example.realestate.Model.Like.PropertiesLike_Response;
 import com.example.realestate.Model.Login;
 import com.example.realestate.Model.MyProject.AddProperties_Response;
 import com.example.realestate.Model.MyProject.MyProperties_Response;
+import com.example.realestate.Model.Plans.Payment.PaymentResponse;
+import com.example.realestate.Model.Plans.PlanResponse;
+import com.example.realestate.Model.Plans.Purchasedplan.PurchasedPlanResponse;
+import com.example.realestate.Model.REST.Properties.FavProperties.FavProperties_Response;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.Model.REST.PropertiesSingle.PropertiesSingleResp;
 import com.example.realestate.Model.REST.ResetPasswordResponse;
 import com.example.realestate.Model.Rating.GetRating.Rating_Response;
 import com.example.realestate.Model.Rating.PostRating.PostRatigResp;
 import com.example.realestate.Model.Register;
+import com.example.realestate.Model.RejectedAppointmentMessages.RejectedMessagesResponse;
+import com.example.realestate.Model.Token_response.Send_Token_Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,9 +75,9 @@ public interface ApiInterface {
     Call<ResetPasswordResponse> RESETPASS_CALL(@Query("email") String email,
                                                @Query("password") String password);
 
-    //Listing of Properties
-//    @GET("/api/get_properties")
-//    Call<Properties_Response> DASHBOARDDATA_CALL(@Query("id") String id);
+   // Listing of offline Properties
+    @GET("/api/get_properties")
+    Call<FavProperties_Response> DASHBOARDDATA_CALL(@Query("id") int id);
 
 
     //TODO:today work 4/12/2020
@@ -81,18 +92,22 @@ public interface ApiInterface {
     );
 
     // Update Profile
+    @Multipart
     @POST("/api/profile")
     Call<Login> UPDATEPROFIL_CALL(
-            @Query("id") int Id,
-            @Query("name") String name,
-            @Query("number") String number,
-            @Query("city") String city,
-            @Query("sector") String sector,
-            @Query("your_id") String your_id,
-            @Query("rnc") String rnc,
-            @Query("company_name") String company_name,
-            @Query("address") String address,
-            @Query("phone_number") String phone_number);
+            @Part("id") RequestBody Id,
+            @Part("name") RequestBody name,
+            @Part("number") RequestBody number,
+            @Part("city") RequestBody city,
+            @Part("sector") RequestBody sector,
+            @Part("your_id") RequestBody your_id,
+            @Part("rnc") RequestBody rnc,
+            @Part("company_name") RequestBody company_name,
+            @Part("address") RequestBody address,
+            @Part("phone_number") RequestBody phone_number,
+            @Part MultipartBody.Part main_image,
+            @Part MultipartBody.Part file,
+            @Part MultipartBody.Part photoid);
 
     // Get User Data
     @POST("/api/login")
@@ -135,19 +150,49 @@ public interface ApiInterface {
             @Part("description") RequestBody description,
             @Part("price") RequestBody price,
             @Part("location") RequestBody location,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
             @Part("city") RequestBody city,
             @Part("sector") RequestBody sector,
             @Part("bedrooms") RequestBody bedroom,
             @Part("bathrooms") RequestBody bathroom,
             @Part("area") RequestBody unit_of_measure,
-            @Part("date_of_construction") RequestBody date_of_construction,
+            @Part("construction_year") RequestBody date_of_construction,
             @Part("pets") RequestBody petroom,
             @Part("parking") RequestBody parkinglot,
             @Part("property_condition") RequestBody property_condition,
+            @Part("patio") RequestBody patio,
             @Part MultipartBody.Part featureImage,
             @Part ArrayList<MultipartBody.Part> multipartTypedOutput);
+ //add updated property
+ @Multipart
+ @POST("/api/update_property_user")
+ Call<AddProperties_Response> ADD_UPDATED_PROPERTY_DATA(
+         @Part("user_id") RequestBody user_id,
+         @Part("property_main_id") RequestBody property_main_id,
+         @Part("sale_type") RequestBody status,
+         @Part("property_type") RequestBody property_type,
+         @Part("title") RequestBody title,
+         @Part("description") RequestBody description,
+         @Part("price") RequestBody price,
+         @Part("location") RequestBody location,
+         @Part("longitude") RequestBody longitude,
+         @Part("latitude") RequestBody latitude,
+         @Part("city") RequestBody city,
+         @Part("sector") RequestBody sector,
+         @Part("bedrooms") RequestBody bedroom,
+         @Part("bathrooms") RequestBody bathroom,
+         @Part("area") RequestBody unit_of_measure,
+         @Part("construction_year") RequestBody date_of_construction,
+         @Part("pets") RequestBody petroom,
+         @Part("parking") RequestBody parkinglot,
+         @Part("property_condition") RequestBody property_condition,
+         @Part("patio") RequestBody patio,
+         @Part MultipartBody.Part featureImage,
+         @Part ArrayList<MultipartBody.Part> multipartTypedOutput);
 
-    //    @Part MultipartBody.Part[] property_images
+
+ //    @Part MultipartBody.Part[] property_images
     //Favirot Properties
     @POST("/api/favourite_properties")
     Call<PropertiesLike_Response> FAV_CALL(@Query("id") String id);
@@ -214,8 +259,9 @@ public interface ApiInterface {
 
     //reject appointment
 
-    @GET("/api/appointment_status_reject/{id}")
-    Call<Apointment_Rply> APOINTMENT_REJECT_CALL(@Path(value = "id", encoded = true) int id);
+    @POST("/api/appointment_status_reject")
+    Call<Apointment_Rply> APOINTMENT_REJECT_CALL(@Query("user_id") int id,
+                                                 @Query("message") String message);
 
 
     //number otp
@@ -235,5 +281,81 @@ public interface ApiInterface {
                                @Query("phone_number") String phone_number,
                                @Query("email") String email,
                                @Query("password") String password);
+
+
+    //Send token
+    @POST("api/get_device_token")
+    Call<Send_Token_Response> SEND_TOKEN_CALL(@Query("user_id") String id,
+                                              @Query("device_token") String token);
+
+
+    //getConnector
+    @GET("api/all_connectors")
+    Call<Connector_response> CONNECTOR_CALL();
+
+
+    //Connector detail
+    @POST("/api/connector_detail")
+    Call<ConnectorData_response> CONNECTORS_DETAIL_CALL(@Query("id") String id);
+
+    //put comment for connector
+    @POST("/api/connectors_rating")
+    Call<PostRatigResp> PUT_COMMENT_CALL(@Query("user_id") String id,
+                                         @Query("connector_id") String connector_id,
+                                         @Query("rating") float rating,
+                                         @Query("comment") String comment);
+
+
+    // Delete property
+    @POST("/api/delete_property")
+    Call<DeletePropertyResponse> DELET_PROPERTY_CALL(@Query("id") int property_id);
+
+
+    // Filter Api
+    @POST("/api/filter_property")
+    Call<FilterResponse> FILTER_PROPERTY_CALL(@Query("sale_type") String sale_type,
+                                              @Query("property_type") String property_type,
+                                              @Query("location") String location,
+                                              @Query("city") String city,
+                                              @Query("price_min") String price_min,
+                                              @Query("price_max") String price_max,
+//                                              @Query("rating") String rating,
+                                              @Query("area_min") String area_min,
+                                              @Query("area_max") String area_max,
+                                              @Query("bedrooms") String bedrooms,
+                                              @Query("bathrooms") String bathrooms,
+                                              @Query("pets") String pets,
+                                              @Query("parking") String parking);
+
+
+    //get property to update
+
+    @GET("/api/edit_property_user/{id}")
+    Call<UpdatePropertyResponse> EDIT_PROPERT_DETAIL_CALL(@Path(value = "id", encoded = true) String id);
+
+
+
+
+    //get plans
+    @GET("/api/plans")
+    Call<PlanResponse> PLAN_DATA_CALL();
+
+    @POST("/api/payment_success")
+    Call<PaymentResponse> PLAN_SUCCESS__CALL(@Query("user_id") String user_id,
+                                             @Query("transaction_id") String transaction_id,
+                                             @Query("plan_id") String plan_id,
+                                             @Query("price") String price);
+
+
+    //PurchasedPlan
+    @POST("/api/my_purchases")
+    Call<PurchasedPlanResponse> PURCHAASED_PLANDATA_CALL(@Query("user_id") String id);
+
+
+    //RejectedMessages
+    @POST("/api/rejected_appointments")
+    Call<RejectedMessagesResponse> REJECTED_APPOINTMENT_MESSAGES_CALL(@Query("user_id") String id);
+
+
 
 }

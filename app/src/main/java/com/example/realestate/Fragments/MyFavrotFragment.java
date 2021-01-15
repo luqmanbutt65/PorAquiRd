@@ -20,6 +20,7 @@ import com.example.realestate.Adapters.DashBoardAdapter;
 import com.example.realestate.Adapters.MyFavAdapter;
 import com.example.realestate.Adapters.MyprojectAdapter;
 import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.Model.Like.LikeResponse;
 import com.example.realestate.Model.Like.PropertiesLike_Data;
 import com.example.realestate.Model.Like.PropertiesLike_Response;
 import com.example.realestate.Model.Login;
@@ -31,6 +32,7 @@ import com.example.realestate.Model.UserInfo;
 import com.example.realestate.R;
 import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Sqldata.DataBaseHelper;
 import com.example.realestate.Utills.GlobalState;
 
 import java.util.ArrayList;
@@ -44,13 +46,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class MyFavrotFragment extends Fragment {
+public class MyFavrotFragment extends Fragment implements MyFavAdapter.ClickEventHandler {
     ImageView back_btn;
     Context context;
     TextView tv_result_number;
     RecyclerView favRecyclerview;
     String user_Id = "";
     private ArrayList<Properties> propertiesArrayList;
+    DataBaseHelper dataBaseHelper;
 
     public MyFavrotFragment() {
         // Required empty public constructor
@@ -66,7 +69,15 @@ public class MyFavrotFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        getData(user_Id);
+        if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", context)) {
+            getData(user_Id);
+        }
+
+
+
+
+
+
     }
 
 
@@ -75,10 +86,16 @@ public class MyFavrotFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_favrot, container, false);
-        user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
-        getData(user_Id);
-        propertiesArrayList = new ArrayList<>();
         context = this.getContext();
+        dataBaseHelper = new DataBaseHelper(getContext());
+        user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
+
+        if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", context)) {
+            getData(user_Id);
+        }
+
+        propertiesArrayList = new ArrayList<>();
+
         tv_result_number = view.findViewById(R.id.tv_result_number);
         favRecyclerview = view.findViewById(R.id.myfav_recycler);
         favRecyclerview.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -93,7 +110,15 @@ public class MyFavrotFragment extends Fragment {
             }
         });
 
+        if (!new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
+            dataBaseHelper = new DataBaseHelper(getContext());
+            propertiesArrayList = dataBaseHelper.ViewData();
+            if (propertiesArrayList != null) {
+                if (propertiesArrayList.size() > 0) {
+                    setRecyclerView(propertiesArrayList);
+                }
 
+            }}
         return view;
     }
 
@@ -120,8 +145,10 @@ public class MyFavrotFragment extends Fragment {
 
                                 if (propertiesArrayList.size() > 0) {
                                     tv_result_number.setText(String.valueOf(propertiesArrayList.size()));
-                                    favRecyclerview.setAdapter(new MyFavAdapter(getActivity(), context, propertiesArrayList));
 
+                                    setRecyclerView(propertiesArrayList);
+
+//                                    favRecyclerview.setAdapter(new MyFavAdapter(getActivity(), context, propertiesArrayList,this));
 
 //                                    PropertiesLike_Response propertiesLike_response3 = new PropertiesLike_Response();
 //                                    propertiesLike_response3= response.body();
@@ -176,4 +203,49 @@ public class MyFavrotFragment extends Fragment {
         });
 
     }
+
+    public void setRecyclerView(ArrayList<Properties> propertiesArrayListNew) {
+        favRecyclerview.setAdapter(new MyFavAdapter(getActivity(), context, propertiesArrayListNew, this));
+
+    }
+
+    @Override
+    public void handleClick(int count) {
+//        getpropertydata(String user_id, int property_id)
+        tv_result_number.setText(String.valueOf(count));
+    }
+
+//    public void getpropertydata(String user_id, int property_id) {
+////        descriptionProgressDialog.show();
+//        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+//                .addConverterFactory(GsonConverterFactory.create()).build();
+//        Call<LikeResponse> call = retrofit.create(ApiInterface.class).LIKEPROPERTY_CALL(user_id, String.valueOf(property_id));
+//        call.enqueue(new Callback<LikeResponse>() {
+//            @Override
+//            public void onResponse(Call<LikeResponse> call, Response<LikeResponse> response) {
+//                if (response.isSuccessful()) {
+//                    LikeResponse likeResponse = response.body();
+//                    if (likeResponse.getMessage().equals("Liked")) {
+//
+//
+//                    } else if (likeResponse.getMessage().equals("Unliked")) {
+//
+//
+//                    } else {
+//                        Toast.makeText(context, "Error Please try again", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//
+//                }
+////                descriptionProgressDialog.dismiss();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<LikeResponse> call, Throwable t) {
+//                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+////                descriptionProgressDialog.dismiss();
+//            }
+//        });
+//
+//    }
 }

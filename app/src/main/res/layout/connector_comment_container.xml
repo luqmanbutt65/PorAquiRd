@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainlayoutcommentconnector"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:padding="@dimen/_10sdp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/conector_image"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp" />
+
+        <TextView
+            android:id="@+id/connectorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/conector_image"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLength="30"
+            android:maxLines="1"
+            android:text="Joan benny"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <RatingBar
+            android:id="@+id/ratingbarconnector"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/connectorName"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="1" />
+
+        <TextView
+            android:id="@+id/connector_datecomment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/connectorName"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/conector_image"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLength="30"
+            android:maxLines="1"
+            android:text="June 12,2020"
+            android:textStyle="normal" />
+
+
+        <TextView
+            android:id="@+id/commenttextconnector"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/connector_datecomment"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/conector_image"
+            android:ellipsize="end"
+            android:lines="5"
+            android:maxLines="5"
+            android:text="this is dummy data this is dummy datathis is dummy data this is dummy data this is dummy data this is dummy data "
+            android:textStyle="normal" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

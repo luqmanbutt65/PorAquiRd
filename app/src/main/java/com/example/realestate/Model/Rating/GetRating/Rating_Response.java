@@ -19,9 +19,6 @@ public class Rating_Response {
 */
 
 
-
-
-
     @SerializedName("status")
     @Expose
     private String status;
@@ -57,7 +54,6 @@ public class Rating_Response {
     public void setRatingData(RatingData ratingData) {
         this.ratingData = ratingData;
     }
-
 
 
 }

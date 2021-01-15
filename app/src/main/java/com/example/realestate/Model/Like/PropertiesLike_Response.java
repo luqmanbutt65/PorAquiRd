@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class PropertiesLike_Response{
+public class PropertiesLike_Response {
     @SerializedName("status")
     @Expose
     private String status;

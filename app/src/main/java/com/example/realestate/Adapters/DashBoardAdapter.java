@@ -15,24 +15,32 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.realestate.Activities.Description;
 import com.example.realestate.Activities.Rating_Activity;
 import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.CustomeClasses.CustomeImageview;
 import com.example.realestate.CustomeClasses.NumberTextWatcher;
 import com.example.realestate.Model.DashboardData;
 import com.example.realestate.Model.Like.LikeResponse;
 import com.example.realestate.Model.REST.Properties.Properties;
+import com.example.realestate.Model.REST.Properties.PropertiesExtra;
 import com.example.realestate.Model.REST.PropertiesSingle.PropertiesSingleResp;
 import com.example.realestate.R;
+import com.example.realestate.SetMapdataInterface;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Sqldata.DataBaseHelper;
 import com.example.realestate.customViewPager.customViewPager;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,20 +53,22 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
     private Activity activity;
     private ArrayList<Properties> properties;
 
+
     public DashBoardAdapter(Activity activity, Context context,
                             ArrayList<Properties> properties) {
         this.context = context;
         this.activity = activity;
         this.properties = properties;
 
+
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @NonNull
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View inflate = inflater.inflate(R.layout.dashboard_container, parent, false);
-
         return new viewholder(inflate);
     }
 
@@ -70,14 +80,23 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
+        int propertieId = properties.get(position).getId();
+        String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", context);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, Description.class);
+                intent.putExtra("propertieIDKey", propertieId);
+                context.startActivity(intent);
+
+            }
+        });
 
         if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", context)) {
 
-            int propertieId = properties.get(position).getId();
-            String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", context);
-
-
+            holder.setdata(properties.get(position));
             holder.likeimage_filled.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -101,31 +120,60 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
             });
 
 
+        } else {
+
+
+            holder.setdata(properties.get(position));
+
+            holder.likeimage_filled.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    holder.likeimage_filled.setVisibility(View.INVISIBLE);
+                    holder.like_image.setVisibility(View.VISIBLE);
+
+
+                    DataBaseHelper db = new DataBaseHelper(context);
+
+                    String sid = String.valueOf(properties.get(position).getId());
+                    int result = db.delete(sid);
+                    if (result > 0) {
+                        Toast.makeText(context, "Disliked", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        Toast.makeText(context, "SomeThingWrong", Toast.LENGTH_LONG).show();
+
+                    }
+
+
+                }
+            });
+
+            holder.like_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    holder.likeimage_filled.setVisibility(View.VISIBLE);
+                    holder.like_image.setVisibility(View.INVISIBLE);
+                    DataBaseHelper db = new DataBaseHelper(context);
+
+                    //Here we need to add condition
+
+                    long result = db.INSERT_Channels(properties.get(position));
+                    if (result != -1) {
+                        Toast.makeText(context, "INSERT", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        Toast.makeText(context, "NOT INSERT", Toast.LENGTH_LONG).show();
+                    }
+
+
+                }
+            });
+
+
         }
-
-        int propertieId = properties.get(position).getId();
-
-        holder.setdata(properties.get(position));
-
-//        holder.review.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, Rating_Activity.class);
-//                intent.putExtra("propertieIDKey", propertieId);
-//                context.startActivity(intent);
-//            }
-//        });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(context, Description.class);
-                intent.putExtra("propertieIDKey", propertieId);
-                context.startActivity(intent);
-            }
-        });
-
-
     }
 
     public void getpropertydata(String user_id, int property_id) {
@@ -164,10 +212,12 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
 
     public class viewholder extends RecyclerView.ViewHolder {
         TextView city, town, review, price, title, bedroom, bath, area;
-        ImageView mainimg, like_image, likeimage_filled;
+        ImageView like_image, likeimage_filled;
+        CustomeImageview mainimg;
         RelativeLayout mainLayout;
 
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         public viewholder(@NonNull View itemView) {
             super(itemView);
             city = (TextView) itemView.findViewById(R.id.city_id);
@@ -181,7 +231,8 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
             mainLayout = itemView.findViewById(R.id.dashboardlayout);
             like_image = itemView.findViewById(R.id.like_image);
             likeimage_filled = itemView.findViewById(R.id.like_image_filled);
-            mainimg = itemView.findViewById(R.id.main_image);
+            mainimg = itemView.findViewById(R.id.main_image11);
+
 
         }
 
@@ -196,11 +247,13 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
                     likeimage_filled.setVisibility(View.INVISIBLE);
                     like_image.setVisibility(View.VISIBLE);
                 }
-                String city_val = ((city_val = properties.getCity()) != null) ? city_val : "N/A";
-                city.setText(city_val);
+
 
                 String town_val = ((town_val = properties.getLocation()) != null) ? town_val : "N/A";
                 town.setText(town_val);
+
+                String city_val = ((city_val = properties.getCity()) != null) ? city_val : "N/A";
+                city.setText(city_val);
 
                 String review_val = ((review_val = properties.getRating()) != null) ? review_val : "N/A";
                 review.setText(review_val);
@@ -211,17 +264,40 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
                 String title_val = ((title_val = properties.getSale_type()) != null) ? title_val : "N/A";
                 title.setText(title_val);
 
-                if (properties.getPropertiesExtra() != null) {
-                    String bedroom_val = ((bedroom_val = properties.getPropertiesExtra().getBedrooms()) != null) ? bedroom_val : "N/A";
-                    bedroom.setText(bedroom_val + " Bedroom");
 
-                    String bath_val = ((bath_val = properties.getPropertiesExtra().getBathrooms()) != null) ? bath_val : "N/A";
-                    bath.setText(bath_val + " Bath");
+                if (properties.getPropertiesExtraArrayList() != null) {
+
+                    if (properties.getPropertiesExtraArrayList().size() > 0) {
+                        for (int i = 0; i < properties.getPropertiesExtraArrayList().size(); i++) {
+                            if (i == 1) {
+                                if (properties.getPropertiesExtraArrayList().get(i).getType().equals("bedrooms")) {
+                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                } else {
+                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                }
+                            } else if (i == 0) {
+                                if (properties.getPropertiesExtraArrayList().get(i).getType().equals("bathrooms")) {
+                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                } else {
+                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+
+                                }
+                            }
+                        }
+                    } else {
+                        bedroom.setText("N/A");
+
+                        bath.setText("N/A");
+                    }
+
+
                 } else {
                     bedroom.setText("N/A");
 
                     bath.setText("N/A");
                 }
+
+//
 
 
                 String area_val = ((area_val = properties.getArea())) != null ? area_val : "N/A";
@@ -236,6 +312,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
 
 
     }
+
 }
 
  

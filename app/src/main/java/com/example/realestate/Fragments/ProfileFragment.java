@@ -22,16 +22,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
 import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Activities.Mobile_register_otp;
 import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
-import com.example.realestate.BottomSheets.BottomSheet;
-import com.example.realestate.ChangePaswsword;
+import com.example.realestate.AppConstant;
 import com.example.realestate.Model.Cell_OTP.Otp_response;
 import com.example.realestate.Model.Login;
-import com.example.realestate.Model.MyProject.AddProperties_Response;
-import com.example.realestate.Model.UserInfo;
 import com.example.realestate.R;
 import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
@@ -40,6 +38,7 @@ import com.example.realestate.Utills.GlobalState;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,11 +49,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProfileFragment extends Fragment {
 
     Spinner language, cruncy;
-    TextView editprofile, changepassword, myprojects, otpnumber;
+    TextView editprofile, changepassword, myprojects, otpnumber, purchasedplans, mymessages, uploadlimit;
     List<String> listCruncy;
     List<String> listLanguage;
     LinearLayout linearLayout1, linearLayout;
     ImageView back_btn;
+    CircleImageView userImage2;
     TextView username, useremail;
     ProgressDialog profileProgressDialog;
     Button cancel, register;
@@ -85,8 +85,12 @@ public class ProfileFragment extends Fragment {
 
         username = view.findViewById(R.id.username);
         useremail = view.findViewById(R.id.useremail);
-        language = view.findViewById(R.id.language);
+        purchasedplans = view.findViewById(R.id.purchasedplans);
+        mymessages = view.findViewById(R.id.mymessages);
+        uploadlimit = view.findViewById(R.id.uploadlimit);
 
+        language = view.findViewById(R.id.language);
+        userImage2 = view.findViewById(R.id.userImage1);
         cruncy = view.findViewById(R.id.cruncy);
         editprofile = view.findViewById(R.id.editprofile);
         changepassword = view.findViewById(R.id.changepassword);
@@ -95,9 +99,39 @@ public class ProfileFragment extends Fragment {
         linearLayout1 = view.findViewById(R.id.linearLayout1);
         linearLayout = view.findViewById(R.id.linearLayout);
 
+
+        String expiry_Date = new SharedPreferenceConfig().geteExpiryDateFromSP("expiry", getContext());
+        String upload_limit = new SharedPreferenceConfig().geteUploadlimitFromSP("uploadlimit", getContext());
+
+        uploadlimit.setText("Uplaod Limit: " + upload_limit);
         back_btn = view.findViewById(R.id.back_btn_profile);
 
+        purchasedplans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Fragment fragment = new PurchasedPlans();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameprofile, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
+
+        mymessages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new MyMessages();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameprofile, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
         otpnumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,6 +166,13 @@ public class ProfileFragment extends Fragment {
         if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
             if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()) != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()) != null) {
 //                ShowUser(new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()), new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", getContext()));
+
+                String path = new SharedPreferenceConfig().geteimageOfUSerFromSP("image", getContext());
+                path = AppConstant.IMAGE_PATH_USER + path;
+
+                Glide.with(getContext()).load(path).into(userImage2);
+
+
                 useremail.setText(new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()));
                 username.setText(new SharedPreferenceConfig().getNameOfUSerFromSP("name", getContext()));
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),

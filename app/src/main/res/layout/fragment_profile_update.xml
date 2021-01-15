@@ -66,10 +66,11 @@
                     android:padding="16dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imageView1"
+                        android:id="@+id/user_photo"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_centerVertical="true"
+                        android:scaleType="centerCrop"
                         app:civ_border_color="#FF000000"
                         app:civ_border_width="1dp" />
 
@@ -130,11 +131,12 @@
                         android:textSize="@dimen/_18sdp" />
 
                     <TextView
+                        android:id="@+id/tv_company"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="Name &amp; Last Name/Company Name*"
-                        android:textColor="#EE5181"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -157,11 +159,12 @@
                         android:textColorHint="#808081" />
 
                     <TextView
+                        android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="User Name*"
-                        android:textColor="#EE5181"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -177,17 +180,19 @@
                         android:maxLength="30"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:paddingRight="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
 
 
                     <TextView
+                        android:id="@+id/tv_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="Your ID*"
-                        android:textColor="#EE5181"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -203,16 +208,18 @@
                         android:maxLength="11"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:paddingRight="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
 
                     <TextView
+                        android:id="@+id/tv_rnc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="RNC*"
-                        android:textColor="#EE5181"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -228,17 +235,19 @@
                         android:maxLength="11"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:paddingRight="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
 
 
                     <TextView
+                        android:id="@+id/tv_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="Phone No.*"
-                        android:textColor="#EE5181"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -254,16 +263,18 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:paddingRight="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
 
                     <TextView
+                        android:id="@+id/tv_cell"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="Cell No.*"
-                        android:textColor="#EE5181"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -279,17 +290,19 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:paddingRight="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
 
 
                     <TextView
+                        android:id="@+id/tv_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="Address*"
-                        android:textColor="#EE5181"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -305,17 +318,19 @@
                         android:maxLength="60"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:paddingRight="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
 
 
                     <TextView
+                        android:id="@+id/tv_city"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="City*"
-                        android:textColor="#EE5181"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -331,16 +346,18 @@
                         android:maxLength="20"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:paddingRight="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
 
                     <TextView
+                        android:id="@+id/tv_sector"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="Sector*"
-                        android:textColor="#EE5181"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -356,6 +373,7 @@
                         android:maxLength="20"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
+                        android:paddingRight="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
@@ -363,62 +381,92 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="gone">
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:layout_weight="3"
-                            android:orientation="horizontal">
+                            android:text="Agent Data"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
-                            <EditText
-                                android:id="@+id/et_uploadfile"
-                                android:layout_width="0dp"
-                                android:layout_height="@dimen/_40sdp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginRight="@dimen/_10sdp"
-                                android:layout_weight="2"
-                                android:background="@drawable/add_edittext_style_gray" />
-
-                            <Button
-                                android:id="@+id/uploadfile"
-                                android:layout_width="0dp"
-                                android:layout_height="@dimen/_40sdp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
-                                android:text="Upload File" />
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <EditText
+                            android:id="@+id/et_uploadfile"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="2"
+                            android:background="@drawable/add_edittext_style_gray"
+                            android:editable="false"
                             android:layout_marginTop="@dimen/_10sdp"
-                            android:layout_weight="3"
-                            android:orientation="horizontal">
+                            android:ellipsize="end"
+                            android:hint="file name"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:singleLine="true" />
 
-                            <ImageView
-                                android:id="@+id/iv_uploadimage"
-                                android:layout_width="0dp"
-                                android:layout_height="@dimen/_150sdp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginRight="@dimen/_10sdp"
-                                android:layout_weight="2" />
-
-                            <Button
-                                android:id="@+id/uploadimage"
-                                android:layout_width="0dp"
-                                android:layout_height="@dimen/_40sdp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
-                                android:text="Upload Image" />
+                        <Button
+                            android:id="@+id/uploadfile"
+                            android:layout_width="@dimen/_200sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_round"
+                            android:gravity="center"
+                            android:text="Upload File"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/_8sdp" />
 
 
-                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/iv_uploadimage"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="@dimen/_150sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_weight="2"
+                            android:background="@drawable/roundimage"
+                            android:scaleType="centerCrop" />
 
+                        <Button
+                            android:id="@+id/uploadimage"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_round"
+                            android:gravity="center"
+                            android:text="Upload User Image"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/_8sdp" />
+
+                        <ImageView
+                            android:id="@+id/iv_uplophotoid"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="@dimen/_150sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_weight="2"
+                            android:background="@drawable/roundimage"
+                            android:scaleType="centerCrop" />
+
+                        <Button
+                            android:id="@+id/uploadphotoid"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_round"
+                            android:gravity="center"
+                            android:text="Upload PhotoId"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/_8sdp" />
                     </LinearLayout>
                 </LinearLayout>
 

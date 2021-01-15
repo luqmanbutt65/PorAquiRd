@@ -159,6 +159,7 @@
     </FrameLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:fitsSystemWindows="true"
         android:id="@+id/navigationdrawer"
         android:layout_marginRight="-64dp"
@@ -234,6 +235,34 @@
                     android:textStyle="normal" />
 
                 <Button
+                    android:id="@+id/Connectors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/selecter"
+                    android:gravity="center"
+                    android:text="Connectors"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_20sdp"
+                    android:textStyle="normal" />
+                <Button
+                    android:id="@+id/plans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/selecter"
+                    android:gravity="center"
+                    android:text="Subscription plans"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_20sdp"
+                    android:textStyle="normal" />
+                <Button
                     android:id="@+id/cockies_policy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -242,7 +271,7 @@
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@drawable/selecter"
                     android:gravity="center"
-                    android:text="Cookies Policy"
+                    android:text="cockies_policy"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_20sdp"

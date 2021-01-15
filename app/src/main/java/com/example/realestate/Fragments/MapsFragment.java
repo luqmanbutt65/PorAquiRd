@@ -6,19 +6,26 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.realestate.R;
+import com.example.realestate.SetMapdataInterface;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Utills.GlobalState;
 import com.example.realestate.Utills.MyService;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -36,8 +43,15 @@ public class MapsFragment extends Fragment {
     Double latitude, longitude;
     LocationManager lm;
     Location location;
+    SetMapdataInterface setMapdataInterface;
     private GoogleMap googleMap;
+
+    ProgressDialog delayProgresPD;
+
+
+
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
+
 
         /**
          * Manipulates the map once available.
@@ -58,6 +72,10 @@ public class MapsFragment extends Fragment {
         }
     };
 
+    public MapsFragment(SetMapdataInterface setMapdataInterface) {
+        this.setMapdataInterface = setMapdataInterface;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -65,8 +83,12 @@ public class MapsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
 
+
         mMapView = (MapView) view.findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
+        delayProgresPD=new ProgressDialog(getContext());
+        delayProgresPD.setMessage("Loading...");
+        delayProgresPD.setCancelable(false);
 
         mMapView.onResume(); // needed to get the map to display immediately
 
@@ -92,18 +114,38 @@ public class MapsFragment extends Fragment {
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
+                mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng arg0) {
+                        // TODO Auto-generated method stub
+
+                        setMapdataInterface.onclick(arg0.latitude, arg0.longitude);
+
+                        Log.d("arg0", arg0.latitude + "-" + arg0.longitude);
+                        Toast.makeText(getContext(), arg0.latitude + "-" + arg0.longitude, Toast.LENGTH_SHORT).show();
+
+
+                        getActivity().onBackPressed();
+                    }
+                });
+
+
 
                 googleMap.setMyLocationEnabled(true);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        delayProgresPD.dismiss();
+                    }
+                }, 5000); // 3000 milliseconds delay
                 lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-                location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                 latitude = location.getLongitude();
                 longitude = location.getLatitude();
                 String mainlocation = (latitude + "," + longitude);
 
                 SharedPreferences settings = getContext().getSharedPreferences("SHARED_PREFERENCES_LOCATION", Context.MODE_PRIVATE);
                 settings.edit().remove("location").commit();
-
-                new SharedPreferenceConfig().saveLocationOfUSerInSP("location", mainlocation, getContext());
 
                 // For dropping a marker at a point on the Map
                 LatLng sydney = new LatLng(longitude, latitude);

@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-                                                //http://poraquird.stepinnsolution.com
+    //http://poraquird.stepinnsolution.com
 
     public static final String NEW_BASE_URL = "http://poraquird.stepinnsolution.com";
 

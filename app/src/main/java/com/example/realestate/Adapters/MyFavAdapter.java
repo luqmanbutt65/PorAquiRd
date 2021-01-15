@@ -20,13 +20,16 @@ import com.bumptech.glide.Glide;
 import com.example.realestate.Activities.Description;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Like.LikeResponse;
+import com.example.realestate.Model.Like.PropertiesLike_Response;
 import com.example.realestate.Model.MyprojectData;
 import com.example.realestate.Model.REST.Properties.Properties;
 import com.example.realestate.R;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Sqldata.DataBaseHelper;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,15 +37,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyFavAdapter extends RecyclerView.Adapter<MyFavAdapter.viewholder> {
+    public ClickEventHandler clickHandler;
     Context context;
     private Activity activity;
     private List<Properties> properties;
 
     public MyFavAdapter(Activity activity, Context context,
-                        List<Properties> properties) {
+                        List<Properties> properties, ClickEventHandler clickHandler) {
         this.context = context;
         this.activity = activity;
         this.properties = properties;
+        this.clickHandler = clickHandler;
     }
 
     @NonNull
@@ -64,34 +69,80 @@ public class MyFavAdapter extends RecyclerView.Adapter<MyFavAdapter.viewholder> 
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
 
         if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", context)) {
-
             int propertieId = properties.get(position).getId();
             String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", context);
 
             holder.likeimage_filled.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     holder.likeimage_filled.setVisibility(View.INVISIBLE);
                     holder.like_image.setVisibility(View.VISIBLE);
                     properties.remove(position);
                     notifyDataSetChanged();
+                    clickHandler.handleClick(properties.size());
                     getpropertydata(user_Id, propertieId);
+                }
+            });
+            holder.like_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    holder.likeimage_filled.setVisibility(View.VISIBLE);
+                    holder.like_image.setVisibility(View.INVISIBLE);
+                    // getpropertydata(user_Id, propertieId);
+
+                }
+            });
+
+        } else {
+            //when data is offline
+
+            holder.likeimage_filled.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.likeimage_filled.setVisibility(View.INVISIBLE);
+                    holder.like_image.setVisibility(View.VISIBLE);
+
+                    DataBaseHelper db = new DataBaseHelper(context);
+
+                    String sid = String.valueOf(properties.get(position).getId());
+                    int result = db.delete(sid);
+                    if (result > 0) {
+                        Toast.makeText(context, "Disliked", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        Toast.makeText(context, "SomeThingWrong", Toast.LENGTH_LONG).show();
+
+                    }
 
 
                 }
             });
-//            holder.like_image.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//
-//                    holder.likeimage_filled.setVisibility(View.VISIBLE);
-//                    holder.like_image.setVisibility(View.INVISIBLE);
-//                    getpropertydata(user_Id, propertieId);
-//
-//                }
-//            });
+
+
+            holder.like_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    holder.likeimage_filled.setVisibility(View.VISIBLE);
+                    holder.like_image.setVisibility(View.INVISIBLE);
+
+                    DataBaseHelper db = new DataBaseHelper(context);
+
+                    //Here we need to add condition
+                    long result = db.INSERT_Channels(properties.get(position));
+                    if (result != -1) {
+                        Toast.makeText(context, "INSERT", Toast.LENGTH_LONG).show();
+
+                        return;
+                    } else {
+                        Toast.makeText(context, "NOT INSERT", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
 
         }
 
@@ -146,9 +197,14 @@ public class MyFavAdapter extends RecyclerView.Adapter<MyFavAdapter.viewholder> 
 
     }
 
+    public interface ClickEventHandler {
+        public void handleClick(int count);
+    }
+
     public class viewholder extends RecyclerView.ViewHolder {
         TextView city, town, review, price, title, bedroom, bath, area;
         ImageView mainimg, like_image, likeimage_filled;
+        //        CircleImageView mainimg;
         RelativeLayout mainLayout;
 
 
@@ -170,10 +226,8 @@ public class MyFavAdapter extends RecyclerView.Adapter<MyFavAdapter.viewholder> 
 
         void setdata(Properties properties) {
             if (properties != null) {
-
-
-                    likeimage_filled.setVisibility(View.VISIBLE);
-                    like_image.setVisibility(View.INVISIBLE);
+                likeimage_filled.setVisibility(View.VISIBLE);
+                like_image.setVisibility(View.INVISIBLE);
 
                 String city_val = ((city_val = properties.getCity()) != null) ? city_val : "N/A";
                 city.setText(city_val);
@@ -190,18 +244,38 @@ public class MyFavAdapter extends RecyclerView.Adapter<MyFavAdapter.viewholder> 
                 String title_val = ((title_val = properties.getSale_type()) != null) ? title_val : "N/A";
                 title.setText(title_val);
 
-                if (properties.getPropertiesExtra() != null) {
-                    String bedroom_val = ((bedroom_val = properties.getPropertiesExtra().getBedrooms()) != null) ? bedroom_val : "N/A";
-                    bedroom.setText(bedroom_val + " Bedroom");
 
-                    String bath_val = ((bath_val = properties.getPropertiesExtra().getBathrooms()) != null) ? bath_val : "N/A";
-                    bath.setText(bath_val + " Bath");
+                if (properties.getPropertiesExtraArrayList() != null) {
+
+                    if (properties.getPropertiesExtraArrayList().size() > 0) {
+                        for (int i = 0; i < properties.getPropertiesExtraArrayList().size(); i++) {
+                            if (i == 1) {
+                                if (properties.getPropertiesExtraArrayList().get(i).getType().equals("bedrooms")) {
+                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                } else {
+                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                }
+                            } else if (i == 0) {
+                                if (properties.getPropertiesExtraArrayList().get(i).getType().equals("bathrooms")) {
+                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                } else {
+                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+
+                                }
+                            }
+                        }
+                    } else {
+                        bedroom.setText("N/A");
+
+                        bath.setText("N/A");
+                    }
+
+
                 } else {
                     bedroom.setText("N/A");
 
                     bath.setText("N/A");
                 }
-
 
                 String area_val = ((area_val = properties.getArea())) != null ? area_val : "N/A";
                 area.setText(area_val + "M\u00B2");
@@ -214,6 +288,7 @@ public class MyFavAdapter extends RecyclerView.Adapter<MyFavAdapter.viewholder> 
         }
 
     }
+
 }
 
 

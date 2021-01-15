@@ -12,6 +12,16 @@ public class PropertiesGallery {
     @Expose
     private int property_id;
 
+    int ttype=0;
+
+    public int getTtype() {
+        return ttype;
+    }
+
+    public void setTtype(int ttype) {
+        this.ttype = ttype;
+    }
+
     public String getProperty_images() {
         return property_images;
     }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import io.realm.RealmObject;
 
-public class PropertiesLike_Data  {
+public class PropertiesLike_Data {
     @SerializedName("favourite_properties")
     @Expose
     private ArrayList<Properties> propertiesArrayList;

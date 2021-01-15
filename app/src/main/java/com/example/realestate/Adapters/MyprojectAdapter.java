@@ -1,25 +1,33 @@
 package com.example.realestate.Adapters;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.realestate.Activities.Description;
+import com.example.realestate.Activities.UpdateData;
 import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.CustomeClasses.CustomeImageview;
+import com.example.realestate.Model.Delete_Property.DeletePropertyResponse;
 import com.example.realestate.Model.Like.LikeResponse;
+import com.example.realestate.Model.MyProject.MyProperties_Response;
 import com.example.realestate.Model.MyprojectData;
 import com.example.realestate.Model.REST.Properties.Properties;
 import com.example.realestate.R;
@@ -27,6 +35,7 @@ import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,12 +46,15 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
     Context context;
     private Activity activity;
     private List<Properties> properties;
+    ProgressDialog deletprogress;
+    public ClickEventHandler clickHandler;
 
     public MyprojectAdapter(Activity activity, Context context,
-                            List<Properties> properties) {
+                            List<Properties> properties, ClickEventHandler clickHandler) {
         this.context = context;
         this.activity = activity;
         this.properties = properties;
+        this.clickHandler = clickHandler;
 
     }
 
@@ -52,6 +64,9 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
         LayoutInflater inflater = LayoutInflater.from(context);
         View inflate = inflater.inflate(R.layout.myproject_container, parent, false);
 
+        deletprogress = new ProgressDialog(context);
+        deletprogress.setMessage("Logining..."); // Setting Message
+        deletprogress.setCancelable(false);
         return new viewholder(inflate);
     }
 
@@ -74,7 +89,45 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
         int propertieId = properties.get(position).getId();
         holder.setdata(properties.get(position));
 
+        holder.itemView.setLongClickable(true);
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
+                        // set message, title, and icon
+                        .setTitle("Delete")
+                        .setMessage("Do you want to Delete")
+//                .setIcon(R.drawable.delete)
 
+                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                //remove from array list and notifydata set change
+                                properties.remove(position);
+                                notifyDataSetChanged();
+                                DeleteProperty(propertieId);
+                                clickHandler.recount(properties.size());
+                                //dismiss dialog
+                                dialog.dismiss();
+                            }
+
+                        })
+                        .setNegativeButton("Update", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                Intent i = new Intent(context, UpdateData.class);
+                                i.putExtra("propertieIDKey", propertieId);
+                                context.startActivity(i);
+                                dialog.dismiss();
+
+                            }
+                        })
+                        .create();
+                myQuittingDialogBox.show();
+
+                return false;
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +144,7 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
 
     public class viewholder extends RecyclerView.ViewHolder {
         TextView city, town, review, price, title, bedroom, bath, area;
-        ImageView mainimg;
+        CustomeImageview mainimg;
         RelativeLayout mainLayout;
 
 
@@ -113,7 +166,6 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
             if (properties != null) {
 
 
-
                 String city_val = ((city_val = properties.getCity()) != null) ? city_val : "N/A";
                 city.setText(city_val);
 
@@ -129,13 +181,35 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
                 String title_val = ((title_val = properties.getSale_type()) != null) ? title_val : "N/A";
                 title.setText(title_val);
 
-                if (properties.getPropertiesExtra() != null) {
-                    String bedroom_val = ((bedroom_val = properties.getPropertiesExtra().getBedrooms()) != null) ? bedroom_val : "N/A";
-                    bedroom.setText(bedroom_val + " Bedroom");
 
-                    String bath_val = ((bath_val = properties.getPropertiesExtra().getBathrooms()) != null) ? bath_val : "N/A";
-                    bath.setText(bath_val + " Bath");
-                } else {
+                if (properties.getPropertiesExtraArrayList() != null) {
+
+                    if(properties.getPropertiesExtraArrayList().size()>0){
+                        for (int i=0;i<properties.getPropertiesExtraArrayList().size();i++)
+                        {
+                            if(i==1){
+                                if(properties.getPropertiesExtraArrayList().get(i).getType().equals("bedrooms")){
+                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getType()+" "+properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                }else {
+                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getType()+" "+properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                }
+                            }else if(i==0){
+                                if(properties.getPropertiesExtraArrayList().get(i).getType().equals("bathrooms")){
+                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getType()+" "+properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                }else {
+                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getType()+" "+properties.getPropertiesExtraArrayList().get(i).getQuantity());
+
+                                }
+                            }
+                        }
+                    }else {
+                        bedroom.setText("N/A");
+
+                        bath.setText("N/A");
+                    }
+
+
+                }else {
                     bedroom.setText("N/A");
 
                     bath.setText("N/A");
@@ -153,6 +227,41 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
         }
 
 
+    }
+
+
+    public void DeleteProperty(int property_id) {
+        deletprogress.show();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        Call<DeletePropertyResponse> call = retrofit.create(ApiInterface.class).DELET_PROPERTY_CALL(property_id);
+        call.enqueue(new Callback<DeletePropertyResponse>() {
+            @Override
+            public void onResponse(Call<DeletePropertyResponse> call, Response<DeletePropertyResponse> response) {
+                if (response.isSuccessful()) {
+                    DeletePropertyResponse deletePropertyResponse = response.body();
+                    if (deletePropertyResponse.getMessage().equals("Porperty Deleted Successfully")) {
+
+                        Toast.makeText(context, "Property Deleted successfully", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Error Please try again", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                deletprogress.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<DeletePropertyResponse> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                deletprogress.dismiss();
+            }
+        });
+
+    }
+
+    public interface ClickEventHandler {
+        public void recount(int count);
     }
 }
 

@@ -25,7 +25,7 @@
     <string name="exit_subtitle">Are You Sure To Exit?</string>
 
 
-<!--   // firebase-->
+    <!--   // firebase-->
 
     <string name="notification_channel_id">default</string>
 

@@ -4,8 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgotpl"
+    android:background="#FCFCFC"
     tools:context=".Activities.Mobile_register_otp">
+
+    <ImageView
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/mobreglb" />
+
+    <ImageView
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/mobregc" />
+
+    <ImageView
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:scaleType="fitXY"
+        android:src="@drawable/mobreglt" />
+
+    <ImageView
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginRight="@dimen/_50sdp"
+        android:scaleType="fitXY"
+        android:src="@drawable/circll" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -37,8 +66,7 @@
                 android:layout_below="@+id/tv_text"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:src="@drawable/message"
-                />
+                android:src="@drawable/message" />
 
             <TextView
                 android:id="@+id/tv_textdescrip"
@@ -137,7 +165,7 @@
                 android:text="Resend"
                 android:textColor="#3372D3"
                 android:textSize="@dimen/_12sdp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

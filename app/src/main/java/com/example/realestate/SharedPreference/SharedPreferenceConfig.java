@@ -94,13 +94,13 @@ public class SharedPreferenceConfig {
     }//savePWDIn
 
 
-    public String getLocationOfUSerFromSP(String key, Context context) {
+    public String getlatitudeFromSP(String key, Context context) {
         SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_LOCATION ", android.content.Context.MODE_PRIVATE);
-        return preferences.getString(key, "location");
+        return preferences.getString(key, "latitude");
     }
 
 
-    public void saveLocationOfUSerInSP(String key, String value, Context context) {
+    public void savelatitudeInSP(String key, String value, Context context) {
         SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_LOCATION ", android.content.Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key, value);
@@ -136,8 +136,6 @@ public class SharedPreferenceConfig {
     }//savePWDIn
 
 
-
-
     public String getenumberOfUSerFromSP(String key, Context context) {
         SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_id ", android.content.Context.MODE_PRIVATE);
         return preferences.getString(key, "number");
@@ -146,6 +144,77 @@ public class SharedPreferenceConfig {
 
     public void saveenumberOfUSerInSP(String key, String value, Context context) {
         SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_id ", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }//savePWDIn
+
+
+    public String geteimageOfUSerFromSP(String key, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_image", android.content.Context.MODE_PRIVATE);
+        return preferences.getString(key, "image");
+    }
+
+
+    public void saveimageOfUSerInSP(String key, String value, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_image", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }//savePWDIn
+
+
+    public String geteconnectoridOfUSerFromSP(String key, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_image", android.content.Context.MODE_PRIVATE);
+        return preferences.getString(key, "connector_id");
+    }
+
+
+    public void saveconnectorOfUSerInSP(String key, String value, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_image", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }//savePWDIn
+
+
+    public String getelongitudeFromSP(String key, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_image", android.content.Context.MODE_PRIVATE);
+        return preferences.getString(key, "longitude");
+    }
+
+
+    public void savelongitudeInSP(String key, String value, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_image", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }//savePWDIn
+
+
+    public String geteExpiryDateFromSP(String key, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_image", android.content.Context.MODE_PRIVATE);
+        return preferences.getString(key, "expiry");
+    }
+
+
+    public void saveExpiryDateInSP(String key, String value, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_image", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }//savePWDIn
+
+
+
+    public String geteUploadlimitFromSP(String key, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_image", android.content.Context.MODE_PRIVATE);
+        return preferences.getString(key, "uploadlimit");
+    }
+
+
+    public void saveUploadlimitInSP(String key, String value, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_image", android.content.Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key, value);
         editor.commit();

@@ -1,6 +1,7 @@
 package com.example.realestate.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -22,6 +23,7 @@ import com.example.realestate.Adapters.FeatureAdapter;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Features;
 import com.example.realestate.Model.REST.Properties.Properties;
+import com.example.realestate.Model.REST.Properties.PropertiesExtra;
 import com.example.realestate.Model.REST.Properties.PropertiesGallery;
 import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
@@ -47,13 +49,14 @@ public class Description extends BaseActivity {
     TextView tv_city, tv_location, tv_price, tv_reviews, description;
     DotsIndicator dotsIndicator;
     ProgressDialog homeProgressDialog;
-    RecyclerView recyclerView;
+    RecyclerView featurerecycler;
     Button getApointment, getInformation;
     int propertieID = 1;
     Bundle extras;
     ProgressDialog descriptionProgressDialog;
     ArrayList<PropertiesGallery> propertiesGalleryArrayList;
     private ArrayList<Properties> propertiesArrayList;
+    private ArrayList<PropertiesExtra> propertiesExtraArrayList;
 
     @Override
     public void onBackPressed() {
@@ -64,6 +67,9 @@ public class Description extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
+
+        propertiesExtraArrayList = new ArrayList<>();
+        context = Description.this;
         // propertieID=getxtr
         extras = getIntent().getExtras();
         if (extras != null) {
@@ -85,7 +91,8 @@ public class Description extends BaseActivity {
         tv_price = findViewById(R.id.prices);
         tv_reviews = findViewById(R.id.reviews);
         description = findViewById(R.id.tv_description_text);
-        recyclerView = findViewById(R.id.featuresrecyclerview);
+
+        featurerecycler = findViewById(R.id.featuresrecyclerview);
 
         tv_reviews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,10 +116,6 @@ public class Description extends BaseActivity {
 
 
         context = this;
-        RecyclerView recyclerView = findViewById(R.id.featuresrecyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
-
-
 
         getApointment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,6 +174,13 @@ public class Description extends BaseActivity {
                                     customViewPager customViewPager = new customViewPager(Description.this, propertiesGalleryArrayList);
                                     viewPager.setAdapter(customViewPager);
                                     dotsIndicator.setViewPager(viewPager);
+
+                                    propertiesExtraArrayList = propertiesSingleResp.getPropertiesData().getSingleProperty().getPropertiesExtraArrayList();
+                                    if (propertiesExtraArrayList != null) {
+
+                                        featurerecycler.setAdapter(new FeatureAdapter(Description.this, context, propertiesExtraArrayList));
+
+                                    }
 
                                 } else {
                                 }

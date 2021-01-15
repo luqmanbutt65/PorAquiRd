@@ -1,26 +1,31 @@
-package com.example.realestate;
+package com.example.realestate.Activities;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,25 +33,30 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.realestate.Activities.BaseActivity;
-import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.ImagesAdapter;
 import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.AppConstant;
 import com.example.realestate.CustomeClasses.NumberTextWatcher;
+import com.example.realestate.Fragments.MapsFragment;
 import com.example.realestate.Model.GetList.Cities_Data;
 import com.example.realestate.Model.GetList.City;
 import com.example.realestate.Model.GetList.GetCitiesListResponse;
@@ -55,15 +65,21 @@ import com.example.realestate.Model.GetList.GetListPropertyType.PropertyType;
 import com.example.realestate.Model.GetList.GetListPropertyType.PropertyType_Data;
 import com.example.realestate.Model.ImagesData;
 import com.example.realestate.Model.MyProject.AddProperties_Response;
-import com.example.realestate.Model.REST.Properties.Properties_Response;
+import com.example.realestate.R;
+import com.example.realestate.SetMapdataInterface;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Utills.GlobalState;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -72,19 +88,18 @@ import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Part;
 
-public class Adddata extends BaseActivity {
+public class Adddata extends BaseActivity implements SetMapdataInterface {
     private static final int PICK_IMAGE_ONE = 0;
     private static final int PICK_IMAGE_MULTI = 2;
     private static final int MY_PERMISSIONS_REQUEST = 1;
+    private static final String TAG = "AddData:Loc";
     final Calendar myCalendar = Calendar.getInstance();
     Context context;
     Button addImage;
@@ -98,11 +113,12 @@ public class Adddata extends BaseActivity {
     ImagesAdapter imagesAdapter;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
-    EditText description, sector, petcheks, parkingcheks, title, price, chekBoxpet, chekBoxroom, location, unit_of_measure, date_of_construction;
+    EditText description, sector, petcheks, parkingcheks, title, price, chekBoxpet, chekBoxroom, propert_location, unit_of_measure, date_of_construction;
     Spinner prpertytype;
     List<String> list;
     List<String> listprice;
     DatePickerDialog constructionDatePicker;
+    double latitude, longitude;
 
     CheckBox chUsed, chnew, chnewProject;
     String statusVal = "For Sale";
@@ -114,8 +130,20 @@ public class Adddata extends BaseActivity {
     String citystring;
     ArrayList<City> cityArrayList;
     ArrayList<PropertyType> propertyTypeArrayList;
+    RelativeLayout rl_mainlayout;
+    FrameLayout fl_main;
 
     ProgressDialog AddDataProgressDialog;
+    double lat, lon;
+    private boolean isLocFetch = false;
+    private Location currentLocation;
+    private FusedLocationProviderClient mFusedLocationClient;
+    private int locationRequestCode = 1000;
+    private double wayLatitude = 0.0, wayLongitude = 0.0;
+    private LocationRequest locationRequest;
+    private LocationCallback locationCallback;
+    // private boolean isContinue = false;
+    private boolean isGPS = false;
 
     public static File savebitmap(Bitmap bmp, String fileName) throws IOException {
 
@@ -196,8 +224,7 @@ public class Adddata extends BaseActivity {
                 if (cursor.moveToFirst()) {
                     return cursor.getString(column_index);
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         } else if ("file".equalsIgnoreCase(uri.getScheme())) {
@@ -227,9 +254,21 @@ public class Adddata extends BaseActivity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        statusCheck2();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddata);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(Adddata.this);
+
+        AddDataProgressDialog = new ProgressDialog(Adddata.this);
+        AddDataProgressDialog.setMessage("Logining..."); // Setting Message
+        AddDataProgressDialog.setCancelable(false);
         add_data = findViewById(R.id.Add_Data);
         pricespiner = findViewById(R.id.pricespiner);
         statusbutton = (RadioGroup) findViewById(R.id.togglegroup2);
@@ -243,7 +282,8 @@ public class Adddata extends BaseActivity {
         chUsed = findViewById(R.id.used);
         chnewProject = findViewById(R.id.newproject);
         date_of_construction = findViewById(R.id.dateofconstruction);
-
+        rl_mainlayout = findViewById(R.id.rl_mainlayout);
+        fl_main = findViewById(R.id.fl_main);
 
         unit_of_measure = findViewById(R.id.unitOfmeasure);
         date_of_construction = findViewById(R.id.dateofconstruction);
@@ -254,7 +294,7 @@ public class Adddata extends BaseActivity {
         petcheks = findViewById(R.id.petcheks);
         parkingcheks = findViewById(R.id.parkingcheks);
         price = findViewById(R.id.price);
-        location = findViewById(R.id.location);
+        propert_location = findViewById(R.id.location);
         chekBoxpet = findViewById(R.id.petcheks);
         chekBoxroom = findViewById(R.id.parkingcheks);
         prpertytype = findViewById(R.id.proprtyType);
@@ -263,10 +303,6 @@ public class Adddata extends BaseActivity {
         GetPropertyTypeList();
         cityArrayList = new ArrayList<>();
         propertyTypeArrayList = new ArrayList<>();
-
-        AddDataProgressDialog = new ProgressDialog(Adddata.this);
-        AddDataProgressDialog.setMessage("Logining..."); // Setting Message
-        AddDataProgressDialog.setCancelable(false);
 
 
         add_data.setOnClickListener(new View.OnClickListener() {
@@ -277,7 +313,7 @@ public class Adddata extends BaseActivity {
                 String description_value = description.getText().toString();
                 String price_value = price.getText().toString();
                 String city_value = citystring;
-                String location_value = location.getText().toString();
+                String location_value = propert_location.getText().toString();
                 String sector_value = sector.getText().toString();
                 String unitofmeasure_value = unit_of_measure.getText().toString();
                 String date_of_construction_value = date_of_construction.getText().toString();
@@ -319,13 +355,10 @@ public class Adddata extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-//                if (position == 0) {
-//                    citystring = "";
 //
-//                } else {
 
                 citystring = city.getSelectedItem().toString();
-//                }
+//
 
             }
 
@@ -334,22 +367,27 @@ public class Adddata extends BaseActivity {
 
             }
         });
-        location.setOnClickListener(new View.OnClickListener() {
+        propert_location.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
-                if (new SharedPreferenceConfig().getLocationOfUSerFromSP("location", Adddata.this) != null) {
 
-                    location.setText(new SharedPreferenceConfig().getLocationOfUSerFromSP("location", Adddata.this));
+                if (!statusCheck()) {
+                    showToast("GPS Not On");
+
                 } else {
-//                    Fragment fragment = new MapsFragment();
-//                    FragmentManager fragmentManager = Adddata.this.getSupportFragmentManager();
-//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                    fragmentTransaction.replace(R.id.addDataframe, fragment);
-//                    fragmentTransaction.addToBackStack(null);
-//                    fragmentTransaction.commit();
 
+                    AddDataProgressDialog.show();
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            gotoFregmnet();
+                            AddDataProgressDialog.dismiss();
+                        }
+                    }, 4000);
                 }
+
             }
         });
 
@@ -427,7 +465,6 @@ public class Adddata extends BaseActivity {
 
 
         listprice = new ArrayList<String>();
-        listprice.add("Select A type");
         listprice.add("USD");
         listprice.add("DOP");
 
@@ -500,8 +537,7 @@ public class Adddata extends BaseActivity {
 //                        Toast.LENGTH_SHORT).show();
 
 
-
-                    bedroomVal = bedroomSpiner.getSelectedItem().toString();
+                bedroomVal = bedroomSpiner.getSelectedItem().toString();
 
 
             }
@@ -519,8 +555,7 @@ public class Adddata extends BaseActivity {
 //                        Toast.LENGTH_SHORT).show();
 
 
-
-                    bathVal = bathsSpiner.getSelectedItem().toString();
+                bathVal = bathsSpiner.getSelectedItem().toString();
 
             }
 
@@ -534,7 +569,7 @@ public class Adddata extends BaseActivity {
         context = this;
         recyclerView = findViewById(R.id.images_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        recyclerView.setAdapter(new ImagesAdapter(context, imagesDataArrayList2,Adddata.this));
+        recyclerView.setAdapter(new ImagesAdapter(context, imagesDataArrayList2, Adddata.this));
         featureImage = findViewById(R.id.featureimageprorperty);
         addImage = findViewById(R.id.addimage);
 
@@ -558,7 +593,7 @@ public class Adddata extends BaseActivity {
 //                imagesAdapter.notifyDataSetChanged();
 
                 Intent intent = new Intent();
-                intent.setType("image/*");
+                intent.setType("image/png");
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTI);
@@ -572,7 +607,7 @@ public class Adddata extends BaseActivity {
     public void selectImage() {
 
         Intent intent = new Intent();
-        intent.setType("image/*");
+        intent.setType("image/png");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_ONE);
     }
@@ -594,7 +629,7 @@ public class Adddata extends BaseActivity {
                                         @Override
                                         public void onClick(View view) {
                                             Intent intent = new Intent();
-                                            intent.setType("image/*");
+                                            intent.setType("image/png");
                                             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                                             intent.setAction(Intent.ACTION_GET_CONTENT);
                                             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTI);
@@ -615,13 +650,13 @@ public class Adddata extends BaseActivity {
                                 imagesDataArrayList2.add(data.getClipData().getItemAt(i).getUri());
                             }
                             Log.e("SIZE", imagesDataArrayList.size() + "");
-                            imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList2,Adddata.this);
+                            imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList2, Adddata.this);
                             recyclerView.setAdapter(imagesAdapter);
                             imagesAdapter.notifyDataSetChanged();
 
                         }
 
-                    }else {
+                    } else {
                         if (data.getData() != null) {
 
 
@@ -629,15 +664,14 @@ public class Adddata extends BaseActivity {
                             imagesDataArrayList.add(tem);
                             imagesDataArrayList2.add(tem.getUri());
                             // Log.e("SIZE", imagesDataArrayList.size() + "");
-                            imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList2,Adddata.this);
+                            imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList2, Adddata.this);
                             recyclerView.setAdapter(imagesAdapter);
-                            imagesAdapter.notifyDataSetChanged();}
+                            imagesAdapter.notifyDataSetChanged();
+                        }
                     }
 
 
-
-                }
-                else {
+                } else {
                     if (data.getData() != null) {
 
 
@@ -645,7 +679,7 @@ public class Adddata extends BaseActivity {
                         imagesDataArrayList.add(tem);
                         imagesDataArrayList2.add(tem.getUri());
                         // Log.e("SIZE", imagesDataArrayList.size() + "");
-                        imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList2,Adddata.this);
+                        imagesAdapter = new ImagesAdapter(Adddata.this, imagesDataArrayList2, Adddata.this);
                         recyclerView.setAdapter(imagesAdapter);
                         imagesAdapter.notifyDataSetChanged();
 
@@ -660,6 +694,9 @@ public class Adddata extends BaseActivity {
             }
             if (requestCode == MY_PERMISSIONS_REQUEST) {
 
+            }
+            if (requestCode == AppConstant.GPS_REQUEST) {
+                isGPS = true; // flag maintain before get location
             }
         }
 
@@ -695,7 +732,7 @@ public class Adddata extends BaseActivity {
         } else {
             formatedDay = String.valueOf(dayOfMonth);
         }
-        date = formatedMonth + "/" + formatedDay + "/" + year;
+        date = year + "-" + formatedMonth + "-" + formatedDay;
         return date;
     }
 
@@ -715,8 +752,8 @@ public class Adddata extends BaseActivity {
         }
 //       MultipartBody.Part[] parts = new MultipartBody.Part[imagesDataArrayList.size()];
         //  Old From Luqman
-     //   MultipartBody.Part[] multipartTypedOutput = new MultipartBody.Part[imagesDataArrayList.size()];
-        ArrayList<MultipartBody.Part> multipartTypedOutput=new ArrayList<>();
+        //   MultipartBody.Part[] multipartTypedOutput = new MultipartBody.Part[imagesDataArrayList.size()];
+        ArrayList<MultipartBody.Part> multipartTypedOutput = new ArrayList<>();
         for (int index = 0; index < imagesDataArrayList2.size(); index++) {
             File multiImageFile = null;
             String pathOfFile = null;
@@ -728,9 +765,9 @@ public class Adddata extends BaseActivity {
             }
             //            Bitmap myBitmap = BitmapFactory.decodeFile(file2.getAbsolutePath());
             if (multiImageFile != null) {
-                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), multiImageFile);
-              //  multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody);
-              multipartTypedOutput.add(MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody));
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/png"), multiImageFile);
+                //  multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody);
+                multipartTypedOutput.add(MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody));
 
             } else {
                 showToast("Please ReSelect Images");
@@ -745,9 +782,10 @@ public class Adddata extends BaseActivity {
             e.printStackTrace();
         }
         RequestBody id1 = RequestBody.create(MediaType.parse("text/plain"), id);
-        RequestBody feature_Image = RequestBody.create(MediaType.parse("image/*"), mainImageFile);
+        RequestBody feature_Image = RequestBody.create(MediaType.parse("image/png"), mainImageFile);
         MultipartBody.Part featureImag1 = MultipartBody.Part.createFormData("main_image", mainImageFile.getPath(), feature_Image);
         RequestBody status1 = RequestBody.create(MediaType.parse("text/plain"), status);
+        RequestBody patio = RequestBody.create(MediaType.parse("text/plain"), "patio");
         RequestBody property_type1 = RequestBody.create(MediaType.parse("text/plain"), property_type);
         RequestBody title1 = RequestBody.create(MediaType.parse("text/plain"), title);
         RequestBody description1 = RequestBody.create(MediaType.parse("text/plain"), description);
@@ -763,9 +801,32 @@ public class Adddata extends BaseActivity {
         RequestBody parkingLot1 = RequestBody.create(MediaType.parse("text/plain"), parkingLot);
         RequestBody propertycondition1 = RequestBody.create(MediaType.parse("text/plain"), propertycondition);
 
+        RequestBody lng = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(longitude));
+        RequestBody lat = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(latitude));
 
-        Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_PROPERTY_DATA(id1, status1, property_type1, title1, description1, price1, location1, city1, sector1, bedroom1, bath1, unitOfMeasure1, dateOfConstruction1, petroom1,
-                parkingLot1, propertycondition1, featureImag1, multipartTypedOutput);
+
+        Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_PROPERTY_DATA(
+                id1,
+                status1,
+                property_type1,
+                title1,
+                description1,
+                price1,
+                location1,
+                lat,
+                lng,
+                city1,
+                sector1,
+                bedroom1,
+                bath1,
+                unitOfMeasure1,
+                dateOfConstruction1,
+                petroom1,
+                parkingLot1,
+                propertycondition1,
+                patio,
+                featureImag1,
+                multipartTypedOutput);
         call.enqueue(new Callback<AddProperties_Response>() {
             @Override
             public void onResponse(Call<AddProperties_Response> call, Response<AddProperties_Response> response) {
@@ -774,6 +835,8 @@ public class Adddata extends BaseActivity {
                     if (properties_response.getMessage().equals("Property Added Succesfully")) {
 
                         showToast("Data Added Succesfully");
+                        Intent i = new Intent(Adddata.this, MainActivity.class);
+                        startActivity(i);
 
                     } else if (properties_response.getMessage().equals("Image size must not be more than 2MB")) {
                         Toast.makeText(getApplicationContext(), "Image size must not be more than 2MB", Toast.LENGTH_SHORT).show();
@@ -831,10 +894,9 @@ public class Adddata extends BaseActivity {
     }
 
     public void GetCitiesList() {
-
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<GetCitiesListResponse> call = retrofit.create(ApiInterface.class).CITYLIST_CALL();
+        AddDataProgressDialog.show();
+        ;
+        Call<GetCitiesListResponse> call = ApiClient.getRetrofit().create(ApiInterface.class).CITYLIST_CALL();
         call.enqueue(new Callback<GetCitiesListResponse>() {
             @Override
             public void onResponse(Call<GetCitiesListResponse> call, Response<GetCitiesListResponse> response) {
@@ -870,22 +932,21 @@ public class Adddata extends BaseActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }
-
+                AddDataProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<GetCitiesListResponse> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_SHORT).show();
-
+                AddDataProgressDialog.dismiss();
             }
         });
     }
 
     public void GetPropertyTypeList() {
+        AddDataProgressDialog.show();
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<GetpropertyListResponse> call = retrofit.create(ApiInterface.class).PROPERTY_TYPE_LIST_CALL();
+        Call<GetpropertyListResponse> call = ApiClient.getRetrofit().create(ApiInterface.class).PROPERTY_TYPE_LIST_CALL();
         call.enqueue(new Callback<GetpropertyListResponse>() {
             @Override
             public void onResponse(Call<GetpropertyListResponse> call, Response<GetpropertyListResponse> response) {
@@ -921,20 +982,127 @@ public class Adddata extends BaseActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }
-
+                AddDataProgressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<GetpropertyListResponse> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_SHORT).show();
-
+                AddDataProgressDialog.dismiss();
             }
         });
     }
-    public void removeFromImagearray(int position){
+
+    public void removeFromImagearray(int position) {
 //        imagesDataArrayList2.remove(position);
     }
+
+    private void gotoFregmnet() {
+        Fragment fragment = new MapsFragment(this);
+        FragmentManager fragmentManager = Adddata.this.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fl_main, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onclick(double lat, double lng) {
+
+        propert_location.setText(getCompleteAddressString(lat, lng));
+        latitude = lat;
+        longitude = lng;
+    }
+
+    public void statusCheck2() {
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps();
+        } else {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+
+            } else {
+                getCurrentLocation();
+            }
+            //st.toast("Enabled");
+
+        }
+    }
+
+    public boolean statusCheck() {
+        final LocationManager manager = (LocationManager) Adddata.this.getSystemService(LOCATION_SERVICE);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            statusCheck2();
+            return false;
+
+        } else {
+            return true;
+        }
+    }
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(Adddata.this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public void getCurrentLocation() {
+
+        final LocationRequest locationRequest = new LocationRequest();
+
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(3000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        LocationServices.getFusedLocationProviderClient(this)
+                .requestLocationUpdates(locationRequest, new LocationCallback() {
+
+                    @Override
+                    public void onLocationResult(LocationResult locationResult) {
+                        super.onLocationResult(locationResult);
+                        LocationServices.getFusedLocationProviderClient(Adddata.this).removeLocationUpdates(this);
+                        if (locationResult != null && locationResult.getLocations().size() > 0) {
+                            int latestlocationIndex = locationResult.getLocations().size() - 1;
+                            double latitude = locationResult.getLocations().get(latestlocationIndex).getLatitude();
+                            double longitude = locationResult.getLocations().get(latestlocationIndex).getLongitude();
+
+//                            sp.saveStringValue("latitude", String.valueOf(latitude));
+//                            sp.saveStringValue("longitude", String.valueOf(longitude));
+                        }
+
+                    }
+                }, Looper.myLooper());
+
+    }
 }
+
 
 
 

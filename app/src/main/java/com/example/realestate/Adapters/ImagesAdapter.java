@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.realestate.Adddata;
-import com.example.realestate.Model.ImagesData;
+import com.bumptech.glide.Glide;
+import com.example.realestate.Activities.Adddata;
 import com.example.realestate.R;
 
 import java.util.ArrayList;
@@ -22,12 +22,13 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
 
     Context context;
     ArrayList<Uri> ImagesArray;
+
     Adddata adddata;
 
     public ImagesAdapter(Context context, ArrayList<Uri> ImagesArray, Adddata adddata) {
         this.context = context;
         this.ImagesArray = ImagesArray;
-        this.adddata=adddata;
+        this.adddata = adddata;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int whichButton) {
-                            //remove from array list and notifydata set change
+                                //remove from array list and notifydata set change
                                 ImagesArray.remove(position);
                                 adddata.removeFromImagearray(position);
                                 notifyDataSetChanged();
@@ -83,23 +84,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
         return ImagesArray.size();
     }
 
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
-        LinearLayout linearLayout;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            image = itemView.findViewById(R.id.imgview1);
-            linearLayout = itemView.findViewById(R.id.imagelayout);
-        }
-
-        public void image(Uri imagesData) {
-            image.setImageURI(imagesData);
-        }
-    }
-    private AlertDialog AskOption()
-    {
+    private AlertDialog AskOption() {
         AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
                 // set message, title, and icon
                 .setTitle("Delete")
@@ -109,7 +94,6 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
-
 
 
                         dialog.dismiss();
@@ -126,6 +110,24 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
                 .create();
 
         return myQuittingDialogBox;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView image;
+        LinearLayout linearLayout;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            image = itemView.findViewById(R.id.imgview1);
+            linearLayout = itemView.findViewById(R.id.imagelayout);
+        }
+
+        public void image(Uri imagesData) {
+            image.setImageURI(imagesData);
+
+         //   Glide.with(context).load("http://poraquird.stepinnsolution.com/public/property_main_images/" + properties.getMain_image()).into(mainimg);
+            //http://poraquird.stepinnsolution.com/public/property_main_images/Property-Rental.jpg.1606997175jpeg
+        }
     }
 }
 

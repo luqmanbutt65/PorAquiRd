@@ -8,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_90sdp"
+        android:layout_height="@dimen/_80sdp"
         app:cardCornerRadius="@dimen/_7sdp">
 
         <RelativeLayout
@@ -17,22 +17,24 @@
 
             <ImageView
                 android:id="@+id/iv_property"
-                android:layout_width="@dimen/_90sdp"
+                android:layout_width="@dimen/_80sdp"
                 android:layout_height="match_parent"
                 android:padding="@dimen/_5sdp"
                 android:src="@drawable/otp"></ImageView>
 
             <TextView
                 android:id="@+id/description_text"
-                android:layout_width="@dimen/_140sdp"
+                android:layout_width="@dimen/_150sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_toRightOf="@+id/iv_property"
+                android:ellipsize="end"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:text="clinton vella brown"
                 android:textColor="@color/textblackcolor"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
 
             <TextView
@@ -43,10 +45,13 @@
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_toRightOf="@+id/iv_property"
+                android:ellipsize="end"
                 android:maxLines="1"
+                android:paddingRight="@dimen/_10sdp"
+                android:singleLine="true"
                 android:text="Green Town ,Lahore"
                 android:textColor="@color/textblackcolor"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_12sdp"
                 android:textStyle="normal" />
 
             <TextView
@@ -58,22 +63,24 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_toRightOf="@+id/iv_property"
                 android:drawableLeft="@drawable/time"
-                android:maxLines="1"
                 android:drawablePadding="@dimen/_10sdp"
+                android:maxLines="1"
+                android:paddingRight="@dimen/_10sdp"
+                android:singleLine="true"
                 android:text="December 12, 2020 12:30 PM"
                 android:textColor="@color/textblackcolor"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_11sdp"
                 android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/apointment_approved"
-                android:layout_width="@dimen/_80sdp"
+                android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_11sdp"
                 android:textStyle="normal" />
 
 

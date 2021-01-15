@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/featurelayout"
-    android:layout_width="@dimen/_130sdp"
-    android:layout_height="@dimen/_40sdp"
+    android:layout_width="@dimen/_90sdp"
+    android:layout_height="@dimen/_38sdp"
     android:layout_centerVertical="true"
-    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginLeft="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
     android:background="@drawable/feature_background"
     android:gravity="left"
     android:orientation="horizontal"
@@ -13,20 +14,33 @@
 
     <ImageView
         android:id="@+id/feature_image"
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"
+        android:layout_width="@dimen/_12sdp"
+        android:layout_height="@dimen/_12sdp"
         android:layout_gravity="center"
         android:src="@drawable/bed" />
 
     <TextView
-        android:id="@+id/feature_description"
-        android:layout_width="@dimen/_50sdp"
+        android:id="@+id/feature_type"
+        android:layout_width="@dimen/_40sdp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:ellipsize="end"
         android:maxLines="1"
         android:text="Furniture"
         android:textColor="@color/black"
-        android:textSize="@dimen/_10sdp"
+        android:textSize="@dimen/_8sdp"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/feature_quantity"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:maxLines="1"
+        android:text="111"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_8sdp"
         android:textStyle="normal" />
 </LinearLayout>

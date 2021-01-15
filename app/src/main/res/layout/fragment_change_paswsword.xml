@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_background"
-    tools:context=".ChangePaswsword">
+    tools:context=".Fragments.ChangePaswsword">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -59,9 +59,10 @@
                 android:padding="16dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/userImage2"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
+                    android:scaleType="centerCrop"
                     android:layout_centerVertical="true"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="1dp" />

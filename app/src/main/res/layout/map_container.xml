@@ -1,52 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/dashboardlayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:id="@+id/mapcontainerlayout"
+    android:layout_width="@dimen/_220sdp"
+    android:layout_height="@dimen/_90sdp"
+    android:layout_centerHorizontal="true"
     android:layout_marginTop="@dimen/_2sdp">
 
     <RelativeLayout
         android:id="@+id/mainlayout"
-        android:layout_width="match_parent"
-
-        android:layout_height="@dimen/_130sdp"
+        android:layout_width="@dimen/_220sdp"
+        android:layout_height="@dimen/_90sdp"
         android:background="@color/white"
         android:padding="@dimen/_5sdp">
 
         <ImageView
-            android:id="@+id/main_image"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_120sdp"
+            android:id="@+id/property_main_image"
+            android:layout_width="@dimen/_65sdp"
+            android:layout_height="@dimen/_65sdp"
             android:layout_centerVertical="true"
             android:background="@drawable/round_image"
-            android:scaleType="center"
+            android:scaleType="fitXY"
             android:src="@drawable/housee" />
 
-
         <TextView
-            android:id="@+id/price"
+            android:id="@+id/property_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_toRightOf="@+id/main_image"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:layout_toRightOf="@+id/property_main_image"
             android:gravity="center_vertical"
             android:inputType="numberDecimal"
             android:text="$ 1444.00"
             android:textColor="#13D7B1"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_10sdp"
             android:textStyle="normal" />
 
         <TextView
-            android:id="@+id/reviews"
+            android:id="@+id/property_reviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
             android:drawableLeft="@drawable/static_rating"
             android:gravity="center_vertical"
             android:lines="1"
@@ -54,100 +53,100 @@
             android:maxLines="1"
             android:text="4.3 Reviews"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_10sdp"
             android:textStyle="bold" />
 
-
         <TextView
-            android:id="@+id/city_id"
+            android:id="@+id/citi"
             android:layout_width="@dimen/_210sdp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_toRightOf="@+id/main_image"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/property_main_image"
             android:ellipsize="end"
             android:gravity="left"
             android:maxLines="1"
             android:text="Clinton Vella Brown"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_10sdp"
             android:textStyle="bold" />
 
-
         <TextView
-            android:id="@+id/town_id"
+            android:id="@+id/property_location"
             android:layout_width="@dimen/_210sdp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/city_id"
+            android:layout_below="@+id/citi"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_toRightOf="@+id/main_image"
+            android:layout_toRightOf="@+id/property_main_image"
             android:ellipsize="end"
             android:gravity="left"
             android:maxLines="1"
             android:text="Muslim Town Lahore"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_10sdp"
             android:textStyle="normal" />
 
         <LinearLayout
+            android:id="@+id/linearLayout_mapcontainer"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_below="@+id/town_id"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_below="@+id/property_location"
             android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_3sdp"
             android:layout_marginRight="@dimen/_5sdp"
-            android:layout_toRightOf="@+id/main_image"
+            android:layout_toRightOf="@+id/property_main_image"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:weightSum="3">
 
             <TextView
-                android:id="@+id/bedroomdasboard"
+                android:id="@+id/parking"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_2sdp"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/bed"
-                android:drawablePadding="@dimen/_5sdp"
+                android:drawableLeft="@drawable/lparking"
+                android:drawablePadding="@dimen/_2sdp"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/_2sdp"
-                android:text="04" />
+                android:text="04 park"
+                android:textSize="@dimen/_7sdp" />
 
             <View
-                android:layout_width="1dp"
+                android:layout_width="0.5dp"
                 android:layout_height="@dimen/_25sdp"
                 android:background="@color/black" />
 
             <TextView
-                android:id="@+id/bathsdashboard"
+                android:id="@+id/bath"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_2sdp"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/bath"
-                android:drawablePadding="@dimen/_5sdp"
+                android:drawableLeft="@drawable/lbath"
+                android:drawablePadding="@dimen/_2sdp"
                 android:gravity="center_vertical"
-                android:text="04 " />
+                android:text="04 bath"
+                android:textSize="@dimen/_7sdp" />
 
             <View
-                android:layout_width="1dp"
+                android:layout_width="0.5dp"
                 android:layout_height="@dimen/_25sdp"
                 android:background="@color/black" />
 
             <TextView
-                android:id="@+id/areadashboard"
+                android:id="@+id/area"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_2sdp"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/measureunit"
-                android:drawablePadding="@dimen/_5sdp"
+                android:drawableLeft="@drawable/larea"
+                android:drawablePadding="@dimen/_2sdp"
                 android:gravity="center_vertical"
-                android:text="100M\u00B2" />
+                android:text="100M\u00B2"
+                android:textSize="@dimen/_7sdp" />
         </LinearLayout>
+
     </RelativeLayout>
-
-
-
 
 </RelativeLayout>

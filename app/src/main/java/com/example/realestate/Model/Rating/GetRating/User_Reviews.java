@@ -14,7 +14,7 @@ public class User_Reviews {
     @Expose
     private String comments;
 
-    private  String user_id;
+    private String user_id;
     @SerializedName("user_detail")
     @Expose
     private UserInfo user_detail;
@@ -50,8 +50,6 @@ public class User_Reviews {
     public void setUser_detail(UserInfo user_detail) {
         this.user_detail = user_detail;
     }
-
-
 
 
 }

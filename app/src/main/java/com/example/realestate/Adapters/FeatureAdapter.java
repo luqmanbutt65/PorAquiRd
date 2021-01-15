@@ -14,7 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.realestate.AppConstant;
+import com.example.realestate.Model.Connectors.connectorData.ConnectorData_response;
 import com.example.realestate.Model.Features;
+import com.example.realestate.Model.REST.Properties.PropertiesExtra;
 import com.example.realestate.R;
 
 import java.util.ArrayList;
@@ -24,14 +28,14 @@ import java.util.List;
 public class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.viewholder> {
     Context context;
     private Activity activity;
-    private List<Features> featuresList;
+    private List<PropertiesExtra> propertiesExtraList;
 
     public FeatureAdapter(Activity activity,
                           Context context,
-                          List<Features> featuresList) {
+                          List<PropertiesExtra> propertiesExtraList) {
         this.context = context;
         this.activity = activity;
-        this.featuresList = featuresList;
+        this.propertiesExtraList = propertiesExtraList;
 
     }
 
@@ -47,32 +51,44 @@ public class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.viewhold
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public int getItemCount() {
-        return featuresList.size();
+        return propertiesExtraList.size();
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
-        holder.setdata(featuresList.get(position));
+        holder.setdata(propertiesExtraList.get(position));
 
 
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
-        TextView description;
+        TextView type, quantity;
         ImageView imageView;
         LinearLayout mainLayout;
 
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
-            description = itemView.findViewById(R.id.feature_description);
+            type = itemView.findViewById(R.id.feature_type);
+            quantity = itemView.findViewById(R.id.feature_quantity);
             imageView = itemView.findViewById(R.id.feature_image);
             mainLayout = itemView.findViewById(R.id.featurelayout);
         }
 
-        void setdata(Features features) {
-            description.setText(features.getDescription());
-            imageView.setImageResource(features.getImg());
+        void setdata(PropertiesExtra propertiesExtraList) {
+
+            if (propertiesExtraList != null) {
+
+                String type_val = ((type_val = propertiesExtraList.getType()) != null) ? type_val : "N/A";
+                type.setText(type_val);
+
+                String quantity_val = ((quantity_val = propertiesExtraList.getQuantity()) != null) ? quantity_val : "N/A";
+                quantity.setText(quantity_val);
+
+                Glide.with(context).load(AppConstant.IMAGE_PATH_extra + propertiesExtraList.getImage()).into(imageView);
+                //http://poraquird.stepinnsolution.com/public/property_main_images/Property-Rental.jpg.1606997175jpeg
+
+            }
 
 
         }

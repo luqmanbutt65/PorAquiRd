@@ -4,8 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgotp"
+    android:background="#FCFCFC"
     tools:context=".Activities.Login_otp">
+
+    <ImageView
+        android:id="@+id/main_image"
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/otptr" />
+
+    <ImageView
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_90sdp"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/otpbl" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

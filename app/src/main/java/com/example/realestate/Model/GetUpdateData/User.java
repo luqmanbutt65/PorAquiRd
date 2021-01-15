@@ -35,6 +35,10 @@ public class User extends RealmObject {
     @Expose
     private String name;
 
+    @SerializedName("user_image")
+    @Expose
+    private String user_image;
+
     @SerializedName("number")
     @Expose
     private String number;
@@ -124,5 +128,14 @@ public class User extends RealmObject {
         this.sector = sector;
     }
 
+    public String getUser_image() {
+        if (user_image == (null)) {
+            user_image = "";
+        }
+        return user_image;
+    }
 
+    public void setUser_image(String user_image) {
+        this.user_image = user_image;
+    }
 }

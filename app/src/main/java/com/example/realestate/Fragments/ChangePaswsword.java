@@ -1,4 +1,4 @@
-package com.example.realestate;
+package com.example.realestate.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,14 +16,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.AppConstant;
 import com.example.realestate.Fragments.ProfileFragment;
 import com.example.realestate.Model.REST.ResetPasswordResponse;
+import com.example.realestate.R;
 import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.Registration.resetpassword;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Utills.GlobalState;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +40,7 @@ public class ChangePaswsword extends Fragment {
     Button submit;
     EditText oldpass, newpass, confirmpass;
     TextView name, email;
+    CircleImageView userImage1;
 
     public ChangePaswsword() {
         // Required empty public constructor
@@ -57,11 +62,14 @@ public class ChangePaswsword extends Fragment {
         oldpass = view.findViewById(R.id.oldPass);
         newpass = view.findViewById(R.id.newPass);
         confirmpass = view.findViewById(R.id.confirmPass);
-
+        userImage1 = view.findViewById(R.id.userImage2);
         name = view.findViewById(R.id.name);
         email = view.findViewById(R.id.email);
 
         submit = view.findViewById(R.id.submit);
+        String path = new SharedPreferenceConfig().geteimageOfUSerFromSP("image", getContext());
+        path = AppConstant.IMAGE_PATH_USER + path;
+        Glide.with(getContext()).load(path).into(userImage1);
 
         name.setText(new SharedPreferenceConfig().getNameOfUSerFromSP("name", getContext()));
         email.setText(new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", getContext()));
