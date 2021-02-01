@@ -1,6 +1,7 @@
 package com.example.realestate.Fragments;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -36,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.DashBoardAdapter;
 import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
@@ -49,6 +52,10 @@ import com.example.realestate.SetMapdataInterface;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Sqldata.DataBaseHelper;
 import com.example.realestate.Utills.GlobalState;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -68,7 +75,7 @@ import static android.content.Context.LOCATION_SERVICE;
 
 public class Homefragment extends Fragment {
     ImageView drawerbtn, drawerbtnCancle, filter, notification;
-    Button menu, termConditions, privecyPolicy, logout, cookies_policy, cockies_policy, Connectors, plans;
+    Button menu, termConditions, privecyPolicy, logout, cookies_policy, cockies_policy, Connectors, plans, aboutus, contactus, login;
     Context context;
     EditText search;
     DashBoardAdapter dashBoardAdapter;
@@ -76,15 +83,16 @@ public class Homefragment extends Fragment {
     TextView tv_result_number;
     ProgressDialog homeProgressDialog;
     TextView tv_username;
+    Properties properties;
+    ArrayList<Properties> offLoginFavPropertites = new ArrayList<>();
+    DataBaseHelper dataBaseHelper;
+    //ads
+    InterstitialAd mInterstitialAd;
     private FrameLayout frameLayout;
     private ArrayList<Properties> propertiesArrayList;
     private ArrayList<Properties> filteredpropertiesArrayList;
     private ArrayList<Properties> nonFiltredpropertyArrayList;
     private DrawerLayout mDrawerLayout;
-    Properties properties;
-
-    ArrayList<Properties> offLoginFavPropertites = new ArrayList<>();
-    DataBaseHelper dataBaseHelper;
 
     public Homefragment() {
         // Required empty public constructor
@@ -95,7 +103,6 @@ public class Homefragment extends Fragment {
         super.onResume();
         statusCheck2();
     }
-
 
 
     @Override
@@ -114,12 +121,24 @@ public class Homefragment extends Fragment {
         dataBaseHelper = new DataBaseHelper(context);
         offLoginFavPropertites = dataBaseHelper.ViewData();
 
-        tv_result_number = view.findViewById(R.id.tv_result_number);
+        //add
+//        MobileAds.initialize(getContext(), getString(R.string.admob_app_id));
+//        mInterstitialAd = new InterstitialAd(getContext());
+//        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .build();
+//        mInterstitialAd.loadAd(adRequest);
+
+        mDrawerLayout = view.findViewById(R.id.frame1);
+        //   mDrawerLayout.closeDrawer(Gravity.LEFT, true);
+
+        tv_result_number = view.findViewById(R.id.tv_result);
         propertiesArrayList = new ArrayList<>();
         homeProgressDialog = new ProgressDialog(getContext());
-        homeProgressDialog.setMessage("Logining..."); // Setting Message
+        homeProgressDialog.setMessage("Loading..."); // Setting Message
         homeProgressDialog.setCancelable(false);
         tv_username = view.findViewById(R.id.tv_username);
+        login = view.findViewById(R.id.login1);
 
         homeRecylerView = view.findViewById(R.id.homeRecylerView);
         homeRecylerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -133,6 +152,10 @@ public class Homefragment extends Fragment {
         drawerbtn = view.findViewById(R.id.drawer);
         cookies_policy = view.findViewById(R.id.cockies_policy);
 
+
+        aboutus = view.findViewById(R.id.aboutus);
+        contactus = view.findViewById(R.id.ccontactus);
+
         menu = view.findViewById(R.id.menu);
         plans = view.findViewById(R.id.plans);
         privecyPolicy = view.findViewById(R.id.privacypolicy);
@@ -140,9 +163,64 @@ public class Homefragment extends Fragment {
         logout = view.findViewById(R.id.logout);
 
 
+        if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
+            login.setVisibility(View.INVISIBLE);
+            logout.setVisibility(View.VISIBLE);
+        } else {
+            login.setVisibility(View.VISIBLE);
+            logout.setVisibility(View.INVISIBLE);
+        }
+
+
+        cockies_policy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Fragment fragment = new PrivecyPolicy();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameContainer, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
+
+
         drawerbtnCancle = view.findViewById(R.id.cancel_button);
 
+//        mInterstitialAd.setAdListener(new AdListener() {
+//            public void onAdLoaded() {
+//                showInterstitial();
+//            }
+//        });
 
+        aboutus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Fragment fragment = new AboutUs();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameContainer, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
+        contactus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Fragment fragment = new ContactUs();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameContainer, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -156,7 +234,7 @@ public class Homefragment extends Fragment {
                 ArrayList<Properties> properties1 = new ArrayList<>();
                 if (s.length() > 3) {
                     for (Properties x : propertiesArrayList) {
-                        if (x.getLocation().toLowerCase().contains(s)) {
+                        if (x.getLocation().toLowerCase().contains(s) || x.getTitle().toLowerCase().contains(s) || x.getCity().toLowerCase().contains(s) || x.getProperty_type().toLowerCase().contains(s)) {
                             properties1.add(x);
                             Log.e("size", "resulttxtchnge" + x.getTitle());
 
@@ -165,11 +243,13 @@ public class Homefragment extends Fragment {
 
                     }
                     homeRecylerView.setAdapter(new DashBoardAdapter(getActivity(), context, properties1));
+                    tv_result_number.setText(Integer.toString(properties1.size()));
 
                 }
 
                 if (s.length() == 0) {
                     homeRecylerView.setAdapter(new DashBoardAdapter(getActivity(), context, propertiesArrayList));
+                    tv_result_number.setText(Integer.toString(propertiesArrayList.size()));
 
                 }
             }
@@ -209,9 +289,50 @@ public class Homefragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new SharedPreferenceConfig().clearSharedPrefrence(getContext());
+
+                if (new SharedPreferenceConfig().getBooleanLanguagefrenchFromSP("frenchlanguage", getContext())) {
+
+
+                    new SharedPreferenceConfig().saveBooleanLanguagefrenchInSP("frenchlanguage", true, getContext());
+
+                } else if (new SharedPreferenceConfig().getBooleanLanguageFromSP("language", getContext())) {
+                    new SharedPreferenceConfig().clearSharedPrefrence(getContext());
+                    new SharedPreferenceConfig().saveBooleanLanguageInSP("language", true, getContext());
+                } else if (new SharedPreferenceConfig().getBooleanLanguagespanishFromSP("spanishlanguage", getContext())) {
+                    new SharedPreferenceConfig().clearSharedPrefrence(getContext());
+                    new SharedPreferenceConfig().saveBooleanLanguagespanishInSP("spanishlanguage", true, getContext());
+                } else {
+                    new SharedPreferenceConfig().clearSharedPrefrence(getContext());
+                }
+
+//                new SharedPreferenceConfig().clearSharedPrefrence(getContext());
                 Intent intent = new Intent(getActivity(), LoginScreen.class);
                 startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (new SharedPreferenceConfig().getBooleanLanguagefrenchFromSP("frenchlanguage", getContext())) {
+
+                    new SharedPreferenceConfig().clearSharedPrefrence(getContext());
+                    new SharedPreferenceConfig().saveBooleanLanguagefrenchInSP("frenchlanguage", true, getContext());
+
+                } else if (new SharedPreferenceConfig().getBooleanLanguageFromSP("language", getContext())) {
+                    new SharedPreferenceConfig().clearSharedPrefrence(getContext());
+                    new SharedPreferenceConfig().saveBooleanLanguageInSP("language", true, getContext());
+                } else if (new SharedPreferenceConfig().getBooleanLanguagespanishFromSP("spanishlanguage", getContext())) {
+                    new SharedPreferenceConfig().clearSharedPrefrence(getContext());
+                    new SharedPreferenceConfig().saveBooleanLanguagespanishInSP("spanishlanguage", true, getContext());
+                }
+
+//                new SharedPreferenceConfig().clearSharedPrefrence(getContext());
+                Intent intent = new Intent(getActivity(), LoginScreen.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
 
@@ -243,16 +364,20 @@ public class Homefragment extends Fragment {
         drawerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDrawerLayout = view.findViewById(R.id.frame1);
-                mDrawerLayout.openDrawer(Gravity.LEFT, true);
+
+                if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    mDrawerLayout.closeDrawers();
+                } else {
+                    mDrawerLayout.openDrawer(GravityCompat.START);
+                }
             }
         });
 
         drawerbtnCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDrawerLayout = view.findViewById(R.id.frame1);
-                mDrawerLayout.closeDrawer(Gravity.LEFT, false);
+
+                mDrawerLayout.closeDrawer(GravityCompat.START, false);
             }
         });
 
@@ -275,21 +400,21 @@ public class Homefragment extends Fragment {
 
                 } else {
 
-                    homeProgressDialog.show();
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
+//                    homeProgressDialog.show();
+//                    Handler handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        public void run() {
 
-                            Fragment fragment = new BottomSheet();
-                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.frame1, fragment);
-                            fragmentTransaction.addToBackStack(null);
-                            fragmentTransaction.commit();
-                            homeProgressDialog.dismiss();
-                        }
-                    }, 4000);
+                    Fragment fragment = new BottomSheet();
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.frame1, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                    homeProgressDialog.dismiss();
                 }
+//                    }, 4000);
+//                }
 
 
             }
@@ -305,13 +430,18 @@ public class Homefragment extends Fragment {
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
+                    Fragment fragment = new Notifications();
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.frameContainer, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                } else {
+                    Toast.makeText(context, "You are not login", Toast.LENGTH_SHORT).show();
+                }
 
-                Fragment fragment = new MyMessages();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frameContainer, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+
             }
         });
 
@@ -477,13 +607,13 @@ public class Homefragment extends Fragment {
 
                     } else {
 
-                        Toast.makeText(getContext(), "Data fetching error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Data null", Toast.LENGTH_SHORT).show();
                     }
 
 
                 } else {
 
-                    Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                    //   Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }
                 homeProgressDialog.dismiss();
             }
@@ -564,25 +694,43 @@ public class Homefragment extends Fragment {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        LocationServices.getFusedLocationProviderClient(getActivity())
-                .requestLocationUpdates(locationRequest, new LocationCallback() {
 
-                    @Override
-                    public void onLocationResult(LocationResult locationResult) {
-                        super.onLocationResult(locationResult);
-                        LocationServices.getFusedLocationProviderClient(getContext()).removeLocationUpdates(this);
-                        if (locationResult != null && locationResult.getLocations().size() > 0) {
-                            int latestlocationIndex = locationResult.getLocations().size() - 1;
-                            double latitude = locationResult.getLocations().get(latestlocationIndex).getLatitude();
-                            double longitude = locationResult.getLocations().get(latestlocationIndex).getLongitude();
 
-//                            sp.saveStringValue("latitude", String.valueOf(latitude));
-//                            sp.saveStringValue("longitude", String.valueOf(longitude));
-                        }
+//        LocationServices.getFusedLocationProviderClient(getActivity())
+//                .requestLocationUpdates(locationRequest, new LocationCallback() {
+//
+//                    @Override
+//                    public void onLocationResult(LocationResult locationResult) {
+//                        super.onLocationResult(locationResult);
+//
+//                        homeProgressDialog.show();
+//                        Handler handler = new Handler();
+//                        handler.postDelayed(new Runnable() {
+//                            public void run() {
+//                                homeProgressDialog.dismiss();
+//                            }
+//                        }, 3000); // 3000 milliseconds delay
+//
+//
+//                        LocationServices.getFusedLocationProviderClient(context).removeLocationUpdates(this);
+//                        if (locationResult != null && locationResult.getLocations().size() > 0) {
+//                            int latestlocationIndex = locationResult.getLocations().size() - 1;
+//                            double latitude = locationResult.getLocations().get(latestlocationIndex).getLatitude();
+//                            double longitude = locationResult.getLocations().get(latestlocationIndex).getLongitude();
+//
+////                            sp.saveStringValue("latitude", String.valueOf(latitude));
+////                            sp.saveStringValue("longitude", String.valueOf(longitude));
+//                        }
+//
+//                    }
+//                }, Looper.myLooper());
 
-                    }
-                }, Looper.myLooper());
+    }
 
+    private void showInterstitial() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
     }
 
 

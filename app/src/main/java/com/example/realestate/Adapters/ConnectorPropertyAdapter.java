@@ -112,9 +112,18 @@ public class ConnectorPropertyAdapter extends RecyclerView.Adapter<ConnectorProp
 
                 String review_val = ((review_val = connector_properties.getRating()) != null) ? review_val : "N/A";
                 review.setText(review_val);
+                if (connector_properties.getCurrency() != null) {
 
-                String price_val = ((price_val = String.valueOf(connector_properties.getPrice())) != null) ? price_val : "N/A";
-                price.setText("$ " + price_val);
+                    String type = connector_properties.getCurrency();
+                    String price_val = ((price_val = String.valueOf(connector_properties.getPrice())) != null) ? price_val : "N/A";
+                    price.setText(type + " " + price_val);
+                } else {
+
+                    String price_val = ((price_val = String.valueOf(connector_properties.getPrice())) != null) ? price_val : "N/A";
+                    price.setText(" " + price_val);
+
+                }
+
 
                 String title_val = ((title_val = connector_properties.getSale_type()) != null) ? title_val : "N/A";
                 title.setText(title_val);

@@ -1,5 +1,6 @@
 package com.example.realestate.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -52,8 +53,10 @@ public class MyFavrotFragment extends Fragment implements MyFavAdapter.ClickEven
     TextView tv_result_number;
     RecyclerView favRecyclerview;
     String user_Id = "";
-    private ArrayList<Properties> propertiesArrayList;
     DataBaseHelper dataBaseHelper;
+    private ArrayList<Properties> propertiesArrayList;
+
+    ProgressDialog favprogressdilog;
 
     public MyFavrotFragment() {
         // Required empty public constructor
@@ -74,10 +77,6 @@ public class MyFavrotFragment extends Fragment implements MyFavAdapter.ClickEven
         }
 
 
-
-
-
-
     }
 
 
@@ -86,6 +85,10 @@ public class MyFavrotFragment extends Fragment implements MyFavAdapter.ClickEven
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_favrot, container, false);
+
+        favprogressdilog = new ProgressDialog(getContext());
+        favprogressdilog.setMessage("Loading ...");
+        favprogressdilog.setCancelable(false);
         context = this.getContext();
         dataBaseHelper = new DataBaseHelper(getContext());
         user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
@@ -118,12 +121,13 @@ public class MyFavrotFragment extends Fragment implements MyFavAdapter.ClickEven
                     setRecyclerView(propertiesArrayList);
                 }
 
-            }}
+            }
+        }
         return view;
     }
 
     public void getData(String id) {
-//        homeProgressDialog.show();
+        favprogressdilog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
         Call<PropertiesLike_Response> call = retrofit.create(ApiInterface.class).FAV_CALL(id);
@@ -148,43 +152,19 @@ public class MyFavrotFragment extends Fragment implements MyFavAdapter.ClickEven
 
                                     setRecyclerView(propertiesArrayList);
 
-//                                    favRecyclerview.setAdapter(new MyFavAdapter(getActivity(), context, propertiesArrayList,this));
-
-//                                    PropertiesLike_Response propertiesLike_response3 = new PropertiesLike_Response();
-//                                    propertiesLike_response3= response.body();
-//                                    Realm.init(getContext());
-//                                    RealmConfiguration config = new RealmConfiguration.Builder()
-//                                            .name("poraquird.realm")
-//                                            .schemaVersion(1)
-//                                            .deleteRealmIfMigrationNeeded()
-//                                            .build();
-//                                    Realm.setDefaultConfiguration(config);
-//
-//                                    // add response to realm database
-//
-//                                    Realm realm = Realm.getInstance(config);
-//                                    realm.beginTransaction();
-////                                    realm.delete(UserInfo.class);
-////                        realm.deleteAll();
-//                                    realm.copyToRealm(propertiesLike_response3);
-//                                    realm.commitTransaction();
-//
-//                                    int notesCount = realm.where(Properties.class).findAll().size();
-//                                    Log.d("my second", String.valueOf(notesCount));
-//                                    realm.close();
 
                                 }
 
                             }
 
                         } else {
-                            Toast.makeText(getContext(), "Data is null", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "No Data found", Toast.LENGTH_SHORT).show();
                         }
 
 
                     } else {
 
-                        Toast.makeText(getContext(), "Data fetching error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "No Data found", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -192,13 +172,13 @@ public class MyFavrotFragment extends Fragment implements MyFavAdapter.ClickEven
 
                     Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }
-//                homeProgressDialog.dismiss();
+                favprogressdilog.dismiss();
             }
 
             @Override
             public void onFailure(Call<PropertiesLike_Response> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                homeProgressDialog.dismiss();
+                favprogressdilog.dismiss();
             }
         });
 

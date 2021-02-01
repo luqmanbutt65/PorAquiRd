@@ -56,6 +56,18 @@ public class Apointments {
     @Expose
     private Properties properties;
 
+    @SerializedName("appointment_type")
+    @Expose
+    private String appointment_type;
+
+    public String getAppointment_type() {
+        return appointment_type;
+    }
+
+    public void setAppointment_type(String appointment_type) {
+        this.appointment_type = appointment_type;
+    }
+
     public Properties getProperties() {
         return properties;
     }

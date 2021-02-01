@@ -27,7 +27,7 @@
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_toRightOf="@+id/backbtnNotification"
             android:gravity="center"
-            android:text="My Notifications"
+            android:text="@string/fn_tv_title"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"

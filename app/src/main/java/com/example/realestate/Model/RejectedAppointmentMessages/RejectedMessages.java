@@ -47,6 +47,13 @@ public class RejectedMessages {
     @Expose
     private String updated_at;
 
+    @SerializedName("suggested_date")
+    @Expose
+    private String suggested_date;
+    @SerializedName("suggested_time")
+    @Expose
+    private String suggested_time;
+
     @SerializedName("property_owner")
     @Expose
     private String property_owner;
@@ -56,6 +63,21 @@ public class RejectedMessages {
     @Expose
     private PropertyDetail propertyDetail;
 
+    public String getSuggested_date() {
+        return suggested_date;
+    }
+
+    public void setSuggested_date(String suggested_date) {
+        this.suggested_date = suggested_date;
+    }
+
+    public String getSuggested_time() {
+        return suggested_time;
+    }
+
+    public void setSuggested_time(String suggested_time) {
+        this.suggested_time = suggested_time;
+    }
 
     public String getProperty_owner() {
         return property_owner;

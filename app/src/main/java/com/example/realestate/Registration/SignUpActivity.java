@@ -30,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 //3-12-2020
 public class SignUpActivity extends BaseActivity {
-    EditText userName, name, email, password;
+    EditText userName, name, email, password, number;
     Button register_btn;
 
     ProgressDialog progressDialog;
@@ -42,6 +42,7 @@ public class SignUpActivity extends BaseActivity {
         userName = findViewById(R.id.username);
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
+        number = findViewById(R.id.number);
         password = findViewById(R.id.password);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
@@ -56,8 +57,10 @@ public class SignUpActivity extends BaseActivity {
                 String getname = name.getText().toString().trim();
                 String getemail = email.getText().toString().trim();
                 String getPassword = password.getText().toString().trim();
-
-                if (getname.isEmpty() || getemail.isEmpty() || getPassword.isEmpty()) {
+                String numbervalu = number.getText().toString().trim();
+//                String username = userName.getText().toString().trim();
+//|| username.isEmpty()
+                if (getname.isEmpty() || getemail.isEmpty() || getPassword.isEmpty() || numbervalu.isEmpty()) {
 
                     Toast.makeText(SignUpActivity.this, "Please Input Field", Toast.LENGTH_SHORT).show();
                 } else {
@@ -65,7 +68,7 @@ public class SignUpActivity extends BaseActivity {
 
                         Toast.makeText(SignUpActivity.this, "password is less than 8 characters", Toast.LENGTH_SHORT).show();
                     } else {
-                        signupnuser(getname, getemail, getPassword);
+                        signupnuser(getname, getemail, getPassword, numbervalu);
                     }
 
 
@@ -90,11 +93,11 @@ public class SignUpActivity extends BaseActivity {
 
     }
 
-    public void signupnuser(String getname, String getemail, String getPassword) {
+    public void signupnuser(String getname, String getemail, String getPassword, String number) {
         progressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
                 .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<Register> call = retrofit.create(ApiInterface.class).REGISTER_CALL(getname, getemail, getPassword);
+        Call<Register> call = retrofit.create(ApiInterface.class).REGISTER_CALL(getname, getemail, getPassword, number);
         call.enqueue(new Callback<Register>() {
             @Override
             public void onResponse(Call<Register> call, Response<Register> response) {

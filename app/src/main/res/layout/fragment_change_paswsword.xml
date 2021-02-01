@@ -11,6 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_10sdp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_home_footer"></com.google.android.gms.ads.AdView>
+
+
         <RelativeLayout
             android:id="@+id/headerlayut"
             android:layout_width="match_parent"
@@ -32,7 +43,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_toRightOf="@+id/back_btn_changepass"
-                android:text="My Profile"
+                android:text="@string/fcp_tv_title"
                 android:textColor="#171D28"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
@@ -43,7 +54,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/_16sdp"
-                android:src="@drawable/notification" />
+                android:src="@drawable/notification"
+                android:visibility="gone" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -62,8 +74,8 @@
                     android:id="@+id/userImage2"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:scaleType="centerCrop"
                     android:layout_centerVertical="true"
+                    android:scaleType="centerCrop"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="1dp" />
 
@@ -121,7 +133,7 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Change Your Password"
+                    android:text="@string/fcp_tv_change_password"
                     android:textColor="#ABAEBE"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -130,68 +142,106 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Old Password"
+                    android:text="@string/fcp_tv_old_password_title"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/oldPass"
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout1"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/add_edittext_style_gray"
-                    android:hint="Enter Old password"
-                    android:lines="1"
-                    android:maxLength="30"
-                    android:maxLines="1"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:singleLine="true" />
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="none"
+                    app:hintEnabled="false"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/oldPass"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/add_edittext_style"
+                        android:hint="@string/enter_your_password"
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:maxLength="30"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/_20sdp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="#737373" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="New Password"
+                    android:text="@string/fcp_tv_password"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/newPass"
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/add_edittext_style_gray"
-                    android:hint="Enter new password"
-                    android:lines="1"
-                    android:maxLength="30"
-                    android:maxLines="1"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:singleLine="true" />
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="none"
+                    app:hintEnabled="false"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/newPass"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/add_edittext_style"
+                        android:hint="@string/fcp_et_password_hint"
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:maxLength="30"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/_20sdp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="#737373" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Confirm Password"
+                    android:text="@string/fcp_tv_confirm_password"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/confirmPass"
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout3"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/add_edittext_style_gray"
-                    android:hint="Confirm password"
-                    android:lines="1"
-                    android:maxLength="30"
-                    android:maxLines="1"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:singleLine="true" />
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="none"
+                    app:hintEnabled="false"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/confirmPass"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/add_edittext_style"
+                        android:hint="@string/fcp_et_confirm_password_hint"
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:maxLength="30"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/_20sdp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="#737373" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/submit"
@@ -199,7 +249,7 @@
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
-                    android:text="Submit" />
+                    android:text="@string/fcp_btn_submit" />
 
             </LinearLayout>
 

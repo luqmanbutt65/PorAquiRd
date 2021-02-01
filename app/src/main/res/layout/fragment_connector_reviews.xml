@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center"
-                    android:text="Add your valuable review comment for this property"
+                    android:text="@string/fcr_tv_info"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14sdp" />
 
@@ -102,7 +102,7 @@
                     android:digits="qwertyuiopasdfghjklzxcvbnm 1234567890 QWERTYUIOPASDFGHJKLZXCVBNM\n"
                     android:ellipsize="end"
                     android:gravity="start"
-                    android:hint="Comment Here !"
+                    android:hint="@string/fcr_et_comment_hint"
                     android:inputType="textMultiLine"
                     android:lines="7"
                     android:maxLines="7"
@@ -120,7 +120,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
-                    android:text="submit"
+                    android:text="@string/fcr_btn_submit"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 

@@ -1,64 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_background"
     tools:context=".Fragments.MyApointmentsFragment">
 
-    <RelativeLayout
-        android:id="@+id/headerlayut"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_70sdp">
 
-        <ImageView
-            android:id="@+id/back_btn_apointment"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:src="@drawable/back" />
-
-        <TextView
-            android:id="@+id/tv_welcom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_toRightOf="@+id/back_btn_apointment"
-            android:text="My Appointments"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_20sdp"
-            android:textStyle="bold" />
-
-
-        <ImageView
-            android:id="@+id/notification"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:src="@drawable/notification" />
-
-        <TextView
-            android:id="@+id/numofApontment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:gravity="left"
-            android:text="0 Appointments"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_15sdp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/numofApontment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="left"
+        android:text="@string/fa_tv_total_number"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/appointments_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="90dp"
+        android:layout_below="@+id/numofApontment"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:padding="@dimen/_10sdp" />
 
-</FrameLayout>
+</RelativeLayout>

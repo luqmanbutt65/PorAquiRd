@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.realestate.R;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Splash.FirstActivity;
 
 import java.util.ArrayList;
@@ -26,8 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Permisions extends AppCompatActivity {
-    Button restart;
+public class Permisions extends BaseActivity {
+    Button restart, closeapp;
     Boolean isRationale;
     Boolean isFirst = true;
 
@@ -35,13 +36,37 @@ public class Permisions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permisions);
+        if (isNetworkConnected()) {
+
+        } else {
+            networkalert();
+        }
+
+        if (new SharedPreferenceConfig().getBooleanLanguageFromSP("language", Permisions.this)) {
+            setLocale("");
+        } else if (new SharedPreferenceConfig().getBooleanLanguagefrenchFromSP("frenchlanguage", Permisions.this)) {
+            setLocale("es");
+
+        } else if (new SharedPreferenceConfig().getBooleanLanguagespanishFromSP("spanishlanguage", Permisions.this)) {
+            setLocale("sp");
+        }
         restart = findViewById(R.id.restartbtn);
+        closeapp = findViewById(R.id.closeapp);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Permisions.this, FirstActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+        closeapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//
+                finish();
+                moveTaskToBack(true);
+
             }
         });
 
@@ -67,6 +92,10 @@ public class Permisions extends AppCompatActivity {
             permissionsRequired.add("Location");
         if (!checkPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION))
             permissionsRequired.add("Location");
+        if (!checkPermission(permissionsList, Manifest.permission.READ_EXTERNAL_STORAGE))
+            permissionsRequired.add("Readstorage");
+        if (!checkPermission(permissionsList, Manifest.permission.WRITE_EXTERNAL_STORAGE))
+            permissionsRequired.add("Writestorage");
         if (permissionsList.size() > 0 && !isRationale) {
             if (permissionsRequired.size() > 0) {
 
@@ -128,6 +157,8 @@ public class Permisions extends AppCompatActivity {
 //                perms.put(Manifest.permission.READ_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
                 perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
                 perms.put(Manifest.permission.ACCESS_COARSE_LOCATION, PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.READ_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
 
                 // Fill with results
                 for (int i = 0; i < permissions.length; i++) {
@@ -135,10 +166,10 @@ public class Permisions extends AppCompatActivity {
                 }
                 // Check for ACCESS_FINE_LOCATION
                 if (
-//                        perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-                        perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                                perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-//                        perms.get(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                        perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                                perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                                perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                                perms.get(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
                 ) {
                     // All Permissions Granted
                     startActivity(new Intent(Permisions.this, MainActivity.class));

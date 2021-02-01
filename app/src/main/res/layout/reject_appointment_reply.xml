@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_20sdp"
-        android:text="Enter your Feedback for Appointment"
+        android:text="@string/car_info"
         android:textColor="@color/black"
         android:textSize="@dimen/_15sdp" />
 
@@ -24,6 +24,44 @@
         android:hint="enter message"
         android:lines="3"
         android:maxLines="3" />
+
+    <LinearLayout
+        android:id="@+id/ll_changedate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/et_change_date"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/add_edittext_style_gray"
+            android:clickable="true"
+            android:editable="false"
+            android:hint="@string/car_et_date_hint"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingRight="@dimen/_10sdp" />
+
+        <EditText
+            android:id="@+id/et_change_time"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/add_edittext_style_gray"
+            android:clickable="true"
+            android:editable="false"
+            android:hint="@string/car_et_time_hint"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingRight="@dimen/_10sdp" />
+
+
+    </LinearLayout>
 
 
     <LinearLayout
@@ -45,53 +83,25 @@
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_weight="1"
             android:background="@drawable/round_button"
-            android:text="Reject" />
+            android:text="@string/car_btn_submit_date" />
 
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/changeappointmentdate"
-        android:layout_width="@dimen/_200sdp"
+        android:layout_width="@dimen/_220sdp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="left"
+        android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_weight="1"
-        android:background="@drawable/round_button_alive"
-        android:text="change Appointment Date"
-        android:visibility="gone" />
+        android:text="@string/car_btn_change_appointment_date"
+        android:textColor="@color/aqua"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
+        />
 
-        <EditText
-            android:id="@+id/et_change_time"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:background="@drawable/add_edittext_style_gray"
-            android:clickable="true"
-            android:drawableRight="@drawable/time"
-            android:editable="false"
-            android:hint="12:10 PM"
-            android:paddingLeft="@dimen/_10sdp"
-            android:paddingRight="@dimen/_10sdp" />
-
-        <Button
-            android:id="@+id/submitChangeDate"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:background="@drawable/round_button_alive"
-            android:gravity="center_horizontal"
-            android:text="submitChangeDate" />
-    </LinearLayout>
 
 </LinearLayout>

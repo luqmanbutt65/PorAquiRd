@@ -1,5 +1,6 @@
 package com.example.realestate.Registration;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -65,6 +67,7 @@ public class LoginScreen extends BaseActivity {
             @Override
             public void onClick(View v) {
 
+
                 String getEmail = emailLogin.getText().toString().trim();
 
 
@@ -79,6 +82,7 @@ public class LoginScreen extends BaseActivity {
                         showToast("Invalid Email");
                     } else {
                         loginuser(getEmail, getPassword);
+                        hideSoftKeyboard(LoginScreen.this);
                     }
 
                 }
@@ -253,4 +257,6 @@ public class LoginScreen extends BaseActivity {
         alert.show();
 
     }
+
+
 }

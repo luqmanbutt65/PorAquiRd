@@ -32,9 +32,35 @@ public class Plan {
     @Expose
     private String updated_at;
 
+    @SerializedName("plan_image")
+    @Expose
+    private String plan_image;
+
+
     @SerializedName("features")
     @Expose
     private ArrayList<PlanFeatures> featuresArrayList;
+
+
+
+    private  boolean ischecked =false;
+
+
+    public boolean isIschecked() {
+        return ischecked;
+    }
+
+    public String getPlan_image() {
+        return plan_image;
+    }
+
+    public void setPlan_image(String plan_image) {
+        this.plan_image = plan_image;
+    }
+
+    public void setIschecked(boolean ischecked) {
+        this.ischecked = ischecked;
+    }
 
     public int getId() {
         return id;

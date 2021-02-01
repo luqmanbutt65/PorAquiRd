@@ -112,7 +112,7 @@ public class PurchasedPlans extends Fragment {
 
                     } else {
 
-                        Toast.makeText(getContext(), "Data fetching error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Data null", Toast.LENGTH_SHORT).show();
                     }
 
 

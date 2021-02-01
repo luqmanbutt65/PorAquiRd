@@ -80,7 +80,7 @@ public class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.viewhold
             if (propertiesExtraList != null) {
 
                 String type_val = ((type_val = propertiesExtraList.getType()) != null) ? type_val : "N/A";
-                type.setText(type_val);
+                type.setText(type_val + " :");
 
                 String quantity_val = ((quantity_val = propertiesExtraList.getQuantity()) != null) ? quantity_val : "N/A";
                 quantity.setText(quantity_val);

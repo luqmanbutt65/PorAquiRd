@@ -1,5 +1,6 @@
 package com.example.realestate.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,21 +13,40 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.realestate.Activities.MainActivity;
+import com.example.realestate.Adapters.Connectors_Adapter;
 import com.example.realestate.Adapters.Notificationsadapter;
+import com.example.realestate.Adapters.OtherAppointmentAdapter;
+import com.example.realestate.ApiClass.ApiClient;
+import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.Model.Apoinment.Apointment_Data;
+import com.example.realestate.Model.Apoinment.Get_Apointment_Response;
+import com.example.realestate.Model.Connectors.Connector_response;
 import com.example.realestate.Model.Notification;
 import com.example.realestate.R;
+import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 
 import java.util.ArrayList;
+import java.util.Properties;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Notifications extends Fragment {
 
     ImageView backbtn;
     Context context;
+    RecyclerView recyclerView;
+    ProgressDialog notificationdialog;
+    ArrayList<Properties> propertiesArrayList;
 
-    public Notifications(View.OnClickListener mainActivity) {
+    public Notifications() {
         // Required empty public constructor
     }
 
@@ -44,31 +64,15 @@ public class Notifications extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notifications, container, false);
 
 
+        notificationdialog = new ProgressDialog(getContext());
+        notificationdialog.setCancelable(false);
+        notificationdialog.setMessage("Loading ...");
+
         context = this.getContext();
-        RecyclerView recyclerView = view.findViewById(R.id.notification_recycler);
+        recyclerView = view.findViewById(R.id.notification_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
-
-        String[] city = {"a", "s", "qqqqqq", "kkkkk", "kkkkkllll", "ppppppp", "uuuuuuu"};
-        String[] location = {"aa", "ss", "qqqq", "kkkkk", "kkkkkllll", "ppppppp", "uuuuuuu"};
-        String[] rating = {"1m", "2m", "2h", "3m", "5h", "15m", "33m"};
-
-        ArrayList<Notification> notifications = new ArrayList<>();
-
-        notifications.add(new Notification(city[0], location[0], rating[0]));
-        notifications.add(new Notification(city[1], location[1], rating[1]));
-        notifications.add(new Notification(city[2], location[2], rating[2]));
-
-        notifications.add(new Notification(city[3], location[3], rating[3]));
-
-        notifications.add(new Notification(city[4], location[4], rating[4]));
-
-        notifications.add(new Notification(city[5], location[5], rating[5]));
-
-        notifications.add(new Notification(city[6], location[6], rating[6]));
-
-        recyclerView.setAdapter(new Notificationsadapter(this.getActivity(), context, notifications));
-
+        String user_id=new SharedPreferenceConfig().getidOfUSerFromSP("id",getContext());
+        putApointmentData(user_id);
 
         backbtn = view.findViewById(R.id.backbtnNotification);
         backbtn.setOnClickListener(new View.OnClickListener() {
@@ -81,5 +85,40 @@ public class Notifications extends Fragment {
         });
 
         return view;
+    }
+
+    public void putApointmentData(String user_id) {
+        notificationdialog.show();
+
+        Call<Get_Apointment_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).GET_OTHEER_APOINTMENT_CALL(user_id);
+        call.enqueue(new Callback<Get_Apointment_Response>() {
+            @Override
+            public void onResponse(Call<Get_Apointment_Response> call, Response<Get_Apointment_Response> response) {
+                if (response.isSuccessful()) {
+                    Get_Apointment_Response get_apointment_response = response.body();
+                    if (get_apointment_response.getMessage().equals("Appointments for who Uploaded the Property")) {
+                        Apointment_Data apointment_data = response.body().getApointment_data();
+                        if (apointment_data.getApointmentsArrayList().size() > 0) {
+//                            numofApontment.setText(apointment_data.getApointmentsArrayList().size() + " Appointments");
+                            recyclerView.setAdapter(new Notificationsadapter(getActivity(), context, apointment_data.getApointmentsArrayList()));
+                        }
+
+
+                    } else {
+
+                        Toast.makeText(getContext(), "User does not have Any appointment", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                notificationdialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<Get_Apointment_Response> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                notificationdialog.dismiss();
+            }
+        });
+
     }
 }

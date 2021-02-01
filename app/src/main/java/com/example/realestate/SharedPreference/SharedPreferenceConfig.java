@@ -206,7 +206,6 @@ public class SharedPreferenceConfig {
     }//savePWDIn
 
 
-
     public String geteUploadlimitFromSP(String key, Context context) {
         SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_image", android.content.Context.MODE_PRIVATE);
         return preferences.getString(key, "uploadlimit");
@@ -219,5 +218,75 @@ public class SharedPreferenceConfig {
         editor.putString(key, value);
         editor.commit();
     }//savePWDIn
+
+
+    public void saveBooleanAdsInSP(String key, boolean value, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(key, value);
+        editor.commit();
+    }//savePWDIn
+
+    public boolean getBooleanAdsFromSP(String key, Context context) {
+// TODO Auto-generated method stub
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        return preferences.getBoolean(key, false);
+    }//getPWDFromSP()
+
+    public void saveBooleanNotificationInSP(String key, boolean value, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(key, value);
+        editor.commit();
+    }//savePWDIn
+
+    public boolean getBooleanNotificationFromSP(String key, Context context) {
+// TODO Auto-generated method stub
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        return preferences.getBoolean(key, false);
+    }//getPWDFromSP()
+
+
+    public void saveBooleanLanguageInSP(String key, boolean value, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(key, value);
+        editor.commit();
+    }//savePWDIn
+
+    public boolean getBooleanLanguageFromSP(String key, Context context) {
+// TODO Auto-generated method stub
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        return preferences.getBoolean(key, false);
+    }//getPWDFromSP()
+
+
+    public void saveBooleanLanguagefrenchInSP(String key, boolean value, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(key, value);
+        editor.commit();
+    }//savePWDIn
+
+    public boolean getBooleanLanguagefrenchFromSP(String key, Context context) {
+// TODO Auto-generated method stub
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        return preferences.getBoolean(key, false);
+    }//getPWDFromSP()
+
+
+    public void saveBooleanLanguagespanishInSP(String key, boolean value, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(key, value);
+        editor.commit();
+    }//savePWDIn
+
+    public boolean getBooleanLanguagespanishFromSP(String key, Context context) {
+// TODO Auto-generated method stub
+        SharedPreferences preferences = context.getSharedPreferences(" SHARED_PREFERENCES_NAME ", android.content.Context.MODE_PRIVATE);
+        return preferences.getBoolean(key, false);
+    }//getPWDFromSP()
+
 
 }

@@ -33,8 +33,19 @@ public class Login_otp extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_otp);
+        if (isNetworkConnected()) {
 
+        } else {
+            networkalert();
+        }
+        if (new SharedPreferenceConfig().getBooleanLanguageFromSP("language", Login_otp.this)) {
+            setLocale("");
+        } else if (new SharedPreferenceConfig().getBooleanLanguagefrenchFromSP("frenchlanguage", Login_otp.this)) {
+            setLocale("es");
 
+        } else if (new SharedPreferenceConfig().getBooleanLanguagespanishFromSP("spanishlanguage", Login_otp.this)) {
+            setLocale("sp");
+        }
         ProgressDialog = new ProgressDialog(Login_otp.this);
         ProgressDialog.setMessage("Logining..."); // Setting Message
         ProgressDialog.setCancelable(false);

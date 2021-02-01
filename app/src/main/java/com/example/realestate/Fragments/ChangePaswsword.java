@@ -26,6 +26,8 @@ import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.Registration.resetpassword;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Utills.GlobalState;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -41,6 +43,8 @@ public class ChangePaswsword extends Fragment {
     EditText oldpass, newpass, confirmpass;
     TextView name, email;
     CircleImageView userImage1;
+    //banner ads
+    AdView mAdView;
 
     public ChangePaswsword() {
         // Required empty public constructor
@@ -58,6 +62,12 @@ public class ChangePaswsword extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_change_paswsword, container, false);
+
+
+//        mAdView = view.findViewById(R.id.adView1);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
+
 
         oldpass = view.findViewById(R.id.oldPass);
         newpass = view.findViewById(R.id.newPass);

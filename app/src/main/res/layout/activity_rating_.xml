@@ -27,7 +27,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_toRightOf="@+id/back_btnReview"
-            android:text="Reviews"
+            android:text="@string/ar_tv_title"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold" />
@@ -39,7 +39,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:text="Comments"
+            android:text="@string/ar_tv_comments"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold" />
@@ -82,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Add your valuable review comment for this property"
+                    android:text="@string/ar_tv_description"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14sdp" />
 
@@ -108,8 +108,8 @@
                     android:background="@drawable/roundimage"
                     android:digits="qwertyuiopasdfghjklzxcvbnm 1234567890 QWERTYUIOPASDFGHJKLZXCVBNM\n"
                     android:ellipsize="end"
-                    android:hint="comment Here !"
                     android:gravity="start"
+                    android:hint="@string/ar_et1_hint"
                     android:inputType="textMultiLine"
                     android:lines="7"
                     android:maxLines="7"
@@ -127,7 +127,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
-                    android:text="submit"
+                    android:text="@string/ar_btn_submit"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 

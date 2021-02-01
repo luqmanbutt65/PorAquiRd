@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="app_name">PorAquiRD</string>
+    TODO: Remove or change this placeholder text
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="clinton_vella_brown">Clinton Vella Brown</string>
+    <string name="_4_3_reviews">4.3 Reviews</string>
+    <string name="muslim_town_lahore">Muslim Town Lahore</string>
+    <string name="description">Description</string>
+    <string name="lorem_ipsum_is_simply_dummy_text_of_the_printing_and_typesetting_industry_lorem_ipsum_has_been_the_industry_s_standard_dummy_text_ever_since_the_1500s_when_an_unknown_printer_took_a_galley_of_type_and_scrambled_it_to_make_a_type_specimen_booklorem_ipsum_is_simply_dummy_text_of_the_printing_and_typesetting_industry_lorem_ipsum_has_been_the_industry_s_standard_dummy_text_ever_since_the_1500s_when_an_unknown_printer_took_a_galley_of_type_and_scrambled_it_to_make_a_type_specimen_booklorem_ipsum_is_simply_dummy_text_of_the_printing_and_typesetting_industry_lorem_ipsum_has_been_the_industry_s_standard_dummy_text_ever_since_the_1500s_when_an_unknown_printer_took_a_galley_of_type_and_scrambled_it_to_make_a_type_specimen_book">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen bookLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen bookLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_your_password">Forgot Your Password</string>
+    <string name="enter_the_regestration_email_and_we_will_send_you_a_confirmation_coden_to_reset_your_password">Enter The Regestration Email And We Will Send You A Confirmation Coden To Reset Your Password</string>
+    <string name="email">Email</string>
+    <string name="welcome_here">Welcome Here!</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="enter_your_username">Enter Your UserName</string>
+    <string name="enter_your_password">Enter Your Password</string>
+    <string name="login_status_shared_preference">com.example.realestate</string>
+    <string name="UserEmail">Abc@gmail.com</string>
+    <string name="UserPassword">abc</string>
+    <string name="login_shared_preference">com.example.realestate</string>
+
+    <string name="exit_title">Exit confirmation</string>
+    <string name="exit_subtitle">Are You Sure To Exit?</string>
+
+
+    <!--   // firebase-->
+
+    <string name="notification_channel_id">default</string>
+
+
+    <!-- TODO - add your ad unit Ids -->
+    <!-- AdMob ad unit IDs -->
+    <string name="admob_app_id">ca-app-pub-2514539521189562~4258320348</string>
+    <string name="banner_home_footer">ca-app-pub-2514539521189562/3492033580</string>
+    <string name="interstitial_full_screen">ca-app-pub-2514539521189562/9319075338</string>
+    <string name="rewarded_video">ca-app-pub-2514539521189562/1987380225</string>
+    <string name="open_app">ca-app-pub-2514539521189562/9351521464</string>
+
+
+    <!--activity_adddata-->
+
+
+    <string name="add_data_title">Ajouter de nouveaux projets</string>
+    <string name="add_data_title_update">Mettre à jour les projets</string>
+    <string name="add_data_img_title">Image caractéristique</string>
+    <string name="add_data_multiple_img_title">Image multiple</string>
+    <string name="add_data_button_text">Parcourir plus</string>
+    <string name="add_data_pd_title">détails du projet</string>
+    <string name="add_data_rb1">A louer</string>
+    <string name="add_data_rb2">À vendre</string>
+    <string name="add_data_sp_title">Sélectionnez le type de propriété</string>
+    <string name="add_data_tv_title">Titre</string>
+    <string name="add_data_et1_hint">Entrez le titre</string>
+    <string name="add_data_tv2_title">La description</string>
+    <string name="add_data_et2">Entrez la description</string>
+    <string name="add_data_tv_price">Prix</string>
+    <string name="add_data_et3_hint">Entrez le prix</string>
+    <string name="add_data_tv_location">Emplacement</string>
+    <string name="add_data_et4_hint">Entrez l\'emplacement</string>
+    <string name="add_data_tv_city">Ville</string>
+    <string name="add_data_tv_sector">Secteur</string>
+    <string name="add_data_et5_hint">Entrez dans le secteur</string>
+    <string name="add_data_btn_submit">Soumettre</string>
+    <string name="add_data_tv_details">Plus de détails</string>
+    <string name="add_data_tv_bedrooms">Chambres</string>
+    <string name="add_data_tv_unit">Unité de mesure</string>
+    <string name="add_data_et6_hint">Unité de mesure</string>
+    <string name="add_data_tv_pet_room">Chambre pour animaux de compagnie</string>
+    <string name="add_data_et7_hint">Pet rooms</string>
+    <string name="add_data_tv_details2">Plus de détails</string>
+    <string name="add_data_tv_baths">Thermes</string>
+    <string name="add_data_tv_doc">Date de construction</string>
+    <string name="add_data_et8_hint">Date de construction</string>
+    <string name="add_data_tv_parking_lot">Terrain de stationnement</string>
+    <string name="add_data_et9_hint">Parking Lot.....</string>
+    <string name="add_data_cb_used">utilisée</string>
+    <string name="add_data_cb_new">Nouvelle</string>
+    <string name="add_data_cb_new_project">Nouveau projet</string>
+
+    <!--activity_connector_description-->
+    <string name="cd_tv_details">Détail de l\'agent</string>
+    <string name="cd_tv_city">Ville</string>
+    <string name="cd_tv_contact">Contact</string>
+    <string name="cd_tv_company">Entreprise</string>
+    <string name="cd_tv_start_date">Date de début</string>
+    <string name="cd_tv_reviews">Commentaires</string>
+    <string name="cd_tv_connector_properties">Propriétés du connecteur</string>
+
+
+    <!--activity_description-->
+
+    <string name="ad_tv_description_title">La description</string>
+    <string name="ad_tv_description">Entrez la description</string>
+    <string name="ad_btn_apointment">Obtenir un rendez-vous</string>
+    <string name="ad_btn_info">Informations requises</string>
+
+
+    <!--activity_forgot_password-->
+
+    <string name="afp_tv_title">Mot de passe oublié</string>
+    <string name="afp_tv_forgot_password">Mot de passe oublié</string>
+    <string name="afp_tv_description">Entrez l\'e-mail d\'enregistrement et nous vous enverrons un code de confirmation pour réinitialiser votre mot de passe</string>
+    <string name="afp_tv_email_title">Email</string>
+    <string name="afp_et_email">Entrez votre email de regester</string>
+    <string name="afp_btn_continue">Continuer</string>
+
+
+    <!--activity_login_options-->
+
+    <string name="alo_tv_verification">Vérification</string>
+    <string name="alo_tv_description">Nous vous avons envoyé un code par SMS pour la vérification du numéro de mobile</string>
+    <string name="alo_btn_submit">Soumettre</string>
+    <string name="alo_tv_resend">Renvoyer</string>
+
+
+    <!--activity_login_screen-->
+
+    <string name="als_description">Remplissez les champs ci-dessous pour vous connecter à votre compte</string>
+    <string name="als_tv_email">Email</string>
+    <string name="als_et_email">Entrer votre Email</string>
+    <string name="als_tv_forgot_password">Mot de passe oublié?</string>
+    <string name="als_btn_login">S\'identifier</string>
+    <string name="als_tv_create_account">Vous n\'avez pas de compte? S\'INSCRIRE</string>
+    <string name="als_tv_welcome_title">Bienvenue ici!</string>
+    <string name="als_tv_password">Mot de passe</string>
+    <string name="als_et_password">Tapez votre mot de passe</string>
+
+
+    <!--activity_mobile_register_opt-->
+
+    <string name="amr_tv_verification">Vérification</string>
+    <string name="amr_tv_description">Nous vous avons envoyé un code par SMS pour la vérification du numéro de mobile</string>
+    <string name="amr_btn_submit">Soumettre</string>
+    <string name="amr_tv_resend">Renvoyer</string>
+
+    <!--activity_new_project-->
+
+
+    <!--activity_OTP_resetpw-->
+
+    <string name="otp_reset_title">Mot de passe oublié</string>
+    <string name="otp_reset_tv_forgot_password">Mot de passe oublié</string>
+    <string name="otp_reset_description">Entrez l\'e-mail d\'enregistrement et nous vous enverrons un code de confirmation pour réinitialiser votre mot de passe</string>
+    <string name="otp_reset_tv_confirmation">Vous n\'avez pas reçu le code?</string>
+    <string name="otp_reset_tv_resend_code">Renvoyer le code</string>
+    <string name="otp_reset_btn_continue">Continuer</string>
+
+    <!--activity_OTP_screen-->
+
+    <string name="otp_screen_tv_title">Vérifier l\'utilisateur</string>
+    <string name="otp_screen_verify_account">Vérifiez votre compte</string>
+    <string name="otp_screen_description">Entrez l\'e-mail d\'enregistrement et nous vous enverrons un code de confirmation pour réinitialiser votre mot de passe</string>
+    <string name="otp_screen_tv_confirmation">Vous n\'avez pas reçu le code?</string>
+    <string name="otp_screen_resend_code">Renvoyer le code</string>
+    <string name="otp_screen_btn_continue">Continuer</string>
+
+
+    <!--activity_permissions-->
+
+    <string name="ap_btn_restart_app">Redémarrez l\'application</string>
+    <string name="ap_btn_close_app">Fermer l\'application</string>
+    <string name="ap_btn_description_app">Veuillez vous assurer que vous avez accordé toutes les autorisations</string>
+
+    <!--activity_rating-->
+
+    <string name="ar_tv_title">Commentaires</string>
+    <string name="ar_tv_comments">commentaires</string>
+    <string name="ar_tv_description">Ajoutez votre précieux commentaire pour cette propriété</string>
+    <string name="ar_et1_hint">commentez ici!</string>
+    <string name="ar_btn_submit">soumettre</string>
+
+    <!--activity_reset_password-->
+
+    <string name="arp_tv_title">Mot de passe oublié</string>
+    <string name="arp_tv_forgot_password">Mot de passe oublié</string>
+    <string name="arp_tv_description">Entrez l\'e-mail d\'enregistrement et nous vous enverrons un code de confirmation pour réinitialiser votre mot de passe</string>
+    <string name="arp_tv_password_title">nouveau mot de passe</string>
+    <string name="arp_et_password_hint">Mot de passe</string>
+    <string name="arp_tv_confirm_password_title">Confirmer le nouveau mot de passe</string>
+    <string name="arp_et_password_hint2">Mot de passe</string>
+    <string name="arp_btn_continue">Continuer</string>
+
+    <!--    activity_sign_up-->
+
+    <string name="asu_tv_title">Bienvenue ici!</string>
+    <string name="asu_tv_description">Remplissez les champs ci-dessous pour vous connecter à votre compte</string>
+    <string name="asu_tv_name_title">Nom</string>
+    <string name="asu_et_name_hint">Entrez le nom</string>
+    <string name="asu_tv_last_mobile_title">Numéro de portable</string>
+    <string name="asu_et_last_mobile_hint">Entrez le numéro de mobile</string>
+    <string name="asu_tv_email_title">Email</string>
+    <string name="asu_et_email_hint">Entrer votre Email</string>
+    <string name="asu_tv_password_title">Mot de passe</string>
+    <string name="asu_et_password_hint">Tapez votre mot de passe</string>
+    <string name="asu_btn_register">S\'inscrire</string>
+    <string name="asu_tv_confirmation">Avoir un compte? S\'identifier</string>
+
+
+    <!--    appointment_bottom_sheet-->
+
+    <string name="abs_tv_info">Comment aimeriez-vous visiter</string>
+    <string name="abs_rb_via_meeting">Visite par réunion</string>
+    <string name="abs_rb_via_video_chat">Visite via chat vidéo</string>
+    <string name="abs_tv_pick_date_time">Choisissez la date et l\'heure</string>
+    <string name="abs_et_date_hint">10-10-2020</string>
+    <string name="abs_et_time_hint">12:10 PM</string>
+    <string name="abs_btn_submit">Soumettre</string>
+
+
+    <!--    custom_mobile_register-->
+
+    <string name="cmr_tv_title">Numéro de portable</string>
+    <string name="cmr_tv_info">
+Entrez votre numéro, nous vous enverrons un OTP pour vérifier le numéro de téléphone</string>
+    <string name="cmr_et_number_hint">Entrer un nombre</string>
+    <string name="cmr_btn_submit">Soumettre</string>
+    <string name="cmr_btn_cancel">Annuler</string>
+
+    <!--    customDilouge_appointment_reply-->
+
+    <string name="car_info">Entrez vos commentaires pour le rendez-vous</string>
+    <string name="car_btn_accept">J\'accepte</string>
+    <string name="car_btn_reject">Rejeter</string>
+    <string name="car_btn_change_appointment_date">changer la date de rendez-vous</string>
+    <string name="car_et_date_hint">12:10 PM</string>
+    <string name="car_et_time_hint">12:10 PM</string>
+    <string name="car_btn_submit_date">soumettre la date de changement</string>
+
+    <!--    customDilouge_filter_bath-->
+
+    <string name="cfb_tv_info">Entrez votre numéro souhaité</string>
+    <string name="cfb_et_comment_hint">Entrer un nombre</string>
+    <string name="cfb_btn_submit">Soumettre</string>
+    <string name="cfb_btn_cancel">Annuler</string>
+
+
+    <!--    fragment_appointments-->
+
+    <string name="fa_tv_title">Mes rendez-vous</string>
+    <string name="fa_tv_total_number">0 rendez-vous</string>
+
+    <!--    fragment_appointments_tab-->
+
+    <string name="fat_tv_title">Vos rendez-vous</string>
+    <string name="fat_tv_title2">Rendez-vous d\'autres</string>
+
+    <!--    fragment_change_password-->
+
+    <string name="fcp_tv_title">Mon profil</string>
+    <string name="fcp_tv_change_password">Changez votre mot de passe</string>
+    <string name="fcp_tv_old_password_title">ancien mot de passe</string>
+    <string name="fcp_et_old_password_hint">Entrez l\'ancien mot de passe</string>
+    <string name="fcp_tv_password">nouveau mot de passe</string>
+    <string name="fcp_et_password_hint">Entrez un nouveau mot de passe</string>
+    <string name="fcp_tv_confirm_password">Confirmez le mot de passe</string>
+    <string name="fcp_et_confirm_password_hint">Confirmez le mot de passe</string>
+    <string name="fcp_btn_submit">Soumettre</string>
+
+    <!--    fragment_connector_reviews-->
+
+    <string name="fcr_tv_info">Ajoutez votre précieux commentaire pour cette propriété</string>
+    <string name="fcr_et_comment_hint">Commentez ici!</string>
+    <string name="fcr_btn_submit">soumettre</string>
+
+    <!--    fragment_connector-->
+
+    <string name="f_con_et_search_hint">Entrez le nom</string>
+    <string name="f_con_tv_total_num">0 résultats</string>
+
+    <!--    fragment_homeFragment-->
+
+    <string name="fhf_et_search_hint">Entrez le nom</string>
+    <string name="fhf_tv_result_number">0</string>
+    <string name="fhf_tv_result">Résultat trouvé</string>
+
+    <!--    fragment_my_favourite-->
+
+    <string name="fmf_tv_title">Favoris</string>
+    <string name="fmf_tv_result_number">0 Projet</string>
+
+    <!--    fragment_my_projects-->
+
+    <string name="fmp_tv_title">Mes projets</string>
+    <string name="fmp_tv_result_number">0 Projet</string>
+
+    <!--    fragment_notifications-->
+    <string name="fn_tv_title">mes notifications</string>
+
+    <!--    fragment_other_appointments-->
+
+    <string name="foa_tv_title"> Rendez-vous </string>
+    <string name="foa_tv_appointments_number">0 rendez-vous</string>
+
+    <!--    fragment_plan_sub-->
+
+    <string name="fps_tv_title">Des plans</string>
+    <string name="fps_cb_basic">De base</string>
+    <string name="fps_cb_primary">Primaire</string>
+    <string name="fps_cb_premier">Première</string>
+    <string name="fps_tv_month">1 mois</string>
+    <string name="fps_tv_membership">Adhésion</string>
+    <string name="fps_tv_price">9,50 $</string>
+    <string name="fps_btn_buy_now">Acheter maintenant</string>
+
+    <!--    fragment_privacy_policy-->
+
+    <string name="fpp_tv_title">Politique de confidentialité</string>
+
+    <!--    fragment_profile-->
+
+    <string name="fp_tv_title">Mon profil</string>
+    <string name="fp_tv_account_setting">Paramètres du compte</string>
+    <string name="fp_tv_edit_profile">Editer le profil</string>
+    <string name="fp_tv_change_password">Change password</string>
+    <string name="fp_tv_my_projects">Mes projets</string>
+    <string name="fp_tv_register_phone">Enregistrer le téléphone</string>
+    <string name="fp_tv_purchased_plan">Plans achetés</string>
+    <string name="fp_tv_rejected_appointments">Rendez-vous refusés</string>
+    <string name="fp_tv_notifications">Notifications</string>
+
+    <!--    fragment_profile_update-->
+
+    <string name="fpu_tv_title">Mon profil</string>
+    <string name="fpu_tv_information">Complétez vos informations</string>
+    <string name="fpu_tv_company_name"><![CDATA[Nom & Nom / Nom de l\'entreprise *]]></string>
+    <string name="fpu_et_comapny_name_hint"><![CDATA[entrez Nom & Nom / Nom de l\'entreprise *]]></string>
+    <string name="fpu_tv_name">Nom d\'utilisateur*</string>
+    <string name="fpu_et_name_hint">Saisissez votre nom d\'utilisateur</string>
+    <string name="fpu_tv_id">Votre identifiant*</string>
+    <string name="fpu_et_id_hint">102-01887-1</string>
+    <string name="fpu_tv_rnc">RNC*</string>
+    <string name="fpu_et_rnc_hint">1021887-1</string>
+    <string name="fpu_tv_phone_no">Pas de téléphone.*</string>
+    <string name="fpu_et_number_hint">Entrez votre numéro de téléphone</string>
+    <string name="fpu_tv_cell_no">N ° de cellule *</string>
+    <string name="fpu_et_cell_no_hint">Entrez votre numéro de portable</string>
+    <string name="fpu_tv_address">Adresse*</string>
+    <string name="fpu_et_address_hint">Entrez votre adresse</string>
+    <string name="fpu_tv_city">Ville*</string>
+    <string name="fpu_et_city_hint">Entrez votre ville</string>
+    <string name="fpu_tv_sector">Secteur*</string>
+    <string name="fpu_et_sector_hint">Entrez dans votre secteur</string>
+    <string name="fpu_tv_agent_data">Données d\'agent</string>
+    <string name="fpu_et_data_hint">nom de fichier</string>
+    <string name="fpu_tv_upload_file">Téléverser un fichier</string>
+    <string name="fpu_btn_upload_image">Télécharger l\'image de l\'utilisateur</string>
+    <string name="fpu_btn_upload_photoid">Télécharger PhotoId</string>
+    <string name="fpu_btn_submit">Soumettre</string>
+    <!--    fragment_term_coonditions-->
+
+    <string name="ftc_tv_title"><![CDATA[termes & conditions]]></string>
+    <string name="fpp_tv_coockiespolicy"><![CDATA[cockies y política]]></string>
+
+    <!--    login_popup-->
+
+    <string name="lp_tv_info">Vous n\'êtes pas connecté à votre compte</string>
+    <string name="lp_btn_cancel">Annuler</string>
+    <string name="lp_btn_login">S\'identifier</string>
+
+    <!--    manage_filter_sheet-->
+
+    <string name="mfs_tv_title">Gérer les filtres</string>
+    <string name="mfs_tv_search_for">Rechercher</string>
+    <string name="mfs_rb_for_rent">A louer</string>
+    <string name="mfs_rb_for_sale">À vendre</string>
+    <string name="mfs_tv_select_type">Sélectionner le genre</string>
+    <string name="mfs_location">Emplacement</string>
+    <string name="mfs_et_location_hint">emplacement</string>
+    <string name="mfs_tv_city">Ville</string>
+    <string name="mfs_tv_budget">Budget</string>
+    <string name="mfs_et_minimum_hint">Le minimum</string>
+    <string name="mfs_et_maximum_hint">Maximum</string>
+    <string name="mfs_tv_area_size">Taille de la zone</string>
+    <string name="mfs_et2_minimum_hint">Le minimum</string>
+    <string name="mfs_et2_maximum_hint">Maximum</string>
+    <string name="mfs_tv_bedrooms">Chambres</string>
+    <string name="mfs_btn_any">Toute</string>
+    <string name="mfs_btn_add_one">1+</string>
+    <string name="mfs_btn_add_two">2+</string>
+    <string name="mfs_btn_add_three">3+</string>
+    <string name="mfs_btn_add_four">4+</string>
+    <string name="mfs_btn_enter">Enter</string>
+    <string name="mfs_tv_bathrooms">Salles de bain</string>
+    <string name="mfs_btn1_any">Any</string>
+    <string name="mfs_btn_add1_one">1+</string>
+    <string name="mfs_btn_add1_two">2+</string>
+    <string name="mfs_btn_add1_three">3+</string>
+    <string name="mfs_btn_add1_four">4+</string>
+    <string name="mfs_btn1_enter">Entrer</string>
+    <string name="mfs_tv_pet_room">Chambre animaux</string>
+    <string name="mfs_tv_parking_lot">terrain de stationnement</string>
+    <string name="mfs_cb_used">utilisée</string>
+    <string name="mfs_cb_new">nouvelle</string>
+    <string name="mfs_cb_new_project">Nouveau projet</string>
+    <string name="mfs_btn_apply_filters">Appliquer des filtres</string>
+
+
+    <!--    my_message_container-->
+
+    <string name="mmc_tv_plan">plan</string>
+    <string name="mmc_tv_price">prix</string>
+    <string name="mmc_time1">acheter à</string>
+    <string name="mmc_time2">jusqu\'à</string>
+    <string name="mmc_message">Message</string>
+    <string name="mmc_getagain">Reprendre le rendez-vous</string>
+
+
+    <!--    my_project_container-->
+
+
+    <!--    purchase_plan_container-->
+
+    <string name="ppc_tv_plan">plan</string>
+
+
+    <string name="Menu"> Menu </string>
+    <string name="PrivecyPolicy"> Privacy Policy </string>
+    <string name="term_conditions"> Term Conditions </string>
+    <string name="connector"> Connecteur </string>
+    <string name="connectors">Connectors</string>
+    <string name="Subscription_Plans"> Plans d\'abonnement </string>
+    <string name="cockiespolicy"> Cockies Policy </string>
+    <string name="logout"> Déconnexion </string>
+    <string name="aboutus"> À propos de nous </string>
+    <string name="conntectus"> Connectez-nous </string>
+    <string name="login"> Connexion </string>
+
+
+</resources>

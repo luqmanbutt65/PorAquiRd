@@ -34,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_toRightOf="@+id/back_btn_updateprofile"
-                android:text="My Profile"
+                android:text="@string/fpu_tv_title"
                 android:textColor="#171D28"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
@@ -45,13 +45,15 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/_16sdp"
-                android:src="@drawable/notification" />
+                android:src="@drawable/notification"
+                android:visibility="gone" />
         </RelativeLayout>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/headerlayut"
+            android:fillViewport="true"
             android:scrollbars="none">
 
             <RelativeLayout
@@ -126,7 +128,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Complete your information"
+                        android:text="@string/fpu_tv_information"
                         android:textColor="#A0A3B5"
                         android:textSize="@dimen/_18sdp" />
 
@@ -135,10 +137,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Name &amp; Last Name/Company Name*"
+                        android:text="@string/fpu_tv_company_name"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                     <EditText
                         android:id="@+id/name_compantname"
@@ -147,7 +150,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/add_edittext_style"
                         android:ellipsize="end"
-                        android:hint="Enter Name &amp; Last Name/Company Name "
+                        android:hint="@string/fpu_et_comapny_name_hint"
                         android:inputType="textEmailAddress"
                         android:lines="1"
                         android:maxLength="50"
@@ -156,14 +159,15 @@
                         android:paddingRight="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
-                        android:textColorHint="#808081" />
+                        android:textColorHint="#808081"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="User Name*"
+                        android:text="@string/fpu_tv_name"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
@@ -174,7 +178,7 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="Enter user name"
+                        android:hint="@string/fpu_et_name_hint"
                         android:inputType="text"
                         android:lines="1"
                         android:maxLength="30"
@@ -191,10 +195,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Your ID*"
+                        android:text="@string/fpu_tv_id"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                     <EditText
                         android:id="@+id/id"
@@ -202,7 +207,7 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="102-01887-1"
+                        android:hint="@string/fpu_et_id_hint"
                         android:inputType="numberSigned"
                         android:lines="1"
                         android:maxLength="11"
@@ -211,17 +216,19 @@
                         android:paddingRight="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
-                        android:textColorHint="#808081" />
+                        android:textColorHint="#808081"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/tv_rnc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="RNC*"
+                        android:text="@string/fpu_tv_rnc"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                     <EditText
                         android:id="@+id/rnc"
@@ -229,7 +236,7 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="1021887-1"
+                        android:hint="@string/fpu_et_rnc_hint"
                         android:inputType="number"
                         android:lines="1"
                         android:maxLength="11"
@@ -238,7 +245,8 @@
                         android:paddingRight="@dimen/_20sdp"
                         android:singleLine="true"
                         android:textColor="@android:color/black"
-                        android:textColorHint="#808081" />
+                        android:textColorHint="#808081"
+                        android:visibility="gone" />
 
 
                     <TextView
@@ -246,7 +254,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Phone No.*"
+                        android:text="@string/fpu_tv_phone_no"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
@@ -257,10 +265,12 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="Enter your phone No."
+                        android:drawableLeft="@drawable/one"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:hint="@string/fpu_et_number_hint"
                         android:inputType="number"
                         android:lines="1"
-                        android:maxLength="25"
+                        android:maxLength="10"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
                         android:paddingRight="@dimen/_20sdp"
@@ -273,7 +283,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Cell No.*"
+                        android:text="@string/fpu_tv_cell_no"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
@@ -284,10 +294,12 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="Enter your cell No."
+                        android:drawableLeft="@drawable/one"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:hint="@string/fpu_et_cell_no_hint"
                         android:inputType="number"
                         android:lines="1"
-                        android:maxLength="25"
+                        android:maxLength="10"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
                         android:paddingRight="@dimen/_20sdp"
@@ -301,7 +313,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="Address*"
+                        android:text="@string/fpu_tv_address"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
@@ -312,7 +324,7 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="Enter Your address"
+                        android:hint="@string/fpu_et_address_hint"
                         android:inputType="textEmailAddress"
                         android:lines="1"
                         android:maxLength="60"
@@ -329,34 +341,29 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="City*"
+                        android:text="@string/fpu_tv_city"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/city"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/add_edittext_style"
-                        android:hint="Enter Your City"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:maxLength="20"
-                        android:maxLines="1"
-                        android:paddingLeft="@dimen/_20sdp"
-                        android:paddingRight="@dimen/_20sdp"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black"
-                        android:textColorHint="#808081" />
+                        android:layout_width="@dimen/_270sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_below="@+id/text_spiner"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:autofillHints="Select type"
+                        android:background="@drawable/add_edittext_style_gray"
+                        android:paddingRight="@dimen/_10sdp" />
+
 
                     <TextView
                         android:id="@+id/tv_sector"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="Sector*"
+                        android:text="@string/fpu_tv_sector"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
@@ -367,7 +374,7 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="Enter Your Sector"
+                        android:hint="@string/fpu_et_sector_hint"
                         android:inputType="text"
                         android:lines="1"
                         android:maxLength="20"
@@ -378,17 +385,42 @@
                         android:textColor="@android:color/black"
                         android:textColorHint="#808081" />
 
+                    <ImageView
+                        android:id="@+id/iv_uploadimage"
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="@dimen/_150sdp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="2"
+                        android:background="@drawable/roundimage"
+                        android:scaleType="centerCrop" />
+
+                    <Button
+                        android:id="@+id/uploadimage"
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_round"
+                        android:gravity="center"
+                        android:text="@string/fpu_btn_upload_image"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_8sdp" />
+
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20sdp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Agent Data"
+                            android:text="@string/fpu_tv_agent_data"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_14sdp"
                             android:textStyle="bold" />
@@ -398,12 +430,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_40sdp"
                             android:layout_gravity="center_vertical"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:layout_weight="2"
                             android:background="@drawable/add_edittext_style_gray"
                             android:editable="false"
-                            android:layout_marginTop="@dimen/_10sdp"
                             android:ellipsize="end"
-                            android:hint="file name"
+                            android:hint="@string/fpu_et_data_hint"
                             android:paddingLeft="@dimen/_10sdp"
                             android:paddingRight="@dimen/_10sdp"
                             android:singleLine="true" />
@@ -417,33 +449,33 @@
                             android:layout_weight="1"
                             android:background="@drawable/button_round"
                             android:gravity="center"
-                            android:text="Upload File"
+                            android:text="@string/fpu_tv_upload_file"
                             android:textAlignment="center"
                             android:textSize="@dimen/_8sdp" />
 
 
-                        <ImageView
-                            android:id="@+id/iv_uploadimage"
-                            android:layout_width="@dimen/_150sdp"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:layout_weight="2"
-                            android:background="@drawable/roundimage"
-                            android:scaleType="centerCrop" />
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/iv_uploadimage"-->
+                        <!--                            android:layout_width="@dimen/_150sdp"-->
+                        <!--                            android:layout_height="@dimen/_150sdp"-->
+                        <!--                            android:layout_gravity="center_horizontal"-->
+                        <!--                            android:layout_marginTop="@dimen/_10sdp"-->
+                        <!--                            android:layout_weight="2"-->
+                        <!--                            android:background="@drawable/roundimage"-->
+                        <!--                            android:scaleType="centerCrop" />-->
 
-                        <Button
-                            android:id="@+id/uploadimage"
-                            android:layout_width="@dimen/_150sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/button_round"
-                            android:gravity="center"
-                            android:text="Upload User Image"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/_8sdp" />
+                        <!--                        <Button-->
+                        <!--                            android:id="@+id/uploadimage"-->
+                        <!--                            android:layout_width="@dimen/_150sdp"-->
+                        <!--                            android:layout_height="@dimen/_40sdp"-->
+                        <!--                            android:layout_gravity="center_horizontal"-->
+                        <!--                            android:layout_marginTop="@dimen/_10sdp"-->
+                        <!--                            android:layout_weight="1"-->
+                        <!--                            android:background="@drawable/button_round"-->
+                        <!--                            android:gravity="center"-->
+                        <!--                            android:text="@string/fpu_btn_upload_image"-->
+                        <!--                            android:textAlignment="center"-->
+                        <!--                            android:textSize="@dimen/_8sdp" />-->
 
                         <ImageView
                             android:id="@+id/iv_uplophotoid"
@@ -464,36 +496,35 @@
                             android:layout_weight="1"
                             android:background="@drawable/button_round"
                             android:gravity="center"
-                            android:text="Upload PhotoId"
+                            android:text="@string/fpu_btn_upload_photoid"
                             android:textAlignment="center"
                             android:textSize="@dimen/_8sdp" />
                     </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/getapointment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/linear"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_50sdp">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/SubmitBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_45sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginBottom="@dimen/_20sdp"
+                            android:background="@drawable/button_round"
+                            android:text="@string/fpu_btn_submit"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
                 </LinearLayout>
 
-                <RelativeLayout
-                    android:id="@+id/getapointment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/linear"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="@dimen/_10sdp"
 
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp">
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/SubmitBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_45sdp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginBottom="@dimen/_20sdp"
-                        android:background="@drawable/button_round"
-                        android:text="Submit"
-                        android:textColor="@android:color/white"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
             </RelativeLayout>
 
 

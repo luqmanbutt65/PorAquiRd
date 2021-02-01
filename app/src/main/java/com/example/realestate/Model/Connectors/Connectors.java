@@ -236,6 +236,9 @@ public class Connectors {
     }
 
     public String getRating() {
+        if (rating == null) {
+            rating = "";
+        }
         return rating;
     }
 
@@ -276,6 +279,9 @@ public class Connectors {
     }
 
     public String getNumber() {
+        if (number == null) {
+            number = "";
+        }
         return number;
     }
 
@@ -292,6 +298,10 @@ public class Connectors {
     }
 
     public String getCity() {
+
+        if (city == null) {
+            number = "";
+        }
         return city;
     }
 

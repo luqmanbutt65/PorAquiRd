@@ -44,7 +44,29 @@ public class PurchasedPlan {
     @SerializedName("updated_at")
     @Expose
     private String updated_at;
+    @SerializedName("title")
+    @Expose
+    private ArrayList<String> purchasedPlantitles;
 
+    @SerializedName("expirey_date")
+    @Expose
+    private PurchasedPlanExpiry expirey_date;
+
+    public ArrayList<String> getPurchasedPlantitles() {
+        return purchasedPlantitles;
+    }
+
+    public void setPurchasedPlantitles(ArrayList<String> purchasedPlantitles) {
+        this.purchasedPlantitles = purchasedPlantitles;
+    }
+
+    public PurchasedPlanExpiry getExpirey_date() {
+        return expirey_date;
+    }
+
+    public void setExpirey_date(PurchasedPlanExpiry expirey_date) {
+        this.expirey_date = expirey_date;
+    }
 
     public int getId() {
         return id;

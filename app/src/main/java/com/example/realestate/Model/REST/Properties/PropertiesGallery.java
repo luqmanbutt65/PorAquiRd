@@ -4,15 +4,13 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class PropertiesGallery {
+    int ttype = 0;
     @SerializedName("property_images")
     @Expose
     private String property_images;
-
     @SerializedName("property_id")
     @Expose
     private int property_id;
-
-    int ttype=0;
 
     public int getTtype() {
         return ttype;

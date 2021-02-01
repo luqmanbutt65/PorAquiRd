@@ -6,179 +6,363 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Description">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
+    <RelativeLayout
+        android:id="@+id/mainpage"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_170sdp"
-        android:background="@drawable/viewpagerround"
-        android:padding="@dimen/_10sdp">
+        android:layout_height="match_parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_170sdp"
+            android:background="@drawable/viewpagerround"
+            android:padding="@dimen/_10sdp">
 
 
-    </androidx.viewpager.widget.ViewPager>
+        </androidx.viewpager.widget.ViewPager>
 
-    <ScrollView
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/viewpager">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/sharewith"></ImageView>
+
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dots_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:dotsColor="@color/aqua"
+                    app:dotsCornerRadius="8dp"
+                    app:dotsSize="10dp"
+                    app:dotsSpacing="4dp"
+                    app:dotsWidthFactor="2"
+                    app:progressMode="true"
+                    app:selectedDotColor="#511FE4BE" />
+
+                <RelativeLayout
+                    android:id="@+id/locationlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_85sdp"
+                    android:layout_below="@+id/dots_indicator"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp">
+
+                    <TextView
+                        android:id="@+id/city_id"
+                        android:layout_width="@dimen/_190sdp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="left"
+                        android:maxLines="1"
+                        android:text="Clinton Vella Brown"
+                        android:textColor="@color/textblackcolor"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/reviews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawableRight="@drawable/static_rating"
+                        android:gravity="left"
+                        android:text="4.3 Reviews"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/timezone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/reviews"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="Date"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/reviews1"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/timezone"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:drawableRight="@drawable/view"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="reviews"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="normal" />
+
+
+                    <TextView
+                        android:id="@+id/location_id"
+                        android:layout_width="@dimen/_190sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_below="@+id/city_id"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:drawableLeft="@drawable/locationmark"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:text="Muslim Town Lahore"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/prices"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/reviews1"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:text="$ 14,44.00"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="normal" />
+                </RelativeLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/featuresrecyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_below="@+id/locationlayout"
+                    android:padding="@dimen/_10sdp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <RelativeLayout
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_below="@+id/featuresrecyclerview"
+                    android:padding="@dimen/_10sdp">
+
+
+                    <TextView
+                        android:id="@+id/tv_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/ad_tv_description_title"
+                        android:textColor="@color/textblackcolor"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_description_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_below="@+id/tv_description"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/poppins"
+                        android:scrollbars="vertical"
+                        android:text="@string/ad_tv_description"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="normal" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ownerdetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/description"
+                    android:layout_marginBottom="@dimen/_10sdp">
+
+                    <TextView
+                        android:id="@+id/text1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:text="Property Owner"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_below="@+id/text1"
+                        app:cardCornerRadius="@dimen/_7sdp">
+
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_10sdp">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/owner_image"
+                                android:layout_width="@dimen/_70sdp"
+                                android:layout_height="@dimen/_70sdp"
+                                android:layout_centerVertical="true"
+                                android:padding="@dimen/_5sdp"
+                                android:src="@drawable/otp">
+
+                            </de.hdodenhof.circleimageview.CircleImageView>
+
+                            <TextView
+                                android:id="@+id/owner_name"
+                                android:layout_width="@dimen/_140sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_toRightOf="@+id/owner_image"
+                                android:maxLines="1"
+                                android:text="Name"
+                                android:textColor="@color/textblackcolor"
+                                android:textSize="@dimen/_15sdp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/owner_email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/owner_name"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_toRightOf="@+id/owner_image"
+                                android:maxLines="1"
+                                android:text="email"
+                                android:textColor="@color/textblackcolor"
+                                android:textSize="@dimen/_15sdp"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:id="@+id/owner_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/owner_email"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_toRightOf="@+id/owner_image"
+                                android:maxLines="1"
+                                android:text="Number"
+                                android:textColor="@color/textblackcolor"
+                                android:textSize="@dimen/_15sdp"
+                                android:textStyle="normal" />
+
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/ownerdetail"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:paddingLeft="@dimen/_20sdp"
+                    android:paddingRight="@dimen/_20sdp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/getapointmentbtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_45sdp"
+                        android:background="@drawable/button_round"
+                        android:text="@string/ad_btn_apointment"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/info"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_45sdp"
+                        android:layout_below="@+id/getapointmentbtn"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:background="@drawable/button_round"
+                        android:text="@string/ad_btn_info"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/slider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/viewpager">
+        android:background="@color/black"
+        android:visibility="gone">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/cancelslider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:src="@drawable/cancelslider" />
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/cancelslider"
+            android:layout_margin="16dp"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="6dp">
 
-            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                android:id="@+id/dots_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:dotsColor="@color/aqua"
-                app:dotsCornerRadius="8dp"
-                app:dotsSize="10dp"
-                app:dotsSpacing="4dp"
-                app:dotsWidthFactor="2"
-                app:progressMode="true"
-                app:selectedDotColor="#511FE4BE" />
-
-            <RelativeLayout
-                android:id="@+id/locationlayout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_60sdp"
-                android:layout_below="@+id/dots_indicator"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:padding="@dimen/_5sdp">
-
-                <TextView
-                    android:id="@+id/city_id"
-                    android:layout_width="@dimen/_210sdp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="left"
-                    android:maxLines="1"
-                    android:text="Clinton Vella Brown"
-                    android:textColor="@color/textblackcolor"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/reviews"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:drawableLeft="@drawable/static_rating"
-                    android:gravity="left"
-                    android:text="4.3 Reviews"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/location_id"
-                    android:layout_width="@dimen/_210sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_below="@+id/city_id"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:drawableLeft="@drawable/locationmark"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/poppins"
-                    android:gravity="left"
-                    android:maxLines="1"
-                    android:text="Muslim Town Lahore"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp" />
-
-                <TextView
-                    android:id="@+id/prices"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/city_id"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:gravity="left"
-                    android:text="$ 14,44.00"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="normal" />
-            </RelativeLayout>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/featuresrecyclerview"
-                android:layout_width="match_parent"
-                app:spanCount="3"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                android:layout_height="@dimen/_120sdp"
-                android:layout_below="@+id/locationlayout"
-                android:padding="@dimen/_10sdp">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <RelativeLayout
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp"
-                android:layout_below="@+id/featuresrecyclerview"
-                android:padding="@dimen/_10sdp">
-
-                <TextView
-                    android:id="@+id/tv_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:text="Description"
-                    android:textColor="@color/textblackcolor"
-                    android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_description_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_100sdp"
-                    android:layout_below="@+id/tv_description"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/poppins"
-                    android:maxLines="9"
-                    android:scrollbars="vertical"
-                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen bookLorem Ipsum is simply dummy"
-                    android:textSize="@dimen/_10sdp"
-                    android:textStyle="normal" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/imageSlider"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/description"
-                android:paddingLeft="@dimen/_20sdp"
-                android:paddingRight="@dimen/_20sdp">
+                app:sliderAnimationDuration="600"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderAutoCycleEnabled="true"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="3dp"
+                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorSelectedColor="#5A5A5A"
+                app:sliderIndicatorUnselectedColor="#FFF"
+                app:sliderScrollTimeInSec="1"
+                app:sliderStartAutoCycle="true" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/getapointmentbtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/button_round"
-                    android:text="Get Apointment"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/info"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:layout_below="@+id/getapointmentbtn"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:background="@drawable/button_round"
-                    android:text="Request Information"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-    </ScrollView>
+    </RelativeLayout>
 </RelativeLayout>

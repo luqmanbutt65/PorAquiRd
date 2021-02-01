@@ -8,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_230sdp"
+        android:layout_height="@dimen/_260sdp"
         app:cardCornerRadius="@dimen/_12sdp">
 
         <RelativeLayout
@@ -81,7 +81,7 @@
                         android:singleLine="true"
                         android:text="setapointmenttime at"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
+                        android:textSize="@dimen/_8sdp"
                         android:textStyle="bold"></TextView>
 
 
@@ -92,7 +92,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_120sdp"
+                android:layout_height="@dimen/_150sdp"
                 android:layout_alignParentBottom="true">
 
                 <TextView
@@ -104,7 +104,7 @@
                     android:ellipsize="end"
                     android:paddingRight="@dimen/_10sdp"
                     android:singleLine="true"
-                    android:text="Message"
+                    android:text="@string/mmc_message"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="normal"></TextView>
@@ -125,6 +125,36 @@
                     android:textStyle="normal"></TextView>
 
                 <TextView
+                    android:id="@+id/suggestedddate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/message"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"></TextView>
+
+                <TextView
+                    android:id="@+id/suggesteddtime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/suggestedddate"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="normal"></TextView>
+
+                <TextView
                     android:id="@+id/setappointmentAgain"
                     android:layout_width="@dimen/_120sdp"
                     android:layout_height="@dimen/_30sdp"
@@ -136,7 +166,7 @@
                     android:gravity="center"
                     android:paddingRight="@dimen/_10sdp"
                     android:singleLine="true"
-                    android:text="setappointment Again"
+                    android:text="@string/mmc_getagain"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="normal"></TextView>

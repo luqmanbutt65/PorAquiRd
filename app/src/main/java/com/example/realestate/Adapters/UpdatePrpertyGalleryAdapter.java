@@ -44,9 +44,10 @@ public class UpdatePrpertyGalleryAdapter extends RecyclerView.Adapter<UpdatePrpe
     public void onBindViewHolder(UpdatePrpertyGalleryAdapter.ViewHolder holder, final int position) {
         holder.image(propertiesGalleryArrayList.get(position));
         holder.image.setLongClickable(true);
-        holder.image.setOnLongClickListener(new View.OnLongClickListener() {
+
+        holder.deletephoto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
                         // set message, title, and icon
                         .setTitle("Delete")
@@ -73,10 +74,9 @@ public class UpdatePrpertyGalleryAdapter extends RecyclerView.Adapter<UpdatePrpe
                         })
                         .create();
                 myQuittingDialogBox.show();
-
-                return false;
             }
         });
+
 
     }
 
@@ -115,12 +115,13 @@ public class UpdatePrpertyGalleryAdapter extends RecyclerView.Adapter<UpdatePrpe
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
+        ImageView image, deletephoto;
         LinearLayout linearLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.imgview1);
+            deletephoto = itemView.findViewById(R.id.deletphoto);
 
             linearLayout = itemView.findViewById(R.id.imagelayout);
         }
@@ -134,7 +135,7 @@ public class UpdatePrpertyGalleryAdapter extends RecyclerView.Adapter<UpdatePrpe
                     break;
                 case 1:
                     //  imagesData.getProperty_images();
-                    Uri tempUri=Uri.parse(imagesData.getProperty_images());
+                    Uri tempUri = Uri.parse(imagesData.getProperty_images());
                     image.setImageURI(tempUri);
                     break;
             }

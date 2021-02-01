@@ -20,6 +20,7 @@ import com.example.realestate.Model.MyProject.MyProperties_Response;
 import com.example.realestate.Model.Plans.Payment.PaymentResponse;
 import com.example.realestate.Model.Plans.PlanResponse;
 import com.example.realestate.Model.Plans.Purchasedplan.PurchasedPlanResponse;
+import com.example.realestate.Model.PrivcyPolicyData.PoliciesResponse;
 import com.example.realestate.Model.REST.Properties.FavProperties.FavProperties_Response;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.Model.REST.PropertiesSingle.PropertiesSingleResp;
@@ -29,6 +30,7 @@ import com.example.realestate.Model.Rating.PostRating.PostRatigResp;
 import com.example.realestate.Model.Register;
 import com.example.realestate.Model.RejectedAppointmentMessages.RejectedMessagesResponse;
 import com.example.realestate.Model.Token_response.Send_Token_Response;
+import com.example.realestate.Model.UserData.Userdataresponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +57,11 @@ public interface ApiInterface {
     //SignUp Call
     @POST("/api/registration")
     Call<Register> REGISTER_CALL(@Query("name") String name,
+//                                 @Query("user_name") String user_name,
                                  @Query("email") String email,
-                                 @Query("password") String password);
+                                 @Query("password") String password,
+                                 @Query("number") String number);
+
 
     //Otp Code
     @POST("/api/verify-code")
@@ -75,7 +80,7 @@ public interface ApiInterface {
     Call<ResetPasswordResponse> RESETPASS_CALL(@Query("email") String email,
                                                @Query("password") String password);
 
-   // Listing of offline Properties
+    // Listing of offline Properties
     @GET("/api/get_properties")
     Call<FavProperties_Response> DASHBOARDDATA_CALL(@Query("id") int id);
 
@@ -110,9 +115,9 @@ public interface ApiInterface {
             @Part MultipartBody.Part photoid);
 
     // Get User Data
-    @POST("/api/login")
-    Call<Login> GETPROFILE_CALL(@Query("email") String email,
-                                @Query("password") String password);
+    //get user
+    @POST("/api/user_details")
+    Call<Userdataresponse> GET_USER_CALL(@Query("user_id") String id);
 
 
     // get description Of Property
@@ -161,38 +166,39 @@ public interface ApiInterface {
             @Part("pets") RequestBody petroom,
             @Part("parking") RequestBody parkinglot,
             @Part("property_condition") RequestBody property_condition,
-            @Part("patio") RequestBody patio,
+            @Part("currency") RequestBody pricetype,
             @Part MultipartBody.Part featureImage,
             @Part ArrayList<MultipartBody.Part> multipartTypedOutput);
- //add updated property
- @Multipart
- @POST("/api/update_property_user")
- Call<AddProperties_Response> ADD_UPDATED_PROPERTY_DATA(
-         @Part("user_id") RequestBody user_id,
-         @Part("property_main_id") RequestBody property_main_id,
-         @Part("sale_type") RequestBody status,
-         @Part("property_type") RequestBody property_type,
-         @Part("title") RequestBody title,
-         @Part("description") RequestBody description,
-         @Part("price") RequestBody price,
-         @Part("location") RequestBody location,
-         @Part("longitude") RequestBody longitude,
-         @Part("latitude") RequestBody latitude,
-         @Part("city") RequestBody city,
-         @Part("sector") RequestBody sector,
-         @Part("bedrooms") RequestBody bedroom,
-         @Part("bathrooms") RequestBody bathroom,
-         @Part("area") RequestBody unit_of_measure,
-         @Part("construction_year") RequestBody date_of_construction,
-         @Part("pets") RequestBody petroom,
-         @Part("parking") RequestBody parkinglot,
-         @Part("property_condition") RequestBody property_condition,
-         @Part("patio") RequestBody patio,
-         @Part MultipartBody.Part featureImage,
-         @Part ArrayList<MultipartBody.Part> multipartTypedOutput);
+
+    //add updated property
+    @Multipart
+    @POST("/api/update_property_user")
+    Call<AddProperties_Response> ADD_UPDATED_PROPERTY_DATA(
+            @Part("user_id") RequestBody user_id,
+            @Part("property_main_id") RequestBody property_main_id,
+            @Part("sale_type") RequestBody status,
+            @Part("property_type") RequestBody property_type,
+            @Part("title") RequestBody title,
+            @Part("description") RequestBody description,
+            @Part("price") RequestBody price,
+            @Part("location") RequestBody location,
+            @Part("longitude") RequestBody longitude,
+            @Part("latitude") RequestBody latitude,
+            @Part("city") RequestBody city,
+            @Part("sector") RequestBody sector,
+            @Part("bedrooms") RequestBody bedroom,
+            @Part("bathrooms") RequestBody bathroom,
+            @Part("area") RequestBody unit_of_measure,
+            @Part("construction_year") RequestBody date_of_construction,
+            @Part("pets") RequestBody petroom,
+            @Part("parking") RequestBody parkinglot,
+            @Part("property_condition") RequestBody property_condition,
+            @Part("currency") RequestBody pricetype,
+            @Part MultipartBody.Part featureImage,
+            @Part ArrayList<MultipartBody.Part> multipartTypedOutput);
 
 
- //    @Part MultipartBody.Part[] property_images
+    //    @Part MultipartBody.Part[] property_images
     //Favirot Properties
     @POST("/api/favourite_properties")
     Call<PropertiesLike_Response> FAV_CALL(@Query("id") String id);
@@ -238,7 +244,8 @@ public interface ApiInterface {
     @POST("/api/set_appointment")
     Call<Apointment_Response> SET_APOINTMENT_CALL(@Query("user_id") String id,
                                                   @Query("property_id") String property_id,
-                                                  @Query("time") String time);
+                                                  @Query("time") String time,
+                                                  @Query("appointment_type") String appointment_type);
 
 
     //get apointment data
@@ -261,7 +268,9 @@ public interface ApiInterface {
 
     @POST("/api/appointment_status_reject")
     Call<Apointment_Rply> APOINTMENT_REJECT_CALL(@Query("user_id") int id,
-                                                 @Query("message") String message);
+                                                 @Query("message") String message,
+                                                 @Query("suggested_date") String suggested_date,
+                                                 @Query("suggested_time") String suggested_time);
 
 
     //number otp
@@ -334,8 +343,6 @@ public interface ApiInterface {
     Call<UpdatePropertyResponse> EDIT_PROPERT_DETAIL_CALL(@Path(value = "id", encoded = true) String id);
 
 
-
-
     //get plans
     @GET("/api/plans")
     Call<PlanResponse> PLAN_DATA_CALL();
@@ -357,5 +364,6 @@ public interface ApiInterface {
     Call<RejectedMessagesResponse> REJECTED_APPOINTMENT_MESSAGES_CALL(@Query("user_id") String id);
 
 
-
+    @POST("/api/policies")
+    Call<PoliciesResponse> PRIVCYPOLICY_CALL(@Query("param") String param);
 }

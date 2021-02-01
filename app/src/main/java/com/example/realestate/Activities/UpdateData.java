@@ -33,6 +33,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -76,6 +77,10 @@ import com.example.realestate.Model.REST.Properties.PropertiesGallery;
 import com.example.realestate.R;
 import com.example.realestate.SetMapdataInterface;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -124,35 +129,40 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
     Bitmap genralBitmap = null;
     Handler myHandle;
     Uri imageuri;
+    List<String> parklist;
     Properties currentPropertites;
 
     UpdatePrpertyGalleryAdapter updatePrpertyGalleryAdapter;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
-    EditText description, sector, petcheks, parkingcheks, title, price, chekBoxpet, chekBoxroom, propert_location, unit_of_measure, date_of_construction;
-    Spinner prpertytype;
+    EditText description, sector, title, price, chekBoxpet, chekBoxroom, propert_location, unit_of_measure, date_of_construction;
+    Spinner prpertytype, parkingcheks;
     List<String> listbath;
     List<String> listbed;
     List<String> listprice;
     DatePickerDialog constructionDatePicker;
 
+    String pet = "";
+    String park = "";
     int propertieID = 1;
     Bundle extras;
     ProgressDialog genralLoaderPD;
     ProgressDialog genralImageLoaderPD;
 
 
-    CheckBox chUsed, chnew, chnewProject;
+    CheckBox chUsed, chnew, chnewProject, petcheks;
     String statusVal = "For Sale";
     String bathVal;
     String bedroomVal;
+    String priceType = "";
     //check this
-    String propertytypeval;
-    String propertyCondition;
+    String propertytypeval = "";
+    String propertyCondition = "";
     String citystring;
     ArrayList<City> cityArrayList;
     ArrayList<PropertyType> propertyTypeArrayList = new ArrayList<>();
     String bathzeroindex = "";
+    String pricezeroindex = "";
     String bedroomzeroindex = "";
     String cityzeroindex = "";
     String propertytypezeroindex = "";
@@ -164,6 +174,8 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
     ArrayList<PropertiesGallery> propertiesGalleryArrayList;
     ArrayList<PropertiesExtra> propertiesExtraArrayList;
     ArrayList<PropertiesGallery> propertiesGalleryArrayListForIntent;
+    //ads
+    InterstitialAd mInterstitialAd;
     private ProgressDialog processingDialog;
     private boolean isLocFetch = false;
     private Location currentLocation;
@@ -282,6 +294,7 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
     public static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -292,7 +305,33 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_updatedata);
+
+        if (isNetworkConnected()) {
+
+        } else {
+            networkalert();
+        }
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(UpdateData.this);
+
+
+        if (new SharedPreferenceConfig().getBooleanLanguageFromSP("language", UpdateData.this)) {
+            setLocale("");
+        } else if (new SharedPreferenceConfig().getBooleanLanguagefrenchFromSP("frenchlanguage", UpdateData.this)) {
+            setLocale("es");
+
+        } else if (new SharedPreferenceConfig().getBooleanLanguagespanishFromSP("spanishlanguage", UpdateData.this)) {
+            setLocale("sp");
+        }
+
+        //luqman ad
+
+        MobileAds.initialize(this, getString(R.string.admob_app_id));
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+
+
         add_data = findViewById(R.id.Add_Data);
         pricespiner = findViewById(R.id.pricespiner);
         statusbutton = (RadioGroup) findViewById(R.id.togglegroup2);
@@ -324,8 +363,6 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
         parkingcheks = findViewById(R.id.parkingcheks);
         price = findViewById(R.id.price);
         propert_location = findViewById(R.id.location);
-        chekBoxpet = findViewById(R.id.petcheks);
-        chekBoxroom = findViewById(R.id.parkingcheks);
         prpertytype = findViewById(R.id.proprtyType);
         price.addTextChangedListener(new NumberTextWatcher(price));
 
@@ -349,6 +386,35 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
         AddDataProgressDialog.setMessage("Loading..."); // Setting Message
         AddDataProgressDialog.setCancelable(false);
 
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                showInterstitial();
+            }
+        });
+
+        petcheks.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (petcheks.isChecked()) {
+                    pet = "yes";
+
+                } else {
+                    pet = "no";
+                }
+            }
+        });
+        parkingcheks.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                park = parkingcheks.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         add_data.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -358,23 +424,28 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
                 String titl_value = title.getText().toString();
                 String description_value = description.getText().toString();
                 String price_value = price.getText().toString();
+                //priceType + " " +
+                price_value = price_value.replace(",", "");
                 String city_value = citystring;
                 String location_value = propert_location.getText().toString();
                 String sector_value = sector.getText().toString();
                 String unitofmeasure_value = unit_of_measure.getText().toString();
                 String date_of_construction_value = date_of_construction.getText().toString();
-                String petscheks_value = petcheks.getText().toString();
-                String parkingcheks_value = parkingcheks.getText().toString();
+                String petscheks_value = pet;
+                String parkingcheks_value = park;
                 String BedroomSpiner = bedroomVal;
                 String BathroomSpiner = bathVal;
                 String propertytypeSpiner = propertytypeval;
                 String propertystatus = statusVal;
                 String propertycondition_Val = propertyCondition;
+                String pricetypeval = priceType;
 
 
                 if (titl_value.isEmpty() || description_value.isEmpty() || price_value.isEmpty() || city_value.isEmpty() || sector_value.isEmpty() || unitofmeasure_value.isEmpty() ||
                         date_of_construction_value.isEmpty() || petscheks_value.isEmpty() || parkingcheks_value.isEmpty() || BedroomSpiner.isEmpty() || BathroomSpiner.isEmpty() ||
-                        propertytypeSpiner.isEmpty() || propertystatus.isEmpty() || location_value.isEmpty() || propertycondition_Val.isEmpty()) {
+                        propertytypeSpiner.isEmpty() || propertystatus.isEmpty() || location_value.isEmpty() || propertycondition_Val.isEmpty() || pricetypeval.isEmpty()) {
+
+
                     showToast("Please Fill all Data");
 
 
@@ -384,7 +455,7 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
                             == PackageManager.PERMISSION_GRANTED) {
                         // Permission is granted
 
-                        AddPropertyData(id, propertystatus, propertytypeSpiner, titl_value, description_value, price_value, location_value, city_value, sector_value, BedroomSpiner, BathroomSpiner, unitofmeasure_value, date_of_construction_value, petscheks_value, parkingcheks_value, propertycondition_Val);
+                        AddPropertyData(id, propertystatus, propertytypeSpiner, titl_value, description_value, price_value, location_value, city_value, sector_value, BedroomSpiner, BathroomSpiner, unitofmeasure_value, date_of_construction_value, petscheks_value, parkingcheks_value, propertycondition_Val, pricetypeval);
 
                     } else {
                         //Permission is not granted so you have to request it
@@ -399,17 +470,32 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
             }
         });
 
+
+        parklist = new ArrayList<String>();
+        parklist.add("0");
+        parklist.add("1");
+        parklist.add("2");
+        parklist.add("3");
+        parklist.add("4");
+        parklist.add("5");
+        parklist.add("6");
+        parklist.add("7");
+        parklist.add("8");
+        parklist.add("9");
+        parklist.add("10");
+        parklist.add("11");
+
+        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(UpdateData.this, android.R.layout.simple_spinner_item, parklist);
+        arrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        parkingcheks.setAdapter(arrayAdapter1);
+
         city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-//                if (position == 0) {
-//                    citystring = "";
-//
-//                } else {
 
                 citystring = city.getSelectedItem().toString();
-//                }
+
 
             }
 
@@ -504,14 +590,7 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
         });
 
 
-        listprice = new ArrayList<String>();
-        listprice.add("USD");
-        listprice.add("DOP");
-
-
-        ArrayAdapter<String> arrrayAdapterr = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, listprice);
-        arrrayAdapterr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        pricespiner.setAdapter(arrrayAdapterr);
+        getpricetype();
 
         prpertytype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -533,8 +612,8 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
         pricespiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(getApplicationContext(), pricespiner.getSelectedItem().toString(),
-//                        Toast.LENGTH_SHORT).show();
+
+                priceType = pricespiner.getSelectedItem().toString();
 
             }
 
@@ -615,6 +694,17 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
         });
 
 
+    }
+
+    public void getpricetype() {
+        listprice = new ArrayList<String>();
+        listprice.add("USD");
+        listprice.add("DOP");
+        listprice.add(0, pricezeroindex);
+
+        ArrayAdapter<String> arrrayAdapterr = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, listprice);
+        arrrayAdapterr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pricespiner.setAdapter(arrrayAdapterr);
     }
 
     public void selectImage() {
@@ -778,7 +868,7 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
         super.onBackPressed();
     }
 
-    private void AddPropertyData(String id, String status, String property_type, String title, String description, String price, String location, String city, String sector, String bedroom, String bath, String unitOfMeasure, String dateOfConstruction, String petroom, String parkingLot, String propertycondition) {
+    private void AddPropertyData(String id, String status, String property_type, String title, String description, String price, String location, String city, String sector, String bedroom, String bath, String unitOfMeasure, String dateOfConstruction, String petroom, String parkingLot, String propertycondition, String priceType) {
         //        MultipartBody.Builder builder = new MultipartBody.Builder();
 //        builder.setType(MultipartBody.FORM);
 
@@ -927,6 +1017,15 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
         }
 
 
+        AddDataProgressDialog.show();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                AddDataProgressDialog.dismiss();
+            }
+        }, 5000); // 3000 milliseconds delay
+
+
         RequestBody id1 = RequestBody.create(MediaType.parse("text/plain"), id);
         RequestBody feature_Image = RequestBody.create(MediaType.parse("image/png"), mainImageFile);
         MultipartBody.Part featureImag1 = MultipartBody.Part.createFormData("main_image", mainImageFile.getPath(), feature_Image);
@@ -951,11 +1050,13 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
         RequestBody lng = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(longitude));
         RequestBody lat = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(latitude));
         RequestBody property_id = RequestBody.create(MediaType.parse("text/plain"), property_main_id);
-
+        RequestBody price_type = RequestBody.create(MediaType.parse("text/plain"), priceType);
         AddDataProgressDialog.show();
 
         Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_UPDATED_PROPERTY_DATA(id1, property_id, status1, property_type1, title1, description1, price1, location1, lng, lat, city1, sector1, bedroom1, bath1, unitOfMeasure1, dateOfConstruction1, petroom1,
-                parkingLot1, propertycondition1,patio, featureImag1, multipartTypedOutput);
+                parkingLot1, propertycondition1, price_type, featureImag1, multipartTypedOutput);
+
+
         call.enqueue(new Callback<AddProperties_Response>() {
             @Override
             public void onResponse(Call<AddProperties_Response> call, Response<AddProperties_Response> response) {
@@ -965,6 +1066,9 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
                     if (properties_response.getMessage().equals("Property Updated Successfully")) {
 
                         showToast("Data Added Succesfully");
+//                        AdRequest adRequest = new AdRequest.Builder()
+//                                .build();
+//                        mInterstitialAd.loadAd(adRequest);
                         Intent i = new Intent(UpdateData.this, MainActivity.class);
                         startActivity(i);
 
@@ -1048,6 +1152,7 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
                                 Properties properties = updatePropertyResponse.getData().getProperties();
                                 currentPropertites = properties;
 
+                                pricezeroindex = properties.getCurrency();
 
                                 date_of_construction.setText(properties.getDate_of_construction());
                                 cityzeroindex = properties.getCity();
@@ -1104,9 +1209,22 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
 
                                         for (int i = 0; i < propertiesExtraArrayList.size(); i++) {
                                             if (propertiesExtraArrayList.get(i).getType().equals("pets")) {
-                                                petcheks.setText(propertiesExtraArrayList.get(i).getQuantity());
+                                                if (propertiesExtraArrayList.get(i).getQuantity().equals("yes")) {
+                                                    petcheks.setChecked(true);
+
+                                                } else {
+                                                    petcheks.setChecked(false);
+                                                }
+
                                             } else if (propertiesExtraArrayList.get(i).getType().equals("parking")) {
-                                                parkingcheks.setText(propertiesExtraArrayList.get(i).getQuantity());
+
+                                                if (propertiesExtraArrayList.get(i).getQuantity().equals("yes")) {
+//                                                    parkingcheks.setChecked(true);
+
+                                                } else {
+//                                                    parkingcheks.setChecked(false);
+                                                }
+
                                             } else if (propertiesExtraArrayList.get(i).getType().equals("bedrooms")) {
                                                 bedroomzeroindex = (propertiesExtraArrayList.get(i).getQuantity());
                                             } else if (propertiesExtraArrayList.get(i).getType().equals("bathrooms")) {
@@ -1135,12 +1253,13 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
                         spinerchek();
                         GetCitiesList();
                         GetPropertyTypeList();
+                        getpricetype();
 
 
                     } else {
 
 
-                        showToast("Data fetching error");
+                        showToast("Data Null");
                     }
 
 
@@ -1372,56 +1491,9 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
     @Override
     public void onclick(double lat, double lng) {
 
-        propert_location.setText(getCompleteAddressString(lat, lng));
+        propert_location.setText(getAddres(lat, lng));
         latitude = lat;
         longitude = lng;
-    }
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        Bitmap bmImage;
-        private Activity parent;
-        private ProgressDialog payRequestPD;
-
-        public DownloadImageTask(Activity parent, Bitmap bmImage) {
-            this.bmImage = bmImage;
-            this.parent = parent;
-            payRequestPD = new ProgressDialog(parent);
-            payRequestPD.setMessage("Tetopaati...");
-        }
-
-        protected void onPreExecute() {
-            // called on UI thread
-            // parent.showDialog(LOADING_DIALOG);
-//            payRequestPD.show();
-//            payRequestPD.setCancelable(false);
-//            payRequestPD.setCanceledOnTouchOutside(false);
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            try {
-                if (payRequestPD != null && payRequestPD.isShowing()) {
-                    payRequestPD.dismiss();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            genralBitmap = result;
-            this.bmImage = result;
-
-        }
     }
 
     public boolean statusCheck() {
@@ -1510,5 +1582,58 @@ public class UpdateData extends BaseActivity implements SetMapdataInterface {
                     }
                 }, Looper.myLooper());
 
+    }
+
+    private void showInterstitial() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        Bitmap bmImage;
+        private Activity parent;
+        private ProgressDialog payRequestPD;
+
+        public DownloadImageTask(Activity parent, Bitmap bmImage) {
+            this.bmImage = bmImage;
+            this.parent = parent;
+            payRequestPD = new ProgressDialog(parent);
+            payRequestPD.setMessage("Tetopaati...");
+        }
+
+        protected void onPreExecute() {
+            // called on UI thread
+            // parent.showDialog(LOADING_DIALOG);
+//            payRequestPD.show();
+//            payRequestPD.setCancelable(false);
+//            payRequestPD.setCanceledOnTouchOutside(false);
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            try {
+                if (payRequestPD != null && payRequestPD.isShowing()) {
+                    payRequestPD.dismiss();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            genralBitmap = result;
+            this.bmImage = result;
+
+        }
     }
 }

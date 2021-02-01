@@ -77,7 +77,7 @@ public class Purchasedplan_Adapter extends RecyclerView.Adapter<Purchasedplan_Ad
 
     public class viewholder extends RecyclerView.ViewHolder {
         TextView title, planprice, purchasedate, validTill;
-//        CircleImageView userImage;
+        //        CircleImageView userImage;
         RelativeLayout mainLayout;
 
 
@@ -104,8 +104,12 @@ public class Purchasedplan_Adapter extends RecyclerView.Adapter<Purchasedplan_Ad
                 String purchasedate_val = ((purchasedate_val = purchasedPlan.getCreated_at()) != null) ? purchasedate_val : "N/A";
                 purchasedate.setText("Purchase Date " + purchasedate_val);
 
-                String validTill_val = ((validTill_val = String.valueOf(purchasedPlan.getUpdated_at())) != null) ? validTill_val : "N/A";
-                validTill.setText("Valid till " + validTill_val);
+
+                if (purchasedPlan.getExpirey_date() != null) {
+
+                    String validTill_val = ((validTill_val = String.valueOf(purchasedPlan.getExpirey_date().getDate())) != null) ? validTill_val : "N/A";
+                    validTill.setText("Valid till " + validTill_val);
+                }
 
 
 //                Glide.with(context).load("http://poraquird.stepinnsolution.com/public/user_images/" + connectors.getUser_image()).into(userImage);

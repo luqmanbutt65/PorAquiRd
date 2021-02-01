@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.MyFavAdapter;
 import com.example.realestate.Adapters.MyprojectAdapter;
 import com.example.realestate.Activities.Adddata;
@@ -93,14 +94,40 @@ public class MyProjectsFragment extends Fragment implements MyFavAdapter.ClickEv
             }
         });
 
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), Adddata.class));
+                if (GlobalState.getInstance().getUserInfo() != null) {
+                    if (GlobalState.getInstance().getUserInfo().getUpload_limit() != null) {
+
+                        if (GlobalState.getInstance().getUserInfo().getUpload_limit().equals("0")) {
+
+                            Toast.makeText(context, "Your Property Upload limit Expired", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            startActivity(new Intent(getActivity(), Adddata.class));
+
+                        }
+
+
+                    } else {
+
+                        Toast.makeText(context, "Your Property Upload limit Expired", Toast.LENGTH_SHORT).show();
+
+
+                    }
+
+                } else {
+                    Intent i = new Intent(getActivity(), MainActivity.class);
+                    startActivity(i);
+                    Toast.makeText(context, "Connect to internet Please", Toast.LENGTH_SHORT).show();
+                }
 
 
             }
         });
+
 
         return view;
     }
@@ -145,7 +172,7 @@ public class MyProjectsFragment extends Fragment implements MyFavAdapter.ClickEv
 
                     } else {
 
-                        Toast.makeText(getContext(), "Data fetching error/ Null Data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), " Null Data", Toast.LENGTH_SHORT).show();
                     }
 
 

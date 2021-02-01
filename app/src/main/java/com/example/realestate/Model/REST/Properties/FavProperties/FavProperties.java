@@ -14,15 +14,6 @@ public class FavProperties extends RealmObject {
 
 
     private int tttype = 0;
-
-    public int getTttype() {
-        return tttype;
-    }
-
-    public void setTttype(int tttype) {
-        this.tttype = tttype;
-    }
-
     @SerializedName("id")
     @Expose
     private int id;
@@ -41,7 +32,6 @@ public class FavProperties extends RealmObject {
     @SerializedName("location")
     @Expose
     private String location;
-
     @SerializedName("city")
     @Expose
     private String city;
@@ -60,11 +50,9 @@ public class FavProperties extends RealmObject {
     @SerializedName("updated_at")
     @Expose
     private String updated_at;
-
     @SerializedName("bedroom")
     @Expose
     private String bedroom;
-
     @SerializedName("bath")
     @Expose
     private String bath;
@@ -80,33 +68,27 @@ public class FavProperties extends RealmObject {
     @SerializedName("unit_of_measure")
     @Expose
     private String unit_of_measure;
-
     @SerializedName("construction_year")
     @Expose
     private String date_of_construction;
-
     @SerializedName("rating")
     @Expose
     private String rating;
-
     @SerializedName("comment")
     @Expose
     private String comment;
-
     @SerializedName("ratingg")
     @Expose
     private String user_rating;
     @SerializedName("extra")
     @Expose
     private RealmList<FavProperties> propertiesExtraArrayList;
-
     @SerializedName("gallery")
     @Expose
     private RealmList<FavProperties> propertiesGalleryArrayList;
     @SerializedName("liked")
     @Expose
     private boolean like;
-
     //    private String title;
     @SerializedName("latitude")
     @Expose
@@ -115,6 +97,13 @@ public class FavProperties extends RealmObject {
     @Expose
     private double longitude;
 
+    public int getTttype() {
+        return tttype;
+    }
+
+    public void setTttype(int tttype) {
+        this.tttype = tttype;
+    }
 
     public String getComment() {
         return comment;

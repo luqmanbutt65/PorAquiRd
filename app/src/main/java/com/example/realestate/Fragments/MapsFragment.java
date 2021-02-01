@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,12 +20,16 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.realestate.R;
 import com.example.realestate.SetMapdataInterface;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Utills.AutoCompleteAdapter;
 import com.example.realestate.Utills.GlobalState;
 import com.example.realestate.Utills.MyService;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,6 +42,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.AutocompletePrediction;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceResponse;
+import com.google.android.libraries.places.api.net.PlacesClient;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MapsFragment extends Fragment {
     MapView mMapView;
@@ -44,12 +60,15 @@ public class MapsFragment extends Fragment {
     LocationManager lm;
     Location location;
     SetMapdataInterface setMapdataInterface;
-    private GoogleMap googleMap;
-
     ProgressDialog delayProgresPD;
+    Double lat, lng;
 
-
-
+//luqman
+    AutoCompleteTextView autoCompleteTextView;
+    AutoCompleteAdapter adapter;
+    TextView responseView;
+    PlacesClient placesClient;
+    private GoogleMap googleMap;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
 
@@ -71,6 +90,57 @@ public class MapsFragment extends Fragment {
 
         }
     };
+    private AdapterView.OnItemClickListener autocompleteClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            try {
+                final AutocompletePrediction item = adapter.getItem(i);
+                String placeID = null;
+                if (item != null) {
+                    placeID = item.getPlaceId();
+                }
+
+//                To specify which data types to return, pass an array of Place.Fields in your FetchPlaceRequest
+//                Use only those fields which are required.
+
+                List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS
+                        , Place.Field.LAT_LNG);
+
+                FetchPlaceRequest request = null;
+                if (placeID != null) {
+                    request = FetchPlaceRequest.builder(placeID, placeFields)
+                            .build();
+                }
+
+                if (request != null) {
+                    placesClient.fetchPlace(request).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onSuccess(FetchPlaceResponse task) {
+//                            responseView.setText(task.getPlace().getName() + "\n" + task.getPlace().getAddress());
+//                            responseView.setText(task.getPlace().getLatLng().longitude + "\n" + task.getPlace().getLatLng().latitude);
+                            lat = task.getPlace().getLatLng().latitude;
+                            lng = task.getPlace().getLatLng().longitude;
+                            LatLng MY_LOCATION = new LatLng(lat, lng);
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(MY_LOCATION, 17));
+
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            e.printStackTrace();
+                            responseView.setText(e.getMessage());
+                        }
+                    });
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    };
 
     public MapsFragment(SetMapdataInterface setMapdataInterface) {
         this.setMapdataInterface = setMapdataInterface;
@@ -82,11 +152,29 @@ public class MapsFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
+        String apiKey = "AIzaSyCjsvSTWSx6S79Sw10MKpmTBauZwRgraN0";
+        if (apiKey.isEmpty()) {
+            responseView.setText("error");
+            return view;
+        }
 
+        // Setup Places Client
+        if (!Places.isInitialized()) {
+            Places.initialize(getContext(), apiKey);
+        }
+
+        placesClient = Places.createClient(getContext());
+
+
+        autoCompleteTextView = view.findViewById(R.id.auto);
+        autoCompleteTextView.setThreshold(1);
+        autoCompleteTextView.setOnItemClickListener(autocompleteClickListener);
+        adapter = new AutoCompleteAdapter(getContext(), placesClient);
+        autoCompleteTextView.setAdapter(adapter);
 
         mMapView = (MapView) view.findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
-        delayProgresPD=new ProgressDialog(getContext());
+        delayProgresPD = new ProgressDialog(getContext());
         delayProgresPD.setMessage("Loading...");
         delayProgresPD.setCancelable(false);
 
@@ -122,13 +210,12 @@ public class MapsFragment extends Fragment {
                         setMapdataInterface.onclick(arg0.latitude, arg0.longitude);
 
                         Log.d("arg0", arg0.latitude + "-" + arg0.longitude);
-                        Toast.makeText(getContext(), arg0.latitude + "-" + arg0.longitude, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), arg0.latitude + "-" + arg0.longitude, Toast.LENGTH_SHORT).show();
 
 
                         getActivity().onBackPressed();
                     }
                 });
-
 
 
                 googleMap.setMyLocationEnabled(true);
@@ -161,7 +248,6 @@ public class MapsFragment extends Fragment {
         return view;
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -179,12 +265,6 @@ public class MapsFragment extends Fragment {
         super.onDestroy();
         mMapView.onDestroy();
     }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mMapView.onLowMemory();
-    }
 //    public boolean onTouchEvent(MotionEvent event)
 //    {
 //        int X = (int)event.getX();
@@ -192,6 +272,12 @@ public class MapsFragment extends Fragment {
 //
 //        GeoPoint geoPoint = mMapView.getProjection().fromPixels(X, Y);
 //    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mMapView.onLowMemory();
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

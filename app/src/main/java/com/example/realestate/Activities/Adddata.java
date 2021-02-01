@@ -31,6 +31,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -69,6 +70,10 @@ import com.example.realestate.R;
 import com.example.realestate.SetMapdataInterface;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Utills.GlobalState;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -106,6 +111,7 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
     ImageView featureImage, backbtn;
     Spinner bedroomSpiner, bathsSpiner, pricespiner, city;
     Button add_data;
+    String priceType = "";
     RecyclerView recyclerView;
     ArrayList<ImagesData> imagesDataArrayList = new ArrayList<>();
     ArrayList<Uri> imagesDataArrayList2 = new ArrayList<>();
@@ -113,14 +119,15 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
     ImagesAdapter imagesAdapter;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
-    EditText description, sector, petcheks, parkingcheks, title, price, chekBoxpet, chekBoxroom, propert_location, unit_of_measure, date_of_construction;
-    Spinner prpertytype;
+    EditText description, sector, title, price, chekBoxpet, chekBoxroom, propert_location, unit_of_measure, date_of_construction;
+    Spinner prpertytype, parkingcheks;
     List<String> list;
+    List<String> parklist;
     List<String> listprice;
     DatePickerDialog constructionDatePicker;
     double latitude, longitude;
 
-    CheckBox chUsed, chnew, chnewProject;
+    CheckBox chUsed, chnew, chnewProject, petcheks;
     String statusVal = "For Sale";
     String bathVal;
     String bedroomVal;
@@ -133,8 +140,13 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
     RelativeLayout rl_mainlayout;
     FrameLayout fl_main;
 
+    String pet = "";
+    String park = "";
+
     ProgressDialog AddDataProgressDialog;
     double lat, lon;
+    //ads
+    InterstitialAd mInterstitialAd;
     private boolean isLocFetch = false;
     private Location currentLocation;
     private FusedLocationProviderClient mFusedLocationClient;
@@ -259,15 +271,37 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
         statusCheck2();
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddata);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(Adddata.this);
 
+
+        if (new SharedPreferenceConfig().getBooleanLanguagefrenchFromSP("frenchlanguage", Adddata.this)) {
+
+            setLocale("es");
+
+
+        } else if (new SharedPreferenceConfig().getBooleanLanguageFromSP("language", Adddata.this)) {
+            setLocale("");
+
+        } else if (new SharedPreferenceConfig().getBooleanLanguagespanishFromSP("spanishlanguage", Adddata.this)) {
+            setLocale("sp");
+        }
+
+
+        //luqman ad
+
+        MobileAds.initialize(this, getString(R.string.admob_app_id));
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+
+
         AddDataProgressDialog = new ProgressDialog(Adddata.this);
-        AddDataProgressDialog.setMessage("Logining..."); // Setting Message
+        AddDataProgressDialog.setMessage("Loading..."); // Setting Message
         AddDataProgressDialog.setCancelable(false);
         add_data = findViewById(R.id.Add_Data);
         pricespiner = findViewById(R.id.pricespiner);
@@ -295,8 +329,6 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
         parkingcheks = findViewById(R.id.parkingcheks);
         price = findViewById(R.id.price);
         propert_location = findViewById(R.id.location);
-        chekBoxpet = findViewById(R.id.petcheks);
-        chekBoxroom = findViewById(R.id.parkingcheks);
         prpertytype = findViewById(R.id.proprtyType);
         price.addTextChangedListener(new NumberTextWatcher(price));
         GetCitiesList();
@@ -305,6 +337,54 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
         propertyTypeArrayList = new ArrayList<>();
 
 
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                showInterstitial();
+            }
+        });
+
+        petcheks.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (petcheks.isChecked()) {
+                    pet = "yes";
+
+                } else {
+                    pet = "no";
+                }
+            }
+        });
+
+        parkingcheks.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                park = parkingcheks.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        parklist = new ArrayList<String>();
+        parklist.add("0");
+        parklist.add("1");
+        parklist.add("2");
+        parklist.add("3");
+        parklist.add("4");
+        parklist.add("5");
+        parklist.add("6");
+        parklist.add("7");
+        parklist.add("8");
+        parklist.add("9");
+        parklist.add("10");
+        parklist.add("11");
+
+        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(Adddata.this, android.R.layout.simple_spinner_item, parklist);
+        arrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        parkingcheks.setAdapter(arrayAdapter1);
+
         add_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -312,23 +392,28 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
                 String titl_value = title.getText().toString();
                 String description_value = description.getText().toString();
                 String price_value = price.getText().toString();
+                //priceType + " " +
+                price_value = price_value.replace(",", "");
                 String city_value = citystring;
                 String location_value = propert_location.getText().toString();
                 String sector_value = sector.getText().toString();
                 String unitofmeasure_value = unit_of_measure.getText().toString();
                 String date_of_construction_value = date_of_construction.getText().toString();
-                String petscheks_value = petcheks.getText().toString();
-                String parkingcheks_value = parkingcheks.getText().toString();
+                String petscheks_value = pet;
+                String parkingcheks_value = park;
                 String BedroomSpiner = bedroomVal;
                 String BathroomSpiner = bathVal;
                 String propertytypeSpiner = propertytypeval;
                 String propertystatus = statusVal;
                 String propertycondition_Val = propertyCondition;
+                String pricetypeval = priceType;
 
 
                 if (titl_value.isEmpty() || description_value.isEmpty() || price_value.isEmpty() || city_value.isEmpty() || sector_value.isEmpty() || unitofmeasure_value.isEmpty() ||
                         date_of_construction_value.isEmpty() || petscheks_value.isEmpty() || parkingcheks_value.isEmpty() || BedroomSpiner.isEmpty() || BathroomSpiner.isEmpty() ||
-                        propertytypeSpiner.isEmpty() || propertystatus.isEmpty() || location_value.isEmpty() || propertycondition_Val.isEmpty()) {
+                        propertytypeSpiner.isEmpty() || propertystatus.isEmpty() || location_value.isEmpty() || propertycondition_Val.isEmpty() || pricetypeval.isEmpty()) {
+
+
                     showToast("Please Fill all Data");
 
                 } else {
@@ -336,7 +421,8 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
                             == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(Adddata.this, Manifest.permission.READ_EXTERNAL_STORAGE)
                             == PackageManager.PERMISSION_GRANTED) {
                         // Permission is granted
-                        AddPropertyData(id, propertystatus, propertytypeSpiner, titl_value, description_value, price_value, location_value, city_value, sector_value, BedroomSpiner, BathroomSpiner, unitofmeasure_value, date_of_construction_value, petscheks_value, parkingcheks_value, propertycondition_Val);
+                        AddPropertyData(id, propertystatus, propertytypeSpiner, titl_value, description_value, price_value, location_value, city_value, sector_value, BedroomSpiner, BathroomSpiner, unitofmeasure_value, date_of_construction_value, petscheks_value, parkingcheks_value, propertycondition_Val, pricetypeval);
+
 
                     } else {
                         //Permission is not granted so you have to request it
@@ -390,15 +476,6 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
 
             }
         });
-
-//        RichTextActions richTextActions = (RichTextActions) findViewById(R.id.text_actions);
-//        description.setRichTextActionsView(richTextActions);
-//        description.setPreviewText("view");
-//        description.setHint("Description");
-
-//        if (savedInstanceState != null) {
-//            description.restoreState(savedInstanceState);
-//        }
 
 
         backbtn.setOnClickListener(new View.OnClickListener() {
@@ -497,8 +574,8 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
         pricespiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(getApplicationContext(), pricespiner.getSelectedItem().toString(),
-//                        Toast.LENGTH_SHORT).show();
+
+                priceType = pricespiner.getSelectedItem().toString();
 
             }
 
@@ -521,7 +598,7 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
         list.add("08");
         list.add("09");
         list.add("10");
-        list.add("011");
+        list.add("11");
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);
@@ -592,11 +669,7 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
 //                recyclerView.setAdapter(imagesAdapter);
 //                imagesAdapter.notifyDataSetChanged();
 
-                Intent intent = new Intent();
-                intent.setType("image/png");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTI);
+                selectMultiImage();
 
             }
         });
@@ -604,10 +677,19 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
 
     }
 
+    public void selectMultiImage() {
+
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTI);
+    }
+
     public void selectImage() {
 
         Intent intent = new Intent();
-        intent.setType("image/png");
+        intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_ONE);
     }
@@ -741,7 +823,11 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
         super.onBackPressed();
     }
 
-    private void AddPropertyData(String id, String status, String property_type, String title, String description, String price, String location, String city, String sector, String bedroom, String bath, String unitOfMeasure, String dateOfConstruction, String petroom, String parkingLot, String propertycondition) {
+    private void AddPropertyData(String id, String status, String property_type, String title, String description, String price, String location, String city,
+                                 String sector, String bedroom, String bath, String unitOfMeasure, String dateOfConstruction, String petroom, String parkingLot,
+                                 String propertycondition, String pricetype) {
+
+
         AddDataProgressDialog.show();
 //        MultipartBody.Builder builder = new MultipartBody.Builder();
 //        builder.setType(MultipartBody.FORM);
@@ -765,7 +851,7 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
             }
             //            Bitmap myBitmap = BitmapFactory.decodeFile(file2.getAbsolutePath());
             if (multiImageFile != null) {
-                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/png"), multiImageFile);
+                RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), multiImageFile);
                 //  multipartTypedOutput[index] = MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody);
                 multipartTypedOutput.add(MultipartBody.Part.createFormData("property_images[]", "image" + index + getUnixTimeStamp(), surveyBody));
 
@@ -782,7 +868,7 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
             e.printStackTrace();
         }
         RequestBody id1 = RequestBody.create(MediaType.parse("text/plain"), id);
-        RequestBody feature_Image = RequestBody.create(MediaType.parse("image/png"), mainImageFile);
+        RequestBody feature_Image = RequestBody.create(MediaType.parse("image/*"), mainImageFile);
         MultipartBody.Part featureImag1 = MultipartBody.Part.createFormData("main_image", mainImageFile.getPath(), feature_Image);
         RequestBody status1 = RequestBody.create(MediaType.parse("text/plain"), status);
         RequestBody patio = RequestBody.create(MediaType.parse("text/plain"), "patio");
@@ -790,6 +876,7 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
         RequestBody title1 = RequestBody.create(MediaType.parse("text/plain"), title);
         RequestBody description1 = RequestBody.create(MediaType.parse("text/plain"), description);
         RequestBody price1 = RequestBody.create(MediaType.parse("text/plain"), price);
+        Log.d("PriceInUrl", price);
         RequestBody location1 = RequestBody.create(MediaType.parse("text/plain"), location);
         RequestBody city1 = RequestBody.create(MediaType.parse("text/plain"), city);
         RequestBody sector1 = RequestBody.create(MediaType.parse("text/plain"), sector);
@@ -803,6 +890,8 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
 
         RequestBody lng = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(longitude));
         RequestBody lat = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(latitude));
+
+        RequestBody price_type = RequestBody.create(MediaType.parse("text/plain"), priceType);
 
 
         Call<AddProperties_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).ADD_PROPERTY_DATA(
@@ -824,7 +913,7 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
                 petroom1,
                 parkingLot1,
                 propertycondition1,
-                patio,
+                price_type,
                 featureImag1,
                 multipartTypedOutput);
         call.enqueue(new Callback<AddProperties_Response>() {
@@ -835,6 +924,9 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
                     if (properties_response.getMessage().equals("Property Added Succesfully")) {
 
                         showToast("Data Added Succesfully");
+//                        AdRequest adRequest = new AdRequest.Builder()
+//                                .build();
+//                        mInterstitialAd.loadAd(adRequest);
                         Intent i = new Intent(Adddata.this, MainActivity.class);
                         startActivity(i);
 
@@ -1009,7 +1101,7 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
     @Override
     public void onclick(double lat, double lng) {
 
-        propert_location.setText(getCompleteAddressString(lat, lng));
+        propert_location.setText(getAddres(lat, lng));
         latitude = lat;
         longitude = lng;
     }
@@ -1100,6 +1192,13 @@ public class Adddata extends BaseActivity implements SetMapdataInterface {
                     }
                 }, Looper.myLooper());
 
+    }
+
+
+    private void showInterstitial() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
     }
 }
 

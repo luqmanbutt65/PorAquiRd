@@ -1,6 +1,7 @@
 package com.example.realestate.BottomSheets;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -27,10 +28,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,6 +47,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.realestate.Activities.Adddata;
 import com.example.realestate.Activities.BaseActivity;
+import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Activities.UpdateData;
 import com.example.realestate.Adapters.DashBoardAdapter;
 import com.example.realestate.ApiClass.ApiClient;
@@ -63,7 +67,12 @@ import com.example.realestate.Model.REST.Properties.Properties;
 import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.example.realestate.R;
 import com.example.realestate.SetMapdataInterface;
+import com.example.realestate.Utills.AutoCompleteAdapter;
 import com.example.realestate.Utills.GlobalState;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -77,9 +86,19 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.AutocompletePrediction;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceResponse;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -100,13 +119,14 @@ public class BottomSheet extends Fragment {
             fourBedroom, fourBathroom, enterBedroom, enterBathroom, applyFilters;
     ArrayAdapter<String> adapter;
     List<String> list;
+    ImageView back_filter;
     ProgressDialog filterprogress;
-    Spinner typespiner;
+    Spinner typespiner, parkinglot;
     Button btnApplyFilter;
-    EditText miniprice, maxprice, petroom, parkinglot, miniarea, maxarea, property_location;
+    EditText miniprice, maxprice, miniarea, maxarea, property_location;
     RadioGroup statusbutton;
     RadioButton forrentt, forsale;
-    CheckBox newproperty, usedproperty, newproject;
+    CheckBox newproperty, usedproperty, newproject, petroom;
     Spinner filter_city_spiner;
     ArrayList<City> cityArrayList;
     ArrayList<PropertyType> propertyTypeArrayList;
@@ -116,7 +136,6 @@ public class BottomSheet extends Fragment {
     String propertystatus = "For Rent";
     String bathrooms;
     String bedrooms;
-    boolean isChecked = false;
     RelativeLayout rl_mapLay, rl_dataLay;
     private ArrayList<Properties> propertiesArrayList;
 
@@ -127,6 +146,19 @@ public class BottomSheet extends Fragment {
     private GoogleMap googleMap;
     ProgressDialog delayProgresPD;
 
+
+    String pet = "";
+    String park = "";
+//luqman
+
+    Double lat1, lng1;
+    AutoCompleteTextView autoCompleteTextView1;
+    AutoCompleteAdapter adapter1;
+    TextView responseView;
+    PlacesClient placesClient;
+
+    //ads
+    InterstitialAd mInterstitialAd;
 
     public BottomSheet() {
 
@@ -194,7 +226,33 @@ public class BottomSheet extends Fragment {
         rl_dataLay = view.findViewById(R.id.rl_dataLay);
         rl_mapLay = view.findViewById(R.id.rl_mapLay);
 
-        delayProgresPD=new ProgressDialog(getContext());
+
+        MobileAds.initialize(getContext(), getString(R.string.admob_app_id));
+        mInterstitialAd = new InterstitialAd(getContext());
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+
+
+        String apiKey = "AIzaSyCjsvSTWSx6S79Sw10MKpmTBauZwRgraN0";
+        if (apiKey.isEmpty()) {
+            responseView.setText("error");
+            return view;
+        }
+
+        // Setup Places Client
+        if (!Places.isInitialized()) {
+            Places.initialize(getContext(), apiKey);
+        }
+
+        placesClient = Places.createClient(getContext());
+
+
+        autoCompleteTextView1 = view.findViewById(R.id.auto);
+        autoCompleteTextView1.setThreshold(1);
+        autoCompleteTextView1.setOnItemClickListener(autocompleteClickListener);
+        adapter1 = new AutoCompleteAdapter(getContext(), placesClient);
+        autoCompleteTextView1.setAdapter(adapter1);
+
+        delayProgresPD = new ProgressDialog(getContext());
         delayProgresPD.setMessage("Loading...");
         delayProgresPD.setCancelable(false);
         filterprogress = new ProgressDialog(getContext());
@@ -207,9 +265,18 @@ public class BottomSheet extends Fragment {
         usedproperty = view.findViewById(R.id.usedproperty1);
         newproject = view.findViewById(R.id.newproject1);
 
+        back_filter = view.findViewById(R.id.back_filter);
+
         newproperty.setChecked(false);
         newproject.setChecked(false);
         usedproperty.setChecked(false);
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                showInterstitial();
+            }
+        });
+
 
         newproject.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -222,6 +289,14 @@ public class BottomSheet extends Fragment {
                     newproject.setChecked(true);
                 }
 
+            }
+        });
+
+        back_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
             }
         });
         newproperty.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -285,7 +360,7 @@ public class BottomSheet extends Fragment {
         fourBathroom = view.findViewById(R.id.fourBathroom);
         enterBedroom = view.findViewById(R.id.enterBedroom);
         enterBathroom = view.findViewById(R.id.enterBathroom);
-        applyFilters = view.findViewById(R.id.anyButton);
+        applyFilters = view.findViewById(R.id.btnApplyFilter);
 
         miniprice = view.findViewById(R.id.minimumprice);
         maxprice = view.findViewById(R.id.maximumprice);
@@ -306,6 +381,65 @@ public class BottomSheet extends Fragment {
             }
         });
 
+
+        petroom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (petroom.isChecked()) {
+                    pet = "yes";
+
+                } else {
+                    pet = "no";
+                }
+            }
+        });
+
+        parkinglot.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                park = parkinglot.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        filter_city_spiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    citystring = "";
+                } else {
+                    citystring = filter_city_spiner.getSelectedItem().toString();
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        typespiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+                if (position == 0) {
+                    propertytypeval = "";
+                } else {
+                    propertytypeval = filter_city_spiner.getSelectedItem().toString();
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         btnApplyFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -319,43 +453,18 @@ public class BottomSheet extends Fragment {
                 String maxarea_val = maxprice.getText().toString();
                 String miniprice_val = miniprice.getText().toString();
                 String maxprice_val = maxprice.getText().toString();
-                String petroom_val = petroom.getText().toString();
-                String parking_val = parkinglot.getText().toString();
+                String petroom_val = pet;
+                String parking_val = park;
                 String bedroom = bedrooms;
                 String bath = bathrooms;
 
-                /*
-                * "sale_type
-"property_
-"location"
-"city") St
-"price_min
-"price_max
-"rating")
-"area_min"
-"area_max"
-"bedrooms"
-"bathrooms
-"pets") St
-"parking")*/
+
                 filterData(propert_status, propertytyp, location, city, miniprice_val, maxprice_val, miniarea_val, maxarea_val, bedroom, bath, petroom_val, parking_val);
 
             }
         });
 
 
-        filter_city_spiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         newproperty.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -379,21 +488,24 @@ public class BottomSheet extends Fragment {
                 }
             }
         });
-//        list = new ArrayList<String>();
-//        list.add("Select one");
-//        list.add("Apartamentos");
-//        list.add("Edificios");
-//        list.add("Solares");
-//        list.add("Casas");
-//        list.add("Villas");
-//        list.add("Naves Industriales");
-//        list.add("Fincas");
-//        list.add("Local Comercial");
-//
-//
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list);
-//        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        typespiner.setAdapter(arrayAdapter);
+        list = new ArrayList<String>();
+        list.add("0");
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("5");
+        list.add("6");
+        list.add("7");
+        list.add("8");
+        list.add("9");
+        list.add("10");
+        list.add("11");
+
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        parkinglot.setAdapter(arrayAdapter);
 
         forrentt = (RadioButton) view.findViewById(R.id.forrent1);
         forsale = (RadioButton) view.findViewById(R.id.forsale1);
@@ -415,99 +527,18 @@ public class BottomSheet extends Fragment {
             }
         });
 
-        typespiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), typespiner.getSelectedItem().toString(),
-                        Toast.LENGTH_SHORT).show();
 
-            }
+        chngeButtonColor(BedroomAny, oneBedroom, twoBedroom, threeBedroom, fourBedroom, "");
+        chngeButtonColor(oneBedroom, twoBedroom, threeBedroom, fourBedroom, BedroomAny, "1");
+        chngeButtonColor(twoBedroom, oneBedroom, threeBedroom, fourBedroom, BedroomAny, "2");
+        chngeButtonColor(threeBedroom, twoBedroom, oneBedroom, fourBedroom, BedroomAny, "3");
+        chngeButtonColor(fourBedroom, twoBedroom, threeBedroom, oneBedroom, BedroomAny, "4");
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-//        BedroomAny.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getContext(), "Bedroom Any", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//        BathroomAny.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getContext(), "Bathroom Any", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        oneBedroom.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String bedroom1_val = "1";
-//                Toast.makeText(getContext(), "1+", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        oneBathroom.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String bathroom1_val = "1";
-//                Toast.makeText(getContext(), "1+", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        twoBedroom.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String bedroom2_val = "2";
-//                Toast.makeText(getContext(), "2+", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        twoBathroom.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String bathroom2_val = "2";
-//                Toast.makeText(getContext(), "2+", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        threeBedroom.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                String bedroom3_val = "3";
-//                Toast.makeText(getContext(), "3+", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        threeBathroom.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String bathroom3_val = "3";
-//                Toast.makeText(getContext(), "3+", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        fourBedroom.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String bedroom4_val = "4";
-//                Toast.makeText(getContext(), "4+", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        fourBathroom.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String bathroom4_val = "4";
-//            }
-//        });
-        chngeButtonColor(oneBedroom, "1");
-        chngeButtonColor(twoBedroom, "2");
-        chngeButtonColor(threeBedroom, "3");
-        chngeButtonColor(fourBedroom, "4");
-
-        chngebathButtonColor(oneBathroom, "1");
-        chngebathButtonColor(twoBathroom, "2");
-        chngebathButtonColor(threeBathroom, "3");
-        chngebathButtonColor(fourBathroom, "4");
+        chngeButtonColor(BathroomAny, oneBathroom, twoBathroom, threeBathroom, fourBathroom, "");
+        chngebathButtonColor(oneBathroom, BathroomAny, twoBathroom, threeBathroom, fourBathroom, "1");
+        chngebathButtonColor(twoBathroom, BathroomAny, oneBathroom, threeBathroom, fourBathroom, "2");
+        chngebathButtonColor(threeBathroom, BathroomAny, oneBathroom, twoBathroom, fourBathroom, "3");
+        chngebathButtonColor(fourBathroom, BathroomAny, oneBathroom, twoBathroom, threeBathroom, "4");
 
         enterBedroom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -561,16 +592,13 @@ public class BottomSheet extends Fragment {
 
 
                         Log.d("arg0", arg0.latitude + "-" + arg0.longitude);
-                        Toast.makeText(getContext(), arg0.latitude + "-" + arg0.longitude, Toast.LENGTH_SHORT).show();
-                        property_location.setText(getCompleteAddressString(arg0.latitude, arg0.longitude));
+//                        Toast.makeText(getContext(), arg0.latitude + "-" + arg0.longitude, Toast.LENGTH_SHORT).show();
+                        property_location.setText(getAddres(arg0.latitude, arg0.longitude));
                         rl_mapLay.setVisibility(View.GONE);
                         rl_dataLay.setVisibility(View.VISIBLE);
                         getActivity().onBackPressed();
                     }
                 });
-
-
-
 
 
                 googleMap.setMyLocationEnabled(true);
@@ -583,6 +611,7 @@ public class BottomSheet extends Fragment {
                         delayProgresPD.dismiss();
                     }
                 }, 5000); // 3000 milliseconds delay
+
                 lm = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
                 location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                 latitude = location.getLongitude();
@@ -615,7 +644,7 @@ public class BottomSheet extends Fragment {
 
         final EditText editText = (EditText) dialogView.findViewById(R.id.edt_comment);
 
-        String etbedroom_val = editText.getText().toString();
+        bedrooms = editText.getText().toString();
         Button button1 = (Button) dialogView.findViewById(R.id.buttonSubmit);
         Button button2 = (Button) dialogView.findViewById(R.id.buttonCancel);
 
@@ -646,13 +675,14 @@ public class BottomSheet extends Fragment {
 
         final EditText editText = (EditText) dialogView.findViewById(R.id.edt_comment);
 
-        String etbathroom_val = editText.getText().toString();
+        bathrooms = editText.getText().toString();
         Button button1 = (Button) dialogView.findViewById(R.id.buttonSubmit);
         Button button2 = (Button) dialogView.findViewById(R.id.buttonCancel);
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                bathrooms = editText.getText().toString();
                 dialogBuilder.dismiss();
             }
         });
@@ -687,9 +717,15 @@ public class BottomSheet extends Fragment {
                                 if (cityArrayList != null) {
                                     ArrayList<String> cityList = new ArrayList<>();
                                     if (cityArrayList.size() > 0) {
+                                        City city1 = new City();
+                                        city1.setCity("Any city");
+                                        city1.setId(1);
+                                        cityArrayList.add(0, city1);
 
                                         for (City city : cityArrayList) {
+
                                             cityList.add(city.getCity());
+
                                         }
                                     }
 
@@ -741,6 +777,11 @@ public class BottomSheet extends Fragment {
                                 ArrayList<String> propertyType = new ArrayList<>();
                                 if (propertyTypeArrayList.size() > 0) {
 
+                                    PropertyType propertyType2 = new PropertyType();
+                                    propertyType2.setType("Any Type");
+                                    propertyType2.setId(1);
+                                    propertyTypeArrayList.add(0, propertyType2);
+
                                     for (PropertyType propertyType1 : propertyTypeArrayList) {
                                         propertyType.add(propertyType1.getType());
                                     }
@@ -773,42 +814,41 @@ public class BottomSheet extends Fragment {
         });
     }
 
-    private void chngeButtonColor(Button button, String string) {
+    private void chngeButtonColor(Button button, Button button1, Button button2, Button button3, Button button4, String string) {
 
-        isChecked = false;
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isChecked = true;
-                if (isChecked) {
-                    button.setBackgroundColor(Color.parseColor("#13D7B1"));
-                    button.setFocusable(true);
-                    bedrooms = string;
-                    Toast.makeText(getContext(), bedrooms + "bedrooms", Toast.LENGTH_SHORT).show();
-                } else {
-                    isChecked = false;
-                    button.setBackgroundColor(Color.parseColor("#DDDFEC"));
-                }
+
+                button.setBackgroundColor(Color.parseColor("#13D7B1"));
+                button1.setBackgroundColor(Color.parseColor("#DDDFEC"));
+                button2.setBackgroundColor(Color.parseColor("#DDDFEC"));
+                button3.setBackgroundColor(Color.parseColor("#DDDFEC"));
+                button4.setBackgroundColor(Color.parseColor("#DDDFEC"));
+
+                button.setFocusable(true);
+                bedrooms = string;
+
             }
         });
     }
 
-    private void chngebathButtonColor(Button button, String string) {
+    private void chngebathButtonColor(Button button, Button button1, Button button2, Button button3, Button button4, String string) {
 
-        isChecked = false;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isChecked = true;
-                if (isChecked) {
-                    button.setBackgroundColor(Color.parseColor("#13D7B1"));
-                    button.setFocusable(true);
-                    bathrooms = string;
-                    Toast.makeText(getContext(), bedrooms + "bathrooms", Toast.LENGTH_SHORT).show();
-                } else {
-                    isChecked = false;
-                    button.setBackgroundColor(Color.parseColor("#DDDFEC"));
-                }
+
+
+                button.setBackgroundColor(Color.parseColor("#13D7B1"));
+                button1.setBackgroundColor(Color.parseColor("#DDDFEC"));
+                button2.setBackgroundColor(Color.parseColor("#DDDFEC"));
+                button3.setBackgroundColor(Color.parseColor("#DDDFEC"));
+                button4.setBackgroundColor(Color.parseColor("#DDDFEC"));
+                button.setFocusable(true);
+                bathrooms = string;
+
             }
         });
     }
@@ -830,6 +870,9 @@ public class BottomSheet extends Fragment {
                         propertiesArrayList = properties_data.getPropertiesArrayList();
                         GlobalState.getInstance().setFilteredPropertiesArrayList(propertiesArrayList);
                         GlobalState.getInstance().setFilteredOk(true);
+//                        AdRequest adRequest = new AdRequest.Builder()
+//                                .build();
+//                        mInterstitialAd.loadAd(adRequest);
                         Fragment fragment = new Homefragment();
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -912,5 +955,84 @@ public class BottomSheet extends Fragment {
         mMapView.onLowMemory();
     }
 
+    private AdapterView.OnItemClickListener autocompleteClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+            try {
+                final AutocompletePrediction item = adapter1.getItem(i);
+                String placeID = null;
+                if (item != null) {
+                    placeID = item.getPlaceId();
+                }
+
+//                To specify which data types to return, pass an array of Place.Fields in your FetchPlaceRequest
+//                Use only those fields which are required.
+
+                List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS
+                        , Place.Field.LAT_LNG);
+
+                FetchPlaceRequest request = null;
+                if (placeID != null) {
+                    request = FetchPlaceRequest.builder(placeID, placeFields)
+                            .build();
+                }
+
+                if (request != null) {
+                    placesClient.fetchPlace(request).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onSuccess(FetchPlaceResponse task) {
+//                            responseView.setText(task.getPlace().getName() + "\n" + task.getPlace().getAddress());
+//                            responseView.setText(task.getPlace().getLatLng().longitude + "\n" + task.getPlace().getLatLng().latitude);
+                            lat1 = task.getPlace().getLatLng().latitude;
+                            lng1 = task.getPlace().getLatLng().longitude;
+                            LatLng MY_LOCATION = new LatLng(lat1, lng1);
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(MY_LOCATION, 17));
+
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            e.printStackTrace();
+                            responseView.setText(e.getMessage());
+                        }
+                    });
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    };
+
+    private void showInterstitial() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
+    }
+
+
+    public String getAddres(double lat, double lng) {
+
+        Geocoder geocoder;
+        List<Address> addresses;
+        geocoder = new Geocoder(getContext(), Locale.getDefault());
+
+        String add = "";
+        try {
+            addresses = geocoder.getFromLocation(lat, lng, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+            String city = addresses.get(0).getLocality();
+            String state = addresses.get(0).getAdminArea();
+            String country = addresses.get(0).getCountryName();
+
+            add = city + " " + state + " " + country;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return add;
+    }
 }

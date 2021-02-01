@@ -18,6 +18,17 @@ public class User_Reviews {
     @SerializedName("user_detail")
     @Expose
     private UserInfo user_detail;
+    @SerializedName("created_at")
+    @Expose
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public float getRating() {
         return rating;

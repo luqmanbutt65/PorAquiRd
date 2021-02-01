@@ -88,6 +88,9 @@ public class ConnectorReviewAdapter extends RecyclerView.Adapter<ConnectorReview
                 String naameVal = ((naameVal = connector_reviews.getName()) != null) ? naameVal : "N/A";
                 name.setText(naameVal);
 
+                String dateVal = ((dateVal = connector_reviews.getTime()) != null) ? dateVal : "N/A";
+                date.setText(dateVal);
+
                 Float ratingVal = ((ratingVal = Float.parseFloat(connector_reviews.getRating().trim())) != null) ? ratingVal : 0;
                 ratingBar.setRating(ratingVal);
 

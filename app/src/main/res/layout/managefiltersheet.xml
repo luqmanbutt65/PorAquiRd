@@ -13,22 +13,60 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
-        <com.google.android.gms.maps.MapView
-            xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70sdp"
+            app:cardBackgroundColor="@color/aqua">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:background="@drawable/roundimage"
+                    android:drawableRight="@drawable/search"
+                    android:drawablePadding="20dp"
+                    android:hint="Enter Location"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:singleLine="true" />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.gms.maps.MapView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:map="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/cardView" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_dataLay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       >
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/back_filter"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@drawable/back" />
 
         <TextView
             android:id="@+id/headerlayut"
@@ -37,7 +75,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Manage Filters"
+            android:text="@string/mfs_tv_title"
             android:textColor="#3B4160"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold" />
@@ -59,7 +97,7 @@
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Search For"
+                    android:text="@string/mfs_tv_search_for"
                     android:textColor="@color/textblackcolor"
                     android:textSize="@dimen/_12sdp" />
 
@@ -92,7 +130,7 @@
                             android:background="@drawable/toggle_widget_background"
                             android:button="@null"
                             android:gravity="center"
-                            android:text="For rent"
+                            android:text="@string/mfs_rb_for_rent"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
 
@@ -108,7 +146,7 @@
                             android:background="@drawable/toggle_widget_background"
                             android:button="@null"
                             android:gravity="center"
-                            android:text="For Sale"
+                            android:text="@string/mfs_rb_for_sale"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
                     </RadioGroup>
@@ -120,7 +158,7 @@
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Select Type"
+                    android:text="@string/mfs_tv_select_type"
                     android:textColor="@color/textblackcolor"
                     android:textSize="@dimen/_12sdp" />
 
@@ -154,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Location"
+                    android:text="@string/mfs_location"
                     android:textColor="@color/textblackcolor"
                     android:textSize="@dimen/_12sdp" />
 
@@ -186,7 +224,7 @@
                             android:editable="false"
                             android:ellipsize="end"
                             android:gravity="center_vertical"
-                            android:hint="location"
+                            android:hint="@string/mfs_et_location_hint"
                             android:paddingLeft="@dimen/_10sdp"
                             android:paddingRight="@dimen/_20sdp"
                             android:singleLine="true"
@@ -205,7 +243,7 @@
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_30sdp"
                     android:singleLine="true"
-                    android:text="City"
+                    android:text="@string/mfs_tv_city"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
@@ -236,7 +274,7 @@
                         android:layout_marginLeft="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Budget"
+                        android:text="@string/mfs_tv_budget"
                         android:textColor="@color/textblackcolor"
                         android:textSize="@dimen/_12sdp" />
 
@@ -256,7 +294,7 @@
                             android:background="@drawable/add_edittext_style"
                             android:digits="0123456789"
                             android:gravity="center"
-                            android:hint="Minimum"
+                            android:hint="@string/mfs_et_minimum_hint"
                             android:inputType="numberDecimal"
                             android:lines="1"
                             android:maxLength="20"
@@ -279,7 +317,7 @@
                             android:background="@drawable/add_edittext_style"
                             android:digits="0123456789"
                             android:gravity="center"
-                            android:hint="Maximum"
+                            android:hint="@string/mfs_et_maximum_hint"
                             android:inputType="numberDecimal"
                             android:lines="1"
                             android:maxLength="20"
@@ -298,7 +336,7 @@
                         android:layout_marginLeft="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Area Size"
+                        android:text="@string/mfs_tv_area_size"
                         android:textColor="@color/textblackcolor"
                         android:textSize="@dimen/_12sdp" />
 
@@ -320,7 +358,7 @@
                             android:digits="0123456789"
                             android:drawableRight="@drawable/meter"
                             android:gravity="center"
-                            android:hint="Minimum"
+                            android:hint="@string/mfs_et2_minimum_hint"
                             android:inputType="numberDecimal"
                             android:lines="1"
                             android:maxLength="20"
@@ -344,7 +382,7 @@
                             android:digits="0123456789"
                             android:drawableRight="@drawable/meter"
                             android:gravity="center"
-                            android:hint="Maximum"
+                            android:hint="@string/mfs_et2_maximum_hint"
                             android:inputType="numberDecimal"
                             android:lines="1"
                             android:maxLength="20"
@@ -370,7 +408,7 @@
                         android:layout_marginLeft="@dimen/_20sdp"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center_vertical"
-                        android:text="Bedrooms"
+                        android:text="@string/mfs_tv_bedrooms"
                         android:textColor="@color/textblackcolor"
                         android:textSize="@dimen/_12sdp" />
 
@@ -396,7 +434,7 @@
                                 android:layout_height="match_parent"
                                 android:background="@drawable/buttonround"
                                 android:gravity="center"
-                                android:text="Any"
+                                android:text="@string/mfs_btn_any"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/_10sdp" />
 
@@ -451,7 +489,7 @@
                                 android:background="@drawable/buttonbottomsheetrightround"
                                 android:clickable="true"
                                 android:gravity="center"
-                                android:text="Enter"
+                                android:text="@string/mfs_btn_enter"
                                 android:textColor="@color/textblackcolor"
                                 android:textSize="@dimen/_10sdp" />
                         </LinearLayout>
@@ -469,7 +507,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_20sdp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Bathrooms"
+                        android:text="@string/mfs_tv_bathrooms"
                         android:textColor="@color/textblackcolor"
                         android:textSize="@dimen/_12sdp" />
 
@@ -495,7 +533,7 @@
                                 android:background="@drawable/buttonround"
                                 android:clickable="true"
                                 android:gravity="center"
-                                android:text="Any"
+                                android:text="@string/mfs_btn_any"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/_10sdp" />
 
@@ -550,7 +588,7 @@
                                 android:background="@drawable/buttonbottomsheetrightround"
                                 android:clickable="true"
                                 android:gravity="center"
-                                android:text="Enter"
+                                android:text="@string/mfs_btn_enter"
                                 android:textColor="@color/textblackcolor"
                                 android:textSize="@dimen/_10sdp"
                                 tools:ignore="OnClick" />
@@ -563,41 +601,24 @@
                     android:id="@+id/relative1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:orientation="horizontal"
                     android:weightSum="2">
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <TextView
+                        <CheckBox
+                            android:id="@+id/petrooms"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_15sdp"
-                            android:text="Pet Room"
+                            android:text="@string/mfs_tv_pet_room"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
-
-                        <EditText
-                            android:id="@+id/petrooms"
-                            android:layout_width="@dimen/_130sdp"
-                            android:layout_height="@dimen/_35sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:background="@drawable/roundedit"
-                            android:drawablePadding="@dimen/_10sdp"
-                            android:hint="Pet rooms"
-
-                            android:lines="1"
-                            android:maxLength="20"
-                            android:maxLines="1"
-                            android:paddingLeft="@dimen/_10sdp"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_10sdp" />
 
 
                     </LinearLayout>
@@ -605,32 +626,26 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/parkings"
+                            android:layout_width="@dimen/_70sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:gravity="center_vertical"
+                            android:textSize="@dimen/_12sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_15sdp"
-                            android:text="parking Lot"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp" />
-
-                        <EditText
-                            android:id="@+id/parkings"
-                            android:layout_width="@dimen/_130sdp"
-                            android:layout_height="@dimen/_35sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:background="@drawable/roundedit"
-                            android:drawablePadding="@dimen/_10sdp"
-                            android:hint="Parking Lot"
-                            android:lines="1"
-                            android:maxLength="20"
-                            android:maxLines="1"
-                            android:paddingLeft="@dimen/_10sdp"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_10sdp" />
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:gravity="center_vertical"
+                            android:text="@string/mfs_tv_parking_lot"
+                            android:textColor="@color/black" />
 
 
                     </LinearLayout>
@@ -653,7 +668,7 @@
                         android:layout_height="@dimen/_20sdp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Used" />
+                        android:text="@string/mfs_cb_used" />
 
                     <CheckBox
                         android:id="@+id/newproperty1"
@@ -661,7 +676,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="New" />
+                        android:text="@string/mfs_cb_new" />
 
                     <CheckBox
                         android:id="@+id/newproject1"
@@ -669,7 +684,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="New Project" />
+                        android:text="@string/mfs_cb_new_project" />
 
                 </LinearLayout>
 
@@ -688,7 +703,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginBottom="@dimen/_30sdp"
                         android:background="@drawable/button_round"
-                        android:text="Apply Filters"
+                        android:text="@string/mfs_btn_apply_filters"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />

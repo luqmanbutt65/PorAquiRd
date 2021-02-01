@@ -36,7 +36,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:layout_toRightOf="@+id/back_btnAddData"
-                    android:text="Add New Projects"
+                    android:text="@string/add_data_title"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -70,7 +70,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_20sdp"
-                                android:text="Feature Image"
+                                android:text="@string/add_data_img_title"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp"
                                 android:textStyle="bold" />
@@ -100,7 +100,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_20sdp"
-                                android:text="More Images"
+                                android:text="@string/add_data_multiple_img_title"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp"
                                 android:textStyle="bold" />
@@ -113,7 +113,7 @@
                                 android:layout_below="@+id/moreimgtext"
                                 android:layout_centerHorizontal="true"
                                 android:background="@drawable/more"
-                                android:text="Browse More"
+                                android:text="@string/add_data_button_text"
                                 android:textColor="@color/gry"
                                 android:textSize="@dimen/_12sdp"
                                 android:textStyle="normal" />
@@ -143,7 +143,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_20sdp"
                                 android:layout_marginTop="@dimen/_5sdp"
-                                android:text="Project Details"
+                                android:text="@string/add_data_pd_title"
                                 android:textColor="@color/gry"
                                 android:textSize="@dimen/_15sdp"
                                 android:textStyle="bold" />
@@ -171,7 +171,7 @@
                                     android:background="@drawable/toggle_widget_background"
                                     android:button="@null"
                                     android:gravity="center"
-                                    android:text="For rent"
+                                    android:text="@string/add_data_rb1"
                                     android:textColor="@color/black" />
 
                                 <RadioButton
@@ -186,7 +186,7 @@
                                     android:background="@drawable/toggle_widget_background"
                                     android:button="@null"
                                     android:gravity="center"
-                                    android:text="For Sale"
+                                    android:text="@string/add_data_rb2"
                                     android:textColor="@color/white" />
                             </RadioGroup>
 
@@ -196,7 +196,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/togglegroup2"
                                 android:layout_marginLeft="@dimen/_20sdp"
-                                android:text="Select Property Type"
+                                android:text="@string/add_data_sp_title"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -231,7 +231,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_5sdp"
-                                    android:text="Title"
+                                    android:text="@string/add_data_tv_title"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_12sdp" />
 
@@ -242,7 +242,7 @@
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:background="@drawable/add_edittext_style_gray"
                                     android:ellipsize="end"
-                                    android:hint="Enter Hint"
+                                    android:hint="@string/add_data_et1_hint"
                                     android:lines="1"
                                     android:maxLength="50"
                                     android:maxLines="1"
@@ -254,7 +254,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_5sdp"
-                                    android:text="Description"
+                                    android:text="@string/add_data_tv2_title"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_12sdp" />
 
@@ -265,11 +265,8 @@
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:background="@drawable/add_edittext_style_gray"
                                     android:gravity="left"
-                                    android:hint="Enter description"
+                                    android:hint="@string/add_data_et2"
                                     android:inputType="textShortMessage|textMultiLine"
-                                    android:lines="7"
-                                    android:maxLength="200"
-                                    android:maxLines="7"
                                     android:padding="@dimen/_10sdp"
                                     android:paddingLeft="@dimen/_10sdp"
                                     android:paddingRight="@dimen/_10sdp"
@@ -286,7 +283,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_5sdp"
-                                    android:text="Price"
+                                    android:text="@string/add_data_tv_price"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_12sdp" />
 
@@ -304,7 +301,7 @@
                                         android:background="@null"
                                         android:digits="0123456789"
                                         android:ellipsize="end"
-                                        android:hint="Enter Price"
+                                        android:hint="@string/add_data_et3_hint"
                                         android:inputType="numberDecimal"
                                         android:lines="1"
                                         android:maxLength="20"
@@ -327,7 +324,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_5sdp"
-                                    android:text="Location"
+                                    android:text="@string/add_data_tv_location"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_12sdp" />
 
@@ -341,7 +338,7 @@
                                     android:drawablePadding="@dimen/_5sdp"
                                     android:editable="false"
                                     android:ellipsize="end"
-                                    android:hint="Enter Location"
+                                    android:hint="@string/add_data_et4_hint"
                                     android:maxLines="1"
                                     android:paddingLeft="@dimen/_10sdp"
                                     android:paddingRight="@dimen/_10sdp"
@@ -352,7 +349,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_5sdp"
-                                    android:text="City"
+                                    android:text="@string/add_data_tv_city"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_12sdp" />
 
@@ -371,7 +368,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_5sdp"
-                                    android:text="Sector"
+                                    android:text="@string/add_data_tv_sector"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_12sdp" />
 
@@ -382,7 +379,7 @@
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:background="@drawable/add_edittext_style_gray"
                                     android:ellipsize="end"
-                                    android:hint="Enter Sector"
+                                    android:hint="@string/add_data_et5_hint"
                                     android:lines="1"
                                     android:maxLength="100"
                                     android:maxLines="1"
@@ -411,10 +408,11 @@
                                 android:layout_marginLeft="@dimen/_10sdp"
                                 android:layout_marginRight="@dimen/_20sdp"
                                 android:layout_marginBottom="@dimen/_20sdp"
-                                android:text="Submit" />
+                                android:text="@string/add_data_btn_submit" />
 
                             <LinearLayout
                                 android:id="@+id/linear"
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -432,7 +430,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/_5sdp"
-                                        android:text="More Details"
+                                        android:text="@string/add_data_tv_details"
                                         android:textColor="@color/gry"
                                         android:textSize="@dimen/_15sdp"
                                         android:textStyle="bold" />
@@ -441,7 +439,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/_5sdp"
-                                        android:text="Bedrooms"
+                                        android:text="@string/add_data_tv_bedrooms"
                                         android:textColor="@color/black"
                                         android:textSize="@dimen/_10sdp" />
 
@@ -457,7 +455,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/_15sdp"
-                                        android:text="Unit of Measure"
+                                        android:text="@string/add_data_tv_unit"
                                         android:textColor="@color/black"
                                         android:textSize="@dimen/_12sdp" />
 
@@ -470,7 +468,7 @@
                                         android:background="@drawable/roundedit"
                                         android:drawableLeft="@drawable/measureunit"
                                         android:drawablePadding="@dimen/_10sdp"
-                                        android:hint="Unit Of Measure"
+                                        android:hint="@string/add_data_et6_hint"
                                         android:inputType="number"
                                         android:lines="1"
                                         android:maxLength="9"
@@ -481,30 +479,14 @@
                                         android:textSize="@dimen/_10sdp" />
 
 
-                                    <TextView
+                                    <CheckBox
+                                        android:id="@+id/petcheks"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/_15sdp"
-                                        android:text="Pet Room"
+                                        android:text="@string/add_data_tv_pet_room"
                                         android:textColor="@color/black"
                                         android:textSize="@dimen/_12sdp" />
-
-                                    <EditText
-                                        android:id="@+id/petcheks"
-                                        android:layout_width="@dimen/_130sdp"
-                                        android:layout_height="@dimen/_35sdp"
-                                        android:layout_marginTop="@dimen/_5sdp"
-                                        android:background="@drawable/roundedit"
-                                        android:drawablePadding="@dimen/_10sdp"
-                                        android:hint="Pet rooms"
-                                        android:inputType="number"
-                                        android:lines="1"
-                                        android:maxLength="3"
-                                        android:maxLines="1"
-                                        android:paddingLeft="@dimen/_10sdp"
-                                        android:singleLine="true"
-                                        android:textColor="@color/black"
-                                        android:textSize="@dimen/_10sdp" />
 
 
                                 </LinearLayout>
@@ -520,7 +502,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/_5sdp"
-                                        android:text="More Details"
+                                        android:text="@string/add_data_tv_details2"
                                         android:textColor="@color/gry"
                                         android:textSize="@dimen/_15sdp"
                                         android:textStyle="bold" />
@@ -529,7 +511,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/_5sdp"
-                                        android:text="Baths"
+                                        android:text="@string/add_data_tv_baths"
                                         android:textColor="@color/black"
                                         android:textSize="@dimen/_10sdp" />
 
@@ -545,7 +527,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/_15sdp"
-                                        android:text="Date of construction"
+                                        android:text="@string/add_data_tv_doc"
                                         android:textColor="@color/black"
                                         android:textSize="@dimen/_12sdp" />
 
@@ -560,38 +542,29 @@
                                         android:drawableLeft="@drawable/constructiondate"
                                         android:drawablePadding="@dimen/_10sdp"
                                         android:editable="false"
-                                        android:hint="Date of Construction"
+                                        android:hint="@string/add_data_et8_hint"
                                         android:maxLines="1"
                                         android:paddingLeft="@dimen/_10sdp"
                                         android:textColor="@color/black"
                                         android:textSize="@dimen/_10sdp"
                                         android:textStyle="normal" />
 
-
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/_15sdp"
-                                        android:text="Parking Lot"
+                                        android:layout_marginTop="@dimen/_10sdp"
+                                        android:text="@string/add_data_tv_parking_lot"
                                         android:textColor="@color/black"
                                         android:textSize="@dimen/_12sdp" />
 
-                                    <EditText
+
+                                    <Spinner
                                         android:id="@+id/parkingcheks"
-                                        android:layout_width="@dimen/_130sdp"
-                                        android:layout_height="@dimen/_35sdp"
+                                        android:layout_width="@dimen/_70sdp"
+                                        android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/_5sdp"
-                                        android:background="@drawable/roundedit"
-                                        android:drawablePadding="@dimen/_10sdp"
-                                        android:hint="Parking Lot"
-                                        android:inputType="number"
-                                        android:lines="1"
-                                        android:maxLength="4"
-                                        android:maxLines="1"
-                                        android:paddingLeft="@dimen/_10sdp"
-                                        android:singleLine="true"
                                         android:textColor="@color/black"
-                                        android:textSize="@dimen/_10sdp" />
+                                        android:textSize="@dimen/_12sdp" />
 
 
                                 </LinearLayout>
@@ -605,7 +578,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_40sdp"
                                 android:layout_below="@id/linear"
+                                android:layout_marginLeft="@dimen/_10sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
                                 android:layout_weight="3"
                                 android:orientation="horizontal"
                                 android:paddingRight="@dimen/_10sdp">
@@ -617,7 +592,7 @@
                                     android:layout_weight="1"
                                     android:gravity="center_vertical"
                                     android:onClick="onchecked"
-                                    android:text="Used" />
+                                    android:text="@string/add_data_cb_used" />
 
                                 <CheckBox
                                     android:id="@+id/neww"
@@ -626,7 +601,7 @@
                                     android:layout_weight="1"
                                     android:gravity="center_vertical"
                                     android:onClick="onchecked"
-                                    android:text="New" />
+                                    android:text="@string/add_data_cb_new" />
 
                                 <CheckBox
                                     android:id="@+id/newproject"
@@ -635,7 +610,7 @@
                                     android:layout_weight="1"
                                     android:gravity="center_vertical"
                                     android:onClick="onchecked"
-                                    android:text="New Project" />
+                                    android:text="@string/add_data_cb_new_project" />
                             </LinearLayout>
 
 

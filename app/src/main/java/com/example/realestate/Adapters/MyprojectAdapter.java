@@ -43,11 +43,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.viewholder> {
+    public ClickEventHandler clickHandler;
     Context context;
+    ProgressDialog deletprogress;
     private Activity activity;
     private List<Properties> properties;
-    ProgressDialog deletprogress;
-    public ClickEventHandler clickHandler;
 
     public MyprojectAdapter(Activity activity, Context context,
                             List<Properties> properties, ClickEventHandler clickHandler) {
@@ -65,7 +65,7 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
         View inflate = inflater.inflate(R.layout.myproject_container, parent, false);
 
         deletprogress = new ProgressDialog(context);
-        deletprogress.setMessage("Logining..."); // Setting Message
+        deletprogress.setMessage("Loading..."); // Setting Message
         deletprogress.setCancelable(false);
         return new viewholder(inflate);
     }
@@ -90,44 +90,27 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
         holder.setdata(properties.get(position));
 
         holder.itemView.setLongClickable(true);
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
-                AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
-                        // set message, title, and icon
-                        .setTitle("Delete")
-                        .setMessage("Do you want to Delete")
-//                .setIcon(R.drawable.delete)
-
-                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                //remove from array list and notifydata set change
-                                properties.remove(position);
-                                notifyDataSetChanged();
-                                DeleteProperty(propertieId);
-                                clickHandler.recount(properties.size());
-                                //dismiss dialog
-                                dialog.dismiss();
-                            }
-
-                        })
-                        .setNegativeButton("Update", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                Intent i = new Intent(context, UpdateData.class);
-                                i.putExtra("propertieIDKey", propertieId);
-                                context.startActivity(i);
-                                dialog.dismiss();
-
-                            }
-                        })
-                        .create();
-                myQuittingDialogBox.show();
-
-                return false;
+            public void onClick(View v) {
+                properties.remove(position);
+                notifyDataSetChanged();
+                DeleteProperty(propertieId);
+                clickHandler.recount(properties.size());
             }
         });
+
+        holder.update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, UpdateData.class);
+                i.putExtra("propertieIDKey", propertieId);
+                context.startActivity(i);
+            }
+        });
+
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,95 +123,6 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
         });
 
     }
-
-
-    public class viewholder extends RecyclerView.ViewHolder {
-        TextView city, town, review, price, title, bedroom, bath, area;
-        CustomeImageview mainimg;
-        RelativeLayout mainLayout;
-
-
-        public viewholder(@NonNull View itemView) {
-            super(itemView);
-            city = (TextView) itemView.findViewById(R.id.city_id);
-            town = (TextView) itemView.findViewById(R.id.town_id);
-            review = (TextView) itemView.findViewById(R.id.reviews);
-            price = (TextView) itemView.findViewById(R.id.price);
-            title = (TextView) itemView.findViewById(R.id.title);
-            bedroom = (TextView) itemView.findViewById(R.id.bedroomdasboard);
-            bath = (TextView) itemView.findViewById(R.id.bathsdashboard);
-            area = (TextView) itemView.findViewById(R.id.areadashboard);
-            mainLayout = itemView.findViewById(R.id.dashboardlayout);
-            mainimg = itemView.findViewById(R.id.main_image);
-        }
-
-        void setdata(Properties properties) {
-            if (properties != null) {
-
-
-                String city_val = ((city_val = properties.getCity()) != null) ? city_val : "N/A";
-                city.setText(city_val);
-
-                String town_val = ((town_val = properties.getLocation()) != null) ? town_val : "N/A";
-                town.setText(town_val);
-
-                String review_val = ((review_val = properties.getRating()) != null) ? review_val : "N/A";
-                review.setText(review_val);
-
-                String price_val = ((price_val = String.valueOf(properties.getPrice())) != null) ? price_val : "N/A";
-                price.setText("$ " + price_val);
-
-                String title_val = ((title_val = properties.getSale_type()) != null) ? title_val : "N/A";
-                title.setText(title_val);
-
-
-                if (properties.getPropertiesExtraArrayList() != null) {
-
-                    if(properties.getPropertiesExtraArrayList().size()>0){
-                        for (int i=0;i<properties.getPropertiesExtraArrayList().size();i++)
-                        {
-                            if(i==1){
-                                if(properties.getPropertiesExtraArrayList().get(i).getType().equals("bedrooms")){
-                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getType()+" "+properties.getPropertiesExtraArrayList().get(i).getQuantity());
-                                }else {
-                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getType()+" "+properties.getPropertiesExtraArrayList().get(i).getQuantity());
-                                }
-                            }else if(i==0){
-                                if(properties.getPropertiesExtraArrayList().get(i).getType().equals("bathrooms")){
-                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getType()+" "+properties.getPropertiesExtraArrayList().get(i).getQuantity());
-                                }else {
-                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getType()+" "+properties.getPropertiesExtraArrayList().get(i).getQuantity());
-
-                                }
-                            }
-                        }
-                    }else {
-                        bedroom.setText("N/A");
-
-                        bath.setText("N/A");
-                    }
-
-
-                }else {
-                    bedroom.setText("N/A");
-
-                    bath.setText("N/A");
-                }
-
-
-                String area_val = ((area_val = properties.getArea())) != null ? area_val : "N/A";
-                area.setText(area_val + "M\u00B2");
-//            mainimg.setImageResource(properties.getMain_image());
-                Glide.with(context).load("http://poraquird.stepinnsolution.com/public/property_main_images/" + properties.getMain_image()).into(mainimg);
-                //http://poraquird.stepinnsolution.com/public/property_main_images/Property-Rental.jpg.1606997175jpeg
-            }
-
-
-        }
-
-
-    }
-
 
     public void DeleteProperty(int property_id) {
         deletprogress.show();
@@ -260,8 +154,110 @@ public class MyprojectAdapter extends RecyclerView.Adapter<MyprojectAdapter.view
 
     }
 
+
     public interface ClickEventHandler {
         public void recount(int count);
+    }
+
+    public class viewholder extends RecyclerView.ViewHolder {
+        TextView city, town, review, price, title, title1, bedroom, bath, area;
+        CustomeImageview mainimg;
+        ImageView delete, update;
+        RelativeLayout mainLayout;
+
+
+        public viewholder(@NonNull View itemView) {
+            super(itemView);
+            city = (TextView) itemView.findViewById(R.id.city_id);
+            town = (TextView) itemView.findViewById(R.id.town_id);
+            review = (TextView) itemView.findViewById(R.id.reviews);
+            price = (TextView) itemView.findViewById(R.id.price);
+            title = (TextView) itemView.findViewById(R.id.title);
+            title1 = (TextView) itemView.findViewById(R.id.title_id);
+            delete = itemView.findViewById(R.id.deletebtn);
+            update = itemView.findViewById(R.id.editbtn);
+            bedroom = (TextView) itemView.findViewById(R.id.bedroomdasboard);
+            bath = (TextView) itemView.findViewById(R.id.bathsdashboard);
+            area = (TextView) itemView.findViewById(R.id.areadashboard);
+            mainLayout = itemView.findViewById(R.id.dashboardlayout);
+            mainimg = itemView.findViewById(R.id.main_image);
+        }
+
+        void setdata(Properties properties) {
+            if (properties != null) {
+
+
+                String city_val = ((city_val = properties.getCity()) != null) ? city_val : "N/A";
+                city.setText(city_val);
+
+                String town_val = ((town_val = properties.getLocation()) != null) ? town_val : "N/A";
+                town.setText(town_val);
+
+                String review_val = ((review_val = properties.getRating()) != null) ? review_val : "N/A";
+                review.setText(review_val);
+
+                if (properties.getCurrency() != null) {
+
+                    String type = properties.getCurrency();
+                    String price_val = ((price_val = String.valueOf(properties.getPrice())) != null) ? price_val : "N/A";
+                    price.setText(type + " " + price_val);
+                } else {
+
+                    String price_val = ((price_val = String.valueOf(properties.getPrice())) != null) ? price_val : "N/A";
+                    price.setText(" " + price_val);
+
+                }
+
+                String title_val = ((title_val = properties.getSale_type()) != null) ? title_val : "N/A";
+                title.setText(title_val);
+                String title1_val = ((title1_val = properties.getTitle()) != null) ? title1_val : "N/A";
+                title1.setText(title1_val);
+
+
+                if (properties.getPropertiesExtraArrayList() != null) {
+
+                    if (properties.getPropertiesExtraArrayList().size() > 0) {
+                        for (int i = 0; i < properties.getPropertiesExtraArrayList().size(); i++) {
+                            if (i == 1) {
+                                if (properties.getPropertiesExtraArrayList().get(i).getType().equals("bedrooms")) {
+                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getQuantity() + " " + properties.getPropertiesExtraArrayList().get(i).getType());
+                                } else {
+                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getQuantity() + " " + properties.getPropertiesExtraArrayList().get(i).getType());
+                                }
+                            } else if (i == 0) {
+                                if (properties.getPropertiesExtraArrayList().get(i).getType().equals("bathrooms")) {
+                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getQuantity() + " " + properties.getPropertiesExtraArrayList().get(i).getType());
+                                } else {
+                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getQuantity() + " " + properties.getPropertiesExtraArrayList().get(i).getType());
+
+                                }
+                            }
+                        }
+                    } else {
+                        bedroom.setText("N/A");
+
+                        bath.setText("N/A");
+                    }
+
+
+                } else {
+                    bedroom.setText("N/A");
+
+                    bath.setText("N/A");
+                }
+
+
+                String area_val = ((area_val = properties.getArea())) != null ? area_val : "N/A";
+                area.setText(area_val + "M\u00B2");
+//            mainimg.setImageResource(properties.getMain_image());
+                Glide.with(context).load("http://poraquird.stepinnsolution.com/public/property_main_images/" + properties.getMain_image()).into(mainimg);
+                //http://poraquird.stepinnsolution.com/public/property_main_images/Property-Rental.jpg.1606997175jpeg
+            }
+
+
+        }
+
+
     }
 }
 

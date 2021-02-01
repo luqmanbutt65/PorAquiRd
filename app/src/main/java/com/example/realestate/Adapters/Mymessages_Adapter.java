@@ -75,7 +75,7 @@ public class Mymessages_Adapter extends RecyclerView.Adapter<Mymessages_Adapter.
 
 
     public class viewholder extends RecyclerView.ViewHolder {
-        TextView title, setappointment, time, message, propertyowner;
+        TextView title, setappointment, time, message, propertyowner, suggestedDate, suggestesTime;
         CustomeImageview propertyimage;
 
 
@@ -85,6 +85,8 @@ public class Mymessages_Adapter extends RecyclerView.Adapter<Mymessages_Adapter.
             setappointment = (TextView) itemView.findViewById(R.id.setapointmenttime);
             propertyimage = itemView.findViewById(R.id.property_image_plan);
             time = (TextView) itemView.findViewById(R.id.setappointmentAgain);
+            suggestedDate = (TextView) itemView.findViewById(R.id.suggestedddate);
+            suggestesTime = (TextView) itemView.findViewById(R.id.suggesteddtime);
             message = (TextView) itemView.findViewById(R.id.message);
             propertyowner = (TextView) itemView.findViewById(R.id.propertyowner);
         }
@@ -102,7 +104,7 @@ public class Mymessages_Adapter extends RecyclerView.Adapter<Mymessages_Adapter.
 
 
                 String setappointment_val = ((setappointment_val = rejectedMessages.getCreated_at()) != null) ? setappointment_val : "N/A";
-                setappointment.setText(setappointment_val);
+                setappointment.setText("Purchased at: " + setappointment_val);
 
 //                String time_val = ((time_val = rejectedMessages.getCreated_at()) != null) ? time_val : "N/A";
 //                time.setText(time_val);
@@ -112,6 +114,12 @@ public class Mymessages_Adapter extends RecyclerView.Adapter<Mymessages_Adapter.
 
                 String propertyowner_val = ((propertyowner_val = rejectedMessages.getProperty_owner()) != null) ? propertyowner_val : "N/A";
                 propertyowner.setText(propertyowner_val);
+
+
+                String date_val = ((date_val = rejectedMessages.getSuggested_date()) != null) ? date_val : "N/A";
+                suggestedDate.setText("Suggested  Date: " + date_val);
+                String time_val = ((time_val = rejectedMessages.getSuggested_time()) != null) ? time_val : "N/A";
+                suggestesTime.setText("Suggested Time: " + time_val);
 
 //
                 Glide.with(context).load(AppConstant.IMAGE_PATH + rejectedMessages.getPropertyDetail().getMain_image()).into(propertyimage);

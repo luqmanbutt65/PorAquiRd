@@ -54,12 +54,25 @@ public class Rating_Activity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating_);
+        if (isNetworkConnected()) {
+
+        } else {
+            networkalert();
+        }
+        if (new SharedPreferenceConfig().getBooleanLanguageFromSP("language", Rating_Activity.this)) {
+            setLocale("");
+        } else if (new SharedPreferenceConfig().getBooleanLanguagefrenchFromSP("frenchlanguage", Rating_Activity.this)) {
+            setLocale("es");
+
+        } else if (new SharedPreferenceConfig().getBooleanLanguagespanishFromSP("spanishlanguage", Rating_Activity.this)) {
+            setLocale("sp");
+        }
 
         user_reviewsArrayList = new ArrayList<>();
 
 
         ratingProgressDialog = new ProgressDialog(Rating_Activity.this);
-        ratingProgressDialog.setMessage("Logining..."); // Setting Message
+        ratingProgressDialog.setMessage("Loading..."); // Setting Message
         ratingProgressDialog.setCancelable(false);
         comment = findViewById(R.id.et_comment);
         comment.setScroller(new Scroller(getApplicationContext()));
@@ -93,12 +106,6 @@ public class Rating_Activity extends BaseActivity {
         propertieID = Integer.parseInt(GlobalState.getInstance().getCurrent_Property_id());
         getRateData(String.valueOf(propertieID));
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -112,14 +119,19 @@ public class Rating_Activity extends BaseActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", Rating_Activity.this)) {
 
-                comment_data = comment.getText().toString().trim();
-                if (!comment_data.isEmpty()) {
-                    putRatingCommentData(user_id, propertieID, userrating, comment_data);
-                    comment.setText("");
-                    submit.setVisibility(View.INVISIBLE);
+                    comment_data = comment.getText().toString().trim();
+                    if (comment_data.isEmpty() || userrating == 0) {
+                        showToast("Rating or comment missing");
+                    } else {
+
+                        putRatingCommentData(user_id, propertieID, userrating, comment_data);
+                        comment.setText("");
+                        submit.setVisibility(View.INVISIBLE);
+                    }
                 } else {
-                    showToast("Enter the Review....");
+                    showToast("You are not Login");
                 }
 
             }
@@ -141,6 +153,7 @@ public class Rating_Activity extends BaseActivity {
                         getRateData(String.valueOf(propertieID));
                         showToast("Review  Successfully Added");
                         Intent intent = new Intent(Rating_Activity.this, Description.class);
+                        intent.putExtra("propertieIDKey", property_id);
                         startActivity(intent);
                         finish();
 
@@ -149,6 +162,7 @@ public class Rating_Activity extends BaseActivity {
                         getRateData(String.valueOf(propertieID));
                         showToast("Review  Successfully Added");
                         Intent intent = new Intent(Rating_Activity.this, Description.class);
+                        intent.putExtra("propertieIDKey", property_id);
                         startActivity(intent);
                         finish();
 

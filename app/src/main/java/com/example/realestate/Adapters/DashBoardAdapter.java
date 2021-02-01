@@ -162,10 +162,10 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
 
                     long result = db.INSERT_Channels(properties.get(position));
                     if (result != -1) {
-                        Toast.makeText(context, "INSERT", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(context, "INSERT", Toast.LENGTH_LONG).show();
 
                     } else {
-                        Toast.makeText(context, "NOT INSERT", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(context, "NOT INSERT", Toast.LENGTH_LONG).show();
                     }
 
 
@@ -211,7 +211,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
-        TextView city, town, review, price, title, bedroom, bath, area;
+        TextView city, town, review, price, title, title1, bedroom, bath, area;
         ImageView like_image, likeimage_filled;
         CustomeImageview mainimg;
         RelativeLayout mainLayout;
@@ -220,6 +220,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         public viewholder(@NonNull View itemView) {
             super(itemView);
+            title1 = (TextView) itemView.findViewById(R.id.title_id);
             city = (TextView) itemView.findViewById(R.id.city_id);
             town = (TextView) itemView.findViewById(R.id.town_id);
             review = (TextView) itemView.findViewById(R.id.reviews);
@@ -254,15 +255,26 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
 
                 String city_val = ((city_val = properties.getCity()) != null) ? city_val : "N/A";
                 city.setText(city_val);
+                String title_val = ((title_val = properties.getTitle()) != null) ? title_val : "N/A";
+                title1.setText(title_val);
+                String titlesale_val = ((titlesale_val = properties.getSale_type()) != null) ? titlesale_val : "N/A";
+                title.setText(titlesale_val);
 
                 String review_val = ((review_val = properties.getRating()) != null) ? review_val : "N/A";
                 review.setText(review_val);
 
-                String price_val = ((price_val = String.valueOf(properties.getPrice())) != null) ? price_val : "N/A";
-                price.setText("$ " + price_val);
 
-                String title_val = ((title_val = properties.getSale_type()) != null) ? title_val : "N/A";
-                title.setText(title_val);
+                if (properties.getCurrency() != null) {
+
+                    String pricetype_val = ((pricetype_val = String.valueOf(properties.getCurrency())) != null) ? pricetype_val : "N/A";
+                    String price_val = ((price_val = String.valueOf(properties.getPrice())) != null) ? price_val : "N/A";
+                    price.setText(pricetype_val + " " + price_val);
+                } else {
+
+                    String price_val = ((price_val = String.valueOf(properties.getPrice())) != null) ? price_val : "N/A";
+                    price.setText(" " + price_val);
+
+                }
 
 
                 if (properties.getPropertiesExtraArrayList() != null) {
@@ -271,15 +283,15 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.view
                         for (int i = 0; i < properties.getPropertiesExtraArrayList().size(); i++) {
                             if (i == 1) {
                                 if (properties.getPropertiesExtraArrayList().get(i).getType().equals("bedrooms")) {
-                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                    bedroom.setText( properties.getPropertiesExtraArrayList().get(i).getQuantity()+ " " +properties.getPropertiesExtraArrayList().get(i).getType() );
                                 } else {
-                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                    bedroom.setText(properties.getPropertiesExtraArrayList().get(i).getQuantity()+ " " +properties.getPropertiesExtraArrayList().get(i).getType()  );
                                 }
                             } else if (i == 0) {
                                 if (properties.getPropertiesExtraArrayList().get(i).getType().equals("bathrooms")) {
-                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getQuantity()+ " " +properties.getPropertiesExtraArrayList().get(i).getType()  );
                                 } else {
-                                    bath.setText(properties.getPropertiesExtraArrayList().get(i).getType() + " " + properties.getPropertiesExtraArrayList().get(i).getQuantity());
+                                    bath.setText( properties.getPropertiesExtraArrayList().get(i).getQuantity()+ " " +properties.getPropertiesExtraArrayList().get(i).getType() );
 
                                 }
                             }

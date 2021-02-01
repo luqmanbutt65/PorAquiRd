@@ -22,6 +22,11 @@ import com.example.realestate.Activities.Permisions;
 import com.example.realestate.R;
 import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,15 +34,24 @@ import java.util.List;
 import java.util.Map;
 
 
-public class FirstActivity extends AppCompatActivity {
+public class FirstActivity extends AppCompatActivity implements RewardedVideoAdListener {
     Boolean isRationale;
     Boolean isFirst = true;
+    private RewardedVideoAd mRewardedVideoAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        MobileAds.initialize(this, getString(R.string.admob_app_id));
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+
+        mRewardedVideoAd.setRewardedVideoAdListener(this);
+
+//        loadRewardedVideoAd();
+
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -47,17 +61,8 @@ public class FirstActivity extends AppCompatActivity {
                     Intent intent = new Intent(FirstActivity.this, Permisions.class);
                     startActivity(intent);
 
-//                    if (new SharedPreferenceConfig().getBooleanFromSP("isLogin",FirstActivity.this)){
-//                        Intent intent = new Intent(FirstActivity.this, MainActivity.class);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//                    else {
-//                        Intent intent = new Intent(FirstActivity.this, LoginScreen.class);
-//                        startActivity(intent);
-//                        finish();}
-                    // return;
 
+//
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -67,6 +72,53 @@ public class FirstActivity extends AppCompatActivity {
         thread.start();
 
 
+
+    }
+    private void loadRewardedVideoAd() {
+        mRewardedVideoAd.loadAd(getString(R.string.rewarded_video),
+                new AdRequest.Builder().build());
     }
 
+    @Override
+    public void onRewarded(RewardItem reward) {
+        Toast.makeText(this, "onRewarded! currency: " + reward.getType() + "  amount: " +
+                reward.getAmount(), Toast.LENGTH_SHORT).show();
+        // Reward the user.
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+        Toast.makeText(this, "onRewardedVideoAdLeftApplication",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        Toast.makeText(this, "onRewardedVideoAdClosed", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int errorCode) {
+        Toast.makeText(this, "onRewardedVideoAdFailedToLoad", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+        Toast.makeText(this, "onRewardedVideoAdLoaded", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+        Toast.makeText(this, "onRewardedVideoAdOpened", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+        Toast.makeText(this, "onRewardedVideoStarted", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+        Toast.makeText(this, "onRewardedVideoCompleted", Toast.LENGTH_SHORT).show();
+    }
 }

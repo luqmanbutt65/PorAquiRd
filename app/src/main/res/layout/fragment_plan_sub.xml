@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/activity_background"
     tools:context=".Fragments.PlanSub">
 
 
@@ -10,7 +12,7 @@
         android:id="@+id/rl_one"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_300sdp"
-        android:background="#DF2D2D">
+        android:background="@color/aqua">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_toRightOf="@+id/planback"
-                android:text="Plans"
+                android:text="@string/fps_tv_title"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
@@ -44,7 +46,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/notification"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:visibility="gone" />
 
         </RelativeLayout>
 
@@ -52,162 +55,118 @@
             android:id="@+id/centerimage"
             android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_150sdp"
-            android:layout_centerInParent="true"
+            android:layout_above="@+id/rl_planrecycler"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:paddingBottom="@dimen/_10sdp"
             android:scaleType="fitXY"
             android:src="@drawable/basic" />
 
         <RelativeLayout
+            android:id="@+id/rl_planrecycler"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="@dimen/_30sdp"
-            android:layout_marginRight="@dimen/_30sdp">
+            android:layout_height="@dimen/_85sdp"
+            android:layout_alignParentBottom="true">
 
-            <CheckBox
-                android:id="@+id/basic"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_alignParentLeft="true"
-                android:background="@drawable/bgcheckbox"
-                android:button="@android:color/transparent"
-                android:checked="true" />
-
-            <TextView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/planrecycler"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/basic"
-                android:gravity="center"
-                android:text="Basic"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
+            </androidx.recyclerview.widget.RecyclerView>
 
-            <CheckBox
-                android:id="@+id/primary"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/bgcheckbox"
-                android:button="@android:color/transparent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/primary"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:text="Primary"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold" />
-
-            <CheckBox
-                android:id="@+id/premier"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/bgcheckbox"
-                android:button="@android:color/transparent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/premier"
-                android:layout_alignParentRight="true"
-                android:gravity="center"
-                android:text="Premier"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold" />
         </RelativeLayout>
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_one">
+        android:layout_below="@+id/rl_one"
+        android:fillViewport="true">
 
-        <ListView
-            android:id="@+id/planfeaturelist"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_220sdp"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="right"
-            android:paddingTop="@dimen/_10sdp"
-            android:visibility="gone" />
-
-        <LinearLayout
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/_10sdp"
-            android:paddingRight="@dimen/_10sdp">
-
-            <TextView
-                android:id="@+id/duration"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_toRightOf="@+id/planback"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="1 Month"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_30sdp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_toRightOf="@+id/planback"
-                android:ellipsize="end"
-                android:text="Membership"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_17sdp"
-                android:textStyle="normal" />
-
-            <TextView
-                android:id="@+id/planprice"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_toRightOf="@+id/planback"
-                android:ellipsize="end"
-                android:text="$ 9.50"
-                android:textColor="@color/aqua"
-                android:textSize="@dimen/_30sdp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_Buy_Now"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:background="@drawable/button_round"
-            android:gravity="center"
-            android:text="Buy Now"
-            android:textAlignment="center"
-            android:textSize="@dimen/_12sdp" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rl_one">
 
-    </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/planfeaturelist"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_220sdp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:paddingTop="@dimen/_10sdp" />
 
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:paddingRight="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/duration"
+                    android:layout_width="@dimen/_160sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_toRightOf="@+id/planback"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/fps_tv_month"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_25sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_toRightOf="@+id/planback"
+                    android:ellipsize="end"
+                    android:text="@string/fps_tv_membership"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_17sdp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/planprice"
+                    android:layout_width="@dimen/_160sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_toRightOf="@+id/planback"
+                    android:ellipsize="end"
+                    android:text="@string/fps_tv_price"
+                    android:textColor="@color/aqua"
+                    android:textSize="@dimen/_25sdp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_Buy_Now"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_35sdp"
+                android:background="@drawable/button_round"
+                android:gravity="center"
+                android:text="@string/fps_btn_buy_now"
+                android:textAlignment="center"
+                android:textSize="@dimen/_12sdp" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

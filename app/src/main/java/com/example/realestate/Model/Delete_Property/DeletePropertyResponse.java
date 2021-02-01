@@ -11,7 +11,6 @@ public class DeletePropertyResponse {
     * */
 
 
-
     @SerializedName("status")
     @Expose
     private String status;

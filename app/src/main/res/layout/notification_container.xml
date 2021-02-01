@@ -15,52 +15,52 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/iv_notification"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
+                android:id="@+id/iv_property1"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="match_parent"
                 android:padding="@dimen/_5sdp"
-                android:src="@drawable/notificationn" />
+                android:src="@drawable/otp"></ImageView>
 
             <TextView
-                android:id="@+id/title_text"
+                android:id="@+id/description_text1"
                 android:layout_width="@dimen/_140sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_toRightOf="@+id/iv_notification"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_toRightOf="@+id/iv_property1"
                 android:maxLines="1"
                 android:text="clinton vella brown"
-                android:textColor="@color/black"
+                android:textColor="@color/textblackcolor"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/description_text"
+                android:id="@+id/town_text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/title_text"
+                android:layout_below="@+id/description_text1"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_toRightOf="@+id/iv_notification"
-                android:maxLines="3"
-                android:paddingRight="@dimen/_5sdp"
-                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:layout_toRightOf="@+id/iv_property1"
+                android:maxLines="1"
+                android:text="Green Town ,Lahore"
+                android:textColor="@color/textblackcolor"
+                android:textSize="@dimen/_15sdp"
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/notification_time"
+                android:id="@+id/date_time1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/iv_property1"
+                android:drawableLeft="@drawable/time"
+                android:drawablePadding="@dimen/_10sdp"
                 android:maxLines="1"
-                android:text="3m"
-                android:textColor="@color/black"
+                android:text="December 12, 2020 12:30 PM"
+                android:textColor="@color/textblackcolor"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="normal" />
 

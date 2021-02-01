@@ -8,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_90sdp"
+        android:layout_height="@dimen/_110sdp"
         app:cardCornerRadius="@dimen/_7sdp">
 
         <RelativeLayout
@@ -53,13 +53,13 @@
                 android:id="@+id/date_time1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_above="@+id/apointmenttype1"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_7sdp"
                 android:layout_toRightOf="@+id/iv_property1"
                 android:drawableLeft="@drawable/time"
-                android:maxLines="1"
                 android:drawablePadding="@dimen/_10sdp"
+                android:maxLines="1"
                 android:text="December 12, 2020 12:30 PM"
                 android:textColor="@color/textblackcolor"
                 android:textSize="@dimen/_12sdp"
@@ -74,6 +74,19 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/apointmenttype1"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
                 android:textStyle="normal" />
 
 

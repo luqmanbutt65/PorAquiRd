@@ -6,18 +6,23 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Apoinment.Apointment_Response;
 import com.example.realestate.R;
+import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Utills.GlobalState;
 
@@ -32,32 +37,66 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class BottomsheetApointment extends BaseActivity {
     EditText et_apointment, et_time;
     RadioGroup statusbutton;
+    ImageView back_getapointment;
     RadioButton formeeting, forvideomeeting;
     DatePickerDialog apointmentdatepicker;
     Button apointmentSubmit;
     int propertieID = 1;
     String user_id = "";
     String datetime = "";
+    Bundle extras;
+    String ownernumber = "";
+    String appointmenttype = "Tour In Person";
     ProgressDialog apointmentProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.appointment_bottom_sheet);
+        if (isNetworkConnected()) {
+
+        } else {
+            networkalert();
+        }
+        if (new SharedPreferenceConfig().getBooleanLanguagefrenchFromSP("frenchlanguage", BottomsheetApointment.this)) {
+
+            setLocale("es");
+
+
+        } else if (new SharedPreferenceConfig().getBooleanLanguageFromSP("language", BottomsheetApointment.this)) {
+            setLocale("");
+
+        } else if (new SharedPreferenceConfig().getBooleanLanguagespanishFromSP("spanishlanguage", BottomsheetApointment.this)) {
+            setLocale("sp");
+        }
 
 
         apointmentSubmit = findViewById(R.id.apointmentSubmit);
         statusbutton = findViewById(R.id.togglegroupp);
         et_apointment = findViewById(R.id.et_apointment);
         et_time = findViewById(R.id.et_time);
+        back_getapointment = findViewById(R.id.back_getapointment);
         formeeting = (RadioButton) findViewById(R.id.tour_meeting);
         forvideomeeting = (RadioButton) findViewById(R.id.tour_video);
 
 
         apointmentProgressDialog = new ProgressDialog(BottomsheetApointment.this);
-        apointmentProgressDialog.setMessage("Logining..."); // Setting Message
+        apointmentProgressDialog.setMessage("Loading..."); // Setting Message
         apointmentProgressDialog.setCancelable(false);
 
+        extras = getIntent().getExtras();
+        if (extras != null) {
+            ownernumber = extras.getString("ownerNumber");
+
+            // and get whatever type user account id is
+        }
+        back_getapointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(BottomsheetApointment.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
         et_time.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -79,27 +118,64 @@ public class BottomsheetApointment extends BaseActivity {
             }
         });
 
+        statusbutton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
 
+                if (formeeting.isChecked()) {
+                    formeeting.setTextColor(Color.WHITE);
+                    forvideomeeting.setTextColor(Color.BLACK);
+                    formeeting.setChecked(true);
+                    appointmenttype = "Tour In Person";
+                }
+                if (forvideomeeting.isChecked()) {
+                    forvideomeeting.setTextColor(Color.WHITE);
+                    formeeting.setTextColor(Color.BLACK);
+                    forvideomeeting.setChecked(true);
+                    appointmenttype = "Video Chat";
+
+
+                }
+            }
+        });
         apointmentSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user_id = new SharedPreferenceConfig().getidOfUSerFromSP("id", BottomsheetApointment.this);
                 propertieID = Integer.parseInt(GlobalState.getInstance().getCurrent_Property_id());
+                if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", BottomsheetApointment.this)) {
 
-                String apointment_val = et_apointment.getText().toString();
-                String time = et_time.getText().toString();
-                if (!apointment_val.equals(null) || !et_time.equals(null)) {
-                    datetime = apointment_val + " " + time + ":00";
+                    String apointment_val = et_apointment.getText().toString();
+                    String time_val = et_time.getText().toString();
 
-                }
-                if (!datetime.equals(null)) {
-                    putApointmentData(user_id, propertieID, datetime);
+
+                    if (!apointment_val.isEmpty() && !time_val.isEmpty()) {
+                        datetime = apointment_val + " " + time_val + ":00";
+                        if (!datetime.isEmpty()) {
+                            putApointmentData(user_id, propertieID, datetime, appointmenttype);
+                        }
+                    } else {
+                        if (apointment_val.isEmpty() && time_val.isEmpty()) {
+                            showToast("Please select data and Time first");
+                        } else {
+
+                            if (apointment_val.isEmpty()) {
+                                showToast("Please select Date");
+
+                            } else if (time_val.isEmpty()) {
+                                showToast("Please select Time");
+
+                            }
+                        }
+
+
+                    }
 
                 } else {
-
-                    showToast("Please select data and Time first");
+                    Toast.makeText(bContext, "Please Login First !", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(BottomsheetApointment.this, LoginScreen.class);
+                    startActivity(i);
                 }
-
             }
         });
 
@@ -131,20 +207,7 @@ public class BottomsheetApointment extends BaseActivity {
 
             }
         });
-        statusbutton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                if (formeeting.isChecked()) {
-                    formeeting.setTextColor(Color.WHITE);
-                    forvideomeeting.setTextColor(Color.BLACK);
-                }
-                if (forvideomeeting.isChecked()) {
-                    forvideomeeting.setTextColor(Color.WHITE);
-                    formeeting.setTextColor(Color.BLACK);
-                }
-            }
-        });
 
     }
 
@@ -170,11 +233,10 @@ public class BottomsheetApointment extends BaseActivity {
     }
 
 
-    public void putApointmentData(String user_id, int property_id, String dateTime) {
+    public void putApointmentData(String user_id, int property_id, String dateTime, String appointmentType) {
         apointmentProgressDialog.show();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<Apointment_Response> call = retrofit.create(ApiInterface.class).SET_APOINTMENT_CALL(user_id, String.valueOf(property_id), dateTime);
+
+        Call<Apointment_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).SET_APOINTMENT_CALL(user_id, String.valueOf(property_id), dateTime, appointmentType);
         call.enqueue(new Callback<Apointment_Response>() {
             @Override
             public void onResponse(Call<Apointment_Response> call, Response<Apointment_Response> response) {
@@ -183,9 +245,14 @@ public class BottomsheetApointment extends BaseActivity {
                     if (apointment_response.getMessage().equals("Appointment Successfully Set.")) {
 
                         showToast("Appointment Set Successfully");
+                        if (appointmenttype.equals(appointmentType)) {
+                            Intent intentWhatsapp = new Intent(Intent.ACTION_VIEW);
+                            String url = "https://api.whatsapp.com/send?phone=" + "+" + ownernumber;
+                            intentWhatsapp.setData(Uri.parse(url));
+                            intentWhatsapp.setPackage("com.whatsapp");
+                            startActivity(intentWhatsapp);
+                        }
 
-                        Intent intent = new Intent(BottomsheetApointment.this, MainActivity.class);
-                        startActivity(intent);
                     } else if (apointment_response.getMessage().equals("Appointment Successfully Updated.")) {
 
                         showToast("Appointment Update Successfully");

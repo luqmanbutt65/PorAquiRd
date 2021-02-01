@@ -79,7 +79,7 @@ public class AppoinmentAdapter extends RecyclerView.Adapter<AppoinmentAdapter.vi
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
-        TextView title, town_text, date_time, apointment_status;
+        TextView title, town_text, date_time, apointment_status, apointmenttype;
 
         ImageView iv_property;
 
@@ -90,6 +90,7 @@ public class AppoinmentAdapter extends RecyclerView.Adapter<AppoinmentAdapter.vi
             town_text = itemView.findViewById(R.id.town_text);
             date_time = itemView.findViewById(R.id.date_time);
             apointment_status = itemView.findViewById(R.id.apointment_approved);
+            apointmenttype = itemView.findViewById(R.id.apointmenttype);
             mainLayout = itemView.findViewById(R.id.appointmentlayout);
             iv_property = itemView.findViewById(R.id.iv_property);
         }
@@ -106,6 +107,9 @@ public class AppoinmentAdapter extends RecyclerView.Adapter<AppoinmentAdapter.vi
 
                     String apointment_val = ((apointment_val = String.valueOf(apointments.getStatus())) != null) ? apointment_val : "N/A";
                     apointment_status.setText(apointment_val);
+
+                    String apointmenttype_val = ((apointmenttype_val = String.valueOf(apointments.getAppointment_type())) != null) ? apointmenttype_val : "N/A";
+                    apointmenttype.setText(apointmenttype_val);
 
                     if (apointment_val != null) {
                         if (apointment_val.equals("pending")) {

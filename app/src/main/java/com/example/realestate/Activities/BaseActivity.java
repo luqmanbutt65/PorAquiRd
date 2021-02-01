@@ -7,13 +7,17 @@ import android.app.Activity;
 import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -22,11 +26,13 @@ import android.os.Messenger;
 import android.os.PersistableBundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -64,6 +70,7 @@ public class BaseActivity extends AppCompatActivity {
     private LocationCallback locationCallback;
     // private boolean isContinue = false;
     private boolean isGPS = false;
+    Context mcontext = BaseActivity.this;
 
     public static boolean toBooleanDefaultIfNull(Boolean bool) {
         if (bool == null) return false;
@@ -221,6 +228,28 @@ public class BaseActivity extends AppCompatActivity {
 //    }
 
 
+    public String getAddres(double lat, double lng) {
+
+        Geocoder geocoder;
+        List<Address> addresses;
+        geocoder = new Geocoder(bContext, Locale.getDefault());
+
+        String add = "";
+        try {
+            addresses = geocoder.getFromLocation(lat, lng, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+            String city = addresses.get(0).getLocality();
+            String state = addresses.get(0).getAdminArea();
+            String country = addresses.get(0).getCountryName();
+
+            add = city + " " + state + " " + country;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return add;
+    }
+
     public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
         String strAdd = "";
         Geocoder geocoder = new Geocoder(BaseActivity.this, Locale.getDefault());
@@ -245,4 +274,42 @@ public class BaseActivity extends AppCompatActivity {
         return strAdd;
     }
 
+    public void setLocale(String lang) {
+        Locale myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+//        Intent refresh = new Intent(this, MainActivity.class);
+//        startActivity(refresh);
+//        finish();
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    public void networkalert() {
+        AlertDialog alertDialog = new AlertDialog.Builder(mcontext).create();
+        alertDialog.setTitle("Alert");
+        alertDialog.setMessage("Please connect to internet");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
 }

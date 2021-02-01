@@ -38,6 +38,10 @@ public class Connector_Properties {
     @SerializedName("main_image")
     @Expose
     private String main_image;
+    @SerializedName("currency")
+    @Expose
+    private String currency;
+
     @SerializedName("top_offer")
     @Expose
     private String top_offer;
@@ -101,6 +105,14 @@ public class Connector_Properties {
     @SerializedName("longitude")
     @Expose
     private double longitude;
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
 
     public int getId() {
         return id;

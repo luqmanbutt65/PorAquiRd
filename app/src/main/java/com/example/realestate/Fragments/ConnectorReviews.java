@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
+import android.renderscript.Sampler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,12 +78,23 @@ public class ConnectorReviews extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Connectors connector = GlobalState.getInstance().getConnectorData_data().getConnectors();
-//                int connectorId = connector.getId();
-                String connectorsid = new SharedPreferenceConfig().geteconnectoridOfUSerFromSP("connector_id", getContext());
-                String userId = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
-                String commentValu = commentdata.getText().toString().trim();
-                putRatingCommentData(userId, connectorsid, connectorrating, commentValu);
+                if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", getContext())) {
+
+                    String connectorsid = new SharedPreferenceConfig().geteconnectoridOfUSerFromSP("connector_id", getContext());
+                    String userId = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
+                    String commentValu = commentdata.getText().toString().trim();
+
+                    if (commentValu.isEmpty() || connectorrating == 0) {
+                        Toast.makeText(getContext(), "Rating or comment missing", Toast.LENGTH_SHORT).show();
+                    } else {
+                        putRatingCommentData(userId, connectorsid, connectorrating, commentValu);
+
+
+                    }
+
+                } else {
+                    Toast.makeText(getContext(), "You are not Login", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -142,6 +154,11 @@ public class ConnectorReviews extends Fragment {
 
 
                         Toast.makeText(getContext(), "Review Updated ", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        startActivity(intent);
+                    } else if (rating_response.getMessage().equals("You cant give ratings to the agent because you have no connection")) {
+
+                        Toast.makeText(getContext(), "You cant give ratings to the agent because you have no connection", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getContext(), MainActivity.class);
                         startActivity(intent);
                     } else {

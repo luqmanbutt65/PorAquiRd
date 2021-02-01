@@ -9,6 +9,8 @@ import android.os.Bundle;
 
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,10 +26,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.DashBoardAdapter;
+import com.example.realestate.Adapters.PlanFeatureAdapter;
+import com.example.realestate.Adapters.PlandatacontainerAdapter;
 import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.AppConstant;
 import com.example.realestate.Model.Plans.Payment.PaymentResponse;
 import com.example.realestate.Model.Plans.Plan;
 import com.example.realestate.Model.Plans.PlanFeatures;
@@ -37,7 +43,9 @@ import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.R;
 import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Utills.Buttonchecked;
 import com.example.realestate.Utills.GlobalState;
+import com.example.realestate.Utills.Planclick;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
@@ -55,7 +63,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class PlanSub extends Fragment {
+public class PlanSub extends Fragment implements Planclick, Buttonchecked {
     public static String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
     // note that these credentials will differ between live & sandbox environments.
     public static String CONFIG_CLIENT_ID = "AV85peUvVPN7YLWlb6IgxGswccH_opVVO0n-hunJbVm45xvxLpr0xcuzNPjO_5xuc4pENphXC3Yripfd";      /// add your paypal client id
@@ -67,10 +75,14 @@ public class PlanSub extends Fragment {
     ImageView backbtn, centerimage;
     CheckBox chBasic, chPrimary, chPremier;
     RelativeLayout mainlayout;
+    RecyclerView planfeaturelist;
+    RecyclerView planrecyclerView;
     TextView plan_Duration, plan_Price;
     ListView listView;
     ProgressDialog planProgressdilouge;
-    ArrayList<PlanFeatures> planFeaturesArrayList;
+    ArrayList<PlanFeatures> planFeaturesArrayList0;
+    ArrayList<PlanFeatures> planFeaturesArrayList1;
+    ArrayList<PlanFeatures> planFeaturesArrayList2;
     //TODO:For PAypal Use!!
     double select_Plan_Amount_USD = 0;
     String select_Plan_Description = "";
@@ -78,6 +90,9 @@ public class PlanSub extends Fragment {
     int select_plan_id = 0;
     Button btn_Buy_Now;
     String paypal_id, paypal_state, paypal_amount, paypal_currency_code;
+    private PlandatacontainerAdapter plandatacontainerAdapter;
+    private ArrayList<Plan> updatedPlanList = new ArrayList<>();
+
 
     public PlanSub() {
         // Required empty public constructor
@@ -96,51 +111,31 @@ public class PlanSub extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_plan_sub, container, false);
         backbtn = view.findViewById(R.id.planback);
-        chBasic = view.findViewById(R.id.basic);
-        chPrimary = view.findViewById(R.id.primary);
-        chPremier = view.findViewById(R.id.premier);
         mainlayout = view.findViewById(R.id.rl_one);
         centerimage = view.findViewById(R.id.centerimage);
         plan_Duration = view.findViewById(R.id.duration);
         plan_Price = view.findViewById(R.id.planprice);
-        listView = view.findViewById(R.id.planfeaturelist);
+        planrecyclerView = view.findViewById(R.id.planrecycler);
         btn_Buy_Now = view.findViewById(R.id.btn_Buy_Now);
         planArrayList = new ArrayList<>();
-        planFeaturesArrayList = new ArrayList<>();
+        planFeaturesArrayList0 = new ArrayList<>();
+        planFeaturesArrayList1 = new ArrayList<>();
+        planFeaturesArrayList2 = new ArrayList<>();
 
-        chBasic.setChecked(true);
-        chBasic.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.red, null));
+
+        planfeaturelist = view.findViewById(R.id.planfeaturelist);
+
+        planfeaturelist.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+//        chBasic.setChecked(true);
+//        chBasic.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.red, null));
 
 
         planProgressdilouge = new ProgressDialog(getContext());
         planProgressdilouge.setMessage("Loading ...");
         planProgressdilouge.setCancelable(false);
         getPlans();
-        checklistner(chBasic,
-                chPrimary,
-                chPremier,
-                mainlayout,
-                "#DF2D2D",
-                ResourcesCompat.getDrawable(getResources(), R.drawable.red, null),
-                centerimage,
-                ResourcesCompat.getDrawable(getResources(), R.drawable.basic, null),
-                ResourcesCompat.getDrawable(getResources(), R.drawable.bgcheckbox, null));
 
-        checklistner(chPrimary,
-                chBasic, chPremier,
-                mainlayout,
-                "#FEB63D",
-                ResourcesCompat.getDrawable(getResources(), R.drawable.yellow, null),
-                centerimage,
-                ResourcesCompat.getDrawable(getResources(), R.drawable.primary, null), ResourcesCompat.getDrawable(getResources(), R.drawable.bgcheckbox, null));
-        checklistner(chPremier,
-                chBasic,
-                chPrimary,
-                mainlayout,
-                "#2FB4FF",
-                ResourcesCompat.getDrawable(getResources(), R.drawable.sky, null),
-                centerimage,
-                ResourcesCompat.getDrawable(getResources(), R.drawable.premier, null), ResourcesCompat.getDrawable(getResources(), R.drawable.bgcheckbox, null));
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,55 +251,6 @@ public class PlanSub extends Fragment {
     }
 
 
-    //Click Listner For All CheckBox
-    public void checklistner(CheckBox ch, CheckBox ch1, CheckBox ch2, RelativeLayout rl, String color, Drawable drawable, ImageView imageView, Drawable centerimage,
-                             Drawable drawablenull) {
-        ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (ch.isChecked()) {
-                    ch1.setChecked(false);
-                    ch2.setChecked(false);
-                    ch.setChecked(true);
-                    ch.setBackground(drawable);
-                    ch1.setBackground(drawablenull);
-                    ch2.setBackground(drawablenull);
-                    rl.setBackgroundColor(Color.parseColor(color));
-                    imageView.setImageDrawable(centerimage);
-                }
-
-                if (getView().findViewById(R.id.basic).equals(ch)) {
-                    //  showToast("basic");
-                    plan_Duration.setText(planArrayList.get(0).getTitle());
-                    plan_Price.setText("$" + planArrayList.get(0).getPrice());
-                    select_Plan_Amount_USD = Double.parseDouble(planArrayList.get(0).getPrice());
-                    isPlanSelect = true;
-                    select_plan_id = planArrayList.get(0).getId();
-                    select_Plan_Description = planArrayList.get(0).getTitle();
-
-                } else if (getView().findViewById(R.id.primary).equals(ch)) {
-                    //  showToast("primary");
-                    plan_Duration.setText(planArrayList.get(1).getTitle());
-                    plan_Price.setText("$" + planArrayList.get(1).getPrice());
-                    select_Plan_Amount_USD = Double.parseDouble(planArrayList.get(1).getPrice());
-                    isPlanSelect = true;
-                    select_plan_id = planArrayList.get(1).getId();
-                    select_Plan_Description = planArrayList.get(1).getTitle();
-                } else if (getView().findViewById(R.id.premier).equals(ch)) {
-                    // showToast("premier");
-                    plan_Duration.setText(planArrayList.get(2).getTitle());
-                    plan_Price.setText("$" + planArrayList.get(2).getPrice());
-                    select_Plan_Amount_USD = Double.parseDouble(planArrayList.get(2).getPrice());
-                    isPlanSelect = true;
-                    select_plan_id = planArrayList.get(2).getId();
-                    select_Plan_Description = planArrayList.get(2).getTitle();
-                }
-            }
-        });
-
-    }
-
     //TODO: Get Plan List From Server
     public void getPlans() {
         planProgressdilouge.show();
@@ -322,26 +268,50 @@ public class PlanSub extends Fragment {
                             if (planArrayList.size() > 0) {
                                 planArrayList = planResponse.getData();
                                 //Toast.makeText(getContext(), "Api hit", Toast.LENGTH_SHORT).show();
+                                updatedPlanList = planArrayList;
+                                setrecycle();                                //TODO:For the Paypal USe
 
-                                //TODO:For the Paypal USe
                                 plan_Duration.setText(planArrayList.get(0).getTitle());
-                                plan_Price.setText("$" + planArrayList.get(0).getPrice());
+                                plan_Price.setText("$ " + planArrayList.get(0).getPrice());
                                 select_Plan_Amount_USD = Double.parseDouble(planArrayList.get(0).getPrice());
                                 isPlanSelect = true;
                                 select_plan_id = planArrayList.get(0).getId();
                                 select_Plan_Description = planArrayList.get(0).getTitle();
 
 
-                                for (int i = 0; i < planArrayList.size(); i++) {
-                                    if (planArrayList.get(i).getFeaturesArrayList() != null) {
-                                        if (planArrayList.get(i).getFeaturesArrayList().size() > 0) {
-                                            for (int j = 0; j < planFeaturesArrayList.size(); j++) {
-                                                planFeaturesArrayList = planArrayList.get(i).getFeaturesArrayList();
-                                                //features
-//                                            ArrayAdapter adapter = new ArrayAdapter<PlanFeatures>(getContext(), R.layout.activity_listview, planFeaturesArrayList);
-//                                            listView.setAdapter(adapter);
-                                            }
-                                        }
+//                                if (planArrayList.get(0).getFeaturesArrayList() != null) {
+//                                    if (planArrayList.get(0).getFeaturesArrayList().size() > 0) {
+//
+//                                        planFeaturesArrayList0 = planArrayList.get(0).getFeaturesArrayList();
+//                                        if (planFeaturesArrayList0 != null) {
+//                                            if (planFeaturesArrayList0.size() > 0) {
+//
+//                                                updatePlanFeatureList(planFeaturesArrayList0);
+//
+//                                            }
+//                                        }
+//                                        //features
+//                                        //   showlist(planFeaturesArrayList0);
+//
+//                                    }
+//                                }
+                                if (planArrayList.get(1).getFeaturesArrayList() != null) {
+                                    if (planArrayList.get(1).getFeaturesArrayList().size() > 0) {
+
+                                        planFeaturesArrayList1 = planArrayList.get(1).getFeaturesArrayList();
+                                        //features
+//                                        showlist(planFeaturesArrayList1);
+
+                                    }
+                                }
+
+                                if (planArrayList.get(2).getFeaturesArrayList() != null) {
+                                    if (planArrayList.get(2).getFeaturesArrayList().size() > 0) {
+
+                                        planFeaturesArrayList2 = planArrayList.get(2).getFeaturesArrayList();
+                                        //features
+//                                        showlist(planFeaturesArrayList2);
+
                                     }
                                 }
 
@@ -353,7 +323,7 @@ public class PlanSub extends Fragment {
 
                     } else {
 
-                        Toast.makeText(getContext(), "Data fetching error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Data null", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -378,4 +348,78 @@ public class PlanSub extends Fragment {
     }
 
 
+    @Override
+    public void onclick() {
+        Toast.makeText(getContext(), "event clicked", Toast.LENGTH_SHORT).show();
+    }
+
+    public void setrecycle() {
+
+        for (int i = 0; i < updatedPlanList.size(); i++) {
+
+            if (i == 0) {
+                updatedPlanList.get(i).setIschecked(true);
+            } else {
+                updatedPlanList.get(i).setIschecked(false);
+            }
+        }
+        plandatacontainerAdapter = new PlandatacontainerAdapter(getActivity(), getContext(), updatedPlanList, this, this);
+        planrecyclerView.setAdapter(plandatacontainerAdapter);
+
+    }
+
+
+    @Override
+    public void onPlanCheck(int position) {
+        for (int i = 0; i < updatedPlanList.size(); i++) {
+            if (i == position) {
+                updatedPlanList.get(i).setIschecked(true);
+            } else {
+                updatedPlanList.get(i).setIschecked(false);
+            }
+        }
+        plandatacontainerAdapter.notifyDataSetChanged();
+//        plandatacontainerAdapter=new PlandatacontainerAdapter(getActivity(), getContext(), updatedPlanList, this, this);
+//        planrecyclerView.setAdapter(plandatacontainerAdapter);
+
+
+    }
+
+    @Override
+    public void onPlanSelect(int position) {
+
+        Glide.with(this).load(AppConstant.IMAGE_PATH_PLAN + updatedPlanList.get(position).getPlan_image()).into(centerimage);
+        plan_Duration.setText(updatedPlanList.get(position).getTitle());
+        plan_Price.setText(updatedPlanList.get(position).getPrice());
+        ArrayList<PlanFeatures> planFeatures = new ArrayList<>();
+        ArrayList<PlanFeatures> emptyplanFeatures = new ArrayList<>();
+
+        planFeatures = updatedPlanList.get(position).getFeaturesArrayList();
+        if (planFeatures != null) {
+            if (planFeatures.size() > 0) {
+
+                updatePlanFeatureList(planFeatures);
+            } else {
+                updatePlanFeatureList(emptyplanFeatures);
+            }
+        } else {
+            updatePlanFeatureList(emptyplanFeatures);
+        }
+
+    }
+
+    @Override
+    public void isPlanSelected(int position) {
+
+        select_plan_id = updatedPlanList.get(position).getId();
+        select_Plan_Description = updatedPlanList.get(position).getTitle();
+        select_Plan_Amount_USD = Double.parseDouble(updatedPlanList.get(position).getPrice());
+        isPlanSelect = true;
+    }
+
+    public void updatePlanFeatureList(ArrayList<PlanFeatures> planFeaturesArrayList) {
+
+        planfeaturelist.setAdapter(new PlanFeatureAdapter(getActivity(), getContext(), planFeaturesArrayList));
+
+    }
 }

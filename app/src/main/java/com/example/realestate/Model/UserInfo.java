@@ -59,8 +59,6 @@ public class UserInfo extends RealmObject {
     private String company_name;
 
 
-
-
     @SerializedName("upload_limit")
     @Expose
     private String upload_limit;
@@ -70,7 +68,22 @@ public class UserInfo extends RealmObject {
     private String expiry_date;
 
 
+    @SerializedName("plan_buy_date")
+    @Expose
+    private String plan_buy_date;
+
+    public String getPlan_buy_date() {
+        return plan_buy_date;
+    }
+
+    public void setPlan_buy_date(String plan_buy_date) {
+        this.plan_buy_date = plan_buy_date;
+    }
+
     public String getUpload_limit() {
+        if (upload_limit == null) {
+            upload_limit = "";
+        }
         return upload_limit;
     }
 

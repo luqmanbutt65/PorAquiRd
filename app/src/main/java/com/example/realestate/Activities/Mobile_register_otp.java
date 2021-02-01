@@ -32,10 +32,24 @@ public class Mobile_register_otp extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mobile_register_otp);
 
+        if (isNetworkConnected()) {
+
+        } else {
+            networkalert();
+        }
+        if (new SharedPreferenceConfig().getBooleanLanguageFromSP("language", Mobile_register_otp.this)) {
+            setLocale("");
+        } else if (new SharedPreferenceConfig().getBooleanLanguagefrenchFromSP("frenchlanguage", Mobile_register_otp.this)) {
+            setLocale("es");
+
+        } else if (new SharedPreferenceConfig().getBooleanLanguagespanishFromSP("spanishlanguage", Mobile_register_otp.this)) {
+            setLocale("sp");
+        }
+
         submitotp = findViewById(R.id.submitotp);
 
         profileProgressDialog = new ProgressDialog(Mobile_register_otp.this);
-        profileProgressDialog.setMessage("Logining..."); // Setting Message
+        profileProgressDialog.setMessage("Loading..."); // Setting Message
         profileProgressDialog.setCancelable(false);
         otp1 = findViewById(R.id.txtOTP_1);
         otp2 = findViewById(R.id.txtOTP_2);

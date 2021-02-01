@@ -2,7 +2,9 @@ package com.example.realestate.Adapters;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -10,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +26,7 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.realestate.Activities.BottomsheetApointment;
 import com.example.realestate.Activities.Description;
 import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
@@ -33,6 +38,7 @@ import com.example.realestate.R;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 import com.example.realestate.Utills.GlobalState;
 
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -46,14 +52,16 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
     Context context;
     ProgressDialog myapointmentProgressDialog;
     int appointment_Id;
-    Button accept, reject, changedate, submitchangedate;
+    Button accept, reject, changedatee, submitchangedate;
+    TextView changeappointmentdate;
     EditText changedDatetime;
     String current_appointment_id = "";
     int propertieId;
+    DatePickerDialog apointmentdatepicker;
     OthersApointmentsFragment othersApointmentsFragment;
     private Activity activity;
     private List<Apointments> apointments;
-    EditText Message;
+    EditText Message, changedate, changetime;
     public MyFavAdapter.ClickEventHandler clickHandler;
     boolean isclicked = false;
 
@@ -74,7 +82,7 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
         View inflate = inflater.inflate(R.layout.other_apointmentcontainer, parent, false);
 
         myapointmentProgressDialog = new ProgressDialog(context);
-        myapointmentProgressDialog.setMessage("Logining..."); // Setting Message
+        myapointmentProgressDialog.setMessage("Loading..."); // Setting Message
         myapointmentProgressDialog.setCancelable(false);
         return new viewholder(inflate);
     }
@@ -101,10 +109,20 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
             @Override
             public void onClick(View v) {
 
-                AppointmentReply();
-                if (isclicked) {
-                    apointments.remove(apointments.get(position));
-                    notifyDataSetChanged();
+                if (apointments.get(position).getStatus() != null) {
+                    if (apointments.get(position).getStatus().equals("approve")) {
+
+                    } else if (apointments.get(position).getStatus().equals("reject")) {
+
+
+                    } else {
+
+                        AppointmentReply();
+                        if (isclicked) {
+                            apointments.remove(apointments.get(position));
+                            notifyDataSetChanged();
+                        }
+                    }
                 }
 
 
@@ -153,11 +171,11 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
         othersApointmentsFragment.putApointmentData(user_id);
     }
 
-    public void RejectAppointment(int appointment_id, String message) {
+    public void RejectAppointment(int appointment_id, String message, String suggested_date, String suggested_time) {
         myapointmentProgressDialog.show();
 
         isclicked = false;
-        Call<Apointment_Rply> call = ApiClient.getRetrofit().create(ApiInterface.class).APOINTMENT_REJECT_CALL(appointment_id, message);
+        Call<Apointment_Rply> call = ApiClient.getRetrofit().create(ApiInterface.class).APOINTMENT_REJECT_CALL(appointment_id, message, suggested_date, suggested_time);
         call.enqueue(new Callback<Apointment_Rply>() {
             @Override
             public void onResponse(Call<Apointment_Rply> call, Response<Apointment_Rply> response) {
@@ -196,8 +214,8 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
 
         accept = dialogView.findViewById(R.id.accept);
         reject = dialogView.findViewById(R.id.reject);
-        changedate = dialogView.findViewById(R.id.changeappointmentdate);
-        submitchangedate = dialogView.findViewById(R.id.submitChangeDate);
+        changedatee = dialogView.findViewById(R.id.changeappointmentdate);
+
         changedDatetime = dialogView.findViewById(R.id.et_change_time);
 
 
@@ -234,19 +252,90 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
         Button reject1 = dialogView.findViewById(R.id.reject);
         Message = dialogView.findViewById(R.id.rejectionmessage);
 
+        changedate = dialogView.findViewById(R.id.et_change_date);
+        changetime = dialogView.findViewById(R.id.et_change_time);
+        changeappointmentdate = dialogView.findViewById(R.id.changeappointmentdate);
+        LinearLayout linearLayout = dialogView.findViewById(R.id.ll_changedate);
+
+        changeappointmentdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearLayout.setVisibility(View.VISIBLE);
+            }
+        });
+        changetime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        changetime.setText(selectedHour + ":" + selectedMinute + ":00");
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+            }
+        });
+
+        changedate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+
+// date picker dialog
+                apointmentdatepicker = new DatePickerDialog(context,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                String date = getDateInCorrectFormat(year, monthOfYear, dayOfMonth);
+
+                                changedate.setText(date);
+
+                            }
+                        }, year, month, day);
+                apointmentdatepicker.getDatePicker().setMinDate(System.currentTimeMillis());// TODO: used to hide future date,month and year
+
+                apointmentdatepicker.show();
+
+            }
+        });
+
 
         reject1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 String message = Message.getText().toString();
-                if (message.equals("")) {
-                    Toast.makeText(context, "Please enter rejection Message First !", Toast.LENGTH_SHORT).show();
+                String datechane = changedate.getText().toString();
+                String timechange = changetime.getText().toString();
+
+                if (datechane.length() > 0 || timechange.length() > 0) {
+                    if (message.equals("") || datechane.equals("") || timechange.equals("")) {
+                        Toast.makeText(context, "Please enter All fields First !", Toast.LENGTH_SHORT).show();
+                    } else {
+                        RejectAppointment(appointment_Id, message, datechane, timechange);
+
+
+                        dialogBuilder.dismiss();
+                    }
+
+
                 } else {
-                    RejectAppointment(appointment_Id, message);
+                    if (message.equals("")) {
+                        Toast.makeText(context, "Please enter rejection Message First !", Toast.LENGTH_SHORT).show();
+                    } else {
+                        RejectAppointment(appointment_Id, message, "", "");
 
 
-                    dialogBuilder.dismiss();
+                        dialogBuilder.dismiss();
+                    }
                 }
 
 
@@ -258,7 +347,7 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
-        TextView title, town_text, date_time, apointment_status;
+        TextView title, town_text, date_time, apointment_status, appointmentType;
         RelativeLayout mainLayout;
         ImageView iv_property1;
 
@@ -269,6 +358,7 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
             town_text = itemView.findViewById(R.id.town_text1);
             date_time = itemView.findViewById(R.id.date_time1);
             apointment_status = itemView.findViewById(R.id.apointment_approved1);
+            appointmentType = itemView.findViewById(R.id.apointmenttype1);
             mainLayout = itemView.findViewById(R.id.other_appointmentlayout);
             iv_property1 = itemView.findViewById(R.id.iv_property1);
         }
@@ -284,6 +374,9 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
 
                 String apointment_val = ((apointment_val = String.valueOf(apointments.getStatus())) != null) ? apointment_val : "N/A";
                 apointment_status.setText(apointment_val);
+
+                String apointmenttype_val = ((apointmenttype_val = String.valueOf(apointments.getAppointment_type())) != null) ? apointmenttype_val : "N/A";
+                appointmentType.setText(apointmenttype_val);
 
                 if (apointment_val != null) {
                     if (apointment_val.equals("pending")) {
@@ -327,6 +420,26 @@ public class OtherAppointmentAdapter extends RecyclerView.Adapter<OtherAppointme
 
         }
 
+    }
+
+    private String getDateInCorrectFormat(int year, int monthOfYear, int dayOfMonth) {
+
+        String date = "";
+        String formatedMonth = "";
+        String formatedDay = "";
+        if (monthOfYear < 9) {
+            formatedMonth = "0" + (monthOfYear + 1);
+        } else {
+            formatedMonth = String.valueOf(monthOfYear + 1);
+        }
+
+        if (dayOfMonth < 10) {
+            formatedDay = "0" + dayOfMonth;
+        } else {
+            formatedDay = String.valueOf(dayOfMonth);
+        }
+        date = year + "-" + formatedMonth + "-" + formatedDay;
+        return date;
     }
 
 

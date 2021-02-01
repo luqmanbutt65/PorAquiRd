@@ -87,6 +87,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.viewholder
                     String naameVal = ((naameVal = user_reviews.getUser_detail().getName()) != null) ? naameVal : "N/A";
                     name.setText(naameVal);
 
+                    String dateVal = ((dateVal = user_reviews.getTime()) != null) ? dateVal : "N/A";
+                    date.setText(dateVal);
+
                     ratingBar.setRating(user_reviews.getRating());
 
                     String comentVal = ((comentVal = user_reviews.getComments()) != null) ? comentVal : "N/A";

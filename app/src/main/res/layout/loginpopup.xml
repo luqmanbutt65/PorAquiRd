@@ -12,7 +12,7 @@
         android:layout_marginTop="@dimen/_40sdp"
         android:layout_marginBottom="@dimen/_10sdp"
         android:gravity="center"
-        android:text="You are not logged in to your account"
+        android:text="@string/lp_tv_info"
         android:textColor="@color/black"
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold">
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Cancel"
+                android:text="@string/lp_btn_cancel"
 
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15sdp">
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Login"
+                android:text="@string/lp_btn_login"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold"></TextView>

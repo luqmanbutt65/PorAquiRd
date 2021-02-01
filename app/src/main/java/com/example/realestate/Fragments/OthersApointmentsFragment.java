@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.realestate.Activities.MainActivity;
 import com.example.realestate.Adapters.AppoinmentAdapter;
 import com.example.realestate.Adapters.OtherAppointmentAdapter;
+import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
 import com.example.realestate.Model.Apoinment.Apointment_Data;
 import com.example.realestate.Model.Apoinment.Apointment_Rply;
@@ -38,15 +39,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OthersApointmentsFragment extends Fragment {
 
-    ImageView backbtn;
+
     Context context;
     String user_id;
     TextView numofApontment;
     RecyclerView apointmentrecyclerView;
     ProgressDialog myapointmentProgressDialog;
     String appointment_Id = "";
-    Button accept, reject, changedate, submitchangedate;
-    EditText changedDatetime;
 
     public OthersApointmentsFragment() {
         // Required empty public constructor
@@ -69,7 +68,7 @@ public class OthersApointmentsFragment extends Fragment {
 
 
         myapointmentProgressDialog = new ProgressDialog(getContext());
-        myapointmentProgressDialog.setMessage("Logining..."); // Setting Message
+        myapointmentProgressDialog.setMessage("Loading..."); // Setting Message
         myapointmentProgressDialog.setCancelable(false);
         apointmentrecyclerView = view.findViewById(R.id.other_appointments_recycler);
         apointmentrecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -77,23 +76,15 @@ public class OthersApointmentsFragment extends Fragment {
         putApointmentData(user_id);
 
         numofApontment = view.findViewById(R.id.numofApontment);
-        backbtn = view.findViewById(R.id.back_btn_apointment);
-        backbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
+
         return view;
     }
 
 
     public void putApointmentData(String user_id) {
         myapointmentProgressDialog.show();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://poraquird.stepinnsolution.com")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        Call<Get_Apointment_Response> call = retrofit.create(ApiInterface.class).GET_OTHEER_APOINTMENT_CALL(user_id);
+
+        Call<Get_Apointment_Response> call = ApiClient.getRetrofit().create(ApiInterface.class).GET_OTHEER_APOINTMENT_CALL(user_id);
         call.enqueue(new Callback<Get_Apointment_Response>() {
             @Override
             public void onResponse(Call<Get_Apointment_Response> call, Response<Get_Apointment_Response> response) {

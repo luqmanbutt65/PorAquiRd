@@ -1,6 +1,7 @@
 package com.example.realestate.Fragments;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -19,6 +20,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,6 +37,7 @@ import com.bumptech.glide.Glide;
 import com.example.realestate.Model.REST.Properties.Properties;
 import com.example.realestate.R;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Utills.AutoCompleteAdapter;
 import com.example.realestate.Utills.GlobalState;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -45,8 +49,17 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.AutocompletePrediction;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceResponse;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -67,7 +80,66 @@ public class GoogleMapFragment1 extends Fragment implements OnMapReadyCallback,
     TextView city, property_location, park, bath, area, price, rating;
     ImageView main_image;
     ProgressDialog mapprogressDialog;
+    Double lat, lng;
+
+
+    //luqman
+    AutoCompleteTextView autoCompleteTextView;
+    AutoCompleteAdapter adapter;
+    TextView responseView;
+    PlacesClient placesClient;
     private GoogleMap mMap;
+    private AdapterView.OnItemClickListener autocompleteClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            try {
+                final AutocompletePrediction item = adapter.getItem(i);
+                String placeID = null;
+                if (item != null) {
+                    placeID = item.getPlaceId();
+                }
+
+//                To specify which data types to return, pass an array of Place.Fields in your FetchPlaceRequest
+//                Use only those fields which are required.
+
+                List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS
+                        , Place.Field.LAT_LNG);
+
+                FetchPlaceRequest request = null;
+                if (placeID != null) {
+                    request = FetchPlaceRequest.builder(placeID, placeFields)
+                            .build();
+                }
+
+                if (request != null) {
+                    placesClient.fetchPlace(request).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onSuccess(FetchPlaceResponse task) {
+//                            responseView.setText(task.getPlace().getName() + "\n" + task.getPlace().getAddress());
+//                            responseView.setText(task.getPlace().getLatLng().longitude + "\n" + task.getPlace().getLatLng().latitude);
+                            lat = task.getPlace().getLatLng().latitude;
+                            lng = task.getPlace().getLatLng().longitude;
+                            LatLng MY_LOCATION = new LatLng(lat, lng);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(MY_LOCATION, 17));
+
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            e.printStackTrace();
+                            responseView.setText(e.getMessage());
+                        }
+                    });
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    };
 
     public GoogleMapFragment1() {
         // Required empty public constructor
@@ -96,6 +168,28 @@ public class GoogleMapFragment1 extends Fragment implements OnMapReadyCallback,
         mapprogressDialog.setMessage("Loading ...");
         mapprogressDialog.setCancelable(false);
         View view = inflater.inflate(R.layout.fragment_google_map1, container, false);
+
+//        responseView = view.findViewById(R.id.response);
+
+        String apiKey = "AIzaSyCjsvSTWSx6S79Sw10MKpmTBauZwRgraN0";
+        if (apiKey.isEmpty()) {
+            responseView.setText("error");
+            return view;
+        }
+
+        // Setup Places Client
+        if (!Places.isInitialized()) {
+            Places.initialize(getContext(), apiKey);
+        }
+
+        placesClient = Places.createClient(getContext());
+
+
+        autoCompleteTextView = view.findViewById(R.id.auto);
+        autoCompleteTextView.setThreshold(1);
+        autoCompleteTextView.setOnItemClickListener(autocompleteClickListener);
+        adapter = new AutoCompleteAdapter(getContext(), placesClient);
+        autoCompleteTextView.setAdapter(adapter);
 
         if (GlobalState.getInstance().getPropertiesArrayList() != null) {
 
@@ -157,7 +251,6 @@ public class GoogleMapFragment1 extends Fragment implements OnMapReadyCallback,
         // Finally, display the dialog when user press back button
         dialog.show();
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

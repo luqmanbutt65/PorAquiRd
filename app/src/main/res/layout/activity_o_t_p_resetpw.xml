@@ -28,7 +28,7 @@
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_toRightOf="@+id/back_btnn"
             android:fontFamily="@font/poppins_medium"
-            android:text="Forgot Password"
+            android:text="@string/otp_reset_title"
             android:textColor="@color/textblackcolor"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold" />
@@ -65,7 +65,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Forgot Your Password"
+                    android:text="@string/otp_reset_tv_forgot_password"
                     android:textColor="@color/textblackcolor"
                     android:textSize="@dimen/_20sdp"
                     android:textStyle="bold" />
@@ -81,7 +81,7 @@
                     android:layout_marginRight="@dimen/_10sdp"
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
-                    android:text="Enter The Regestration Email And We Will Send You A Confirmation Coden To Reset Your Password"
+                    android:text="@string/otp_reset_description"
                     android:textColor="#737373"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="normal" />
@@ -174,7 +174,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_30sdp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Did't Receive The Code?"
+                    android:text="@string/otp_reset_tv_confirmation"
                     android:textColor="#141A25"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
@@ -187,10 +187,11 @@
                     android:layout_centerHorizontal="true"
                     android:clickable="true"
                     android:fontFamily="@font/poppins"
-                    android:text="Re-Send Code"
+                    android:text="@string/otp_reset_tv_resend_code"
                     android:textColor="#04C3FF"
                     android:textSize="@dimen/_12sdp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:visibility="gone" />
 
                 <View
                     android:id="@+id/v1"
@@ -208,7 +209,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/button_round"
-                    android:text="Continue"
+                    android:text="@string/otp_reset_btn_continue"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
             </RelativeLayout>

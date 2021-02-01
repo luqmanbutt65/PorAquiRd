@@ -1,5 +1,6 @@
 package com.example.realestate.Model.REST.Properties;
 
+import com.example.realestate.Model.REST.PropertiesSingle.Ownerdetail;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,25 +11,22 @@ import io.realm.RealmObject;
 public class Properties {
 
 
-    private  int tttype=0;
-
-    public int getTttype() {
-        return tttype;
-    }
-
-    public void setTttype(int tttype) {
-        this.tttype = tttype;
-    }
-
+    private int tttype = 0;
     @SerializedName("id")
     @Expose
     private int id;
     @SerializedName("user_id")
     @Expose
     private String use_id;
+    @SerializedName("owner_number")
+    @Expose
+    private String owner_number;
     @SerializedName("title")
     @Expose
     private String title;
+    @SerializedName("currency")
+    @Expose
+    private String currency;
     @SerializedName("sale_type")
     @Expose
     private String sale_type;
@@ -38,7 +36,6 @@ public class Properties {
     @SerializedName("location")
     @Expose
     private String location;
-
     @SerializedName("city")
     @Expose
     private String city;
@@ -57,11 +54,9 @@ public class Properties {
     @SerializedName("updated_at")
     @Expose
     private String updated_at;
-
     @SerializedName("bedroom")
     @Expose
     private String bedroom;
-
     @SerializedName("bath")
     @Expose
     private String bath;
@@ -77,33 +72,27 @@ public class Properties {
     @SerializedName("unit_of_measure")
     @Expose
     private String unit_of_measure;
-
     @SerializedName("construction_year")
     @Expose
     private String date_of_construction;
-
     @SerializedName("rating")
     @Expose
     private String rating;
-
     @SerializedName("comment")
     @Expose
     private String comment;
-
     @SerializedName("ratingg")
     @Expose
     private String user_rating;
     @SerializedName("extra")
     @Expose
     private ArrayList<PropertiesExtra> propertiesExtraArrayList;
-
     @SerializedName("gallery")
     @Expose
     private ArrayList<PropertiesGallery> propertiesGalleryArrayList;
     @SerializedName("liked")
     @Expose
     private boolean like;
-
     //    private String title;
     @SerializedName("latitude")
     @Expose
@@ -112,6 +101,53 @@ public class Properties {
     @Expose
     private double longitude;
 
+    @SerializedName("owner_details")
+    @Expose
+    private Ownerdetail owner_details;
+
+    @SerializedName("visitors_count")
+    @Expose
+    private int visitors_count;
+
+    public int getVisitors_count() {
+        return visitors_count;
+    }
+
+    public void setVisitors_count(int visitors_count) {
+        this.visitors_count = visitors_count;
+    }
+
+    public Ownerdetail getOwner_details() {
+        return owner_details;
+    }
+
+    public void setOwner_details(Ownerdetail owner_details) {
+        this.owner_details = owner_details;
+    }
+
+    public String getOwner_number() {
+        return owner_number;
+    }
+
+    public void setOwner_number(String owner_number) {
+        this.owner_number = owner_number;
+    }
+
+    public int getTttype() {
+        return tttype;
+    }
+
+    public void setTttype(int tttype) {
+        this.tttype = tttype;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
 
     public String getComment() {
         return comment;
@@ -136,7 +172,6 @@ public class Properties {
     public void setPropertiesExtraArrayList(ArrayList<PropertiesExtra> propertiesExtraArrayList) {
         this.propertiesExtraArrayList = propertiesExtraArrayList;
     }
-
 
 
     public double getLatitude() {

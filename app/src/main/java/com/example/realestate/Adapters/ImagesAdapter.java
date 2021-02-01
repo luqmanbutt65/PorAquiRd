@@ -42,9 +42,9 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.image(ImagesArray.get(position));
         holder.image.setLongClickable(true);
-        holder.image.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.deletephoto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
                         // set message, title, and icon
                         .setTitle("Delete")
@@ -71,8 +71,6 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
                         })
                         .create();
                 myQuittingDialogBox.show();
-
-                return false;
             }
         });
 
@@ -113,19 +111,21 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
+        ImageView image, deletephoto;
         LinearLayout linearLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.imgview1);
+            deletephoto = itemView.findViewById(R.id.deletphoto);
+
             linearLayout = itemView.findViewById(R.id.imagelayout);
         }
 
         public void image(Uri imagesData) {
             image.setImageURI(imagesData);
 
-         //   Glide.with(context).load("http://poraquird.stepinnsolution.com/public/property_main_images/" + properties.getMain_image()).into(mainimg);
+            //   Glide.with(context).load("http://poraquird.stepinnsolution.com/public/property_main_images/" + properties.getMain_image()).into(mainimg);
             //http://poraquird.stepinnsolution.com/public/property_main_images/Property-Rental.jpg.1606997175jpeg
         }
     }

@@ -8,10 +8,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +53,11 @@ public class Connector extends Fragment {
     ArrayList<Connectors> connectorsArrayList;
     ProgressDialog connectorprogress;
     TextView totalnum;
+    ImageView filter_connector;
     ProgressDialog connectorprogressD;
+    EditText search;
+    LinearLayout linearLayout;
+    CheckBox city, cell, ranking;
 
     public Connector() {
         // Required empty public constructor
@@ -74,6 +85,19 @@ public class Connector extends Fragment {
         connectorsArrayList = new ArrayList<>();
         backbtn_connector = view.findViewById(R.id.backbtn_connector);
         totalnum = view.findViewById(R.id.totalnum);
+        city = view.findViewById(R.id.city);
+        cell = view.findViewById(R.id.cell);
+        ranking = view.findViewById(R.id.ranking);
+        linearLayout = view.findViewById(R.id.searchparam);
+        filter_connector = view.findViewById(R.id.filter_connector);
+        filter_connector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        search = view.findViewById(R.id.searchconnector);
 
         backbtn_connector.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +106,59 @@ public class Connector extends Fragment {
                 startActivity(intent);
             }
         });
+        searchby(city, cell, ranking, "city");
+        searchby(cell, city, ranking, "cell");
+        searchby(ranking, cell, city, "ranking");
+        if (city.isChecked() || cell.isChecked() || ranking.isChecked()) {
+
+        } else {
+            search.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                    ArrayList<Connectors> properties1 = new ArrayList<>();
+                    if (s.length() > 1) {
+                        for (Connectors x : connectorsArrayList) {
+                            if (x.getName() != null || x.getEmail() != null) {
+                                if (x.getName().toLowerCase().contains(s) && x.getEmail().toLowerCase().contains(s)) {
+                                    properties1.add(x);
+                                    Log.e("size", "resulttxtchnge" + x.getName());
+
+                                }
+
+                            }
+                        }
+
+                        connectorRecycler.setAdapter(new Connectors_Adapter(getActivity(), getContext(), properties1));
+                        totalnum.setText(String.valueOf(properties1.size()));
+
+
+                    }
+
+                    if (s.length() == 0) {
+
+                        connectorRecycler.setAdapter(new Connectors_Adapter(getActivity(), getContext(), connectorsArrayList));
+                        totalnum.setText(String.valueOf(connectorsArrayList.size()));
+
+
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+
+                }
+            });
+        }
+
+
         return view;
     }
 
@@ -111,7 +188,7 @@ public class Connector extends Fragment {
                         }
                     } else {
 
-                        Toast.makeText(getContext(), "Data fetching Error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Data Null", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -130,4 +207,91 @@ public class Connector extends Fragment {
         });
     }
 
+    public void searchby(CheckBox checkbox, CheckBox checkbox1, CheckBox checkbox2, String name) {
+
+
+        checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (checkbox.isChecked()) {
+                    checkbox1.setChecked(false);
+                    checkbox2.setChecked(false);
+                    checkbox.setChecked(true);
+                    search.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                            ArrayList<Connectors> properties1 = new ArrayList<>();
+                            if (s.length() > 0) {
+                                for (Connectors x : connectorsArrayList) {
+                                    if (x.getName() != null || x.getEmail() != null) {
+                                        if (name.equals("city")) {
+                                            if (x.getCity() != null) {
+                                                if (x.getCity().toLowerCase().contains(s)) {
+                                                    properties1.add(x);
+                                                    Log.e("size", "resulttxtchnge" + x.getName());
+
+                                                }
+                                            } else {
+                                            }
+                                        } else if (name.equals("ranking")) {
+
+                                            if (x.getRating() != null) {
+
+                                                if (x.getRating().toLowerCase().contains(s)) {
+                                                    properties1.add(x);
+                                                    Log.e("size", "resulttxtchnge" + x.getName());
+
+                                                }
+                                            } else {
+                                            }
+
+                                        } else if (name.equals("cell")) {
+
+                                            if (x.getNumber() != null) {
+                                                if (x.getNumber().toLowerCase().contains(s)) {
+                                                    properties1.add(x);
+                                                    Log.e("size", "resulttxtchnge" + x.getName());
+
+                                                }
+                                            } else {
+                                            }
+                                        }
+
+                                    }
+                                }
+
+                                connectorRecycler.setAdapter(new Connectors_Adapter(getActivity(), getContext(), properties1));
+                                totalnum.setText(String.valueOf(properties1.size()));
+
+
+                            }
+
+                            if (s.length() == 0) {
+
+                                connectorRecycler.setAdapter(new Connectors_Adapter(getActivity(), getContext(), connectorsArrayList));
+                                totalnum.setText(String.valueOf(connectorsArrayList.size()));
+
+
+                            }
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+
+                        }
+                    });
+                }
+            }
+        });
+
+
+    }
 }

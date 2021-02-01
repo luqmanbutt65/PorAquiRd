@@ -76,7 +76,7 @@ public class OTPScreenResetPass extends AppCompatActivity {
         verify_otp = findViewById(R.id.verify_otp_btn);
 
         otpProgressDialog = new ProgressDialog(OTPScreenResetPass.this);
-        otpProgressDialog.setMessage("Logining..."); // Setting Message
+        otpProgressDialog.setMessage("Loading..."); // Setting Message
         otpProgressDialog.setCancelable(false);
         EditText[] OTP = {otp_textbox_one, otp_textbox_two, otp_textbox_three, otp_textbox_four};
 

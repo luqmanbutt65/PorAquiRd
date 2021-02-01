@@ -42,7 +42,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyApointmentsFragment extends Fragment {
 
-    ImageView backbtn;
+
     Context context;
     String user_id;
     TextView numofApontment;
@@ -69,7 +69,7 @@ public class MyApointmentsFragment extends Fragment {
         context = this.getContext();
 
         myapointmentProgressDialog = new ProgressDialog(getContext());
-        myapointmentProgressDialog.setMessage("Logining..."); // Setting Message
+        myapointmentProgressDialog.setMessage("Loading..."); // Setting Message
         myapointmentProgressDialog.setCancelable(false);
         apointmentrecyclerView = view.findViewById(R.id.appointments_recycler);
         apointmentrecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -77,14 +77,6 @@ public class MyApointmentsFragment extends Fragment {
         putApointmentData(user_id);
 
         numofApontment = view.findViewById(R.id.numofApontment);
-        backbtn = view.findViewById(R.id.back_btn_apointment);
-        backbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
         return view;
     }
 

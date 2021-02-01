@@ -5,12 +5,13 @@
     android:id="@+id/frame1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="start"
     android:background="@color/activity_background"
-
-    tools:context=".Fragments.Homefragment"
-    tools:openDrawer="start">
+    android:visibility="visible"
+    tools:context=".Fragments.Homefragment">
 
     <FrameLayout
+
         android:id="@+id/homeframe"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -80,7 +81,7 @@
                             android:background="@null"
                             android:drawableRight="@drawable/search"
                             android:drawablePadding="@dimen/_10sdp"
-                            android:hint="Enter Name"
+                            android:hint="@string/fhf_et_search_hint"
                             android:lines="1"
                             android:maxLength="30"
                             android:maxLines="1"
@@ -88,7 +89,6 @@
                             android:paddingRight="@dimen/_20sdp"
                             android:singleLine="true"
                             android:textColor="#272D4E"
-                            android:textColorHint="#272D4E"
                             android:textSize="@dimen/_12sdp"
                             android:textStyle="bold" />
                     </RelativeLayout>
@@ -118,19 +118,6 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_result_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/searchlayout"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/poppins"
-                android:gravity="left"
-                android:text="0"
-                android:textColor="#141A25"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_result"
@@ -139,9 +126,8 @@
                 android:layout_below="@+id/searchlayout"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_toRightOf="@+id/tv_result_number"
                 android:fontFamily="@font/poppins"
-                android:text="Result Found"
+                android:text="@string/fhf_tv_result"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
 
@@ -156,146 +142,218 @@
 
 
         </RelativeLayout>
+
     </FrameLayout>
 
     <RelativeLayout
-        android:visibility="gone"
-        android:fitsSystemWindows="true"
         android:id="@+id/navigationdrawer"
-        android:layout_marginRight="-64dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:layout_marginRight="-64dp"
         android:background="@null"
+        android:fitsSystemWindows="true"
+        android:visibility="visible">
 
-        >
-
-        <androidx.cardview.widget.CardView
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardBackgroundColor="#60000000">
+            android:fillViewport="true">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/cancel_button"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_gravity="right"
-                    android:src="@drawable/cancell" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="#60000000">
 
-                <Button
-                    android:id="@+id/menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_40sdp"
-                    android:background="@drawable/selecter"
-                    android:gravity="center"
-                    android:text="Menu"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_30sdp"
-                    android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
+                        <ImageView
+                            android:id="@+id/cancel_button"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_gravity="right"
+                            android:src="@drawable/cancell" />
 
-                <Button
-                    android:id="@+id/privacypolicy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/selecter"
-                    android:gravity="center"
-                    android:text="Privacy Policy"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"
-                    android:textStyle="normal" />
-
-                <Button
-                    android:id="@+id/termcondition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/selecter"
-                    android:gravity="center"
-                    android:text="term &amp; Conditions"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"
-                    android:textStyle="normal" />
-
-                <Button
-                    android:id="@+id/Connectors"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/selecter"
-                    android:gravity="center"
-                    android:text="Connectors"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"
-                    android:textStyle="normal" />
-                <Button
-                    android:id="@+id/plans"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/selecter"
-                    android:gravity="center"
-                    android:text="Subscription plans"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"
-                    android:textStyle="normal" />
-                <Button
-                    android:id="@+id/cockies_policy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/selecter"
-                    android:gravity="center"
-                    android:text="cockies_policy"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"
-                    android:textStyle="normal" />
-
-                <Button
-                    android:id="@+id/logout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/selecter"
-                    android:gravity="center"
-                    android:text="Log out"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"
-                    android:textStyle="normal" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+                        <Button
+                            android:id="@+id/menu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_30sdp"
+                            android:background="@drawable/selecter"
+                            android:gravity="center"
+                            android:text="@string/Menu"
+                            android:textAlignment="center"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_30sdp"
+                            android:textStyle="bold" />
 
 
+                        <Button
+                            android:id="@+id/privacypolicy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/selecter"
+                            android:gravity="center"
+                            android:text="@string/PrivecyPolicy"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20sdp"
+                            android:textStyle="normal" />
+
+                        <Button
+                            android:id="@+id/termcondition"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/selecter"
+                            android:gravity="center"
+                            android:text="@string/term_conditions"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20sdp"
+                            android:textStyle="normal" />
+
+                        <Button
+
+                            android:id="@+id/Connectors"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/selecter"
+                            android:gravity="center"
+                            android:text="@string/connectors"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20sdp"
+                            android:textStyle="normal" />
+
+                        <Button
+                            android:id="@+id/plans"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/selecter"
+                            android:gravity="center"
+                            android:text="@string/Subscription_Plans"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20sdp"
+                            android:textStyle="normal" />
+
+                        <Button
+                            android:id="@+id/cockies_policy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/selecter"
+                            android:gravity="center"
+                            android:text="@string/cockiespolicy"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20sdp"
+                            android:textStyle="normal" />
+
+                        <Button
+                            android:id="@+id/logout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/selecter"
+                            android:gravity="center"
+                            android:text="@string/logout"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20sdp"
+                            android:textStyle="normal"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/login1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/selecter"
+                            android:gravity="center"
+                            android:text="@string/login"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20sdp"
+                            android:textStyle="normal"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/_10sdp"
+                            android:weightSum="2">
+
+                            <Button
+                                android:id="@+id/aboutus"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/selecter"
+                                android:gravity="center"
+                                android:text="@string/aboutus"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_15sdp"
+                                android:textStyle="normal" />
+
+                            <Button
+                                android:id="@+id/ccontactus"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/selecter"
+                                android:gravity="center"
+                                android:text="@string/conntectus"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_15sdp"
+                                android:textStyle="normal" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+        </ScrollView>
     </RelativeLayout>
+
 </androidx.drawerlayout.widget.DrawerLayout>

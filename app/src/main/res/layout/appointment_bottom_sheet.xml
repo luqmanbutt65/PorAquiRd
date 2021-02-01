@@ -5,116 +5,149 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_background"
-    android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".Activities.BottomsheetApointment">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/headerlayut"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="@dimen/_50sdp"
+        android:paddingLeft="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/back_getapointment"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back" />
 
         <TextView
-            android:id="@+id/add"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:gravity="center"
-            android:text="How would you like to tour"
-            android:textColor="@color/textblackcolor"
+            android:id="@+id/project"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_toRightOf="@+id/back_btnRA"
+            android:text="Rejected Appointments"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/add"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:gravity="center"
+                android:text="@string/abs_tv_info"
+                android:textColor="@color/textblackcolor"
+                android:textSize="@dimen/_15sdp" />
+
+            <RadioGroup
+                android:id="@+id/togglegroupp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_below="@id/detailtext"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@drawable/radiogroup_background"
+                android:checkedButton="@+id/tour_meeting"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/tour_meeting"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/toggle_widget_background_apointment"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/abs_rb_via_meeting"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/tour_video"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/toggle_widget_background_apointment"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/abs_rb_via_video_chat"
+                    android:textColor="@color/black" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="@string/abs_tv_pick_date_time"
+            android:textColor="@color/black"
             android:textSize="@dimen/_15sdp" />
 
-        <RadioGroup
-            android:id="@+id/togglegroupp"
+        <EditText
+            android:id="@+id/et_apointment"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_below="@id/detailtext"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:background="@drawable/radiogroup_background"
-            android:checkedButton="@+id/tour_meeting"
-            android:orientation="horizontal">
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/add_edittext_style_gray"
+            android:clickable="true"
+            android:drawableRight="@drawable/ic_baseline_calendar_today"
+            android:editable="false"
+            android:hint="@string/abs_et_date_hint"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingRight="@dimen/_10sdp" />
 
-            <RadioButton
-                android:id="@+id/tour_meeting"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="1dp"
-                android:layout_weight="1"
+        <EditText
+            android:id="@+id/et_time"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/add_edittext_style_gray"
+            android:clickable="true"
+            android:drawableRight="@drawable/time"
+            android:editable="false"
+            android:hint="@string/abs_et_time_hint"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingRight="@dimen/_10sdp" />
 
-                android:background="@drawable/toggle_widget_background_apointment"
-                android:button="@null"
-                android:gravity="center"
-                android:text="Tour Via Meeting"
-                android:textColor="@color/white" />
+        <Button
+            android:id="@+id/apointmentSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/button_round"
+            android:text="@string/abs_btn_submit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
 
-            <RadioButton
-                android:id="@+id/tour_video"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginBottom="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/toggle_widget_background_apointment"
-                android:button="@null"
-                android:gravity="center"
-                android:text="Tour Via Video Chat"
-                android:textColor="@color/black" />
-        </RadioGroup>
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:text="Pick Date &amp; Time"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15sdp" />
-
-    <EditText
-        android:id="@+id/et_apointment"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:background="@drawable/add_edittext_style_gray"
-        android:clickable="true"
-        android:drawableRight="@drawable/ic_baseline_calendar_today"
-        android:editable="false"
-        android:hint="10-10-2020"
-        android:paddingLeft="@dimen/_10sdp"
-        android:paddingRight="@dimen/_10sdp" />
-
-    <EditText
-        android:id="@+id/et_time"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@drawable/add_edittext_style_gray"
-        android:clickable="true"
-        android:drawableRight="@drawable/time"
-        android:editable="false"
-        android:hint="12:10 PM"
-        android:paddingLeft="@dimen/_10sdp"
-        android:paddingRight="@dimen/_10sdp" />
-
-    <Button
-        android:id="@+id/apointmentSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:background="@drawable/button_round"
-        android:text="Submit"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_12sdp"
-        android:textStyle="bold" />
-
-
 </LinearLayout>

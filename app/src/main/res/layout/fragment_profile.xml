@@ -34,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_toRightOf="@+id/back_btn_profile"
-                android:text="My Profile"
+                android:text="@string/fp_tv_title"
                 android:textColor="#171D28"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
@@ -45,7 +45,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/_16sdp"
-                android:src="@drawable/notification" />
+                android:src="@drawable/notification"
+                android:visibility="gone" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -143,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Account settings"
+                    android:text="@string/fp_tv_account_setting"
                     android:textColor="#ABAEBE"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -157,7 +158,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right"
                     android:paddingRight="@dimen/_20sdp"
-                    android:text="Edit Profile"
+                    android:text="@string/fp_tv_edit_profile"
                     android:textColor="#636771"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -171,7 +172,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right"
                     android:paddingRight="@dimen/_20sdp"
-                    android:text="Change password"
+                    android:text="@string/fp_tv_change_password"
                     android:textColor="#636771"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -185,7 +186,20 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right"
                     android:paddingRight="@dimen/_20sdp"
-                    android:text="My Projects"
+                    android:text="@string/fp_tv_my_projects"
+                    android:textColor="#636771"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/connector"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right"
+                    android:paddingRight="@dimen/_20sdp"
+                    android:text="@string/connector"
                     android:textColor="#636771"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -201,7 +215,8 @@
                     android:text="Register phone"
                     android:textColor="#636771"
                     android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/purchasedplans"
@@ -211,7 +226,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right"
                     android:paddingRight="@dimen/_20sdp"
-                    android:text="Purchased Plans"
+                    android:text="@string/fp_tv_purchased_plan"
                     android:textColor="#636771"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -224,7 +239,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right"
                     android:paddingRight="@dimen/_20sdp"
-                    android:text="Rejected Appointments"
+                    android:text="@string/fp_tv_rejected_appointments"
                     android:textColor="#636771"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -239,7 +254,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_16sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Notifications"
+                        android:text="@string/fp_tv_notifications"
                         android:textColor="#636771"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
@@ -277,13 +292,23 @@
                     android:text="Default Currency"
                     android:textColor="#636771"
                     android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
 
             </LinearLayout>
 
         </RelativeLayout>
 
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_10sdp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_home_footer"></com.google.android.gms.ads.AdView>
 
     </RelativeLayout>
 

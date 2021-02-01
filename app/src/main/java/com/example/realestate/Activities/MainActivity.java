@@ -52,6 +52,7 @@ import com.example.realestate.Fragments.Homefragment;
 import com.example.realestate.Fragments.MapsFragment;
 import com.example.realestate.Fragments.MyProjectsFragment;
 import com.example.realestate.Fragments.TermConditions;
+import com.example.realestate.Model.Login;
 import com.example.realestate.Model.MyProject.AddProperties_Response;
 import com.example.realestate.Model.MyprojectData;
 import com.example.realestate.Model.Notification;
@@ -59,11 +60,13 @@ import com.example.realestate.Model.REST.Properties.Properties_Data;
 import com.example.realestate.Model.REST.Properties.Properties_Response;
 import com.example.realestate.Model.REST.ResetPasswordResponse;
 import com.example.realestate.Model.Token_response.Send_Token_Response;
+import com.example.realestate.Model.UserData.Userdataresponse;
 import com.example.realestate.R;
 import com.example.realestate.Registration.LoginScreen;
 import com.example.realestate.Registration.OTPScreenResetPass;
 import com.example.realestate.Registration.resetpassword;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
+import com.example.realestate.Utills.GlobalState;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -99,7 +102,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends BaseActivity {
     private static final String AUTH_KEY = "AAAAsYzxVcs:APA91bG5mUGaYeW9K_6hVtZGX6wBKHxy5vZ7C8zYktYeXqg0E1jkw6OHt8q5PGSIyCpUDZZu3thsnbon5fIS3AoXKaC--UtrTKoL0K1PWSRPKtIxj9cWmmwaOMeN3GfGDGgedKSM52Ia";
-
+    ImageView a, b, c, d, e, a1, a2, a3, a4, a5;
     BottomNavigationView bottomNavigationView;
     Fragment temp;
     String TAG = "MainActivity";
@@ -110,6 +113,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         // super.onBackPressed();
+
 
     }
 
@@ -124,12 +128,53 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (isNetworkConnected()) {
+
+        } else {
+            networkalert();
+        }
+        a = findViewById(R.id.a);
+        b = findViewById(R.id.b);
+        c = findViewById(R.id.c);
+        d = findViewById(R.id.d);
+        e = findViewById(R.id.e);
+        a1 = findViewById(R.id.a1);
+        a2 = findViewById(R.id.a2);
+        a3 = findViewById(R.id.a3);
+        a4 = findViewById(R.id.a4);
+        a5 = findViewById(R.id.a5);
+        a.setVisibility(View.VISIBLE);
+        a1.setVisibility(View.INVISIBLE);
         notification();
 
-        mainprogressdilouge = new ProgressDialog(MainActivity.this);
-        mainprogressdilouge.setMessage("Logining..."); // Setting Message
-        mainprogressdilouge.setCancelable(false);
+        if (new SharedPreferenceConfig().getBooleanLanguagefrenchFromSP("frenchlanguage", MainActivity.this)) {
 
+            setLocale("es");
+
+
+        } else if (new SharedPreferenceConfig().getBooleanLanguageFromSP("language", MainActivity.this)) {
+            setLocale("en");
+
+        } else if (new SharedPreferenceConfig().getBooleanLanguagespanishFromSP("spanishlanguage", MainActivity.this)) {
+            setLocale("sp");
+        }
+
+        String userid = new SharedPreferenceConfig().getidOfUSerFromSP("id", MainActivity.this);
+
+
+        if (new SharedPreferenceConfig().getBooleanNotificationFromSP("ischecked", MainActivity.this)) {
+
+        } else {
+            NotificationManager notify_manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notify_manager.cancelAll();
+        }
+
+
+        mainprogressdilouge = new ProgressDialog(MainActivity.this);
+        mainprogressdilouge.setMessage("Loading..."); // Setting Message
+        mainprogressdilouge.setCancelable(false);
+        ShowUser(userid);
 
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wInfo = wifiManager.getConnectionInfo();
@@ -139,120 +184,15 @@ public class MainActivity extends BaseActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, new Homefragment()).commit();
         sendWithOtherThread("token");
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomappbar);
+
         // FirebaseMessaging.getInstance().subscribeToTopic("news");
         sendFCMTokenToServer();
-        //BottomNavigation
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int size = bottomNavigationView.getMenu().size();
-                for (int i = 0; i < size; i++) {
-                    bottomNavigationView.getMenu().getItem(i).setChecked(false);
-                }
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        temp = new Homefragment();
-                        callFreg(temp);
-                        item.setChecked(true);
-                        break;
-                    case R.id.location:
-                        if (!statusCheck()) {
-                            showToast("GPS Not On");
-                        } else {
-                            mainprogressdilouge.show();
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                public void run() {
-                                    temp = new GoogleMapFragment1();
-                                    callFreg(temp);
-                                    item.setChecked(true);
-                                    mainprogressdilouge.dismiss();
-                                }
-                            }, 3000);
 
-//                            Thread thread = new Thread() {
-//
-//                                @Override
-//                                public void run() {
-//                                    try {
-//                                        sleep(7000);
-//                                        mainprogressdilouge.show();
-//
-//                                        temp = new GoogleMapFragment1();
-//                                        callFreg(temp);
-//                                        item.setChecked(true);
-//                                    } catch (InterruptedException e) {
-//                                        e.printStackTrace();
-//                                    }
-//                                    super.run();
-//                                }
-//                            };
-//                            thread.start();
-//                            mainprogressdilouge.dismiss();
-                        }
-
-                        break;
-                    case R.id.likes:
-
-//                        String user_Id = new SharedPreferenceConfig().getidOfUSerFromSP("id", MainActivity.this);
-//                        if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", MainActivity.this)) {
-//                            if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", MainActivity.this)
-//                                    != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", MainActivity.this) != null) {
-                        temp = new MyFavrotFragment();
-                        callFreg(temp);
-                        item.setChecked(true);
-//                            }
-//                        } else {
-//                            showToast("You are Not Logged in");
-//
-//                        }
-
-                        break;
-                    case R.id.booking:
-
-                        if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", MainActivity.this)) {
-                            if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", MainActivity.this)
-                                    != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", MainActivity.this) != null) {
-                                item.setChecked(false);
-                                temp = new Apointments_Tab();
-                                callFreg(temp);
-                            }
-                        } else {
-                            showToast("You are Not Logged in");
-
-                        }
-                        break;
-
-
-                    case R.id.profile:
-                        if (new SharedPreferenceConfig().getBooleanFromSP(Common.ISLOGIN, MainActivity.this)) {
-                            temp = new ProfileFragment();
-                            callFreg(temp);
-                            item.setChecked(true);
-                        } else {
-
-                            dilougLogin();
-
-                        }
-
-
-                        break;
-                }
-                return true;
-            }
-        });
 
     }
 
-    private void callFreg(Fragment temp1) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, temp1).commit();
-
-    }
 
     public void dilougLogin() {
-
-
         final AlertDialog dialogBuilder = new AlertDialog.Builder(MainActivity.this).create();
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.loginpopup, null);
@@ -367,6 +307,43 @@ public class MainActivity extends BaseActivity {
         return s.hasNext() ? s.next().replace(",", ",\n") : "";
     }
 
+    public void ShowUser(String user_id) {
+        mainprogressdilouge.show();
+
+        Call<Userdataresponse> call = ApiClient.getRetrofit().create(ApiInterface.class).GET_USER_CALL(user_id);
+        call.enqueue(new Callback<Userdataresponse>() {
+            @Override
+            public void onResponse(Call<Userdataresponse> call, Response<Userdataresponse> response) {
+                if (response.isSuccessful()) {
+
+                    Userdataresponse loginresp = response.body();
+
+                    if (loginresp.getMessage().equals("user details")) {
+
+                        GlobalState.getInstance().setUserInfo(loginresp.getUserData().getUserInfo());
+                    } else {
+                        showToast("error !");
+                    }
+
+
+                } else {
+                    showToast("Error! Please try again!");
+
+                }
+
+                mainprogressdilouge.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<Userdataresponse> call, Throwable t) {
+
+                showToast(t.getMessage());
+                mainprogressdilouge.dismiss();
+            }
+        });
+
+
+    }
 
     private void sendUserToken(String user_id, String token) {
 //        AddDataProgressDialog.show();
@@ -505,7 +482,6 @@ public class MainActivity extends BaseActivity {
             } else {
                 getCurrentLocation();
             }
-            //st.toast("Enabled");
 
         }
     }
@@ -549,5 +525,131 @@ public class MainActivity extends BaseActivity {
             }
         }
     }
+
+    public void onchecked(View v) {
+
+        if (v.getId() == R.id.a1) {
+            a.setVisibility(View.VISIBLE);
+            a1.setVisibility(View.INVISIBLE);
+            a2.setVisibility(View.VISIBLE);
+            a3.setVisibility(View.VISIBLE);
+            a4.setVisibility(View.VISIBLE);
+            a5.setVisibility(View.VISIBLE);
+
+            b.setVisibility(View.INVISIBLE);
+            c.setVisibility(View.INVISIBLE);
+            d.setVisibility(View.INVISIBLE);
+            e.setVisibility(View.INVISIBLE);
+
+
+            temp = new Homefragment();
+            callFreg(temp);
+
+        }
+        if (v.getId() == R.id.a2) {
+
+            if (!statusCheck()) {
+                showToast("GPS Not On");
+            } else {
+                mainprogressdilouge.show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        temp = new GoogleMapFragment1();
+                        callFreg(temp);
+                        mainprogressdilouge.dismiss();
+                    }
+                }, 3000);
+
+            }
+            b.setVisibility(View.VISIBLE);
+            a2.setVisibility(View.INVISIBLE);
+            a.setVisibility(View.INVISIBLE);
+            c.setVisibility(View.INVISIBLE);
+            d.setVisibility(View.INVISIBLE);
+            e.setVisibility(View.INVISIBLE);
+
+
+            a1.setVisibility(View.VISIBLE);
+            a3.setVisibility(View.VISIBLE);
+            a4.setVisibility(View.VISIBLE);
+            a5.setVisibility(View.VISIBLE);
+
+        }
+        if (v.getId() == R.id.a3) {
+
+            temp = new MyFavrotFragment();
+            callFreg(temp);
+
+            c.setVisibility(View.VISIBLE);
+            a3.setVisibility(View.INVISIBLE);
+            b.setVisibility(View.INVISIBLE);
+            a.setVisibility(View.INVISIBLE);
+            d.setVisibility(View.INVISIBLE);
+            e.setVisibility(View.INVISIBLE);
+
+            a1.setVisibility(View.VISIBLE);
+            a2.setVisibility(View.VISIBLE);
+            a4.setVisibility(View.VISIBLE);
+            a5.setVisibility(View.VISIBLE);
+        }
+        if (v.getId() == R.id.a4) {
+
+
+            if (new SharedPreferenceConfig().getBooleanFromSP("isLogin", MainActivity.this)) {
+                if (new SharedPreferenceConfig().getEmailOfUSerFromSP("Email", MainActivity.this)
+                        != null && new SharedPreferenceConfig().getPasswordOfUSerFromSP("Password", MainActivity.this) != null) {
+
+                    temp = new Apointments_Tab();
+                    callFreg(temp);
+                }
+            } else {
+                showToast("You are Not Logged in");
+
+            }
+
+            d.setVisibility(View.VISIBLE);
+            a4.setVisibility(View.INVISIBLE);
+            b.setVisibility(View.INVISIBLE);
+            c.setVisibility(View.INVISIBLE);
+            a.setVisibility(View.INVISIBLE);
+            e.setVisibility(View.INVISIBLE);
+
+            a1.setVisibility(View.VISIBLE);
+            a2.setVisibility(View.VISIBLE);
+            a3.setVisibility(View.VISIBLE);
+            a5.setVisibility(View.VISIBLE);
+
+        }
+        if (v.getId() == R.id.a5) {
+
+
+            if (new SharedPreferenceConfig().getBooleanFromSP(Common.ISLOGIN, MainActivity.this)) {
+                temp = new ProfileFragment();
+                callFreg(temp);
+            } else {
+
+                dilougLogin();
+
+            }
+            e.setVisibility(View.VISIBLE);
+            a5.setVisibility(View.INVISIBLE);
+            b.setVisibility(View.INVISIBLE);
+            c.setVisibility(View.INVISIBLE);
+            d.setVisibility(View.INVISIBLE);
+            a.setVisibility(View.INVISIBLE);
+
+            a1.setVisibility(View.VISIBLE);
+            a2.setVisibility(View.VISIBLE);
+            a3.setVisibility(View.VISIBLE);
+            a4.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private void callFreg(Fragment temp1) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, temp1).commit();
+    }
+
 }
 

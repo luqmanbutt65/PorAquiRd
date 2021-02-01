@@ -54,10 +54,24 @@ public class Connector_Description extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connector__description);
 
+        if (isNetworkConnected()) {
+
+        } else {
+            networkalert();
+        }
+        if (new SharedPreferenceConfig().getBooleanLanguageFromSP("language", Connector_Description.this)) {
+            setLocale("");
+        } else if (new SharedPreferenceConfig().getBooleanLanguagefrenchFromSP("frenchlanguage", Connector_Description.this)) {
+            setLocale("es");
+
+        } else if (new SharedPreferenceConfig().getBooleanLanguagespanishFromSP("spanishlanguage", Connector_Description.this)) {
+            setLocale("sp");
+        }
+
         backbtn_connector = findViewById(R.id.backbtn_connector);
 
         connectordilouge = new ProgressDialog(Connector_Description.this);
-        connectordilouge.setMessage("Logining..."); // Setting Message
+        connectordilouge.setMessage("Loading..."); // Setting Message
         connectordilouge.setCancelable(false);
         connectordilouge.show();
         Handler handler = new Handler();
@@ -74,7 +88,7 @@ public class Connector_Description extends BaseActivity {
         }, 3000);
 
         descriptionDilouge = new ProgressDialog(Connector_Description.this);
-        descriptionDilouge.setMessage("Logining..."); // Setting Message
+        descriptionDilouge.setMessage("Loading..."); // Setting Message
         descriptionDilouge.setCancelable(false);
 
         bundle = getIntent().getExtras();

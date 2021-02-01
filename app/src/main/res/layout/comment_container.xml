@@ -1,80 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainlayoutcomment"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/mainlayoutcomment">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:padding="@dimen/_10sdp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp">
+        android:layout_height="@dimen/_100sdp"
+        android:padding="@dimen/_10sdp">
+
         <ImageView
             android:id="@+id/user_image"
             android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_60sdp"/>
+            android:layout_height="@dimen/_60sdp" />
 
         <TextView
             android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/user_image"
             android:layout_marginLeft="@dimen/_5sdp"
-            android:text="Joan benny"
-            android:maxLines="1"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/user_image"
+            android:ellipsize="end"
             android:lines="1"
             android:maxLength="30"
-            android:ellipsize="end"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:textStyle="bold"
+            android:maxLines="1"
+            android:text="Joan benny"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"/>
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
         <RatingBar
             android:id="@+id/ratingbar"
             style="?android:attr/ratingBarStyleSmall"
-            android:layout_toRightOf="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
-            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/userName"
             android:isIndicator="true"
             android:numStars="5"
             android:stepSize="1" />
 
         <TextView
             android:id="@+id/datecomment"
-            android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/user_image"
-            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_below="@+id/userName"
-            android:text="June 12,2020"
-            android:maxLines="1"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/user_image"
+            android:ellipsize="end"
             android:lines="1"
             android:maxLength="30"
-            android:ellipsize="end"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:textStyle="normal"
-             />
+            android:maxLines="1"
+            android:text="June 12,2020"
+            android:textStyle="normal" />
 
 
         <TextView
             android:id="@+id/commenttext"
-            android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/user_image"
-            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_below="@+id/datecomment"
-            android:text="this is dummy data this is dummy datathis is dummy data this is dummy data this is dummy data this is dummy data "
-            android:maxLines="5"
-            android:lines="5"
-            android:ellipsize="end"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_10sdp"
-            android:textStyle="normal"
-            />
+            android:layout_toRightOf="@+id/user_image"
+            android:ellipsize="end"
+            android:lines="5"
+            android:maxLines="5"
+            android:text="this is dummy data this is dummy datathis is dummy data this is dummy data this is dummy data this is dummy data "
+            android:textStyle="normal" />
 
     </RelativeLayout>
 

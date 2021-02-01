@@ -17,9 +17,12 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +31,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
+import com.example.realestate.Activities.UpdateData;
 import com.example.realestate.ApiClass.ApiClient;
 import com.example.realestate.ApiClass.ApiInterface;
+import com.example.realestate.Model.GetList.Cities_Data;
+import com.example.realestate.Model.GetList.City;
+import com.example.realestate.Model.GetList.GetCitiesListResponse;
 import com.example.realestate.Model.GetUpdateData.UpdateData_data;
 import com.example.realestate.Model.GetUpdateData.UpdateData_response;
 import com.example.realestate.Model.GetUpdateData.User;
@@ -39,6 +46,7 @@ import com.example.realestate.R;
 import com.example.realestate.SharedPreference.SharedPreferenceConfig;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
@@ -59,7 +67,8 @@ public class ProfileFragment_update extends Fragment {
     public static final int PICK_IMAGE = 1;
     public static final int PICK_PHOTOID = 3;
     public static final int PICK_PDF_FILE = 2;
-    EditText username, name_company, phone_no, address, city, sector, Id, rnc, cell_no;
+    EditText username, name_company, phone_no, address, sector, Id, rnc, cell_no;
+    Spinner city;
     Button submit, uploadImage, uploadFile, uploadphotoid;
     EditText tv_uploadFile;
     TextView tv_company, tv_name, tv_id, tv_rnc, tv_phone, tv_cell, tv_address, tv_city, tv_sector;
@@ -67,10 +76,12 @@ public class ProfileFragment_update extends Fragment {
     ImageView back_btn, iv_uploadImage, iv_uploadphotoid;
     CircleImageView user_photo;
     String use_id;
+    ArrayList<City> cityArrayList = new ArrayList<>();
+    String citystring = "";
     ProgressDialog updateprogress;
     Uri imageuriuser_photo;
     Uri imageuriphotoid, fileuri;
-
+    String cityzeroindex = "";
 
     public ProfileFragment_update() {
         // Required empty public constructor
@@ -139,17 +150,15 @@ public class ProfileFragment_update extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile_update, container, false);
 
         updateprogress = new ProgressDialog(getContext());
-        updateprogress.setMessage("Logining..."); // Setting Message
+        updateprogress.setMessage("Loading..."); // Setting Message
         updateprogress.setCancelable(false);
         use_id = new SharedPreferenceConfig().getidOfUSerFromSP("id", getContext());
 
         ProfileData(use_id);
 
-
+//        GetCitiesList();
         tv_userName = view.findViewById(R.id.tv_userName);
         tv_email = view.findViewById(R.id.tv_email);
-
-
         tv_company = view.findViewById(R.id.tv_company);
         tv_name = view.findViewById(R.id.tv_name);
         tv_id = view.findViewById(R.id.tv_id);
@@ -190,7 +199,6 @@ public class ProfileFragment_update extends Fragment {
         chngeTextColor(username, tv_name);
         chngeTextColor(phone_no, tv_phone);
         chngeTextColor(address, tv_address);
-        chngeTextColor(city, tv_city);
         chngeTextColor(sector, tv_sector);
         chngeTextColor(Id, tv_id);
         chngeTextColor(rnc, tv_rnc);
@@ -227,6 +235,22 @@ public class ProfileFragment_update extends Fragment {
                 startActivityForResult(intent, PICK_PDF_FILE);
             }
         });
+        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+//
+
+                citystring = city.getSelectedItem().toString();
+//
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         back_btn = view.findViewById(R.id.back_btn_updateprofile);
         back_btn.setOnClickListener(new View.OnClickListener() {
@@ -251,12 +275,12 @@ public class ProfileFragment_update extends Fragment {
                 String UserName = username.getText().toString();
                 String PhoneNo = phone_no.getText().toString();
                 String address2 = address.getText().toString();
-                String City = city.getText().toString();
+                String City = citystring;
                 String Sector = sector.getText().toString();
                 String Name_Compantname = name_company.getText().toString();
 
 
-                if (Name_Compantname.isEmpty() || ID.isEmpty() || UserName.isEmpty() || address2.isEmpty() || City.isEmpty() || Sector.isEmpty() || cellno1.isEmpty()) {
+                if (UserName.isEmpty() || address2.isEmpty() || City.isEmpty() || Sector.isEmpty() || cellno1.isEmpty()) {
 
                     Toast.makeText(getContext(), "Please Fill All Fields", Toast.LENGTH_SHORT).show();
 
@@ -305,20 +329,47 @@ public class ProfileFragment_update extends Fragment {
         File permit = null;
         String pathpermit = null;
         try {
+
             pathpermit = getFilePath(getContext(), fileuri);
             permit = new File(pathpermit);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        RequestBody feature_Image = RequestBody.create(MediaType.parse("image/png"), mainImageFile);
-        MultipartBody.Part user_image = MultipartBody.Part.createFormData("user_image", mainImageFile.getPath(), feature_Image);
 
 
-        RequestBody permFile = RequestBody.create(MediaType.parse("application/pdf"), permit);
-        MultipartBody.Part mainfile = MultipartBody.Part.createFormData("work_permit", permFile.toString(), permFile);
+        MultipartBody.Part user_image = null;
+        MultipartBody.Part mainfile = null;
+        MultipartBody.Part photoid = null;
 
-        RequestBody photo_id = RequestBody.create(MediaType.parse("image/png"), mainImagephotoid);
-        MultipartBody.Part photoid = MultipartBody.Part.createFormData("photo_id", mainImagephotoid.getPath(), photo_id);
+        if (mainImageFile != null) {
+            RequestBody feature_Image = RequestBody.create(MediaType.parse("image/png"), mainImageFile);
+            user_image = MultipartBody.Part.createFormData("user_image", mainImageFile.getPath(), feature_Image);
+        } else {
+            RequestBody feature_Image = RequestBody.create(MultipartBody.FORM, "");
+            user_image = MultipartBody.Part.createFormData("user_image", "", feature_Image);
+
+        }
+
+        if (permit != null) {
+            RequestBody permFile = RequestBody.create(MediaType.parse("application/pdf"), permit);
+            mainfile = MultipartBody.Part.createFormData("work_permit", permFile.toString(), permFile);
+        } else {
+            RequestBody permFile = RequestBody.create(MultipartBody.FORM, "");
+            mainfile = MultipartBody.Part.createFormData("work_permit", "", permFile);
+
+        }
+
+        if (mainImagephotoid != null) {
+            RequestBody photo_id = RequestBody.create(MediaType.parse("image/png"), mainImagephotoid);
+            photoid = MultipartBody.Part.createFormData("photo_id", mainImagephotoid.getPath(), photo_id);
+
+        } else {
+
+            RequestBody photo_id = RequestBody.create(MultipartBody.FORM, "");
+            photoid = MultipartBody.Part.createFormData("photo_id", "", photo_id);
+
+        }
+
 
         RequestBody id1 = RequestBody.create(MediaType.parse("text/plain"), use_id);
         RequestBody name1 = RequestBody.create(MediaType.parse("text/plain"), userName);
@@ -330,7 +381,6 @@ public class ProfileFragment_update extends Fragment {
         RequestBody company_name1 = RequestBody.create(MediaType.parse("text/plain"), compny_name);
         RequestBody address1 = RequestBody.create(MediaType.parse("text/plain"), address);
         RequestBody phone_number1 = RequestBody.create(MediaType.parse("text/plain"), cellNo);
-
 
         Call<Login> call = ApiClient.getRetrofit().create(ApiInterface.class).UPDATEPROFIL_CALL(id1, name1, number1, city1, sector1, your_id1, rnc1, company_name1, address1, phone_number1, user_image, mainfile, photoid);
         call.enqueue(new Callback<Login>() {
@@ -397,7 +447,7 @@ public class ProfileFragment_update extends Fragment {
                                     username.setText(userInfo.getName());
                                     phone_no.setText(user_data.getPhone_number());
                                     address.setText(userInfo.getAddress());
-                                    city.setText(userInfo.getCity());
+                                    cityzeroindex = userInfo.getCity();
                                     sector.setText(userInfo.getSector());
                                     Id.setText(user_data.getYour_id());
                                     rnc.setText(user_data.getRnc());
@@ -416,7 +466,7 @@ public class ProfileFragment_update extends Fragment {
 
                             }
                         }
-
+                        GetCitiesList();
 
                     } else {
 
@@ -484,5 +534,53 @@ public class ProfileFragment_update extends Fragment {
 
     }
 
+    public void GetCitiesList() {
 
+        updateprogress.show();
+        Call<GetCitiesListResponse> call = ApiClient.getRetrofit().create(ApiInterface.class).CITYLIST_CALL();
+        call.enqueue(new Callback<GetCitiesListResponse>() {
+            @Override
+            public void onResponse(Call<GetCitiesListResponse> call, Response<GetCitiesListResponse> response) {
+                if (response.isSuccessful()) {
+                    GetCitiesListResponse getCitiesListResponse = response.body();
+                    if (getCitiesListResponse.getMessage().equals("all cities")) {
+
+                        Cities_Data cities_data = response.body().getData();
+                        if (cities_data != null) {
+                            cityArrayList = cities_data.getCityArrayList();
+                            if (cityArrayList != null) {
+                                ArrayList<String> cityList = new ArrayList<>();
+                                if (cityArrayList.size() > 0) {
+
+                                    for (City city : cityArrayList) {
+                                        cityList.add(city.getCity());
+                                    }
+                                }
+                                cityList.add(0, cityzeroindex);
+
+                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, cityList);
+                                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                city.setAdapter(arrayAdapter);
+
+                            }
+                        }
+
+                    } else {
+                        Toast.makeText(getContext(), "Server Error! Please try again!", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } else {
+                    Toast.makeText(getContext(), "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                }
+                updateprogress.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<GetCitiesListResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Network Error", Toast.LENGTH_SHORT).show();
+                updateprogress.dismiss();
+            }
+        });
+    }
 }

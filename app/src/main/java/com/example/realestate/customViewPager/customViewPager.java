@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.viewpager.widget.PagerAdapter;
@@ -22,12 +23,13 @@ public class customViewPager extends PagerAdapter {
     Context context;
     ArrayList<PropertiesGallery> propertiesGalleryArrayList;
     LayoutInflater layoutInflater;
+    public Clickslider clickslider;
 
-
-    public customViewPager(Context context, ArrayList<PropertiesGallery> propertiesGalleryArrayList) {
+    public customViewPager(Context context, ArrayList<PropertiesGallery> propertiesGalleryArrayList, Clickslider clickslider) {
         this.context = context;
         this.propertiesGalleryArrayList = propertiesGalleryArrayList;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.clickslider = clickslider;
     }
 
     @Override
@@ -47,6 +49,13 @@ public class customViewPager extends PagerAdapter {
         Glide.with(context).load("http://poraquird.stepinnsolution.com/public/property_main_images/" + propertiesGalleryArrayList.get(position).getProperty_images()).into(imageView);
         container.addView(itemView);
         //listening to image click
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                clickslider.change(v);
+            }
+        });
 
 
         return itemView;
@@ -55,5 +64,10 @@ public class customViewPager extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((LinearLayout) object);
+    }
+
+
+    public interface Clickslider {
+        public void change(View view);
     }
 }

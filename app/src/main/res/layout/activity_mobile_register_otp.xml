@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="Verification"
+                android:text="@string/amr_tv_verification"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20sdp"
                 android:textStyle="bold" />
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center_horizontal"
-                android:text="We have sent you a code via SMS for mobile number verification" />
+                android:text="@string/amr_tv_description" />
 
             <LinearLayout
                 android:id="@+id/linearlay"
@@ -153,7 +153,7 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_below="@+id/linearlay"
                 android:background="@drawable/round_button"
-                android:text="Submit"
+                android:text="@string/amr_btn_submit"
                 android:textStyle="bold" />
 
             <TextView
@@ -162,7 +162,7 @@
                 android:layout_below="@+id/submitotp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:text="Resend"
+                android:text="@string/amr_tv_resend"
                 android:textColor="#3372D3"
                 android:textSize="@dimen/_12sdp"
                 android:visibility="gone" />

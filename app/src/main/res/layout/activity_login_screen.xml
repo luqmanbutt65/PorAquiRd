@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_20sdp"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/welcome_here"
+            android:text="@string/als_tv_welcome_title"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />
@@ -37,7 +37,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_20sdp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Fill the fields below to Login to your account"
+            android:text="@string/als_description"
             android:textColor="@android:color/white" />
     </RelativeLayout>
 
@@ -70,7 +70,7 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center_vertical"
-                    android:text="Email"
+                    android:text="@string/als_tv_email"
                     android:textColor="#141A25"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
@@ -95,7 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="Enter Your Email"
+                        android:hint="@string/als_et_email"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
@@ -118,7 +118,7 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center_vertical"
-                    android:text="@string/password"
+                    android:text="@string/als_tv_password"
                     android:textColor="#141A25"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
@@ -144,7 +144,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/add_edittext_style"
-                        android:hint="@string/enter_your_password"
+                        android:hint="@string/als_et_password"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_20sdp"
@@ -160,7 +160,7 @@
                 android:layout_below="@+id/linearLayout4"
                 android:layout_marginTop="10dp"
                 android:onClick="GoForgetPassword"
-                android:text="Forget Password?" />
+                android:text="@string/als_tv_forgot_password" />
 
             <Button
                 android:id="@+id/letTheUserLogIn"
@@ -171,7 +171,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/button_round"
                 android:fontFamily="@font/poppins"
-                android:text="Login"
+                android:text="@string/als_btn_login"
                 android:textColor="#fff"
                 android:textSize="16sp"
                 android:textStyle="bold"></Button>
@@ -186,7 +186,7 @@
                 android:layout_marginTop="20dp"
                 android:elevation="0dp"
                 android:onClick="GoSignup"
-                android:text="Don't have an account? SIGN UP"
+                android:text="@string/als_tv_create_account"
                 android:textColor="@android:color/black" />
 
             <RelativeLayout
