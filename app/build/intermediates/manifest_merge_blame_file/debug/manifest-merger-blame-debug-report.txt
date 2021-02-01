@@ -1,0 +1,714 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.realestate"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml
+10    <!--
+11         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+12         Google Maps Android API v2, but you must specify either coarse or fine
+13         location permissions for the "MyLocation" functionality.
+14    -->
+15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+15-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:10:5-79
+15-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:10:22-76
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+16-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:11:5-81
+16-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:11:22-78
+17    <uses-permission android:name="android.permission.INTERNET" />
+17-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:12:5-67
+17-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:12:22-64
+18    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+18-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:13:5-80
+18-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:13:22-77
+19    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+19-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:14:5-81
+19-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:14:22-78
+20    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+20-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:15:5-79
+20-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:15:22-76
+21    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+21-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:16:5-76
+21-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:16:22-73
+22    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+22-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:17:5-19:47
+22-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:18:9-64
+23
+24    <uses-feature
+24-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a5b63204f7f14855e502511622a77757\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
+25        android:glEsVersion="0x00020000"
+25-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a5b63204f7f14855e502511622a77757\jetified-play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
+26        android:required="true" />
+26-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a5b63204f7f14855e502511622a77757\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+27
+28    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+28-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:24:5-68
+28-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:24:22-65
+29    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+29-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:26:5-82
+29-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:26:22-79
+30    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /> <!-- Android package visibility setting -->
+30-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:26:5-110
+30-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:26:22-107
+31    <queries>
+31-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:27:5-38:15
+32
+33        <!-- For browser content -->
+34        <intent>
+34-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:30:9-36:18
+35            <action android:name="android.intent.action.VIEW" />
+35-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:31:13-65
+35-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:31:21-62
+36
+37            <category android:name="android.intent.category.BROWSABLE" />
+37-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:33:13-74
+37-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:33:23-71
+38
+39            <data android:scheme="https" />
+39-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:35:13-44
+39-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:35:19-41
+40        </intent>
+41        <!-- End of browser content -->
+42    </queries>
+43
+44    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+44-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:27:5-81
+44-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:27:22-78
+45    <uses-permission android:name="android.permission.CAMERA" />
+45-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:9:5-65
+45-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:9:22-62
+46    <uses-permission android:name="android.permission.VIBRATE" />
+46-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:10:5-66
+46-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:10:22-63
+47
+48    <uses-feature
+48-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:12:5-14:36
+49        android:name="android.hardware.camera"
+49-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:13:9-47
+50        android:required="false" />
+50-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:14:9-33
+51    <uses-feature
+51-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:15:5-17:36
+52        android:name="android.hardware.camera.autofocus"
+52-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:16:9-57
+53        android:required="false" />
+53-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:17:9-33
+54
+55    <application
+55-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:21:5-104:19
+56        android:name="androidx.multidex.MultiDexApplication"
+56-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:22:9-61
+57        android:allowBackup="true"
+57-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:23:9-35
+58        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+58-->[androidx.core:core:1.3.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\fdd87477d9c1194d798ad1f12bcce817\core-1.3.1\AndroidManifest.xml:24:18-86
+59        android:configChanges="locale|orientation"
+59-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:24:9-51
+60        android:debuggable="true"
+61        android:hardwareAccelerated="false"
+61-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:25:9-44
+62        android:icon="@mipmap/ic_launcher"
+62-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:26:9-43
+63        android:label="@string/app_name"
+63-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:27:9-41
+64        android:largeHeap="true"
+64-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:28:9-33
+65        android:networkSecurityConfig="@xml/network_security_config"
+65-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:29:9-69
+66        android:requestLegacyExternalStorage="true"
+66-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:30:9-52
+67        android:roundIcon="@mipmap/ic_launcher_round"
+67-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:31:9-54
+68        android:supportsRtl="true"
+68-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:32:9-35
+69        android:theme="@style/Theme.RealEstate"
+69-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:33:9-48
+70        android:usesCleartextTraffic="true" >
+70-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:34:9-44
+71        <activity android:name="com.example.realestate.Activities.Connector_Description" />
+71-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:36:9-70
+71-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:36:19-67
+72
+73        <uses-library
+73-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:38:9-40:40
+74            android:name="org.apache.http.legacy"
+74-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:39:13-50
+75            android:required="false" />
+75-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:40:13-37
+76
+77        <activity android:name="com.example.realestate.Activities.Login_otp" />
+77-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:42:9-58
+77-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:42:19-55
+78        <activity android:name="com.example.realestate.Activities.Mobile_register_otp" />
+78-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:43:9-68
+78-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:43:19-65
+79        <activity android:name="com.example.realestate.Activities.Rating_Activity" />
+79-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:44:9-64
+79-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:44:19-61
+80        <activity android:name="com.example.realestate.Activities.Permisions" />
+80-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:45:9-59
+80-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:45:19-56
+81
+82        <service
+82-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:47:9-50:39
+83            android:name="com.example.realestate.Utills.MyService"
+83-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:48:13-45
+84            android:enabled="true"
+84-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:49:13-35
+85            android:exported="true" />
+85-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:50:13-36
+86        <!--
+87             The API key for Google Maps-based APIs is defined as a string resource.
+88             (See the file "res/values/google_maps_api.xml").
+89             Note that the API key is linked to the encryption key used to sign the APK.
+90             You need a different API key for each encryption key, including the release key that is used to
+91             sign the APK for publishing.
+92             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+93        -->
+94        <meta-data
+94-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:59:9-61:55
+95            android:name="com.google.android.geo.API_KEY"
+95-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:60:13-58
+96            android:value="@string/google_maps_key" />
+96-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:61:13-52
+97        <meta-data
+97-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:62:9-64:70
+98            android:name="com.google.android.gms.ads.APPLICATION_ID"
+98-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:63:13-69
+99            android:value="ca-app-pub-2514539521189562~4258320348" />
+99-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:64:13-67
+100        <meta-data
+100-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:65:9-67:57
+101            android:name="preloaded_fonts"
+101-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:66:13-43
+102            android:resource="@array/preloaded_fonts" />
+102-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:67:13-54
+103        <meta-data
+103-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:68:9-70:63
+104            android:name="com.google.firebase.messaging.default_notification_channel_id"
+104-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:69:13-89
+105            android:value="@string/notification_channel_id" />
+105-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:70:13-60
+106        <meta-data
+106-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:71:9-73:60
+107            android:name="com.google.firebase.messaging.default_notification_icon"
+107-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:72:13-83
+108            android:resource="@drawable/ic_notification" />
+108-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:73:13-57
+109        <meta-data
+109-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:74:9-76:61
+110            android:name="com.google.firebase.messaging.default_notification_color"
+110-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:75:13-84
+111            android:resource="@color/activity_background" />
+111-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:76:13-58
+112
+113        <service
+113-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:78:9-84:19
+114            android:name="com.example.realestate.Google_Services.MyFirebaseMessagingService"
+114-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:79:13-71
+115            android:exported="false" >
+115-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:80:13-37
+116            <intent-filter>
+116-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:81:13-83:29
+117                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+117-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:82:17-78
+117-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:82:25-75
+118            </intent-filter>
+119        </service>
+120
+121        <activity android:name="com.example.realestate.Registration.OTPScreen" />
+121-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:86:9-60
+121-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:86:19-57
+122        <activity android:name="com.example.realestate.Activities.BottomsheetApointment" />
+122-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:87:9-70
+122-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:87:19-67
+123        <activity android:name="com.example.realestate.Registration.resetpassword" />
+123-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:88:9-64
+123-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:88:19-61
+124        <activity android:name="com.example.realestate.Registration.forgotpassword" />
+124-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:89:9-65
+124-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:89:19-62
+125        <activity android:name="com.example.realestate.Registration.SignUpActivity" />
+125-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:90:9-65
+125-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:90:19-62
+126        <activity android:name="com.example.realestate.Registration.OTPScreenResetPass" />
+126-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:91:9-69
+126-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:91:19-66
+127        <activity android:name="com.example.realestate.Registration.LoginScreen" />
+127-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:92:9-62
+127-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:92:19-59
+128        <activity android:name="com.example.realestate.Activities.Adddata" />
+128-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:93:9-56
+128-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:93:19-53
+129        <activity android:name="com.example.realestate.Activities.UpdateData" />
+129-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:94:9-59
+129-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:94:19-56
+130        <activity android:name="com.example.realestate.Activities.Description" />
+130-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:95:9-60
+130-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:95:19-57
+131        <activity android:name="com.example.realestate.Splash.FirstActivity" >
+131-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:96:9-102:20
+131-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:96:19-55
+132            <intent-filter>
+132-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:97:13-101:29
+133                <action android:name="android.intent.action.MAIN" />
+133-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:98:17-69
+133-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:98:25-66
+134
+135                <category android:name="android.intent.category.LAUNCHER" />
+135-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:100:17-77
+135-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:100:27-74
+136            </intent-filter>
+137        </activity>
+138        <activity android:name="com.example.realestate.Activities.MainActivity" />
+138-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:103:9-61
+138-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:103:19-58
+139        <activity
+139-->[com.google.android.libraries.places:places:2.2.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\8ea944abaa70644b727cd104e5c75710\jetified-places-2.2.0\AndroidManifest.xml:14:9-20:20
+140            android:name="com.google.android.libraries.places.widget.AutocompleteActivity"
+140-->[com.google.android.libraries.places:places:2.2.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\8ea944abaa70644b727cd104e5c75710\jetified-places-2.2.0\AndroidManifest.xml:15:13-91
+141            android:exported="false"
+141-->[com.google.android.libraries.places:places:2.2.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\8ea944abaa70644b727cd104e5c75710\jetified-places-2.2.0\AndroidManifest.xml:16:13-37
+142            android:label="@string/places_autocomplete_label"
+142-->[com.google.android.libraries.places:places:2.2.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\8ea944abaa70644b727cd104e5c75710\jetified-places-2.2.0\AndroidManifest.xml:17:13-62
+143            android:theme="@style/PlacesAutocompleteOverlay"
+143-->[com.google.android.libraries.places:places:2.2.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\8ea944abaa70644b727cd104e5c75710\jetified-places-2.2.0\AndroidManifest.xml:18:13-61
+144            android:windowSoftInputMode="adjustResize" >
+144-->[com.google.android.libraries.places:places:2.2.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\8ea944abaa70644b727cd104e5c75710\jetified-places-2.2.0\AndroidManifest.xml:19:13-55
+145        </activity>
+146        <activity android:name="com.paypal.android.sdk.payments.PaymentActivity" />
+146-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:13:9-84
+146-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:13:19-81
+147        <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
+147-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:14:9-90
+147-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:14:19-87
+148        <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
+148-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:15:9-91
+148-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:15:19-88
+149        <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
+149-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:16:9-82
+149-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:16:19-79
+150        <activity android:name="com.paypal.android.sdk.payments.PayPalFuturePaymentActivity" />
+150-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:17:9-96
+150-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:17:19-93
+151        <activity android:name="com.paypal.android.sdk.payments.FuturePaymentConsentActivity" />
+151-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:18:9-97
+151-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:18:19-94
+152        <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
+152-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:19:9-94
+152-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:19:19-91
+153        <activity android:name="com.paypal.android.sdk.payments.PayPalProfileSharingActivity" />
+153-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:20:9-97
+153-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:20:19-94
+154        <activity android:name="com.paypal.android.sdk.payments.ProfileSharingConsentActivity" />
+154-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:21:9-98
+154-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:21:19-95
+155
+156        <service
+156-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:23:9-25:40
+157            android:name="com.paypal.android.sdk.payments.PayPalService"
+157-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:24:13-73
+158            android:exported="false" />
+158-->[com.paypal.sdk:paypal-android-sdk:2.15.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\e59e9c0e5e65c2e9566b2d83fd3f6391\jetified-paypal-android-sdk-2.15.3\AndroidManifest.xml:25:13-37
+159        <!--
+160             FirebaseMessagingService performs security checks at runtime,
+161             but set to not exported to explicitly avoid allowing another app to call it.
+162        -->
+163        <service
+163-->[com.google.firebase:firebase-messaging:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\c6903dc2dc5406b4cd0680e868e1dfa8\jetified-firebase-messaging-21.0.1\AndroidManifest.xml:28:9-35:19
+164            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+164-->[com.google.firebase:firebase-messaging:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\c6903dc2dc5406b4cd0680e868e1dfa8\jetified-firebase-messaging-21.0.1\AndroidManifest.xml:29:13-82
+165            android:directBootAware="true"
+165-->[com.google.firebase:firebase-messaging:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\c6903dc2dc5406b4cd0680e868e1dfa8\jetified-firebase-messaging-21.0.1\AndroidManifest.xml:30:13-43
+166            android:exported="false" >
+166-->[com.google.firebase:firebase-messaging:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\c6903dc2dc5406b4cd0680e868e1dfa8\jetified-firebase-messaging-21.0.1\AndroidManifest.xml:31:13-37
+167            <intent-filter android:priority="-500" >
+167-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:81:13-83:29
+168                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+168-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:82:17-78
+168-->D:\SIS\Backup\Realestate\app\src\main\AndroidManifest.xml:82:25-75
+169            </intent-filter>
+170        </service>
+171        <service
+171-->[com.google.firebase:firebase-messaging:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\c6903dc2dc5406b4cd0680e868e1dfa8\jetified-firebase-messaging-21.0.1\AndroidManifest.xml:36:9-42:19
+172            android:name="com.google.firebase.components.ComponentDiscoveryService"
+172-->[com.google.firebase:firebase-messaging:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\c6903dc2dc5406b4cd0680e868e1dfa8\jetified-firebase-messaging-21.0.1\AndroidManifest.xml:37:13-84
+173            android:directBootAware="true"
+173-->[com.google.firebase:firebase-common:19.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\ab3f826f9f7ca80cc0c7c7b6fe93eb89\jetified-firebase-common-19.5.0\AndroidManifest.xml:35:13-43
+174            android:exported="false" >
+174-->[com.google.firebase:firebase-messaging:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\c6903dc2dc5406b4cd0680e868e1dfa8\jetified-firebase-messaging-21.0.1\AndroidManifest.xml:38:13-37
+175            <meta-data
+175-->[com.google.firebase:firebase-messaging:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\c6903dc2dc5406b4cd0680e868e1dfa8\jetified-firebase-messaging-21.0.1\AndroidManifest.xml:39:13-41:85
+176                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+176-->[com.google.firebase:firebase-messaging:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\c6903dc2dc5406b4cd0680e868e1dfa8\jetified-firebase-messaging-21.0.1\AndroidManifest.xml:40:17-119
+177                android:value="com.google.firebase.components.ComponentRegistrar" />
+177-->[com.google.firebase:firebase-messaging:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\c6903dc2dc5406b4cd0680e868e1dfa8\jetified-firebase-messaging-21.0.1\AndroidManifest.xml:41:17-82
+178            <meta-data
+178-->[com.google.firebase:firebase-datatransport:17.0.10] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1202c6b08af0ed14ef5f54b5358a8e55\jetified-firebase-datatransport-17.0.10\AndroidManifest.xml:28:13-30:85
+179                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+179-->[com.google.firebase:firebase-datatransport:17.0.10] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1202c6b08af0ed14ef5f54b5358a8e55\jetified-firebase-datatransport-17.0.10\AndroidManifest.xml:29:17-115
+180                android:value="com.google.firebase.components.ComponentRegistrar" />
+180-->[com.google.firebase:firebase-datatransport:17.0.10] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1202c6b08af0ed14ef5f54b5358a8e55\jetified-firebase-datatransport-17.0.10\AndroidManifest.xml:30:17-82
+181            <meta-data
+181-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:32:13-34:85
+182                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+182-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:33:17-96
+183                android:value="com.google.firebase.components.ComponentRegistrar" />
+183-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:34:17-82
+184            <meta-data
+184-->[com.google.android.gms:play-services-measurement-api:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5b588f60ccb001b2803513c8944c5328\jetified-play-services-measurement-api-18.0.0\AndroidManifest.xml:30:13-32:85
+185                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+185-->[com.google.android.gms:play-services-measurement-api:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5b588f60ccb001b2803513c8944c5328\jetified-play-services-measurement-api-18.0.0\AndroidManifest.xml:31:17-139
+186                android:value="com.google.firebase.components.ComponentRegistrar" />
+186-->[com.google.android.gms:play-services-measurement-api:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5b588f60ccb001b2803513c8944c5328\jetified-play-services-measurement-api-18.0.0\AndroidManifest.xml:32:17-82
+187            <meta-data
+187-->[com.google.firebase:firebase-installations:16.3.5] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\4cec5417b7c50f607c2577b0e3478935\jetified-firebase-installations-16.3.5\AndroidManifest.xml:18:13-20:85
+188                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+188-->[com.google.firebase:firebase-installations:16.3.5] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\4cec5417b7c50f607c2577b0e3478935\jetified-firebase-installations-16.3.5\AndroidManifest.xml:19:17-127
+189                android:value="com.google.firebase.components.ComponentRegistrar" />
+189-->[com.google.firebase:firebase-installations:16.3.5] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\4cec5417b7c50f607c2577b0e3478935\jetified-firebase-installations-16.3.5\AndroidManifest.xml:20:17-82
+190            <!--
+191                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
+192                clients to use it as well, by defining this registrar in their own core/common library.
+193            -->
+194            <meta-data
+194-->[com.google.firebase:firebase-common:19.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\ab3f826f9f7ca80cc0c7c7b6fe93eb89\jetified-firebase-common-19.5.0\AndroidManifest.xml:43:13-45:85
+195                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
+195-->[com.google.firebase:firebase-common:19.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\ab3f826f9f7ca80cc0c7c7b6fe93eb89\jetified-firebase-common-19.5.0\AndroidManifest.xml:44:17-121
+196                android:value="com.google.firebase.components.ComponentRegistrar" />
+196-->[com.google.firebase:firebase-common:19.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\ab3f826f9f7ca80cc0c7c7b6fe93eb89\jetified-firebase-common-19.5.0\AndroidManifest.xml:45:17-82
+197        </service>
+198        <service
+198-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5c6148e177b16247aecf784034edd5c7\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:29:9-35:19
+199            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+199-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5c6148e177b16247aecf784034edd5c7\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:30:13-103
+200            android:exported="false" >
+200-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5c6148e177b16247aecf784034edd5c7\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:31:13-37
+201            <meta-data
+201-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5c6148e177b16247aecf784034edd5c7\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:32:13-34:39
+202                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+202-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5c6148e177b16247aecf784034edd5c7\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:33:17-94
+203                android:value="cct" />
+203-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5c6148e177b16247aecf784034edd5c7\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:34:17-36
+204        </service>
+205
+206        <receiver
+206-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:37:9-44:20
+207            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+207-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:38:13-78
+208            android:exported="true"
+208-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:39:13-36
+209            android:permission="com.google.android.c2dm.permission.SEND" >
+209-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:40:13-73
+210            <intent-filter>
+210-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:41:13-43:29
+211                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+211-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:42:17-81
+211-->[com.google.firebase:firebase-iid:21.0.1] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\a96f4873ba923290c5e76f86bbfb2f2a\jetified-firebase-iid-21.0.1\AndroidManifest.xml:42:25-78
+212            </intent-filter>
+213        </receiver>
+214
+215        <provider
+215-->[com.google.firebase:firebase-common:19.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\ab3f826f9f7ca80cc0c7c7b6fe93eb89\jetified-firebase-common-19.5.0\AndroidManifest.xml:26:9-31:39
+216            android:name="com.google.firebase.provider.FirebaseInitProvider"
+216-->[com.google.firebase:firebase-common:19.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\ab3f826f9f7ca80cc0c7c7b6fe93eb89\jetified-firebase-common-19.5.0\AndroidManifest.xml:27:13-77
+217            android:authorities="com.example.realestate.firebaseinitprovider"
+217-->[com.google.firebase:firebase-common:19.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\ab3f826f9f7ca80cc0c7c7b6fe93eb89\jetified-firebase-common-19.5.0\AndroidManifest.xml:28:13-72
+218            android:directBootAware="true"
+218-->[com.google.firebase:firebase-common:19.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\ab3f826f9f7ca80cc0c7c7b6fe93eb89\jetified-firebase-common-19.5.0\AndroidManifest.xml:29:13-43
+219            android:exported="false"
+219-->[com.google.firebase:firebase-common:19.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\ab3f826f9f7ca80cc0c7c7b6fe93eb89\jetified-firebase-common-19.5.0\AndroidManifest.xml:30:13-37
+220            android:initOrder="100" />
+220-->[com.google.firebase:firebase-common:19.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\ab3f826f9f7ca80cc0c7c7b6fe93eb89\jetified-firebase-common-19.5.0\AndroidManifest.xml:31:13-36
+221
+222        <activity
+222-->[com.google.android.gms:play-services-base:17.3.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\01e3e655557fc48b96a84a3fe5ab85e4\jetified-play-services-base-17.3.0\AndroidManifest.xml:23:9-26:75
+223            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+223-->[com.google.android.gms:play-services-base:17.3.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\01e3e655557fc48b96a84a3fe5ab85e4\jetified-play-services-base-17.3.0\AndroidManifest.xml:24:13-79
+224            android:exported="false"
+224-->[com.google.android.gms:play-services-base:17.3.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\01e3e655557fc48b96a84a3fe5ab85e4\jetified-play-services-base-17.3.0\AndroidManifest.xml:25:13-37
+225            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+225-->[com.google.android.gms:play-services-base:17.3.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\01e3e655557fc48b96a84a3fe5ab85e4\jetified-play-services-base-17.3.0\AndroidManifest.xml:26:13-72
+226
+227        <receiver
+227-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:29:9-33:20
+228            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+228-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:30:13-85
+229            android:enabled="true"
+229-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:31:13-35
+230            android:exported="false" >
+230-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:32:13-37
+231        </receiver>
+232
+233        <service
+233-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:35:9-38:40
+234            android:name="com.google.android.gms.measurement.AppMeasurementService"
+234-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:36:13-84
+235            android:enabled="true"
+235-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:37:13-35
+236            android:exported="false" />
+236-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:38:13-37
+237        <service
+237-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:39:9-43:72
+238            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+238-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:40:13-87
+239            android:enabled="true"
+239-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:41:13-35
+240            android:exported="false"
+240-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:42:13-37
+241            android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+241-->[com.google.android.gms:play-services-measurement:18.0.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\08792b14312fcee20f4cd4b5255a2ae3\jetified-play-services-measurement-18.0.0\AndroidManifest.xml:43:13-69
+242        <activity
+242-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:43:9-47:64
+243            android:name="com.google.android.gms.ads.AdActivity"
+243-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:44:13-65
+244            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+244-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:45:13-122
+245            android:exported="false"
+245-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:46:13-37
+246            android:theme="@android:style/Theme.Translucent" />
+246-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:47:13-61
+247
+248        <provider
+248-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:49:9-53:39
+249            android:name="com.google.android.gms.ads.MobileAdsInitProvider"
+249-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:50:13-76
+250            android:authorities="com.example.realestate.mobileadsinitprovider"
+250-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:51:13-73
+251            android:exported="false"
+251-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:52:13-37
+252            android:initOrder="100" />
+252-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:53:13-36
+253
+254        <service
+254-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:55:9-58:40
+255            android:name="com.google.android.gms.ads.AdService"
+255-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:56:13-64
+256            android:enabled="true"
+256-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:57:13-35
+257            android:exported="false" />
+257-->[com.google.android.gms:play-services-ads-lite:19.6.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\68d191a0223e7b98e5c462e2aab07cf4\jetified-play-services-ads-lite-19.6.0\AndroidManifest.xml:58:13-37
+258
+259        <meta-data
+259-->[com.google.android.gms:play-services-basement:17.3.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5fd60836be3b1a6f377728b33861b1af\jetified-play-services-basement-17.3.0\AndroidManifest.xml:23:9-25:69
+260            android:name="com.google.android.gms.version"
+260-->[com.google.android.gms:play-services-basement:17.3.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5fd60836be3b1a6f377728b33861b1af\jetified-play-services-basement-17.3.0\AndroidManifest.xml:24:13-58
+261            android:value="@integer/google_play_services_version" />
+261-->[com.google.android.gms:play-services-basement:17.3.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\5fd60836be3b1a6f377728b33861b1af\jetified-play-services-basement-17.3.0\AndroidManifest.xml:25:13-66
+262
+263        <provider
+263-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:30:9-36:35
+264            android:name="androidx.work.impl.WorkManagerInitializer"
+264-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:31:13-69
+265            android:authorities="com.example.realestate.workmanager-init"
+265-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:32:13-68
+266            android:directBootAware="false"
+266-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:33:13-44
+267            android:exported="false"
+267-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:34:13-37
+268            android:multiprocess="true" />
+268-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:35:13-40
+269
+270        <service
+270-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:38:9-43:35
+271            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+271-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:39:13-88
+272            android:directBootAware="false"
+272-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:40:13-44
+273            android:enabled="@bool/enable_system_alarm_service_default"
+273-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:41:13-72
+274            android:exported="false" />
+274-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:42:13-37
+275        <service
+275-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:44:9-50:35
+276            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+276-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:45:13-84
+277            android:directBootAware="false"
+277-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:46:13-44
+278            android:enabled="@bool/enable_system_job_service_default"
+278-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:47:13-70
+279            android:exported="true"
+279-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:48:13-36
+280            android:permission="android.permission.BIND_JOB_SERVICE" />
+280-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:49:13-69
+281
+282        <receiver
+282-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:52:9-57:35
+283            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+283-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:53:13-88
+284            android:directBootAware="false"
+284-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:54:13-44
+285            android:enabled="true"
+285-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:55:13-35
+286            android:exported="false" />
+286-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:56:13-37
+287        <receiver
+287-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:58:9-68:20
+288            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+288-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:59:13-106
+289            android:directBootAware="false"
+289-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:60:13-44
+290            android:enabled="false"
+290-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:61:13-36
+291            android:exported="false" >
+291-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:62:13-37
+292            <intent-filter>
+292-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:64:13-67:29
+293                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+293-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:65:17-87
+293-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:65:25-84
+294                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+294-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:66:17-90
+294-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:66:25-87
+295            </intent-filter>
+296        </receiver>
+297        <receiver
+297-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:69:9-79:20
+298            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+298-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:70:13-104
+299            android:directBootAware="false"
+299-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:71:13-44
+300            android:enabled="false"
+300-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:72:13-36
+301            android:exported="false" >
+301-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:73:13-37
+302            <intent-filter>
+302-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:75:13-78:29
+303                <action android:name="android.intent.action.BATTERY_OKAY" />
+303-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:76:17-77
+303-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:76:25-74
+304                <action android:name="android.intent.action.BATTERY_LOW" />
+304-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:77:17-76
+304-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:77:25-73
+305            </intent-filter>
+306        </receiver>
+307        <receiver
+307-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:80:9-90:20
+308            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+308-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:81:13-104
+309            android:directBootAware="false"
+309-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:82:13-44
+310            android:enabled="false"
+310-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:83:13-36
+311            android:exported="false" >
+311-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:84:13-37
+312            <intent-filter>
+312-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:86:13-89:29
+313                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+313-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:87:17-83
+313-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:87:25-80
+314                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+314-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:88:17-82
+314-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:88:25-79
+315            </intent-filter>
+316        </receiver>
+317        <receiver
+317-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:91:9-100:20
+318            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+318-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:92:13-103
+319            android:directBootAware="false"
+319-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:93:13-44
+320            android:enabled="false"
+320-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:94:13-36
+321            android:exported="false" >
+321-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:95:13-37
+322            <intent-filter>
+322-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:97:13-99:29
+323                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+323-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:98:17-79
+323-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:98:25-76
+324            </intent-filter>
+325        </receiver>
+326        <receiver
+326-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:101:9-112:20
+327            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+327-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:102:13-88
+328            android:directBootAware="false"
+328-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:103:13-44
+329            android:enabled="false"
+329-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:104:13-36
+330            android:exported="false" >
+330-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:105:13-37
+331            <intent-filter>
+331-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:107:13-111:29
+332                <action android:name="android.intent.action.BOOT_COMPLETED" />
+332-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:108:17-79
+332-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:108:25-76
+333                <action android:name="android.intent.action.TIME_SET" />
+333-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:109:17-73
+333-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:109:25-70
+334                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+334-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:110:17-81
+334-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:110:25-78
+335            </intent-filter>
+336        </receiver>
+337        <receiver
+337-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:113:9-122:20
+338            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+338-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:114:13-99
+339            android:directBootAware="false"
+339-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:115:13-44
+340            android:enabled="@bool/enable_system_alarm_service_default"
+340-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:116:13-72
+341            android:exported="false" >
+341-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:117:13-37
+342            <intent-filter>
+342-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:119:13-121:29
+343                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+343-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:120:17-98
+343-->[androidx.work:work-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\1c973935f1a60ed2fc126279e8eaf543\work-runtime-2.1.0\AndroidManifest.xml:120:25-95
+344            </intent-filter>
+345        </receiver>
+346
+347        <service
+347-->[androidx.room:room-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\f616c16c1e95c9251ef67198fb2e9253\room-runtime-2.1.0\AndroidManifest.xml:25:9-27:40
+348            android:name="androidx.room.MultiInstanceInvalidationService"
+348-->[androidx.room:room-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\f616c16c1e95c9251ef67198fb2e9253\room-runtime-2.1.0\AndroidManifest.xml:26:13-74
+349            android:exported="false" />
+349-->[androidx.room:room-runtime:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\f616c16c1e95c9251ef67198fb2e9253\room-runtime-2.1.0\AndroidManifest.xml:27:13-37
+350
+351        <provider
+351-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\17c2e39ead7165b07b4bb10d0f01d19c\jetified-lifecycle-process-2.1.0\AndroidManifest.xml:23:9-27:43
+352            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+352-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\17c2e39ead7165b07b4bb10d0f01d19c\jetified-lifecycle-process-2.1.0\AndroidManifest.xml:24:13-79
+353            android:authorities="com.example.realestate.lifecycle-process"
+353-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\17c2e39ead7165b07b4bb10d0f01d19c\jetified-lifecycle-process-2.1.0\AndroidManifest.xml:25:13-69
+354            android:exported="false"
+354-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\17c2e39ead7165b07b4bb10d0f01d19c\jetified-lifecycle-process-2.1.0\AndroidManifest.xml:26:13-37
+355            android:multiprocess="true" />
+355-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\17c2e39ead7165b07b4bb10d0f01d19c\jetified-lifecycle-process-2.1.0\AndroidManifest.xml:27:13-40
+356
+357        <service
+357-->[com.google.android.datatransport:transport-runtime:2.2.5] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\9003136b50389a19fee067f6ec665186\jetified-transport-runtime-2.2.5\AndroidManifest.xml:26:9-30:19
+358            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+358-->[com.google.android.datatransport:transport-runtime:2.2.5] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\9003136b50389a19fee067f6ec665186\jetified-transport-runtime-2.2.5\AndroidManifest.xml:27:13-117
+359            android:exported="false"
+359-->[com.google.android.datatransport:transport-runtime:2.2.5] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\9003136b50389a19fee067f6ec665186\jetified-transport-runtime-2.2.5\AndroidManifest.xml:28:13-37
+360            android:permission="android.permission.BIND_JOB_SERVICE" >
+360-->[com.google.android.datatransport:transport-runtime:2.2.5] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\9003136b50389a19fee067f6ec665186\jetified-transport-runtime-2.2.5\AndroidManifest.xml:29:13-69
+361        </service>
+362
+363        <receiver
+363-->[com.google.android.datatransport:transport-runtime:2.2.5] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\9003136b50389a19fee067f6ec665186\jetified-transport-runtime-2.2.5\AndroidManifest.xml:32:9-34:40
+364            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+364-->[com.google.android.datatransport:transport-runtime:2.2.5] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\9003136b50389a19fee067f6ec665186\jetified-transport-runtime-2.2.5\AndroidManifest.xml:33:13-132
+365            android:exported="false" />
+365-->[com.google.android.datatransport:transport-runtime:2.2.5] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\9003136b50389a19fee067f6ec665186\jetified-transport-runtime-2.2.5\AndroidManifest.xml:34:13-37
+366
+367        <activity
+367-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:20:9-22:66
+368            android:name="io.card.payment.CardIOActivity"
+368-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:21:13-58
+369            android:configChanges="keyboardHidden|orientation" />
+369-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:22:13-63
+370        <activity android:name="io.card.payment.DataEntryActivity" />
+370-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:23:9-70
+370-->[io.card:android-sdk:5.5.0] C:\Users\luqma\.gradle\caches\transforms-2\files-2.1\db7ef46d04025273ef2cc7bbb462d710\jetified-android-sdk-5.5.0\AndroidManifest.xml:23:19-67
+371    </application>
+372
+373</manifest>

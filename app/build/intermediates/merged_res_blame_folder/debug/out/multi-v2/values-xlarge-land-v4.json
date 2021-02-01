@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xlarge-land-v4\\values-xlarge-land-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\luqma\\.gradle\\caches\\transforms-2\\files-2.1\\66d8d1e2f6e7ea9871c41b283bde5970\\jetified-richtexteditor-0.1.1\\res\\values-xlarge-land-v4\\values-xlarge-land-v4.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,108",
+                        "endColumns": "52,51",
+                        "endOffsets": "103,155"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1738 @@
+[
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_buttonround.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\buttonround.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_white_circle.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\white_circle.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_circll.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\circll.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_rating.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\rating.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_house.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\house.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_otp.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\otp.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_like.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\like.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_b.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\b.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_viewpagerround.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\viewpagerround.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_home.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\home.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_black_out_line_black.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\black_out_line_black.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_editbtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\editbtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_sharewith.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\sharewith.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_about_us.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_about_us.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_time.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\time.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_booking.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\booking.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_spinerbath.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\spinerbath.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_payment_web.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_payment_web.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_add.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_add.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_lbath.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\lbath.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_sharewith.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\sharewith.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_black_out_line_black_apointment.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\black_out_line_black_apointment.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_cancell.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\cancell.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_heartt.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\heartt.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_calendar_today.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_calendar_today.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bgotpl.jpg.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\bgotpl.jpg"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_deletebtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\deletebtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_rating_.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_rating_.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_search.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\search.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_premier.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\premier.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_cancelbtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\cancelbtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_like.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\like.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_cancelslider.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\cancelslider.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_d.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\d.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_pending.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\pending.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_user.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\user.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_add_edittext_style_blackbtn.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\add_edittext_style_blackbtn.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_otpcircle.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\otpcircle.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_keyboard_arrow_down.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_keyboard_arrow_down.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_lparking.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\lparking.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_back.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\back.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_mobregc.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\mobregc.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_message.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\message.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_user.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\user.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_back_white.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\back_white.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_approved.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\approved.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_checkboxchecked.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\checkboxchecked.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_home.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_home.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_description.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_description.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_email.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_email.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_dashboard_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\dashboard_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_more.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\more.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_home.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_home.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_my_favrot.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_my_favrot.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_email.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_email.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_home.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_home.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_connectorprofile_update.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_connectorprofile_update.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\notification_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_premier.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\premier.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_o_t_p_resetpw.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_o_t_p_resetpw.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_image_slider_layout_item.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\image_slider_layout_item.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_like.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\like.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_calendar_today.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_calendar_today.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_editbtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\editbtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_keyboard_arrow_right.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_keyboard_arrow_right.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_drawer.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\drawer.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_user.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\user.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_otpcircle.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\otpcircle.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_home.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_home.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_roundedit.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\roundedit.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mobregc.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\mobregc.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_locationmark.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\locationmark.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_image_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\image_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_launcher_background.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_user.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\user.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bed.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\bed.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_search.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\search.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_forgotpassword.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\forgotpassword.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_signup1.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\signup1.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notificationn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\notificationn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_favorite.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_favorite.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_uploadlimitexpirypopup.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\uploadlimitexpirypopup.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_view.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\view.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_location.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\location.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_keyboard_arrow_down.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_keyboard_arrow_down.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_round_button.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\round_button.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_search.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\search.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bottomarrow.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\bottomarrow.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_user.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\user.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_houses.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\houses.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_add.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_add.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_a1.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\a1.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_view.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\view.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_spinerbedroom.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\spinerbedroom.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_keyboard_arrow_down.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_keyboard_arrow_down.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_larea.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\larea.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_c.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\c.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_locationn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\locationn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_email.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_email.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_like_filled.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\like_filled.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_map_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\map_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_primary.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\primary.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_view.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\view.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_sharewith.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\sharewith.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_red.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\red.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_round.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\button_round.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\font_poppins_medium.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\font\\poppins_medium.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mobreglb.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\mobreglb.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_bath.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\bath.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_yellow.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\yellow.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_sharewith.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\sharewith.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_purchasedplan_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\purchasedplan_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_d.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\d.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_otp.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\otp.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_time.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\time.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_home.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_home.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_updatedata.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_updatedata.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_feature_background.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\feature_background.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_favorite.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_favorite.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\notification.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_feature_background.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\feature_background.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_more.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\more.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button1.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\button1.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_message.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\message.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_back.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\back.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_booking.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\booking.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_time.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\time.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_lock.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_lock.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_add.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_add.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_a4.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\a4.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_keyboard_arrow_down.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_keyboard_arrow_down.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_locationmark.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\locationmark.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_cancel.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\cancel.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_selecter.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\selecter.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_featuresdescription_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\featuresdescription_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_like.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\like.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_round_image.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\round_image.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_notificationn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\notificationn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_bgotpl.jpg.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\bgotpl.jpg"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_e.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\e.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_home.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\home.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_a3.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\a3.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_cancelslider.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\cancelslider.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_static_rating.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\static_rating.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_managefiltersheet.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\managefiltersheet.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_heart.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\heart.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_email.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_email.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_otpbl.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\otpbl.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_like_filled.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\like_filled.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_privecy_policy.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_privecy_policy.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_notification.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\notification.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bgcheckbox.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\bgcheckbox.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_loginpopup.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\loginpopup.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bath.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\bath.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_favorite.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_favorite.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bathh.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\bathh.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_login1.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\login1.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_sharewith.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\sharewith.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_a5.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\a5.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_otptr.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\otptr.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_basic.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\basic.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_calendar_today.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_calendar_today.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_like.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\like.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_calendar_today.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_calendar_today.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_user.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\user.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_keyboard_arrow_right.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_keyboard_arrow_right.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_plus.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\plus.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_toggle_widget_background.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\toggle_widget_background.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login_otp.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_login_otp.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_like_filled.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\like_filled.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_seekbar.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\seekbar.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_a4.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\a4.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_a1.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\a1.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_locationmark.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\locationmark.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_back_white.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\back_white.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_a3.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\a3.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_editbtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\editbtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_deletebtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\deletebtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_apointmentcontainer.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\apointmentcontainer.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bgotp.jpg.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\bgotp.jpg"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_o_t_p_screen.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_o_t_p_screen.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_buttons.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\buttons.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_add_edittext_style.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\add_edittext_style.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_connector__properties.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_connector__properties.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_sky.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\sky.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_red.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\red.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_like_filled.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\like_filled.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_permisions.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_permisions.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_et_round.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\et_round.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_search.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\search.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_house.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\house.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_filter.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\filter.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher_background.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_add_edittext_style_gray.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\add_edittext_style_gray.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_like_filled.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\like_filled.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_custome_mobile_register.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\custome_mobile_register.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cancelbtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\cancelbtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher_background.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_lock.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_lock.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_a2.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\a2.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_splash.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\splash.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_mobile_register_otp.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_mobile_register_otp.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_like_filled.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\like_filled.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_cancelslider.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\cancelslider.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_first.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_first.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_locationmark.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\locationmark.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_maps.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_maps.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_notification.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\ic_notification.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_customedilouge_filter_bedroom.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\customedilouge_filter_bedroom.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_favorite.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_favorite.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bedd.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\bedd.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\menu_bottommenu.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\menu\\bottommenu.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_bed.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\bed.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_like.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\like.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_warn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\warn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_radiogroup_background.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\radiogroup_background.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_connectors_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\connectors_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_image1.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\image1.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_round_button_alive.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\round_button_alive.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_myproject_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\myproject_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_hom.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\hom.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_cancelslider.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\cancelslider.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cancel.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\cancel.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_reject_appointment_reply.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\reject_appointment_reply.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_back_white.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\back_white.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_viewpager_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\viewpager_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_calendar_today.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_calendar_today.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_connector_reviews.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_connector_reviews.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_buttons2.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\buttons2.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_connectors.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_connectors.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_planfeatures_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\planfeatures_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_plans_container_lay.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\plans_container_lay.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_deletebtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\deletebtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_tv_background.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\tv_background.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login_screen.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_login_screen.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_heart.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\heart.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_constructiondate.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\constructiondate.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_other_apointmentcontainer.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\other_apointmentcontainer.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_static_rating.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\static_rating.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_clicktick.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\clicktick.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_google_map1.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_google_map1.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_a.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\a.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_keyboard_arrow_right.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_keyboard_arrow_right.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_back_white.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\back_white.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_a2.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\a2.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_back_white.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\back_white.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_basic.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\basic.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_black_out_line_white_apointment.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\black_out_line_white_apointment.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_sharewith.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\sharewith.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_view.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\view.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_search.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\search.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_back_white.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\back_white.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_notification.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\ic_notification.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_add_edittext_style.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\add_edittext_style.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_lock.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_lock.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_calendar_today.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_calendar_today.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_otpbl.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\otpbl.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_homefragment.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_homefragment.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_appointment_bottom_sheet.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\appointment_bottom_sheet.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_features_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\features_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_static_rating.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\static_rating.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_deletebtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\deletebtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_user.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\user.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_warn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\warn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_lock.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_lock.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_one.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\one.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mobreglt.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\mobreglt.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_deletebtn.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\deletebtn.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lbath.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\lbath.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_add.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_add.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_lock.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_lock.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_calendar_today.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_calendar_today.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_keyboard_arrow_right.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_keyboard_arrow_right.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_editbtn.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\editbtn.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_roundimage.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\roundimage.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_mobile.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\mobile.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_like.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\like.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_et_round.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\et_round.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_e.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\e.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_apointments__tab.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_apointments__tab.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_filter.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\filter.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_planexpirypopup.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\planexpirypopup.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_mobreglt.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\mobreglt.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_connector__description.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_connector__description.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_measureunit.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\measureunit.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_keyboard_arrow_right.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_keyboard_arrow_right.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_plus.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\plus.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_customedilouge_appointment_reply.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\customedilouge_appointment_reply.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_my_projects.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_my_projects.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_favorite.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_favorite.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_backgrount_otp.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\backgrount_otp.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_like_filled.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\like_filled.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_checkboxchecked.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\checkboxchecked.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_toggle_widget_background_apointment.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\toggle_widget_background_apointment.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\font_poppins.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\font\\poppins.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lparking.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\lparking.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_cancelslider.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\cancelslider.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_meter.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\meter.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_circll.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\circll.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_meter.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\meter.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_adddata.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_adddata.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_bgcheckbox.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\bgcheckbox.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_keyboard_arrow_right.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_keyboard_arrow_right.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_resetpassword.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_resetpassword.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_change_paswsword.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_change_paswsword.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_locationmark.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\locationmark.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_add_edittext_style_black.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\add_edittext_style_black.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_home.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_home.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_button_focused.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\button_focused.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_profile.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_profile.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_larea.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\larea.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_sky.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\sky.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_my_messages.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_my_messages.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_user.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\user.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_editbtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\editbtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_a5.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\a5.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pending.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\pending.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_mobreglb.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\mobreglb.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_locationmark.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\locationmark.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tv_background.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\tv_background.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_primary.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\primary.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_launcher_background.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_static_rating.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\static_rating.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_connector_comment_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\connector_comment_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_locationn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\locationn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_forgotpassword.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_forgotpassword.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_keyboard_arrow_down.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_keyboard_arrow_down.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_launcher_background.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_home.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_home.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_view.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\view.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_forgotpassword.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\forgotpassword.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mobilee.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\mobilee.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_sign_up.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_sign_up.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_email.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_email.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_profile_update.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_profile_update.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_add.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_add.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_view.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\view.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_search.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\search.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_lock.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_lock.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_plan_sub.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_plan_sub.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_yellow.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\yellow.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_purchased_plans.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_purchased_plans.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_add.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_add.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_b.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\b.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_listview.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\activity_listview.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_cancelslider.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\cancelslider.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_bgotp.jpg.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\bgotp.jpg"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_email.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_email.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_locationmark.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\locationmark.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_customedilouge_filter_bath.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\customedilouge_filter_bath.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_time.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\time.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_comment_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\comment_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_keyboard_arrow_right.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_keyboard_arrow_right.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_deletebtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\deletebtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_buttonbottomsheetrightround.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\buttonbottomsheetrightround.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_thumb.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\thumb.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_favorite.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_favorite.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_hom.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\hom.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_housee.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\housee.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_heartt.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\heartt.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ractangle.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\ractangle.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_add.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_add.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_clicktick.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\clicktick.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_cancelslider.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\cancelslider.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_black_out_line_white.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\black_out_line_white.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_otptr.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\otptr.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_background1.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\background1.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_favorite.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_favorite.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_user.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\user.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_keyboard_arrow_down.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_keyboard_arrow_down.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_one.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\one.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_porlogo.jpg.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\porlogo.jpg"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_back_white.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\back_white.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_keyboard_arrow_down.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_keyboard_arrow_down.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_buttonbottomsheet.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\buttonbottomsheet.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_view.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\view.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cancell.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\cancell.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_track.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\track.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_houses.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\houses.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_a.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\a.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_coockies_policy.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_coockies_policy.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher_background.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_mymessages_container.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\mymessages_container.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\xml_network_security_config.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\debug\\res\\xml\\network_security_config.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_location.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\location.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_backgrount_otp.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\backgrount_otp.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_search.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\search.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_mobilee.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\mobilee.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_editbtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\editbtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_lock.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_lock.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_time.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\time.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_unfocused.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\button_unfocused.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_porlogo.jpg.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\porlogo.jpg"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_static_rating.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\static_rating.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_porr.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\mipmap-xhdpi\\porr.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_deletebtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\deletebtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mobile.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\mobile.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_apointments.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_apointments.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_others_apointments.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_others_apointments.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_housee.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\housee.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_term_conditions.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_term_conditions.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_rating.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\rating.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_static_rating.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\static_rating.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable_drawer.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable\\drawer.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_map_container_new.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\map_container_new.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_email.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_email.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_background.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_time.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\time.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_sharewith.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\sharewith.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_static_rating.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\static_rating.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_editbtn.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\editbtn.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_contact_us.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_contact_us.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_notifications.xml.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\layout\\fragment_notifications.xml"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_time.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\time.png"
+    },
+    {
+        "merged": "D:\\SIS\\Backup\\Realestate\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_c.png.flat",
+        "source": "D:\\SIS\\Backup\\Realestate\\app\\src\\main\\res\\drawable-v24\\c.png"
+    }
+]

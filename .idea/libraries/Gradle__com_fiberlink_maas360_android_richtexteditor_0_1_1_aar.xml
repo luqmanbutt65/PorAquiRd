@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.fiberlink.maas360.android:richtexteditor:0.1.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/66d8d1e2f6e7ea9871c41b283bde5970/jetified-richtexteditor-0.1.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/66d8d1e2f6e7ea9871c41b283bde5970/jetified-richtexteditor-0.1.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/66d8d1e2f6e7ea9871c41b283bde5970/jetified-richtexteditor-0.1.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fiberlink.maas360.android/richtexteditor/0.1.1/7ca87a67dc30a9a7b3c6582c0e704e0ea0a9e0fe/richtexteditor-0.1.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fiberlink.maas360.android/richtexteditor/0.1.1/5cda10cf95a9e12dfb03d320c10f55bca106cb1b/richtexteditor-0.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
